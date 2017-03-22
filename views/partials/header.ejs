@@ -1,0 +1,316 @@
+<!--The fixed header of the page    -->
+    <header>
+     <div class="headerBackground">  
+        <nav class="navbar navbar-default mod-nav" data-spy="affix" >
+            <div class="container-fluid">
+                <div class="navbar-header logo">
+                   
+                    <a href="#" class="tooltips">
+                        <img class="img-responsive" id="investory" src="images/investoryLogo.png" alt="" />
+                    <img class="img-responsive logo-icon" src="images/logoIcon.png" alt="" />
+                    <img class="img-responsive logo-icon-blue" src="images/logoIconBlue.png" alt="" />
+                        <span id="readMore">
+       
+       Our name is inspired by two words- invest and story.<br />
+                        
+        Here we help you write your financial story with honest investment  advice.<br />
+        Our brand mascot is "Tory" the frog.
+        <br />
+        <br />
+       <em>Why a frog?</em> <read>Read more</read>
+    </span>
+                    </a>
+                </div>
+                
+<!--                <% if(!loggedIn) {%>-->
+                <div class="collapse navbar-collapse" style="" id="myNavbar">
+<!--					 <% } else {%>-->
+                
+					<div class="collapse navbar-collapse" style="    " id="myNavbar">
+<!--						<% } %>-->
+                    <ul class="nav navbar-nav">
+                        <li><a href="KnowUs">Know us</a></li>
+                        <li><a  href="Pricing">Pricing</a></li>
+                        <li><a  href="GoalSelection">Get Started</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right login-btn">
+						<% if(!loggedIn) {%>
+                             <button type=""  id=""  class="btn btn-lg moodNav login" data-toggle="modal" data-target="#loginModal" > Login</button> 
+                        <% } else {%>
+                        <div id="" class="row avatar">
+                            <div class="nameHeader"><p class="name"><%= user.name %></p>
+                            <p class="role">The Egg</p>
+                        </div>
+                        <div class="ImageHeader"><img src="images/avatar.png" alt="Person" width="96" height="96">
+                        <!--header dropdown-->
+                             <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="">
+                                    <span class=""></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="dropdownForLogOut">
+                                    <li><a href="/myStory">My Story</a></li>
+                                    <li><a href="/reports">Reports</a></li>
+                                    <li><a href="/Profile">Edit Profile</a></li>
+                                    <li><a href="/invoices">Account</a></li>
+                                    <li><a href="#">Message</a></li>
+                                    <li><a href="/Settings">Settings</a></li>
+                                    <li><a href="/logout">Log Out</a></li>
+                                </ul>
+                            </div>
+                        <!--header dropdown ends-->
+					    </div>
+						<% } %>
+                    </ul>
+                                       <div id="<%= selectorDisplay %>" class="moodGoals">
+            
+                                <img src="images/back%20arrow.png" alt="">
+                                  
+            <div class="dropdown selectMood">
+    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Your Moods
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="1" id="Broke" href="#">Feeling BROKE</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="2" id="Nerdy" href="#">Feeling NERDY</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="3" id="Rich" href="#">Feeling RICH</a></li>
+<!--      <li role="presentation" class="divider"></li>-->
+      <li role="presentation"><a role="menuitem" tabindex="5" id="Responsible" href="#">Feeling RESPONSIBLE</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="6" id="Loved" href="#">Feeling LOVED</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="7" id="Social" href="#">Feeling SOCIAL</a></li>
+    </ul>
+  </div>
+                    
+                                <div class="dropdown selectGoal">
+    <button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Your Goals
+    <span class="caret"></span></button>
+       <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+           
+               <li role="presentation"><a role="menuitem" tabindex="7" id="Broke" goal="0" href="#">Emergency</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="8" id="Broke" goal="1" href="#">Medical corpus</a></li>
+           	
+    
+              <li role="presentation"><a role="menuitem" tabindex="4" id="Nerdy" goal="0" href="#">Education</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="4" id="Nerdy" goal="1" href="#">Gadget</a></li>
+             <li role="presentation"><a role="menuitem" tabindex="6" id="Nerdy" goal="2" href="#">Build a book collection</a></li>
+           
+           
+            <li role="presentation"><a role="menuitem" tabindex="9" id="Rich"  goal="0" href="#">Crorepati</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="10" id="Rich"  goal="1" href="#">Fancy car</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="11" id="Rich"  goal="2" href="#">Double the money</a></li>
+           
+      <li role="presentation"><a role="menuitem" tabindex="1" id="Responsible" goal="0" href="#">Childs Education</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="2" id="Responsible" goal="1" href="#">Retirement</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="3" id="Responsible" goal="2" href="#">Home</a></li>
+   
+    <li role="presentation"><a role="menuitem" tabindex="5" id="Loved" goal="0" href="#">Marriage</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="5" id="Loved" goal="1" href="#">HoneyMoon</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="5" id="Loved" goal="2" href="#">Ann gifts</a></li>
+  
+          
+              <li role="presentation"><a role="menuitem" tabindex="12"  id="Social" goal="0" href="#">Holiday</a></li>
+           <li role="presentation"><a role="menuitem" tabindex="13"  id="Social" goal="1" href="#">World cup</a></li>
+              <li role="presentation"><a role="menuitem" tabindex="14"  id="Social" goal="2" href="#">Concert</a></li>
+               <li role="presentation"><a role="menuitem" tabindex="15"  id="Social" goal="3" href="#">Course</a></li>
+              <!--<li role="presentation"><a role="menuitem" tabindex="16"  id="Social" goal="4" href="#">Fitness</a></li>-->
+    </ul>
+  </div>
+            
+                                
+<!--
+            <img src="images/search.png" alt="" style="     position: absolute;
+    top: -10%;
+    
+    right: -10.8%;"> 
+-->
+<!--			<input id="searchBox" type="search" name="search" placeholder="" class="form-controler" style="">-->
+        </div>
+            
+                <hr id="<%= selectorDisplay %>">     
+            </div>
+                        
+        </nav>
+        </div> 
+    </header>
+
+  
+		
+      <!-- Modal -->
+            <div ng-app="">
+  <div class="modal fade" id="signUp" role="dialog">
+    <div class="modal-dialog modal-sm">
+          <!-- Modal content-->
+      <div class="modal-content">
+                
+            <div class="modal-body">
+         <div >
+                <form  name="signUpForm" class="form-horizontal" action="/signup" method="post">
+                           <h2>Sign Up</h2>
+						   <hr>
+                       <input type="number" class="form-control" id="mnumber" name="mnumber" placeholder="Mobile Number" ng-model="phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/" required/>
+						   <span ng-show="signUpForm.mnumber.$touched && signUpForm.mnumber.$invalid"  >Phone number is invalid.</span>
+                    
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email"  ng-model="email" 
+           ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/"
+        required /> 
+<span ng-show="signUpForm.email.$touched && signUpForm.email.$invalid  "  >Email Invalid.</span> 
+
+					
+                          <input type="text" class="form-control" id="username" name="username" placeholder="Name"  ng-model="myName" ng-minlength="2" ng-maxlength="50" required/>
+					<span ng-show="signUpForm.username.$touched && signUpForm.username.$invalid"  >Name invalid.</span> 
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password" ng-model="Password" required />
+					 <span ng-show="signUpForm.password.$touched && signUpForm.password.$invalid"  >Password invalid.</span> 
+                            <button type="submit" class="btn btn-lg login" ng-disabled="signUpForm.$invalid"> Submit </button> 
+                          
+              </form></div>
+                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')" >Sign through Facebook</button>
+                            <button type="button" class="btn btn-lg google" onclick="auth('google')" >Sign through Google+</button>
+                             <p><em>By clicking Sign Up you agree to the <a href="#">terms and conditions</a></em></p>   
+                     				<% if (smessage.length > 0) { %>
+<div class="alert alert-danger"><%= smessage %></div>
+<% } %>       
+                     
+            </div>
+                
+      </div>
+    </div>
+  </div>
+					
+			 <h2 id="invisible">Oops!! </h2>  
+		  <!-- Modal -->
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+          <!-- Modal content-->
+      <div class="modal-content">
+                
+            <div class="modal-body">
+           <div >
+         
+                <form name="exampleForm" class="form-horizontal" action="/login" method="post">
+                           <h2>Login</h2>
+						   
+<input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="email" 
+ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/" required / > 
+    <span ng-show="exampleForm.email.$touched && exampleForm.email.$invalid  "  >Email Invalid.</span>
+    
+                    
+                    
+<input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="Password" required />
+                    
+<span ng-show="exampleForm.password.$touched && exampleForm.password.$invalid"  >Password invalid.</span> 
+                    
+<button id="login" type="submit" class="btn btn-lg login "  ng-disabled="exampleForm.$invalid"> Login </button> 
+                            <button type="" class="btn btn-lg sign-up" data-toggle="modal" data-target="#signUp" data-dismiss="modal">Sign Up</button>
+                            <a href="#" class="forgot" >Forgot Password?</a>
+                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')">Login with Facebook</button>
+                            <button type="button" class="btn btn-lg google" onclick="auth('google')">Login with Google+</button>
+                                
+                            
+                 </form>   
+				<% if (lmessage.length > 0) { %>
+<div class="alert alert-danger"><%= lmessage %></div>
+<% } %>
+             </div></div>
+                
+      </div>
+    </div>
+  </div>
+
+	
+		
+		
+        <!--subscribe to our newsLetter Modal-->
+   <div class="modal fade" id="EmailForm" role="dialog">
+              <div class="modal-dialog modal-sm">
+                 <!-- Modal content-->
+                  <div class="modal-content EmailForm">
+                        <div class="modal-body "  style="">
+                     
+                            <h2 class="EmailHead">Enter Email</h2>
+                              <div class="dotHr ">
+                            <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                            <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                               
+                                
+                            
+                            </div>
+                            <form class="formmodel EmailInfo" name="newsletterEmail">
+                                     
+                                     <input  class="form-control Email" id="email"placeholder="" name="email" ng-model="email" 
+           ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/"
+        required / autocomplete="off">
+                                <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  "  >Email Invalid.</span> 
+
+                                
+                                    <div class="dotHr"> <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"  type="submit"
+                                                                
+                                   disabled="newsletterEmail.$invalid"                             > Submit </button> 
+                            <br/>
+                                
+                                <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                        <div></div>
+                                 <div></div>
+                                <div></div>
+                                        
+                               
+                            </div><!--end dotHr-->
+                             </form>    
+                        </div><!--body3-->
+                  </div><!--content3-->
+             </div><!--dialog3-->
+      
+            </div>
+  
+	</div>		
+			<script>
+$(document).ready(function(){
+   
+   <% if (lmessage.length > 0) { %>
+	
+$("#loginModal").modal("show");
+<% } %>
+	
+	   <% if (smessage.length > 0) { %>
+	
+$("#signUp").modal("show");
+<% } %>
+
+});
+</script>
+          
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js'></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>

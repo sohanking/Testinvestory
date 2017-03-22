@@ -1,0 +1,2425 @@
+<head> <link rel="stylesheet" href="stylesheets/responsive.css"> 
+       <link rel="stylesheet" href="stylesheets/responsive2560.css"  media="screen and (width:2560px) and (height:1600px)">
+<script>
+
+
+	function goalSelection(goal, mood){
+		
+		            moodId = mood;
+	
+      var   goalId = goal;
+ 	 window.location.href = "/GoalSelectionRefresh?mood="+moodId+"&goal="+goalId+"&restart=true";
+		
+    var moodImgName = moodId;
+    
+    $(".frogImageMoods img").attr("src", $imgLink+moodImgName+$imgExtension);
+    
+    $(".frogImageMoods h1").html($Feeling+" "+moodId);
+        
+         
+        
+       
+    
+          var local;
+		local = getGoals(moodId);
+		
+         $(".below").empty();
+        
+        for(i=local.length-1; i>= 0; i--){
+            if(i==goalId){
+           
+                $(".below").prepend("<div class='goal' id='activ'><img src='"+$GoalimgLink+moodId+"/"+local[i]+$onHover+$imgExtension+"' mood="+moodId+" alt='Home view'><p id='mood'><span style='background-color: #FFDE15'></span>"+local[i]+"</p></div>");
+                
+               moodFile =  local[i]; 
+               
+            }else{
+                
+    $(".below").prepend("<div class='goal' id=''><img src='"+$GoalimgLink+moodId+"/"+local[i]+$imgExtension+"' mood="+moodId+" alt='Home view'><p id='mood'><span></span>"+local[i]+"</p></div>");
+}
+            
+        }
+        
+		
+		
+	}
+</script>
+</head> 
+<!--<section>-->
+<div class="forStory">
+ <div class="container-fluid text-center" style="margin-top: 10em;">
+
+ <div id="myStory" >
+        
+    <div class="panel" style=" visibility: hidden;">
+     
+      <div class="panel-body text-center" >
+<div id="tar1">
+<p style="  text-decoration: underline;">Education - Target 50%</p>
+<div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+<p  style=" font-weight: 600; margin-left: 1em;"><em>BUCK UP</em></p>
+</div>
+<br />
+<br />
+<div id="tar2">
+<p style="  text-decoration: underline; margin-left: 1em;">Courses - Target 50%</p>
+<div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<p  style=" font-weight: 600; margin-left: 1em;"><em>AWESOME</em></p>
+</div>
+</div>
+    </div>
+        
+      <h4 style="display:none; color: #333333;
+    font-weight: 700;">YOU ARE JUST 2 GOALS AWAY FROM BECOMING <em>THE FROG</em></h4>
+	 
+     <h4 class="youAreYet" style="    color: #333333;
+    font-weight: 700;">YOU ARE YET TO START YOUR STORY, SCROLL DOWN TO PICK YOUR GOAL.</h4>
+    
+        <div class="FrogHome"  style=" visibility: hidden;">
+                <div class="dotHr">
+                <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                                        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                                        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                                        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        </div>
+            <div class="container">
+               <div class="row" style="    width: 100%;
+    margin-top: 2em;
+    margin-left: 22em;">
+                
+                <div class="col-md-4 froggie">
+                   
+                    <img src="images/animHow/3%20GOALS.png" alt="The Egg"><br>
+                
+                </div>
+                   <div class="col-md-4 froggie">
+                   
+                    <img src="images/animHow/5%20GOALS.png" alt="Tadpole"><br>
+        
+                </div>
+                   <div class="col-md-4 froggie">
+                   
+                    <img src="images/animHow/10%20GOALS.png" alt="Froglet"><br>
+                  <div id="yCircle" ></div>
+                </div>
+                   <div class="col-md-4 froggie">
+                   
+                    <img src="images/animHow/15%20GOALS%20BLACK.png" alt="Frog"><br>
+                 
+                </div>
+                
+          
+                    </div>
+                
+                </div>
+         
+                    <div class="dotHr">
+                <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                                        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                                        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                    
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+                                        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div> 
+        <div></div>
+
+        </div>
+            
+
+        </div>
+        
+    </div>
+      
+	</div>
+
+<!--
+</section>
+
+<section>
+-->
+  <div class="container-fluid text-center" style="margin-top: 10em;">
+
+        <img style="margin-bottom:2em;" src="images/animHow/MYSCREEN.png" class="img-responsive img-story">
+<div class="goalReport">
+            <div class="goalReportData g1" onclick="goalSelection('Build a book collection','Nerdy');">
+               <!--<div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                    <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                  
+                   <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+                   
+              </div>
+               --> 
+                <div id="yCircle"></div>
+                <div id="goalName">Build a book collection</div>
+                
+            </div>
+    
+         <div class="goalReportData g2"  onclick="goalSelection('Ann gifts','Loved');">
+              
+               <!-- <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                    <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>
+                -->
+                <div id="yCircle"></div>
+                <div id="goalName">Ann gifts</div>
+                
+            </div>
+    
+         <div class="goalReportData g3" onclick="goalSelection('Fancy car','Rich');">
+              
+               <!--<div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                    <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Fancy car</div>
+                
+            </div>
+    
+             <div class="goalReportData g4" onclick="goalSelection('Medical corpus','Broke');">
+               <!--<div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                    <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Medical corpus</div>
+                
+            </div>
+    
+      <div class="goalReportData g5" onclick="goalSelection('Honeymoon','Loved');">
+              
+                <!--<div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                    <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Honeymoon</div>
+                
+            </div>
+    
+          <div class="goalReportData g6" onclick="goalSelection('Marriage','Loved');">
+              
+             <!-- <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                    <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>
+                <div id="yCircle"></div>
+                <div id="goalName">Marriage</div>
+                
+            </div>
+    
+              <div class="goalReportData g7">
+              
+                <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                  
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Marriage</div>
+                
+            </div>
+    
+                <div class="goalReportData g7" onclick="goalSelection('Crorepati','Rich');">
+              <!--
+                <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                  
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Crorepati</div>
+                
+            </div>
+    
+        
+                <div class="goalReportData g8" onclick="goalSelection('Education','Nerdy');">
+              
+              <!--  <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+                  
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Education</div>
+                
+            </div>
+    
+                    <div class="goalReportData g9" onclick="goalSelection('Gadget','Nerdy');">
+              
+               <!-- <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                  
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>
+                -->
+                <div id="yCircle"></div>
+                <div id="goalName">Gadget</div>
+                
+            </div>
+    
+                       <div class="goalReportData g10" onclick="goalSelection('Home','Responsible');">
+              
+               <!-- <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+                  
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Home</div>
+                
+            </div>
+    
+                           <div class="goalReportData g11" onclick="goalSelection('Childs education','Responsible');">
+              
+               <!-- <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                  
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>
+                -->
+                <div id="yCircle"></div>
+                <div id="goalName">Childs education</div>
+                
+            </div>
+    
+                              <div class="goalReportData g12" onclick="goalSelection('Emergency','Broke');">
+              
+                <!--<div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                  
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+              </div>
+                -->
+                <div id="yCircle"></div>
+                <div id="goalName">Emergency</div>
+                
+            </div>
+    
+                                  <div class="goalReportData g13" >
+              
+               <!-- <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+                  
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Wealth</div>
+                
+            </div>
+    
+    
+                                      <div class="goalReportData g14">
+              
+                <!--<div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+                  
+              </div>
+                -->
+                <div id="yCircle"></div>
+                <div id="goalName">Retirement</div>
+                
+            </div>
+    
+                                          <div class="goalReportData g15">
+              
+              <!--  <div id="invest_withdraw">
+                
+                  <div class="flag"></div>
+                
+                      <button id="Withdraw" type="" class="btn btn-lg moodNav" > Withdraw </button> 
+                    <button id="Invest" type="" class="btn btn-lg moodNav" > Invest </button> 
+                                     <div class="trackGoals">
+                   
+                       <h2>Track Goals</h2>
+                       
+                       <div class="dotHr">
+                       <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                                      <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                             <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           <div></div>
+                           
+                       </div>
+                   
+                       <div class="sliderGoal">
+                       
+                           <div class="row">
+                           
+                               <div class="col-sm-6">
+                           <p><span class="btn btn-default btn-circle">1</span>Goal 01</p>
+                           <p><span class="btn btn-default btn-circle">2</span>The Second</p>
+                            <p><span class="btn btn-default btn-circle">3</span>Third Goal long text</p>
+                                    <p><span class="btn btn-default btn-circle">4</span>Third Goal long text</p>
+                                </div>
+                               
+                               <div class="col-sm-6">
+                                
+                           <div id="myProgress">
+  <div id="myBar1">
+   
+  </div>
+ 
+</div>
+<p>68%</p>
+
+                                   <div id="myProgress">
+  <div id="myBar2">
+   
+  </div>
+ 
+</div>
+<p>98%</p>
+<div id="myProgress">
+  <div id="myBar3">
+   
+  </div>
+ 
+</div>
+<p>10%</p>
+                                </div>
+                               
+                           </div>
+                           
+                       
+                       
+                       </div>
+                       
+                   </div>
+                  
+              </div>-->
+                
+                <div id="yCircle"></div>
+                <div id="goalName">Tax Savings</div>
+                
+            </div>
+    
+            </div>
+	</div>
+    <div class="profileFooter">
+ <% include partials/footer %></div>
+    </div>
+	
+<!--</section>-->
+

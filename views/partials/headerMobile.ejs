@@ -1,0 +1,228 @@
+
+<!--The fixed header of the page    -->
+    <header>
+        
+        
+     <div class="headerBackground">  
+        <nav class="navbar navbar-default mod-nav" data-spy="affix" >
+            <div class="container-fluid">
+              <div class="row" style="">
+    <nav class="navbar navbar-inverse  mobileHeader" >
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="logoImage" href="/">
+        <img class="img-responsive" id="investory" src="images/investoryLogo.png" alt="" />
+        <img class="img-responsive logo-icon" src="images/logoIcon.png" alt="" />
+</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      
+        <li class="dropdown">
+         
+        <li><a href="/Reports" >Reports</a></li>
+          <br>
+        <li><a href="/Settings">Setting</a></li>
+          <br>
+          
+        <li><a href="/Profile">My Profile</a></li>
+           <li><a href="/myStory">My Story</a></li>
+<!--
+           <li><a href="">My Moods</a></li>
+           <li><a href="#">My Goals</a></li>
+-->
+    
+          <br>
+           <li><a href="/KnowUs">Know Us</a></li>
+           <li><a href="/Pricing">Pricing</a></li>
+           <li><a href="/GoalSelection">Get Started</a></li>
+           <li><a href="/FAQs">FAQs</a></li>
+           <li><a href="#">Blog</a></li>
+          <br>
+          <li><a href="#"  data-target="#loginModal"  data-toggle="modal" >Login</a>
+           <li><a href="/logout">Logout</a></li>
+          </li>
+      </ul>
+
+    </div>
+  </div>
+</nav></div>
+                
+              
+    </header>
+
+  
+		
+      <!-- Modal -->
+            <div ng-app="">
+  <div class="modal fade" id="signUp" role="dialog">
+    <div class="modal-dialog modal-sm">
+          <!-- Modal content-->
+      <div class="modal-content">
+                
+            <div class="modal-body">
+         <div >
+                <form  name="signUpForm" class="form-horizontal" action="/signup" method="post">
+                           <h2>Sign Up</h2>
+						   <hr>
+                       <input type="number" class="form-control" id="mnumber" name="mnumber" placeholder="Mobile Number" ng-model="phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/" required/>
+						   <span ng-show="signUpForm.mnumber.$touched && signUpForm.mnumber.$invalid"  >Phone number is invalid.</span>
+                    
+							<input type="email" class="form-control" id="email" name="email" placeholder="Email"  ng-model="email" 
+           ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/"
+        required /> 
+<span ng-show="signUpForm.email.$touched && signUpForm.email.$invalid  "  >Email Invalid.</span> 
+
+					
+                          <input type="text" class="form-control" id="username" name="username" placeholder="Name"  ng-model="myName" ng-minlength="2" ng-maxlength="50" required/>
+					<span ng-show="signUpForm.username.$touched && signUpForm.username.$invalid"  >Name invalid.</span> 
+							<input type="password" class="form-control" name="password" id="password" placeholder="Password" ng-model="Password" required />
+					 <span ng-show="signUpForm.password.$touched && signUpForm.password.$invalid"  >Password invalid.</span> 
+                            <button type="submit" class="btn btn-lg login" ng-disabled="signUpForm.$invalid"> Submit </button> 
+                          
+              </form></div>
+                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')" >Sign through Facebook</button>
+                            <button type="button" class="btn btn-lg google" onclick="auth('google')" >Sign through Google+</button>
+                             <p><em>By clicking Sign Up you agree to the <a href="#">terms and conditions</a></em></p>   
+                     				
+                     
+            </div>
+                
+      </div>
+    </div>
+  </div>
+					
+			 <h2 id="invisible">Oops!! </h2>  
+		  <!-- Modal -->
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog modal-sm">
+          <!-- Modal content-->
+      <div class="modal-content">
+                
+            <div class="modal-body">
+           <div >
+         
+                <form name="exampleForm" class="form-horizontal" action="/login" method="post">
+                           <h2>Login</h2>
+						   
+<input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="email" 
+ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/" required /> 
+    <span ng-show="exampleForm.email.$touched && exampleForm.email.$invalid  "  >Email Invalid.</span>
+    
+                    
+                    
+<input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="Password" required />
+                    
+<span ng-show="exampleForm.password.$touched && exampleForm.password.$invalid"  >Password invalid.</span> 
+                    
+<button id="login" type="submit" class="btn btn-lg login "  ng-disabled="exampleForm.$invalid"> Login </button> 
+                            <button type="" class="btn btn-lg sign-up" data-toggle="modal" data-target="#signUp" data-dismiss="modal">Sign Up</button>
+                            <a href="#" class="forgot" >Forgot Password?</a>
+                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')">Login with Facebook</button>
+                            <button type="button" class="btn btn-lg google" onclick="auth('google')">Login with Google+</button>
+                                
+                            
+                 </form>   
+				
+             </div></div>
+                
+      </div>
+    </div>
+  </div>
+
+	
+		
+		
+        <!--subscribe to our newsLetter Modal-->
+   <div class="modal fade" id="EmailForm" role="dialog">
+              <div class="modal-dialog modal-sm">
+                 <!-- Modal content-->
+                  <div class="modal-content EmailForm">
+                        <div class="modal-body "  style="">
+                     
+                            <h2 class="EmailHead">Enter Email</h2>
+                              <div class="dotHr ">
+                            <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                            <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                               
+                                
+                            
+                            </div>
+                            <form class="formmodel EmailInfo" name="newsletterEmail">
+                                     
+                                     <input  class="form-control Email" id="email"placeholder="" name="email" ng-model="email" 
+           ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/"
+        required />
+                                <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  "  >Email Invalid.</span> 
+
+                                
+                                    <div class="dotHr"> <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"  type="submit"
+                                                                
+                                   disabled="newsletterEmail.$invalid"                             > Submit </button> 
+                            <br/>
+                                
+                                <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                        <div></div>
+                                 <div></div>
+                                <div></div>
+                                        
+                               
+                            </div><!--end dotHr-->
+                             </form>    
+                        </div><!--body3-->
+                  </div><!--content3-->
+             </div><!--dialog3-->
+      
+            </div>
+  
+	</div>		
+			
+          
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js'></script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+         <script>
+         $(document).ready(function () {
+    $("nav").find("li").on("click", "a", function () {
+        $('.navbar-collapse.in').collapse('hide');
+    });
+});</script>
