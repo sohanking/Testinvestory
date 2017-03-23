@@ -76,7 +76,7 @@ function getTransactionID(userid) {
 
 
 
-var conString = "postgres://development:123@localhost:5432/investory";
+var conString = "postgres://postgres:postgres@localhost:5432/investory";
 
 var client = new pg.Client(conString);
 client.connect();
@@ -339,7 +339,7 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 	
 			// res.json(req.body);
 			
-			console.log(req.body);
+			console.log("pricing success"+req.body+"userid"+"userid"+req.user.userid);
 			
 		var orderDate = req.body.addedon;
 			
@@ -882,8 +882,8 @@ function(callback){
         productinfo: productinfo,
         email: email,
         phone: phone,
-        surl: 'http://localhost:3001/Pricing/success',
-        furl: 'http://localhost:3001/Pricing/failure',
+        surl: 'http://54.152.36.19:3000/Pricing/success',
+        furl: 'http://54.152.36.19:3000/Pricing/failure',
         hash: hash,
         service_provider: 'payu_paisa',
         action : 'https://test.payu.in/_payment'
@@ -1697,7 +1697,7 @@ console.log("in loop"+req.session.savedplandetail[i].allocationdescription);
                     'cache-control': 'no-cache',
                     'content-type': 'application/soap+xml; charset=utf-8'
         },
-    body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>'+uploadPass+'</ns:EncryptedPassword>\n         <ns:param>10940|SOHANTEST1|http://localhost:3001/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>' };
+    body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>'+uploadPass+'</ns:EncryptedPassword>\n         <ns:param>10940|SOHANTEST1|http://54.152.36.19:3000/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>' };
 
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
