@@ -22,7 +22,7 @@ var flash    = require('connect-flash');
 var routes   = require('./app/routes.js');
 var pp       = require('./config/passport');
 var useragent = require('express-useragent');
-var port = 3001;
+var port = 3000;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(configDB.url); // connect to our database
