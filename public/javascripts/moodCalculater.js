@@ -67,6 +67,6 @@ function setProfile(profileRate, table, storeAllocation){
 		 getRisk =2;
 }
   
-		setProfile(getRisk,2);
+		setProfile(getRisk,2,1);
 		
 }

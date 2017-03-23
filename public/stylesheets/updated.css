@@ -663,21 +663,27 @@ margin-left: 2em;
 
 
 
-.page31 .table>thead>tr>th:nth-child(4),
-.page31 .table>tbody>tr>td:nth-child(4) {
-    
- border-top:0;
-      border-right: 1px solid #35BFD3;
-/*    width: auto;*/
-      font-size: 1em;
-    font-weight: 900;
-   
-      border-right:0;
-   
+.page31 .table>thead>tr>th:nth-child(4), .page31 .table>tbody>tr>td:nth-child(4) {
+
+     border-top: 0;
+     border-right: 1px solid #35BFD3;
+     /* width: auto; */
+     font-size: 1em;
+     font-weight: 900;
+     border-right: 0;
+     width: 10%;
+
 }
 
-
-
+th.thAllocation{
+        width:10%;  
+}
+th.thAmount{
+  width: 9.5%;
+}
+th.thDates{
+  width: 20.25%;
+}
 
 
 .headrEdit{
@@ -737,26 +743,32 @@ tbody#ex3.scrollbar{
         width: 94%;
 }
 
-table.table.table2  tr > td:nth-child(1) {
-    
-        width: 10.8em;
-                padding-left: 1em;
-    padding-right: 1em;
+table.table.table2 tr > td:nth-child(1) {
+
+     width: 6.005em;
+     /* width: 10.8em; */
+     padding-left: 1em;
+     padding-right: 1em;
+
 }
 
-table.table.table2  tr > td:nth-child(2) {
-    
-           width: 13.9em;
-    text-decoration: underline;
-    padding-left: 1em;
-    padding-right: 1em;
+table.table.table2 tr > td:nth-child(2) {
+
+     width: 20.25em;
+     /* width: 13.9em; */
+     text-decoration: underline;
+     padding-left: 1em;
+     padding-right: 1em;
+
 }
 
-table.table.table2  tr > td:nth-child(3) {
-    
-          width: 7.25em;
-    text-align: center;
+table.table.table2 tr > td:nth-child(3) {
+
+     width: 4.9em;
+     text-align: center;
+
 }
+
 
 
 table.table.table1{

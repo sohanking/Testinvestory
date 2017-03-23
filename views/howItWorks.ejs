@@ -53,7 +53,7 @@
                                  <div></div>
                                
                             </div>
-						<% if (payU.amount) {  %>
+						<% if (payU.amount) { panDisp = false; %>
 <div class="bg-success">
 	<p>Name <%= payU.firstname %></p>
 	<p>email:- <%= payU.email %></p>
@@ -816,7 +816,7 @@ $(document).ready(function(){
 	
    <% if (payU.amount) {  %>
 
-$("#myPaymentPayU").modal("show");
+	$("#myPaymentPayU").modal("show");
 <% } %>
 	
 });

@@ -339,7 +339,7 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 	
 			// res.json(req.body);
 			
-			console.log(req.body);
+			console.log("pricing Success"+req.body +"userid"+req.user.userid);
 			
 		var orderDate = req.body.addedon;
 			
@@ -538,7 +538,7 @@ console.log("time"+time+"sip"+sip);
              console.log("Cant get assets values");
 			
 		scheme = result.rows;
-		console.log(scheme.length+"scheme"+scheme[1].name+scheme[1].category+"schemecode"+scheme[1].code);
+		//console.log(scheme.length+"scheme"+scheme[1].name+scheme[1].category+"schemecode"+scheme[1].code);
 
 		
 		for(i=0;i<scheme.length;i++){
@@ -882,8 +882,8 @@ function(callback){
         productinfo: productinfo,
         email: email,
         phone: phone,
-        surl: 'http://localhost:3001/Pricing/success',
-        furl: 'http://localhost:3001/Pricing/failure',
+        surl: 'http://localhost:3000/Pricing/success',
+        furl: 'http://localhost:3000/Pricing/failure',
         hash: hash,
         service_provider: 'payu_paisa',
         action : 'https://test.payu.in/_payment'
@@ -959,7 +959,7 @@ app.post("/PANStatus", function(req, res){
 
 	app.get('/GoalSelection',isLoggedIn,function(req, res){
 		
-		
+		console.log("offline = in goal Selection "+req.session.offlineGoalId);
 		currentPage = req.session.activePage = "/GoalSelection";
 
 
@@ -973,14 +973,16 @@ app.post("/PANStatus", function(req, res){
 	else
 		pageName = "mood";
 		 
-	if(panS){
+	if(req.session.bseStatus){
 	
-		panMsg = req.session.panMessage;
+		panMsg = req.session.bseStatus;
 		
 	}else{
 		panMsg = "";
 	}
 
+		
+		
 	console.log(panMsg+"in getGS");
 	
 	if(loginStatus){
@@ -989,7 +991,7 @@ app.post("/PANStatus", function(req, res){
 		
 }else{
 	mailId=null;
-	
+	//req.session.bseStatus = "";
 }
 		
 		
@@ -1036,7 +1038,8 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 		
 		
 	
-	}else{
+	}
+	else{
 		
 	//render the get started page for get request 
 		
@@ -1049,7 +1052,7 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 		  smessage: req.flash('signupMessage'),
 		lmessage: req.flash('loginMessage'),
 	  	  footerDisplay: "hide",
-		  panMessage: panMsg,
+		  panMessage: "",
 	  footerData1: "Blog",
 	  footerData2: "FAQs",
 		scheme:false,
@@ -1121,7 +1124,7 @@ function(paid,assets,callback){
 		//console.log(asetDataDetail);
 		
 	
-		console.log("test"+req.session.savedplandetail.length);
+		console.log("test"+req.session.bseStatus);
 
 	  res.render(pageName, {
 			data: assets,
@@ -1155,7 +1158,8 @@ function(paid,assets,callback){
 		//console.log("ssds"+engineData);
 		//set rendering values 
 		//callback(null,schemeData)
-	}else
+	}
+	else
 		{
 				res.render(pageName, {
 		  data: assets, 
@@ -1166,7 +1170,7 @@ function(paid,assets,callback){
 		  smessage: req.flash('signupMessage'),
 		lmessage: req.flash('loginMessage'),
 	  	  footerDisplay: "hide",
-		  panMessage: panMsg,
+		  panMessage: "",
 	  footerData1: "Blog",
 	  footerData2: "FAQs",
 		scheme:false,
@@ -1259,6 +1263,7 @@ async.waterfall([
 		   //console.log("myFault"+results["Fault"]["Reason"][0]["Text"]);
 		    bsePaymentStatus = link.toString().split("|");
 		   console.log("Payment Status "+bsePaymentStatus[1]);
+			req.session.bseStatus = bsePaymentStatus;
 			//return bsePaymentStatus[1];
 		 // callback(null,bseLinkArray[1])
 			res.redirect("/GoalSelection");
@@ -1697,7 +1702,7 @@ console.log("in loop"+req.session.savedplandetail[i].allocationdescription);
                     'cache-control': 'no-cache',
                     'content-type': 'application/soap+xml; charset=utf-8'
         },
-    body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>'+uploadPass+'</ns:EncryptedPassword>\n         <ns:param>10940|SOHANTEST1|http://localhost:3001/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>' };
+    body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>'+uploadPass+'</ns:EncryptedPassword>\n         <ns:param>10940|SOHANTEST1|http://localhost:3000/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>' };
 
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
@@ -1913,7 +1918,7 @@ var ePass = ""; //= "FjFMCDg4YPtsxrGRtJmeVQ%3d%3d";
 			
 			  var   	creation_date=new Date();
                 var    modified_date=new Date();
-	//console.log('body: ' + req.body);
+	console.log('body: ' + req.body);
 			
 		
 			async.waterfall([
@@ -1989,6 +1994,14 @@ function(callback){
 	});
 		
 
+	app.post('/saveAssetOffline',isLoggedIn,function(req,res){
+		
+		req.session.offlineGoalId = req.body.goalId;
+		
+		console.log("offline = "+req.session.offlineGoalId);
+		
+	})
+	
 app.get('/YourStory',isLoggedIn, function(req, res){
 	currentPage = req.session.activePage = "/YourStory";
 	
@@ -2154,6 +2167,7 @@ app.get('/reports',isLoggedIn, function(req, res){
 });
 
 
+
 app.get('/Accounts',isLoggedIn, function(req, res){
 	currentPage = req.session.activePage = "/Accounts";
 	
@@ -2166,10 +2180,23 @@ app.get('/Accounts',isLoggedIn, function(req, res){
 	else
 		pageName = "yourStory";
 		
-	
+	  console.log("invoices",req.user.userid);
+   var query=client.query("select to_char(a.userinvestmentorderdate,'dd-Mon-yyyy') as investdate, b.name, a.amount,NULLIF(a.units,0) as units from userinvestmentorders a, schemesmaster b where a.schemeid = b.schemeid and a.userid=$1",[req.user.userid],function(err,result){
+            if(err)
+                console.log("Cant get portfolio details in goal selection");
+            if(result.rows.length>0)
+                {
+                    console.log("statements");
+                    
+                
+                    var len=result.rows.length;
+    
+    
   res.render(pageName,{
 	  
 	  user : req.user ,
+      stmt:result.rows,
+      length:len,
 	  	  selectorDisplay: "show",
 	  		loggedIn: loginStatus,
 	  path:'accountData',
@@ -2180,6 +2207,8 @@ app.get('/Accounts',isLoggedIn, function(req, res){
 	  footerData1: "Blog",
 	  footerData2: "FAQs"
   });
+                }
+   });
 });
 
 app.get('/Invoices',isLoggedIn, function(req, res){
@@ -2193,11 +2222,24 @@ app.get('/Invoices',isLoggedIn, function(req, res){
    		pageName = "myInvoicesMobile";
 	else
 		pageName = "yourStory";
-		
+    
+
+    console.log("invoices",req.user.userid);
+   var query=client.query("select to_char(a.userinvestmentorderdate,'dd-Mon-yyyy') as investdate, b.name, a.amount,NULLIF(a.units,0) as units from userinvestmentorders a, schemesmaster b where a.schemeid = b.schemeid and a.userid=$1 order by 1 desc",[req.user.userid],function(err,result){
+            if(err)
+                console.log("Cant get portfolio details in goal selection");
+            if(result.rows.length>0)
+                {
+                    console.log("statements");
+                    
+                    
+                var len=result.rows.length;
 	
   res.render(pageName,{
 	  
 	  user : req.user ,
+      stmt:result.rows,
+      length:len,
 	  	  selectorDisplay: "show",
 	  		loggedIn: loginStatus,
 	  path:'accountData',
@@ -2208,8 +2250,16 @@ app.get('/Invoices',isLoggedIn, function(req, res){
 	  footerData1: "Blog",
 	  footerData2: "FAQs"
   });
-});
+         }
+    
+    });
 
+
+  
+                    
+});
+	
+	
 app.get('/Settings',isLoggedIn, function(req, res){
 	
 	currentPage = req.session.activePage = "/Settings";

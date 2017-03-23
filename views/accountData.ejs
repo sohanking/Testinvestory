@@ -11,7 +11,7 @@
         </div>
   </div>
   <div class="topNav abc topNav2">
-    <a class="act btn btn-lg moodNav storyBtn"  href="Invoices"">My invoivces</a> 
+    <a class="act btn btn-lg moodNav storyBtn"  href="Invoices">My invoivces</a> 
       <div></div>
       <div></div>
       <div></div>
@@ -41,16 +41,15 @@
     <a class="btn btn-lg moodNav storyBtn"  href="Settings" id="ttt">My settings</a>
   </div>
 
-   
+
 	<% if(path1 == "accountInvoicesData"){ %>
  	<%  include accountInvoicesData %>
- <% }else if(path1 == "accountSettingsData"){ %>
- 	 <% include accountSettingsData %>
-
+<% }else if(path1 == "accountInvoicesData"){ %>
+ 	<%  include accountInvoicesData %>
+ 
 <% } else { %>
 <% include accountInvoicesData %>
 <% } %>
-
 	
 	
       </div>

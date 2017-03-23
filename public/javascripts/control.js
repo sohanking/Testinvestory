@@ -106,10 +106,10 @@ $(".FAQs").click(function (){
 });*/
        
     
-$(".pricing").click(function (){
+/*$(".pricing").click(function (){
     
      window.location.href = "Pricing";
-});
+});*/
     
 $(".getStarted").click(function (){
     
@@ -200,11 +200,12 @@ $(function(){
            /*$(".logo a.tooltips span").hide();  */                    
                                  
                                  });
-    
+
     $(document).click(function() {
         
         $(".logo a.tooltips span").hide(); 
          $(".goalReportData #invest_withdraw").hide(); 
+
     });
     var socialname,socianameHover;
 	

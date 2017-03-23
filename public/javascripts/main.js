@@ -258,7 +258,7 @@ var someColor;
     
 function reverseColor()  {
     
-fillCirclecolor1 = "#F2F5FB";
+fillCirclecolor1 = "#FFFFFF";
     
     var	fillCircleReverse = new TimelineMax();
 
@@ -314,7 +314,7 @@ fillCirclecolor1 = "#F2F5FB";
  
     $.ColorFill= function(fillCirclecolor){
        
-   fillCirclecolor1 = "#F2F5FB";
+   fillCirclecolor1 = "#FFFFFF";
         
 	fillCircle = new TimelineMax();
         
