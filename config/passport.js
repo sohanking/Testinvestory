@@ -41,8 +41,8 @@ var pg = require('pg');
 // note: all config is optional and the environment variables
 // will be read if the config is not present
 var config = {
-  user: 'development', //env var: PGUSER
-  database: 'investory', //env var: PGDATABASE
+  user: 'postgres', //env var: PGUSER
+  database: 'postgres', //env var: PGDATABASE
   password: '123', //env var: PGPASSWORD
   host: 'localhost', // Server hosting the postgres database
   port: 5432, //env var: PGPORT
@@ -56,7 +56,7 @@ var config = {
 
 
 var pg = require('pg');
-var conString = "postgres://development:123@localhost:5432/investory";
+var conString = "postgres://postgres:postgres@localhost:5432/investory";
 
 var client = new pg.Client(conString);
 client.connect();
