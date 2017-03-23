@@ -1226,13 +1226,13 @@ button.btn.btn-sm.moodNav.signUp.gaveUp1{
 
 /*added*/
 div.btnCenterReport1{
-    position: absolute;
+    position: relative;
     bottom: 50px;
     left: 41%;
 }
 /*added*/
 div.btnCenterReport2{
-    position: absolute;
+    position: relative;
     left: 44%;
     bottom: 0;
 }

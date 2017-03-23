@@ -267,7 +267,11 @@ text-decoration: underline;
 
 .navbar-default {
 /*background-color: #ffffff;*/
-    background-color: rgba(242, 245, 251, 0);
+/*    background-color: rgba(242, 245, 251, 0);*/
+    background-color: #ffffff;
+
+
+
     border-color: rgba(242, 245, 251, 0);
     /*border-radius: 0px;*/
     padding: 15px 5px 0;
@@ -2003,7 +2007,7 @@ Footer
     color: #333;
 }
 
-<!--css newsLetter-->
+/*<!--css newsLetter-->*/
 .modal-content.EmailForm{
        padding-left: 2em;
     padding-bottom: 2em;
@@ -2176,13 +2180,17 @@ p.SubscribeToNewsletter:hover{
 
 a.left {
     position: absolute;
-    left: 35em;
-    top: 50%;
+        
+    left: 32em;
+    
+/*    left: 35em;*/
+    top: 55%;
 }
 a.right {
-    right: 35em;
+/*    right: 35em;*/
+     right: 32em;
     position: absolute;
-    top: 50%;
+    top: 55%;
 }
 
 /*MOdal Buttons*/
@@ -2743,7 +2751,7 @@ img.avtarSize{
 
 img.WFrogImg{
     position: absolute;
-    bottom: 0;
+    bottom: -8px;/*added 0*/
     left: 59%;
 }
 h2.WFrogHead{
@@ -2753,7 +2761,7 @@ h2.WFrogHead{
 }
 img.WInvstImg{
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 30%;
 }
 h2.WSHeader{
@@ -2771,7 +2779,7 @@ h2.WSHeader{
 .how-it-works,
 .why-us {
      
-	    margin-top: 4%;
+	    margin-top: 6%;
 }
 
 	.what-we-offer h2,
