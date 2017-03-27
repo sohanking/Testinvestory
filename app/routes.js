@@ -1,11 +1,7 @@
 // app/routes.js
 
-
-var mongoose = require('mongoose');
-
 var cookieParser = require('cookie-parser');
 var session = require('express-session')
-var mongoose = require('mongoose');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -155,14 +151,14 @@ currentPage = req.session.activePage = "/";
     
 	
 	mobile = req.useragent["isMobile"]
- bot = req.useragent["isBot"]
+/* bot = req.useragent["isBot"]
  desktop =req.useragent["isDesktop"]
  myBrowser = req.useragent["browser"]
 myVesrion = req.useragent["version"]
  myOs = req.useragent["os"]
 myPlatform = req.useragent["platform"]
  mySource = req.useragent["source"]
- 
+ */
 
  if(mobile){
   
@@ -397,437 +393,9 @@ function(callback){
 		 if (err)
              throw err;
 				
-				async.waterfall([function(callback){
-	
-	//Fetch Header 
-	//store the data in a json
-			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.user.userid], 
-                                 function(err, result){
-        if (err)
-             console.log("Cant get assets values");
 			
 				
-			
-				asetData = result.rows[0];
-			callback(null,asetData)
-			})
-            
-	
-},
-				 function(headerData,callback){
-	console.log(headerData)
-	
-
-	
-		var query=client.query("SELECT * FROM savedplansdetail where savedplanid=$1 and allocationtype=$2 ORDER BY created DESC LIMIT 3 ",[headerData.savedplanid,'allocation'], 
-                                 function(err, result){
-        if (err)
-             console.log("Cant get assets values");
-			
-				
-			
-				asetDataDetail = result.rows;
-		console.log(asetDataDetail[1]);
-
-	
-			callback(null,headerData,asetDataDetail)
-			})
-	
-	
-	//fetch Detail
-	//using header id
-	//store the data in a json
-	
-},function(headerData,detailData,callback){
-	
-	console.log("data",headerData.riskprofile);
-	//initialize query
-	//using the json data
-	//pass the query
-	
-	var amount = {
-		
-		amount1:detailData[0].allocationamount,
-		amount2:detailData[1].allocationamount,
-		amount3:detailData[2].allocationamount
-		
-	}
-	//console.log(amount);
-	
-	var time = headerData.totalyears;
-	var sip = headerData.sip;
-                var query = {};
-			//console.log(sip+"sip");
-query.risk_profile=headerData.riskprofile;
-		//console.log(time);
-console.log("time"+time+"sip"+sip);
-
-  if(time==2)
-                {
-                    query.time="0,2";
-                    query.sip_from="";
-                      query.sip_to="";
-
-                    }
-    else if(time==1)
-            {
-                query.time="0,1";
-                    query.sip_from="";
-                      query.sip_to="";
-
-                 }
-
-         else if (time>2 && time<3)
-    {
-         query.time="3,3";
-                    query.sip_from="";
-                      query.sip_to="";
-
-         }
-
-
-    else if(time>=3){
-
-         if(sip>=1000 && sip<=2000 && time>=3)
-                 {
-                     query.sip_from=1000;
-                      query.sip_to=2000;
-                     query.time="3,50";
-
-                 }
-             else if(sip>=3000 && sip<=4000 && time>=3)
-             {
-                      query.sip_from=3000;
-                     query.sip_to=4000;
-                 query.time="3,50";
-
-             }
-             else if(sip>=5000 && sip<=10000 && time>=3){
-                   query.sip_from=5000;
-                      query.sip_to=10000;
-                 query.time="3,50";
-				
-
-             }
-             else if(sip>=11000 && sip<=20000 && time>=3){
-                  query.sip_from=11000;
-                      query.sip_to=20000;
-                 query.time="3,50";
-
-             }
-             else{
-                  query.sip_from=20000;
-                 query.sip_to="";
-                 query.time="3,50";
-               }
-    }
-	console.log(query);
-	// callback(null,query);
-	
-	
-	var schemecamntde=0,schemecamnteq=0,schemecamnthy=0;
-  var schememamntde=0,schememamnteq=0,schememamnthy=0;
-  var schemeagamnthy=0,schemeagamnteq=0,schemeagamnteq=0;
-	
-		var j=0,k=0,l=0;
-	var dtime = query.time;
-	var years = dtime.split(',');
-	var query=client.query("select * from schemesmaster where  sipfrom>=$1  and sipto<=$2 and yearfrom=$3 and yearto<=$4 and riskprofile = $5",[query.sip_from,query.sip_to,years[0],years[1],query.risk_profile], 
-                                 function(err, result){
-        if (err)
-             console.log("Cant get assets values");
-			
-		scheme = result.rows;
-		//console.log(scheme.length+"scheme"+scheme[1].name+scheme[1].category+"schemecode"+scheme[1].code);
-
-		
-		for(i=0;i<scheme.length;i++){
-			
-
-    if((scheme[i].category)=="Equity"){
-    j=j+1;
-      }
-				
-      if((scheme[i].category)=="Hybrid"){
-  k=k+1;
-  }
-				
-  if((scheme[i].category)=="Debt"){
-    l=l+1;
-  }
-
- 
-			
-		}
-		 console.log("j"+j+"k"+k+"l"+l);
-		
-		
-		for(i=0;i<scheme.length;i++){
-			
-		if(j==0 || j==1){
-    schemecamnteq=amount.amount1;
-		}
-			else{
-      schemecamnteq=amount.amount1/2;
-     }
-  	if(k==0 || k==1){
-   schemecamnthy=amount.amount2;
-  	}
-  	else{
-    schemecamnthy=amount.amount2/2;
-	}
-			if(l==0 || l==1){
-          schemecamntde=amount.amount3;
-			}else{
-				schemecamntde=amount.amount3/2;
-    	}
-		}
-		
-		console.log("Equity"+schemecamnteq+"Hybrid"+schemecamnthy+"Debt"+schemecamntde);
-		
-		var schemeAmount = {
-			
-			equityAmt: schemecamnteq,
-			hybridAmt:schemecamnthy,
-			debtAmt: schemecamntde
-			
-		}
-		
-		var amt=[];
-		
-		for(i=0;i<scheme.length;i++){
-			
-			
-			
-			if(scheme[i].riskprofile == "Aggressive"){
-			
-			var amtamount1=0,amtmd4=0;
-			
-		                    if((scheme[i].category)=="Equity"){
-var amtamount2=0;
-				if((scheme[i].rating)>=1){
-                    
-amtrounded1=Math.floor((schemecamnteq)/1000)*1000;
-amtamount1=schemecamnteq-amtrounded1;
-amtamount2+=amtamount1;
-
-amtmd4=schemecamnteq+amtamount1;
-amtae2=Math.round(amtmd4/1000)*1000;
-                    
-                    if((scheme[i].rating)>1){
-                            console.log("Equity"+amtrounded1);
-						amt[i]=amtrounded1;
-                        }
-                    if((scheme[i].rating)==1){ 
-                        
-						console.log("Equity"+amtae2);
-						amt[i]=amtae2;
-                   }
-
-                        
-				}
-                    if((scheme[i].rating)==0){
-                           
-						   console.log("Equity"+schemecamnteq);
-						   amt[i] = schemecamnteq;
-                        }
-
-}
-			            var amtamount1=0,amtmd4=0
-                    if((scheme[i].category)=="Hybrid"){ 
-                       var amtamount2=0;   
-                          amtrounded1=Math.floor((schemecamnthy)/1000)*1000;
-                            amtamount1=schemecamnthy-amtrounded1;
-                            amtamount1+=amtamount1;
-                                
-                                amtmd4=schemecamnthy+amtamount1;
-                              amt7=Math.round(amtmd4/1000)*1000;      
-                        if((scheme[i].rating)>=1){
-                            if((scheme[i].rating)>1){
-                           
-                            console.log("Hybrid"+amtrounded1);
-								amt[i]=amtrounded1;
-                            }
-                            
-                               if((scheme[i].rating)==1){ 
-                              
-                            console.log("Hybrid"+amt7);
-								   amt[i]=amt7;
-                            }
-                    }
-                            if((scheme[i].rating)==0){
-                            console.log("Hybrid"+schemecamnthy);
-								amt[i]=schemecamnthy;
-                            }
-
-
-
-                   }
-			
-			
-			var amtamount1=0,amtmd4=0
-                if((scheme[i].category)=="Debt"){ 
-var amtamount2=0;
-                amtrounded1=Math.floor((schemecamntde)/1000)*1000;
-                  amtamount1=schemecamntde-amtrounded1;
-                  amtamount1+=amtamount1;
-                    amtmd4=schemecamntde+amtamount1;
-                    amt8=Math.round(amtmd4/1000)*1000;
-                    if((scheme[i].rating)>=1){
-                  if((scheme[i].rating)>1){
-                
-                    console.log("Debt"+amtrounded1);
-					  amt[i]=amtrounded1;
-                  }
-                  if((scheme[i].rating)==1){ 
-                    
-                  console.log("Debt"+amt8);
-					  amt[i]=amt8;
-                  }
-                    }                    
-                  if((scheme[i].rating)==0){
-                    
-                  console.log("Debt"+schemecamntde);
-					  amt[i]=schemecamntde;
-                  }
-
-                   }
-			
-			
-			
-			
-
-                   } else {
-			
-			if((scheme[i].category)=="Equity"){ 
-
-
-
-                        if((scheme[i].rating)>1){
-                        amtrounded1=Math.floor((schemecamnteq)/1000)*1000;
-                        console.log("Equity"+amtrounded1);
-							amt[i]=amtrounded1;
-                        
-                        }
-                        if((scheme[i].rating)==1){ 
-                          amtme1=Math.round(schemecamnteq/1000)*1000;
-                        console.log("Equity"+amtme1);
-							amt[i]=amtme1;
-                        }
-                        if((scheme[i].rating)==0){
-                     console.log("Equity"+schemecamnteq);
-							amt[i]=schemecamnteq;
-                        }
-
-
-                   }
-                   var amtamount1=0,amtmd4=0
-                    if((scheme[i].category)=="Hybrid"){ 
-
-                            if((scheme[i].rating)>1){
-                            amtrounded1=Math.floor((schemecamnthy)/1000)*1000;
-                             console.log("Hybrid"+amtrounded1);
-								amt[i]=amtrounded1;
-                            }
-                            if((scheme[i].rating)==1){ 
-                            
-                              amtme1=Math.round(schemecamnthy/1000)*1000;
-                            console.log("Hybrid"+amtme1);
-								amt[i]=amtme1;
-                            }
-                            if((scheme[i].rating)==0){
-                           console.log("Hybrid"+schemecamnthy);
-								amt[i]=schemecamnthy;
-                            }
-
-
-                   }
-					var amtamount1=0,amtmd4=0
-                if((scheme[i].category)=="Debt"){ 
-
-                  if((scheme[i].rating)>1){
-                  amtrounded1=Math.floor((schemecamntde)/1000)*1000;
-                
-console.log("Debt"+amtrounded1);
-					  amt[i]=amtrounded1;
-                  
-                  }
-                  if((scheme[i].rating)==1){ 
-                    amtme4=Math.round(schemecamntde/1000)*1000;
-                   console.log("Debt"+amtme4);
-					  amt[i]=amtme4;
-                  }
-                  if((scheme[i].rating)==0){
-                 console.log("Debt"+schemecamntde);
-					  amt[i]=schemecamntde;
-                  }
-
-
-
-			
-			
-		}
-		}
-		}
-		
-
-		
-		//insert into the details
-		
-		for(i=0;i<scheme.length;i++){
-			
-						var percentage =0;
-						
-						var type = 'scheme';
-						var category =  scheme[i].category;
-						var schemeDescription = scheme[i].name;
-			var schemeCode = scheme[i].code;
-			var schemeId = scheme[i].schemeid;
-			console.log(scheme[i].code);
-					// var schemeCode = scheme[i].code;
-			creation_date =new Date();
-			modified_date =new Date();
-						console.log("amt="+amt[i]);
-					
-					/*,(savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.user.name),(savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.user.name)*/
-					
-				 var query=client.query("INSERT INTO savedplansdetail(savedplanid,allocationtype,allocationcategory, allocationdescription, allocationpercentage, allocationamount,created,modified,createdby,schemecode,schemeid) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[headerData.savedplanid,type,category,schemeDescription,percentage,amt[i],creation_date,modified_date,req.user.name,schemeCode,schemeId]
-							,function(err, result) {
-                    if(err){
-						console.log("cant insert assets detail allocation data",err);
-						//res.send("false");
-					}else{
-						 //res.send(1);
-						 console.log("result"+result.rows);
-						
-						//callback(null)
-						
-					}
-                                    
-                  
-            });
-		}
-		
-		
-				req.session.payU = req.body;
-				console.log("initailze the payU "+req.session.payU);
-				
-				//calculateScheme();
-				res.redirect("/Pricing");
-	//	callback(null,schemeAmount);
-			})
-	//fetch the scheme info
-	
-}],function(err, result){
-	
-	
-	
-	
-	//dislay the scheme information
-})
-
-				
-				
+			res.redirect("/Pricing");	
 	 
   }
 
@@ -1023,14 +591,17 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
                 console.log("Cant get portfolio details in goal selection");
 	
 	console.log("Lenght"+result.rows.length);
+	
             if(result.rows.length>0)
                 {
 					
 					paid=true;
+					req.session.paid = true;
 					callback(null,paid,assets)
        }else
 		   {
 			   paid=false;
+			   	req.session.paid = false;
 			   callback(null,paid,assets)
 		   }
 });
@@ -1082,9 +653,11 @@ function(paid,assets,callback){
              console.log("Cant get assets values");
 			
 				
-			
+			console.log("details header"+result.rows.length);
 				asetData = result.rows[0];
-				req.session.savedplanheader = asetData;
+				if(result.rows.length > 0){
+					
+					req.session.savedplanheader = asetData;
 				
 				console.log("saved plan header"+req.session.savedplanheader.sip);
 				console.log("saved plan header"+req.session.savedplanheader.goalid);
@@ -1094,6 +667,31 @@ function(paid,assets,callback){
 				console.log("saved plan header"+req.session.savedplanheader.userid);
 				
 					callback(null,asetData)
+					
+				}else{
+					
+					res.render(pageName, {
+		  data: assets, 
+		  user : req.user,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		firslist :  false,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	  footerDisplay: "hide",
+		  panMessage: "",
+	  footerData1: "Blog",
+	  footerData2: "FAQs",
+		scheme:false,
+		paid : false,
+						  abcd: false,
+						  assetFromDb: false,
+						   showPage5: "hide",
+	  hideAll: "show"
+      });
+					
+				}
+				
 
 				
 			
@@ -1137,10 +735,10 @@ function(paid,assets,callback){
 	  	  footerDisplay: "hide",
 	  footerData1: "Blog",
 	  footerData2: "FAQs",
-			scheme:paid,
+			scheme:false,
 			panMessage:panMsg,
-			abcd: paid,
-			paid : paid,
+			abcd: false,
+			paid : false,
 			assetFromDb: headerData,
 			  showPage5: "show"
             });
@@ -1194,7 +792,165 @@ function(paid,assets,callback){
 		
 	})
 	
+	
+	app.get('/SavedPlans',isLoggedIn,function(req,res){
+		
+		
+	
+		async.waterfall([
+			function(callback){
 
+				
+				var paid=false;
+var query=client.query(" select * from usersubscriptions where userid="+req.user.userid+" and current_date <= planrenewaldate",function(err,result){
+            if(err)
+                console.log("Cant get portfolio details in goal selection");
+	
+	console.log("Lenght"+result.rows.length);
+	
+            if(result.rows.length>0)
+                {
+					
+					paid=true;
+					//req.session.paid = true;
+					callback(null,paid)
+       }else
+		   {
+			   paid=false;
+			   	//req.session.paid = false;
+			   callback(null,paid)
+		   }
+});
+				
+			}
+			,
+			
+			
+			function(pay,callback){
+	
+	//Fetch Header 
+	//store the data in a json
+			
+				//select * from users inner join profile on users.userid = profile.userid where users.userid=$1
+			var query=client.query("SELECT * FROM savedplansheader inner join goal on savedplansheader.goalid = goal.goalid where savedplansheader.userid=$1 ORDER BY savedplansheader.created DESC  ",[req.user.userid], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values"+ err);
+			
+				
+			console.log("details header"+result.rows.length);
+				asetData = result.rows;
+				console.log(asetData);
+				if(result.rows.length > 0){
+					
+					//req.session.savedplanheader = asetData;
+				
+				
+					
+					
+						
+				if(pay){
+					callback(null,asetData)
+				}else{
+					
+					//only render the data present in the header
+					es.render('savedPlans', {
+		  user : req.user,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+							  	  footerDisplay: "hide",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+      });
+				}
+					
+				}else{
+					
+					res.render('savedPlans', {
+		  user : req.user,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+							  	  footerDisplay: "hide",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+      });
+					
+				}
+				
+
+				
+			
+			})
+            
+	
+},
+				 function(headerData,callback){
+	//console.log(headerData)
+	var x=1;
+		var y=headerData.length;
+					 
+for(i=0;i<headerData.length;i++){
+	var asetDataDetail = [];
+	
+	if(x<=y){
+	var query=client.query("SELECT * FROM savedplansdetail where savedplanid=$1 and allocationtype=$2",[headerData[i].savedplanid,'scheme'], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			
+				
+			
+				asetDataDetail = result.rows;
+		//req.session.savedplandetail = asetDataDetail;
+		console.log(asetDataDetail);
+		
+		
+				
+						if(x>=y){
+							
+						
+												res.render('savedPlans', {
+		  				user : req.user,
+						plansHeader : headerData,
+						plansDetail: asetDataDetail,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+							  	  footerDisplay: "hide",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+      });
+						}
+							x++;
+		
+
+
+			})
+	
+	}
+	
+	}
+					 }
+		],function(err,result){
+			
+			
+			        
+			//console.log(result);
+
+			
+		})
+	
+		
+	})
+	
 	
 	
 	app.get('/BsePaymentStatus',isLoggedIn,function(req,res){
@@ -1971,14 +1727,446 @@ function(callback){
 						
 						
 					}],
-							function (err, result) {
+								function (err, result) {
    
 		 if (err)
              throw err;
-		
-					res.send("true");
 				
-  })	
+				async.waterfall([function(callback){
+	
+	//Fetch Header 
+	//store the data in a json
+			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.user.userid], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			
+				
+			
+				asetData = result.rows[0];
+			callback(null,asetData)
+			})
+            
+	
+},
+				 function(headerData,callback){
+	console.log(headerData)
+	
+
+	
+		var query=client.query("SELECT * FROM savedplansdetail where savedplanid=$1 and allocationtype=$2 ORDER BY created DESC LIMIT 3 ",[headerData.savedplanid,'allocation'], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			
+				
+			
+				asetDataDetail = result.rows;
+		console.log(asetDataDetail[1]);
+
+	
+			callback(null,headerData,asetDataDetail)
+			})
+	
+	
+	//fetch Detail
+	//using header id
+	//store the data in a json
+	
+},function(headerData,detailData,callback){
+	
+	console.log("data",headerData.riskprofile);
+	//initialize query
+	//using the json data
+	//pass the query
+	
+	var amount = {
+		
+		amount1:detailData[0].allocationamount,
+		amount2:detailData[1].allocationamount,
+		amount3:detailData[2].allocationamount
+		
+	}
+	//console.log(amount);
+	
+	var time = headerData.totalyears;
+	var sip = headerData.sip;
+                var query = {};
+			//console.log(sip+"sip");
+query.risk_profile=headerData.riskprofile;
+		//console.log(time);
+console.log("time"+time+"sip"+sip);
+
+  if(time==2)
+                {
+                    query.time="0,2";
+                    query.sip_from="";
+                      query.sip_to="";
+
+                    }
+    else if(time==1)
+            {
+                query.time="0,1";
+                    query.sip_from="";
+                      query.sip_to="";
+
+                 }
+
+         else if (time>2 && time<3)
+    {
+         query.time="3,3";
+                    query.sip_from="";
+                      query.sip_to="";
+
+         }
+
+
+    else if(time>=3){
+
+         if(sip>=1000 && sip<=2000 && time>=3)
+                 {
+                     query.sip_from=1000;
+                      query.sip_to=2000;
+                     query.time="3,50";
+
+                 }
+             else if(sip>=3000 && sip<=4000 && time>=3)
+             {
+                      query.sip_from=3000;
+                     query.sip_to=4000;
+                 query.time="3,50";
+
+             }
+             else if(sip>=5000 && sip<=10000 && time>=3){
+                   query.sip_from=5000;
+                      query.sip_to=10000;
+                 query.time="3,50";
+				
+
+             }
+             else if(sip>=11000 && sip<=20000 && time>=3){
+                  query.sip_from=11000;
+                      query.sip_to=20000;
+                 query.time="3,50";
+
+             }
+             else{
+                  query.sip_from=20000;
+                 query.sip_to="";
+                 query.time="3,50";
+               }
+    }
+	console.log(query);
+	// callback(null,query);
+	
+	
+	var schemecamntde=0,schemecamnteq=0,schemecamnthy=0;
+  var schememamntde=0,schememamnteq=0,schememamnthy=0;
+  var schemeagamnthy=0,schemeagamnteq=0,schemeagamnteq=0;
+	
+		var j=0,k=0,l=0;
+	var dtime = query.time;
+	var years = dtime.split(',');
+	var query=client.query("select * from schemesmaster where  sipfrom>=$1  and sipto<=$2 and yearfrom=$3 and yearto<=$4 and riskprofile = $5",[query.sip_from,query.sip_to,years[0],years[1],query.risk_profile], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			
+		scheme = result.rows;
+		//console.log(scheme.length+"scheme"+scheme[1].name+scheme[1].category+"schemecode"+scheme[1].code);
+
+		
+		for(i=0;i<scheme.length;i++){
+			
+
+    if((scheme[i].category)=="Equity"){
+    j=j+1;
+      }
+				
+      if((scheme[i].category)=="Hybrid"){
+  k=k+1;
+  }
+				
+  if((scheme[i].category)=="Debt"){
+    l=l+1;
+  }
+
+ 
+			
+		}
+		 console.log("j"+j+"k"+k+"l"+l);
+		
+		
+		for(i=0;i<scheme.length;i++){
+			
+		if(j==0 || j==1){
+    schemecamnteq=amount.amount1;
+		}
+			else{
+      schemecamnteq=amount.amount1/2;
+     }
+  	if(k==0 || k==1){
+   schemecamnthy=amount.amount2;
+  	}
+  	else{
+    schemecamnthy=amount.amount2/2;
+	}
+			if(l==0 || l==1){
+          schemecamntde=amount.amount3;
+			}else{
+				schemecamntde=amount.amount3/2;
+    	}
+		}
+		
+		console.log("Equity"+schemecamnteq+"Hybrid"+schemecamnthy+"Debt"+schemecamntde);
+		
+		var schemeAmount = {
+			
+			equityAmt: schemecamnteq,
+			hybridAmt:schemecamnthy,
+			debtAmt: schemecamntde
+			
+		}
+		
+		var amt=[];
+		
+		for(i=0;i<scheme.length;i++){
+			
+			
+			
+			if(scheme[i].riskprofile == "Aggressive"){
+			
+			var amtamount1=0,amtmd4=0;
+			
+		                    if((scheme[i].category)=="Equity"){
+var amtamount2=0;
+				if((scheme[i].rating)>=1){
+                    
+amtrounded1=Math.floor((schemecamnteq)/1000)*1000;
+amtamount1=schemecamnteq-amtrounded1;
+amtamount2+=amtamount1;
+
+amtmd4=schemecamnteq+amtamount1;
+amtae2=Math.round(amtmd4/1000)*1000;
+                    
+                    if((scheme[i].rating)>1){
+                            console.log("Equity"+amtrounded1);
+						amt[i]=amtrounded1;
+                        }
+                    if((scheme[i].rating)==1){ 
+                        
+						console.log("Equity"+amtae2);
+						amt[i]=amtae2;
+                   }
+
+                        
+				}
+                    if((scheme[i].rating)==0){
+                           
+						   console.log("Equity"+schemecamnteq);
+						   amt[i] = schemecamnteq;
+                        }
+
+}
+			            var amtamount1=0,amtmd4=0
+                    if((scheme[i].category)=="Hybrid"){ 
+                       var amtamount2=0;   
+                          amtrounded1=Math.floor((schemecamnthy)/1000)*1000;
+                            amtamount1=schemecamnthy-amtrounded1;
+                            amtamount1+=amtamount1;
+                                
+                                amtmd4=schemecamnthy+amtamount1;
+                              amt7=Math.round(amtmd4/1000)*1000;      
+                        if((scheme[i].rating)>=1){
+                            if((scheme[i].rating)>1){
+                           
+                            console.log("Hybrid"+amtrounded1);
+								amt[i]=amtrounded1;
+                            }
+                            
+                               if((scheme[i].rating)==1){ 
+                              
+                            console.log("Hybrid"+amt7);
+								   amt[i]=amt7;
+                            }
+                    }
+                            if((scheme[i].rating)==0){
+                            console.log("Hybrid"+schemecamnthy);
+								amt[i]=schemecamnthy;
+                            }
+
+
+
+                   }
+			
+			
+			var amtamount1=0,amtmd4=0
+                if((scheme[i].category)=="Debt"){ 
+var amtamount2=0;
+                amtrounded1=Math.floor((schemecamntde)/1000)*1000;
+                  amtamount1=schemecamntde-amtrounded1;
+                  amtamount1+=amtamount1;
+                    amtmd4=schemecamntde+amtamount1;
+                    amt8=Math.round(amtmd4/1000)*1000;
+                    if((scheme[i].rating)>=1){
+                  if((scheme[i].rating)>1){
+                
+                    console.log("Debt"+amtrounded1);
+					  amt[i]=amtrounded1;
+                  }
+                  if((scheme[i].rating)==1){ 
+                    
+                  console.log("Debt"+amt8);
+					  amt[i]=amt8;
+                  }
+                    }                    
+                  if((scheme[i].rating)==0){
+                    
+                  console.log("Debt"+schemecamntde);
+					  amt[i]=schemecamntde;
+                  }
+
+                   }
+			
+			
+			
+			
+
+                   } else {
+			
+			if((scheme[i].category)=="Equity"){ 
+
+
+
+                        if((scheme[i].rating)>1){
+                        amtrounded1=Math.floor((schemecamnteq)/1000)*1000;
+                        console.log("Equity"+amtrounded1);
+							amt[i]=amtrounded1;
+                        
+                        }
+                        if((scheme[i].rating)==1){ 
+                          amtme1=Math.round(schemecamnteq/1000)*1000;
+                        console.log("Equity"+amtme1);
+							amt[i]=amtme1;
+                        }
+                        if((scheme[i].rating)==0){
+                     console.log("Equity"+schemecamnteq);
+							amt[i]=schemecamnteq;
+                        }
+
+
+                   }
+                   var amtamount1=0,amtmd4=0
+                    if((scheme[i].category)=="Hybrid"){ 
+
+                            if((scheme[i].rating)>1){
+                            amtrounded1=Math.floor((schemecamnthy)/1000)*1000;
+                             console.log("Hybrid"+amtrounded1);
+								amt[i]=amtrounded1;
+                            }
+                            if((scheme[i].rating)==1){ 
+                            
+                              amtme1=Math.round(schemecamnthy/1000)*1000;
+                            console.log("Hybrid"+amtme1);
+								amt[i]=amtme1;
+                            }
+                            if((scheme[i].rating)==0){
+                           console.log("Hybrid"+schemecamnthy);
+								amt[i]=schemecamnthy;
+                            }
+
+
+                   }
+					var amtamount1=0,amtmd4=0
+                if((scheme[i].category)=="Debt"){ 
+
+                  if((scheme[i].rating)>1){
+                  amtrounded1=Math.floor((schemecamntde)/1000)*1000;
+                
+console.log("Debt"+amtrounded1);
+					  amt[i]=amtrounded1;
+                  
+                  }
+                  if((scheme[i].rating)==1){ 
+                    amtme4=Math.round(schemecamntde/1000)*1000;
+                   console.log("Debt"+amtme4);
+					  amt[i]=amtme4;
+                  }
+                  if((scheme[i].rating)==0){
+                 console.log("Debt"+schemecamntde);
+					  amt[i]=schemecamntde;
+                  }
+
+
+
+			
+			
+		}
+		}
+		}
+		
+
+		
+		//insert into the details
+		
+		for(i=0;i<scheme.length;i++){
+			
+						var percentage =0;
+						
+						var type = 'scheme';
+						var category =  scheme[i].category;
+						var schemeDescription = scheme[i].name;
+			var schemeCode = scheme[i].code;
+			var schemeId = scheme[i].schemeid;
+			console.log(scheme[i].code);
+					// var schemeCode = scheme[i].code;
+			creation_date =new Date();
+			modified_date =new Date();
+						console.log("amt="+amt[i]);
+					
+					/*,(savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.user.name),(savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.user.name)*/
+					
+				 var query=client.query("INSERT INTO savedplansdetail(savedplanid,allocationtype,allocationcategory, allocationdescription, allocationpercentage, allocationamount,created,modified,createdby,schemecode,schemeid) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[headerData.savedplanid,type,category,schemeDescription,percentage,amt[i],creation_date,modified_date,req.user.name,schemeCode,schemeId]
+							,function(err, result) {
+                    if(err){
+						console.log("cant insert assets detail allocation data",err);
+						//res.send("false");
+					}else{
+						 //res.send(1);
+						 console.log("result"+result.rows);
+						
+						//callback(null)
+						
+					}
+                                    
+                  
+            });
+		}
+		
+		
+				req.session.payU = req.body;
+				console.log("initailze the payU "+req.session.payU);
+				
+				//calculateScheme();
+				//res.redirect("/Pricing");
+		callback(null);
+			})
+	//fetch the scheme info
+	
+}],function(err, result){
+	
+	
+	
+	res.send("true")
+	//dislay the scheme information
+})
+
+				
+				
+	 
+  }
+
+)	
 			
 		}
 		else{
@@ -2040,17 +2228,21 @@ app.get('/profile',isLoggedIn, function(req, res){
 	
 	loginStatus = checkLoginStatus(req);
 	
-	Profile.find({email:req.session.userEmail}, function(err, profileData){
-		
-		if(err)
-			throw err;
-		
-		if(profileData.length >= 1){
-			
-			res.render(pageName,{
+    //profile
+     
+   var query=client.query("select * from users inner join profile on users.userid = profile.userid where users.userid=$1 ",[req.user.userid],function(err,result){
+            if(err)
+                console.log("Cant get profile details from users table"+ err);
+            if(result.rows.length>0)
+                {
+                    
+                    var len=result.rows.length;
+    		console.log(result.rows[0]);
+    
+	res.render(pageName,{
 	  
 	  	user : req.user ,
-				profile: profileData[0],
+				profile: result.rows[0],
             message: 'updated',
 	  	  selectorDisplay: "show",
 	  		loggedIn: loginStatus,
@@ -2089,32 +2281,29 @@ app.get('/profile',isLoggedIn, function(req, res){
 	
 	loginStatus = checkLoginStatus(req);
  
-            
-		    Profile.findOneAndUpdate(
-				   {email:req.session.userEmail}, 
-				   {$set:{
-					   name:req.body.username,
-                    email:req.body.email,
-                    mobile:req.body.mnumber,
-                    dob:req.body.calendar,
-                    age:req.body.age,
-                    gender:req.body.gender, 
-                    marital_status:req.body.maritalstatus,
-                    address:req.body.address,
-                    pincode:req.body.pincode,
-                    city:req.body.city,
-                    pan:req.body.pan,
-                    bank_details:req.body.bankdetails     
-				   }},
-				   function(err, doc){
-					    if (err)
-                        throw err;
-					  res.redirect("/profile");
-			  });
-		
-	});
+                    var dob=req.body.calendar;
+                    var age=req.body.age;
+                    var gender=req.body.gender;
+                    var maritalstatus=req.body.maritalstatus;
+                    var address=req.body.address;
+                    var pincode=req.body.pincode;
+                    var city=req.body.city;
+                    var pan=req.body.pan;
+                   
+           
+           console.log(dob,age,gender,maritalstatus,address,pincode,city,pan);
+            console.log("profile Post",req.user.userid);
+   var query=client.query("INSERT INTO profile(userid,age,gender,maritalstatus,address,pincode,city,pan,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING userid",[req.user.userid,age,gender,maritalstatus,address,pincode,city,pan,req.user.name],function(err,result){
+            if(err)
+                console.log("Cant get update profile details from users table",err);
+            if(result.rows.length>0)
+                {
+            		 console.log("Insert to profile details Success..!");
+			  }
     
-	
+        res.redirect("/profile");
+   });
+	});
 	
 app.get('/myStory',isLoggedIn, function(req, res){
 	currentPage = req.session.activePage = "/myStory";
@@ -2211,6 +2400,9 @@ app.get('/Accounts',isLoggedIn, function(req, res){
    });
 });
 
+	
+	
+	
 app.get('/Invoices',isLoggedIn, function(req, res){
 	
 	currentPage = req.session.activePage = "/Invoices";

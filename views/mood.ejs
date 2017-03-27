@@ -32,17 +32,11 @@
          
                 <form class="form-horizontal" action="/login" method="post">
                            <h2>Login</h2>
+
 				
-					<input type="hidden" id="amountMaster" name="amountMaster" value="">
-						   <input type="hidden" id="askScheme" name="askScheme" value="true">
-					<input type="hidden" id="setGoal" name="setGoal" value="">
-					<input type="hidden" id="getMoodG" name="getMoodG" value="">
-					<input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
+					<input type="hidden" id="assetStoreOffline_l" name="assetStoreOffline_l" value="true">
+					
+					
 							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
 							<input type="password" class="form-control" id="password" name="password" placeholder="Password">
                             <button id="login" type="submit" class="btn btn-lg login "  > Login </button> 
@@ -73,16 +67,21 @@
                 <form class="form-horizontal" action="/signup" method="post">
                            <h2>Sign Up</h2>
 						   <hr>
-					<input type="hidden" id="amountMaster" name="amountMaster" value="">
-						   <input type="hidden" id="askScheme" name="askScheme" value="true">
-					<input type="hidden" id="setGoal" name="setGoal" value="">
-					<input type="hidden" id="getMoodG" name="getMoodG" value="">
-					<input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
+					<input type="hidden" id="masterAmount" name="masterAmount" value="">
+					<input type="hidden" id="assetStoreOffline" name="assetStoreOffline" value="true">
+					<input type="hidden" id="goalid" name="goalid" value="">
+					
+			<input type="text" id="equityAmount" name="equityAmount" value="" hidden>
+            <input type="text" id="hybridAmount" name="hybridAmount" value="" hidden>
+            <input type="text" id="debtAmount" name="debtAmount" value="" hidden>
+					
+			<input type="text" id="equityPercentage" name="equityPercentage" value="" hidden>
+            <input type="text" id="hybridPercentage" name="hybridPercentage" value="" hidden>
+            <input type="text" id="debtPercentage" name="debtPercentage" value="" hidden>
+						
+			<input type="text" id="riskProfile" name="riskProfile" value="" hidden>
 								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
+								   <input type="text" id="totalYears" name="totalYears" value="" hidden>
 							
                        <input type="number" class="form-control" id="mnumber" name="mnumber" placeholder="Mobile Number">
 						   
@@ -153,24 +152,18 @@
                                  <div></div>
                                
                             </div>
-						<% if (panMessage.length > 0) { var myObj = JSON.parse(panMessage);%>
-<div class="bg-success">
-	<p>PAN No:- <%= myObj.pan %></p>
-	<p>Name:- <%= myObj.name %></p>
-	<p>Status:- <%= myObj.msg %></p>
-						<form action="/InsertOrders" method="post">	
-	<button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"   type="submit">Invest </button> 
-				</form>		
-						</div>
-			
-<% }else { %>	
-							
+				
                            <!-- <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" onsubmit="checkPanStaus();">-->
-                                     
+                         <div class="bg-success" id="responseData">
+	<p id="data1"></p>
+						<form action="/InsertOrders" method="post">	
+	<button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;display:none;" id="bseInvest"  type="submit">Proceed </button> 
+				</form>		
+						</div>            
 						
                             <input  class="form-control PANnumber" placeholder="PAN number" type="text" id="pan" name="pan" maxlength="10">
                             <div class="dotHr" >
-                            <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"   type="submit" onclick="checkPanStaus()"> Submit </button> 
+                            <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"  id="panCheck" type="submit" onclick="checkPanStaus()"> Submit </button> 
 								<p id="errMsg"></p>
 								                          
                             <br/>
@@ -199,11 +192,97 @@
                             
                             </div>
    <!--</form>-->  
-							<%} %>
                         </div>
                   </div>
              </div>
           </div>
+	
+	
+	
+	  <div class="modal fade" id="bseModal" role="dialog">
+	         <div class="modal-dialog modal-sm" style="     width: 512px;
+    margin-left: 36em;">
+                 <!-- Modal content-->
+                  <div class="modal-content PAN">
+                        <div class="modal-body "  style="">
+                            <h2 class="PANHead">BSE Order and Payment Status</h2>
+                              <div class="dotHr ">
+                            <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                            <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                               
+                                <div></div>
+                                 <div></div>
+                               
+                            </div>
+				
+                           <!-- <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" onsubmit="checkPanStaus();">-->
+                         <div class="bg-success" id="responseData">
+	<p><%= panMessage %></p>
+							 <a href="/Accounts" >Click here to see your goal performance</a>
+						</div>            
+						
+                            
+								                          
+                            <br/>
+                                <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                         <div></div>
+                                <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                 <div></div>
+                                <div></div>
+                                
+                               
+                               
+                                
+                            
+                            </div>
+   <!--</form>-->  
+                        </div>
+                  </div>
+             </div>
+          </div>
+	
+	
 	
 <!--    <section id="section1">-->
         
@@ -378,7 +457,7 @@
               <div class="col-sm-12 below">
 				  
                       <div class="goal" id="" >
-                        <img src="images/goals/Rich/Crorepati.png" mood="Rich" alt="Home view"   >
+                        <img src="images/goals/Rich/Crorepati.png" mood="Rich" alt="Home view" >
                         <p id="mood"><span></span>Crorepati</p>
                       </div>
 
@@ -1362,7 +1441,7 @@
 										    <div class="dotHr"> 
                                <div class="login-btn">
                         
-<button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" style="float: right;margin-top: 0.8em;margin-right: 29em;"> Invest </button> 
+<button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" id="initInvest" style="float: right;margin-top: 0.8em;margin-right: 29em;"> Invest </button> 
 <!--								   <form action="/GoalSelectionRefresh" method="get">
 									   <input type="text" id="restart" name="restart" value="true" hidden>
 								       <button type="submit" class="btn btn-lg moodNav go" style="    float: right;
@@ -1551,6 +1630,8 @@
                         url: '/InsertOrders',						
                         success: function(data) {
                             console.log('success');
+							     bseDisp =true;
+	
                            // console.log(JSON.stringify(data));
                         }
 			   
@@ -1568,7 +1649,7 @@
 			   var data = {};
 					data.pan = document.getElementById("pan").value;
 					console.log("pan"+data.pan);
-			    alert(data.pan);
+			    //alert(data.pan);
 			   
 				 <% if(loggedIn) {%>
 				   
@@ -1579,7 +1660,15 @@
                         url: '/PANValidation',						
                         success: function(data) {
                             console.log('success');
-                           // console.log(JSON.stringify(data));
+							var myObj = JSON.parse(data);
+						
+						//document.getElementById("responseData").style.display='none';
+                           document.getElementById("bseInvest").style.display='block';
+							 document.getElementById("pan").style.display='none';
+							 document.getElementById("panCheck").style.display='none';
+							
+							var displayMsg = "Hi "+myObj.name+" your PAN No. "+myObj.pan+" is "+myObj.msg;
+							document.getElementById("data1").innerHTML= displayMsg;
                         }
 			   
 		   })
@@ -1590,7 +1679,8 @@
 		   
 		   
 		   function storeAssets(goalId, riskProfile, masterAmount, totalYears, sip, alloc1, amt1, alloc2, amt2, alloc3, amt3){
-			   			   
+			   			
+
 			   if(once && store){
 			   
 			   var data = {};
@@ -1619,7 +1709,25 @@
                         }
 			   
 		   })
-					 <% }%>
+					 <% }else { %>
+
+					   
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/saveAssetOffline',						
+                        success: function(data) {
+                            console.log('success');
+							$("#myPanModal").modal("show");
+							
+                           // console.log(JSON.stringify(data));
+                        }
+			   
+		   })
+	
+
+<%}%>
 					
 					once= false;
 					}
@@ -1640,8 +1748,7 @@
 			   
 		   }
 		
-		   
-    function myinit(riskRate, chooseTable, storeAllocation)
+function myinit(riskRate, chooseTable, storeAllocation)
         {
 			
 			var riskProfile=riskRate;
@@ -1712,10 +1819,7 @@
            // var init=JSON.parse();
                 
          //
-                
-                console.log(<%=data[3].asset.value%>);
-                console.log(<%=data[4].asset.value%>);
-                console.log(<%=data[5].asset.value%>);
+              
 
                  
             
@@ -1761,7 +1865,7 @@
             
             var total= amt1+amt2+amt3;
             
-				
+			
             
     if(mn>total)
                 {
@@ -1785,15 +1889,47 @@
             document.getElementById("eqAmt"+t).innerHTML=amt1;
             document.getElementById("hybAmt"+t).innerHTML=amt2;
             document.getElementById("debAmt"+t).innerHTML=amt3;
+                 
             
+            var alloc1=Math.round((amt1/mean2)*100);
+            var alloc2=Math.round((amt2/mean2)*100);
+            var alloc3=Math.round((amt3/mean2)*100);
             
-           
-             
-           
+            var alloc4=alloc1+alloc2+alloc3;
+    
             
-            var alloc1= Math.round((amt1/total)*100);
-            var alloc2=  Math.round((amt2/mean2)*100);
-            var alloc3=  Math.round((amt3/mean2)*100);
+             if(alloc4==100)
+                 {
+                     
+                 }
+            else if(alloc4>100){
+                
+                       allo=Math.max(alloc1,alloc2,alloc3);
+                        if(allo==alloc1){
+                              alloc1=alloc1-1;
+                           }
+                        else if(allo==alloc2)
+                         {
+                           alloc2=alloc2-1;
+                         }
+                        else
+                           alloc3=alloc3-1
+                        }
+    
+                
+            else{
+                   allo=Math.max(alloc1,alloc2,alloc3);
+                        if(allo==alloc1){
+                              alloc1=alloc1+1;
+                           }
+                        else if(allo==alloc2)
+                         {
+                           alloc2=alloc2+1;
+                         }
+                        else
+                           alloc3=alloc3+1
+                }
+    
             
             
               document.getElementById("eqPer"+t).innerHTML=alloc1+"%";
@@ -1850,6 +1986,44 @@
             var allocM2=  Math.round((amtM2/mean3)*100);
             var allocM3=  Math.round((amtM3/totalM)*100);
             
+            var allom4=allocM1+allocM2+allocM3;
+            var allo1;
+            if(allom4==100)
+                 {
+                     
+                 }
+            else if(allom4>100){
+                
+                       allo1=Math.max(allocM1,allocM2,allocM3);
+                        if(allo1==allocM1){
+                              allocM1=allocM1-1;
+                           }
+                        else if(allo1==allocM2)
+                         {
+                           allocM2=allocM2-1;
+                         }
+                        else
+                           allocM3=allocM3-1
+                        }
+    
+                
+            else{
+                    allo1=Math.max(allocM1,allocM2,allocM3);
+                        if(allo1==allocM1){
+                              allocM1=allocM1+1;
+                           }
+                        else if(allo1==allocM2)
+                         {
+                           allocM2=allocM2+1;
+                         }
+                        else
+                           allocM3=allocM3+1
+                        }
+                }
+    
+            
+            
+            
              document.getElementById("eqPer"+t).innerHTML=allocM1+"%";
             document.getElementById("hybPer"+t).innerHTML=allocM2+"%";
             document.getElementById("debPer"+t).innerHTML=allocM3+"%";
@@ -1893,6 +2067,44 @@
              var allocA1= Math.round((amtA1/mean4)*100);
             var allocA2=  Math.round((amtA2/mean4)*100);
             var allocA3=  Math.round((amtA3/totalA)*100);
+            
+            var alloA4=allocA1+allocA2+allocA3;
+            var allo2;
+            if(alloA4==100)
+                 {
+                     
+                 }
+            else if(alloA4>100){
+                
+                       allo2=Math.max(allocA1,allocA2,allocA3);
+                        if(allo2==allocA1){
+                              allocA1=allocA1-1;
+                           }
+                        else if(allo2==allocA2)
+                         {
+                           allocA2=allocA2-1;
+                         }
+                        else
+                           allocA3=allocA3-1
+                        }
+    
+                
+            else{
+                    allo2=Math.max(allocA1,allocA2,allocA3);
+                        if(allo2==allocA1){
+                              allocA1=allocA1+1;
+                           }
+                        else if(allo2==allocA2)
+                         {
+                           allocA2=allocA2+1;
+                         }
+                        else
+                           allocA3=allocA3+1
+                        }
+                }
+    
+            
+            
 			document.getElementById("eqPer"+t).innerHTML=allocA1+"%";
             document.getElementById("hybPer"+t).innerHTML=allocA2+"%";
             document.getElementById("debPer"+t).innerHTML=allocA3+"%";
@@ -2113,11 +2325,16 @@ var $imgExtension = ".png";
 				  </script>	
 			 <%} %>
 			 			<script>
+							
 $(document).ready(function(){
    
    <% if (panMessage.length > 0) { %>
-	
-$("#myPanModal").modal("show");
+	 document.getElementById("initInvest").style.display='none';
+
+		$("#bseModal").modal("show");
+		//alert("sohan");
+		
+
 <% } %>
 	
 });

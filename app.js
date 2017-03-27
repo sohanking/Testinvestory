@@ -10,11 +10,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 
-var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session      = require('express-session');
-var configDB = require('./config/database.js');
 var asyncn = require('async');
 var crypto = require('crypto');
 
@@ -23,9 +21,6 @@ var routes   = require('./app/routes.js');
 var pp       = require('./config/passport');
 var useragent = require('express-useragent');
 var port = 3000;
-
-mongoose.Promise = global.Promise;
-mongoose.connect(configDB.url); // connect to our database
 
 pp(passport); 
 

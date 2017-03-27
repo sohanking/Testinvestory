@@ -3169,3 +3169,76 @@ footer {
 {
    margin-top: 3em;
 }
+
+
+
+div.savedPlansPage{
+    margin-top:5%;
+} 
+
+
+
+
+div.headGoal {
+    text-align: center;
+        margin-top: 11%;
+}
+
+h3.savedPlans{
+    border-bottom:2px #35BFD3 dotted;
+    padding-bottom:2%;
+    
+}
+#savedPlans p{
+    
+    display:inline;
+    margin-left: 10px;
+    
+}
+#savedPlans label{
+    margin-bottom: 15px;
+}
+div#savedPlans.row
+{
+        margin-top: 5%;
+    margin-bottom: 5%;
+}
+.myGoal{
+    text-align: center;
+}
+
+
+.pageSavedPlan .table {
+    border: 1px solid #35BFD3;
+    border-radius: 10px;
+    border-collapse: separate;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+        margin-top: 3%;
+}
+.pageSavedPlan .table>tbody>tr>td {
+    border-top: 0;
+    border-right: 1px solid #35BFD3;
+    width: auto;
+
+}
+.pageSavedPlan .table>thead>tr>th {
+    border-top: 0;
+    border-right: 1px solid #35BFD3;
+    border-bottom: 1px solid #35BFD3;
+    text-align: left;
+}
+button.btn.saved{
+        color: #35BFD3;
+    border: 1px #35BFD3 solid;
+    background: #ffffff;
+}
+.pageSavedPlan .table>thead>tr>th:nth-child(4), 
+.pageSavedPlan .table>tbody>tr>td:nth-child(4) {
+    border-right: 0;
+}
+#savedPlans div.col-md-4
+{
+    text-align: left;
+}

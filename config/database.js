@@ -2,7 +2,7 @@
 
 module.exports = {
 	'url' : 'mongodb://localhost:27017/assetsallocation'
-	//'url': 'mongodb://demo:investory123$@52.8.33.135/assetsallocation'
+	//'url': 'mongodb://demo:investory123$@localhost/assetsallocation'
 	// looks like mongodb://<user>:<pass>@mongo.onmodulus.net:27017/Mikha4ot
 };
 //mongodb://demo:investory123$@52.8.33.135/assetsallocation"

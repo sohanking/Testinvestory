@@ -7,7 +7,6 @@ var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
 var session = require('express-session')
-var mongoose = require('mongoose');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
@@ -104,12 +103,18 @@ var newUser= new User();
 		// we are checking to see if the user trying to login already exists
 
         
-     var query=client.query("SELECT * FROM users WHERE email = $1",[email], function(err, result){
+    
+		
+		async.waterfall([function(callback){ 
+		//signup query
+		
+			 var query=client.query("SELECT * FROM users WHERE email = $1",[email], function(err, result){
             {
                 
                 if (err) {
                     console.log("Local signup here",err);
                      return done(err);
+					
                 }
              if (result.rows.length>0)
                {
@@ -136,7 +141,9 @@ var newUser= new User();
                         console.log(result.rows[0].userid);
                         newUser.userid=result.rows[0].userid;
                     req.session.userEmail = email;
-                    return done(null, newUser);
+						console.log(req.body.assetStoreOffline);
+						callback(null,newUser)
+                   // return done(null, newUser);
                      });
                     }
                     
@@ -145,6 +152,47 @@ var newUser= new User();
        
       
      });
+		
+			
+		},function(newUser,callback){
+			//insert the assets
+			 var   	creation_date=new Date();
+                var    modified_date=new Date();
+			
+			if(req.body.assetStoreOffline){
+				
+						 var query=client.query("INSERT INTO savedplansheader(userid,goalid,riskprofile, masteramount, totalyears, sip,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING savedplanid",[newUser.userid,req.body.goalId,req.body.riskProfile,req.body.masterAmount,req.body.totalYears,req.body.sip,
+			 creation_date,modified_date,req.user.name],function(err, result) {
+                    if(err){
+						console.log("cant insert assets header allocation data",err);
+						res.send("false");
+					}else{
+						 //res.send(1);
+						 console.log("savedplanid"+result.rows[0]['savedplanid']);
+						
+						//callback(null,result.rows[0]['savedplanid'])
+						return done(null, newUser);
+					}
+                                    
+                  
+            });
+				
+			}else{
+				
+				return done(null, newUser);
+			}
+			
+		}],function(err,result){
+			
+			
+			        
+			
+			
+		})
+	
+						 
+		
+		
     }));
     var user = new User();  
    
@@ -163,7 +211,7 @@ var newUser= new User();
                                                 
     function(req, email, password, done) { // callback with email and password from our form
 req.session.payment =false;
-        
+         console.log("in passport"+req.body.assetStoreOffline_l+req.session.offlineGoalId);
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         var query= client.query("SELECT * FROM users where email=$1",[email], function(err, result)
@@ -188,6 +236,9 @@ req.session.payment =false;
                     user.name= result.rows[0]['name'];
                     user.password = result.rows[0]['password'];
                     user.userid = result.rows[0]['userid'];
+				  
+				  console.log("in passport"+req.body.assetStoreOffline_l +req.session.offlineGoalId);
+				  
                
                 }
 
@@ -212,6 +263,9 @@ req.session.payment =false;
                     					 			
 		
     }));
+	
+	
+	
       var newUser=new User();
     passport.use(new FacebookStrategy({
     clientID: '1620502528254783',
