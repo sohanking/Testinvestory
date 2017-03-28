@@ -159,16 +159,14 @@ var newUser= new User();
 			 var   	creation_date=new Date();
                 var    modified_date=new Date();
 			
-			if(req.body.assetStoreOffline){
 				
-						 var query=client.query("INSERT INTO savedplansheader(userid,goalid,riskprofile, masteramount, totalyears, sip,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING savedplanid",[newUser.userid,req.body.goalId,req.body.riskProfile,req.body.masterAmount,req.body.totalYears,req.body.sip,
-			 creation_date,modified_date,req.user.name],function(err, result) {
+						 var query=client.query("INSERT INTO profile(userid,created,modified,createdby) values($1,$2,$3,$4) RETURNING profileid",[newUser.userid, creation_date,modified_date,newUser.name],function(err, result) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
 						res.send("false");
 					}else{
 						 //res.send(1);
-						 console.log("savedplanid"+result.rows[0]['savedplanid']);
+						 console.log("profileid"+result.rows[0]['profileid']);
 						
 						//callback(null,result.rows[0]['savedplanid'])
 						return done(null, newUser);
@@ -177,10 +175,6 @@ var newUser= new User();
                   
             });
 				
-			}else{
-				
-				return done(null, newUser);
-			}
 			
 		}],function(err,result){
 			

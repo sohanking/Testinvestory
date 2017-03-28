@@ -15,6 +15,10 @@
              <em>All plans are valid upto 30 days from the date paid</em> 
             </div>
             
+	<% if(!plansHeader) {%>
+	<h1>You have not selected any goal yet</h1>
+	<% } %>
+	
        <% for(j=0;j<plansHeader.length;j++) {%>
 
             <div class="row" id="savedPlans">
@@ -42,7 +46,47 @@
                 
                 </div>
             
-          
+	
+	  <div class="modal-body">
+            <div class="pageSavedPlan">
+                                 
+                       <div class="table-responsive">
+                        <table class="table">
+    <thead>
+      <tr>
+        <th>Sl No.</th>
+        <th>Category</th>
+        <th>Percentage</th>
+        <th>Amount (&#x20B9;)</th>
+      </tr>
+    </thead>
+    <tbody>
+		 <% for(k=0,l=1;k<assetPlanDetail.length;k++,l++) {%>
+	 <tr>
+		 <td><%= l %></td>
+	 <td><%=assetPlanDetail[k].allocationcategory %></td>
+		 <td><%=assetPlanDetail[k].allocationpercentage %></td>
+	  <td><%=assetPlanDetail[k].allocationamount %></td>
+	 </tr>
+
+<%}%>
+         
+  
+    </tbody>
+                      
+                           
+  </table>
+                                 
+					   
+                                   </div>                
+                
+        </div>
+       
+        </div>
+	
+	
+          	<% if(plansDetail) {%>
+	
      <div class="modal-body">
             <div class="pageSavedPlan">
                                  
@@ -73,13 +117,24 @@
                            
   </table>
                           
-
+ <div class="pull-right" style="margin-left:10%;margin-right:10%;">
+                          
+	 <form action="/Proceed" method="post">	
+		 <input id="savedplanid" name="savedplanid" value="<%=plansHeader[j].savedplanid %>" hidden="hidden">
+	<button class="btn saved" type="submit">Proceed</button>
+				</form>	
+	 
+                        
+                     <button class="btn saved" id="<%=plansHeader[j].savedplanid %>" onClick="discard(this.id)">Discard</button>
+                  
+                        </div>          
 					   
                                    </div>                
                 
         </div>
        
         </div>
+	<% } %>
        <%}%>
       </div>
         <% include partials/footer %>   
@@ -109,6 +164,45 @@
   </div>
   
 </div>
+	
+	<script>
+		
+		
+		
+	
+	  function discard(clicked_id){
+			   
+			     var data = {};
+					data.savedplanid = clicked_id;
+					console.log(data.savedplanid);
+			    //alert(data.pan);
+			   
+				 <% if(loggedIn) {%>
+				   
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/Discard',						
+                        success: function(data) {
+                            console.log('success');
+							     //bseDisp =true;
+	
+                           // console.log(JSON.stringify(data));
+                        }
+			   
+		   })
+					 <% }%>
+					
+			   
+		   }
+		   
+		   
+	
+	
+	</script>
+	
+	
       <script src="javascripts/TweenMax.min.js"></script>
 <script src="javascripts/TextPlugin.min.js"></script>
          <script src="javascripts/main.js"></script>

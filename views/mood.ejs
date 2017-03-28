@@ -449,7 +449,7 @@
 							<span id="riskSelected"></span>
 							 <span id="yp">> Your Plan</span>
 						   </p>
-                         <% if(!scheme) { if(!abcd) {%>  
+                       
                            <div id="" class="page1">
                         <h2>Please select your goal</h2>
                        <p>You can always add or change a goal after you have signed up</p>
@@ -729,110 +729,7 @@
                                    <p id="invest">You need to invest INR <span id="invest2"></span> monthly in Conservative mode.</p>
                                 <!--<h2>Risk Profiling</h2>-->
                                <p><em>Risk profiling will help you choose right fund to invest in based on your comfort</em></p>
-                              <!--  <div class="dotHr">
-                  
-                   <div id="moodPagination"></div>
-                                       <div id="moodPagination"></div>
-                   <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-           <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-               <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                                
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div id="moodPagination"></div>
-                  <div ></div>
-                  <div ></div>
-                  <div ></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                              <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                                     <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                                         <div></div>
 
-                                   </div>-->
                                <br/>
                                <div class="selectMode">
                                               <div class="dotHr">
@@ -1137,32 +1034,12 @@
                        </div>
                            <div class="dotHr"> 
                                <div class="login-btn">
-                        <% if(loggedIn && !scheme && paid){ %>
-	<form action="/GoalSelection" method="post">
-		<input type="hidden" id="amountMaster" name="amountMaster" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-		<input type="text" id="storeData" name="storeData" value="true" hidden>
-			<input type="hidden" id="setGoal" name="setGoal" value="">
-		<input type="hidden" id="getMoodG" name="getMoodG" value="">
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-							    <button type="submit" class="btn btn-lg moodNav signUp"> Next </button> 
-								   </form>
-<%  } else if(loggedIn && !scheme && !paid) { %>
+                        <% if(loggedIn && paid){ %>
+								   
+								   <button type="submit" class="btn btn-lg moodNav signUp" id="schemeNext"> Next </button> 
+<%  } else if(loggedIn && !paid) { %>
 								   	  	<form action="/Pricing" method="get">
-											<!--<input type="hidden" id="amountMaster" name="amountMaster" value="">
-											<input type="text" id="storeData" name="storeData" value="true" hidden>
-												<input type="hidden" id="setGoal" name="setGoal" value="">
-											<input type="hidden" id="getMoodG" name="getMoodG" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>-->
+										
 									   <button type="submit"  class="btn btn-lg moodNav signUp">Pay </button>
 											 </form>
 								<%  } else { %>
@@ -1261,173 +1138,8 @@
                             </div>
                            </div>
 								
-								   <% }else {%>
-	
-	   <div  class="page6">
-                            <h2>Your Plan</h2>
-<p>So, you need to invest INR <span id="invest1"><%=assetFromDb.sip %></span> Monthly</p>
-                            
-                                                   <div class="table-responsive">
-                        <table class="table">
-    <thead>
-      <tr>
-  		
-        <th>Category</th>
-        <th>Allocation %</th>
-        <th>Amount (&#x20B9;)</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-  
-        <td>Equity</td>
-            <td id="">20%</td>
-            <td id=""><%=assetFromDb.amt1 %></td>
-      </tr>
-      <tr>
-  
-       <td>Hybrid</td>
-            <td id="">10% </td>
-           <td id=""><%=assetFromDb.amt2 %></td>
-      </tr>
-      <tr>
+						  <% if(paid) {%>  		 
 
-         <td>Debt</td>
-            <td id="">65%</td>
-              <td id=""><%=assetFromDb.amt3 %></td>
-      </tr>
-
-    </tbody>
-  </table>
-													   
-
-													   
-                       </div>
-                           <div class="dotHr"> 
-                               <div class="login-btn">
-                        <% if(loggedIn && !scheme && paid){ %>
-	<form action="/GoalSelection" method="post">
-		<input type="hidden" id="amountMaster" name="amountMaster" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-			<input type="hidden" id="setGoal" name="setGoal" value="">
-			<input type="text" id="storeData" name="storeData" value="true" hidden>
-		<input type="hidden" id="getMoodG" name="getMoodG" value="">
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-							    <button type="submit" class="btn btn-lg moodNav signUp"> Next </button> 
-								   </form>
-<%  } else if(loggedIn && !scheme && !paid) { %>
-								   	  	<form action="/GoalSelection" method="post">
-											<input type="hidden" id="amountMaster" name="amountMaster" value="">
-											<input type="text" id="storeData" name="storeData" value="true" hidden>
-												<input type="hidden" id="setGoal" name="setGoal" value="">
-											<input type="hidden" id="getMoodG" name="getMoodG" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-									   <button type="submit"  class="btn btn-lg moodNav signUp">Pay </button>
-											 </form>
-								<%  } else { %>
-								   
-								 
-								   
-									   <button type="" data-toggle="modal" data-target="#loginModalScheme" class="btn btn-lg moodNav signUp" > login </button> 
-								  <% } %>
-                           </div>
-                               
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                                         <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-							   
-                                         <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                                         <div></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                                         <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                 
-                            </div>
-                           </div>
-<%} } else { %>
 								 <p id="IndicatorNew">Goal Selection >
 						   
 						   <span id="goalSelected"><%=assetFromDb.goal %></span>
@@ -1939,7 +1651,8 @@ function myinit(riskRate, chooseTable, storeAllocation)
             setForScheme(riskProfile, mn, amt1, amt2, amt3);
 			storeAssets("Broke", riskProfile, fv, totalYears, mn, alloc1, amt1, alloc2, amt2, alloc3, amt3);
 			
-		} else if(riskProfile == "Moderate"){
+		} 
+			else if(riskProfile == "Moderate"){
 
 			
 			//Moderate calculations
@@ -2019,7 +1732,7 @@ function myinit(riskRate, chooseTable, storeAllocation)
                         else
                            allocM3=allocM3+1
                         }
-                }
+                
     
             
             
@@ -2030,7 +1743,8 @@ function myinit(riskRate, chooseTable, storeAllocation)
             
 			setForScheme(riskProfile, mn, amtM1, amtM2, amtM3);
 			storeAssets("Broke", riskProfile, fv, totalYears, mn, allocM1, amtM1, allocM2, amtM2, allocM3, amtM3);
-		}else {
+		}
+			else {
 			
 			          
             //Aggressive profile
@@ -2101,7 +1815,7 @@ function myinit(riskRate, chooseTable, storeAllocation)
                         else
                            allocA3=allocA3+1
                         }
-                }
+                
     
             
             

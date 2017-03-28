@@ -1000,7 +1000,7 @@ var movingTo= 0;
     
 
 
- $(".contentMood .page2, #Indicator,#rpText, #riskSelected, #yp, .contentMood .page3, .page3Sub, .contentMood .page4, .contentMood .page5").hide();
+ $(".contentMood .page2, #Indicator,#rpText, #riskSelected, #yp, .contentMood .page3, .page3Sub, .contentMood .page4, .contentMood .page5, .contentMood .page6, #IndicatorNew").hide();
     
 
     
@@ -1121,6 +1121,15 @@ var page4Risk;
            
      $(".contentMood .page5, #yp, #riskSelected").show();
           }); 
+	
+	
+	
+	$("#schemeNext").click(function(){
+		
+		 $(".contentMood .page5").hide();
+		 $(".contentMood .page6, #IndicatorNew").show();
+		
+	});
 	
 	
 	$(".moodGoals > img").click(function(){
