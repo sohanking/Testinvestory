@@ -14,7 +14,7 @@
     "crypto": "0.0.3",
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
-    "express": "^4.14.1",
+    "express": "^5.0.0-alpha.2",
     "express-session": "~1.0.0",
     "express-useragent": "^1.0.7",
     "http": "0.0.0",

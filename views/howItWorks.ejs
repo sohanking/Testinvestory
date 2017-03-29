@@ -333,8 +333,8 @@
 			  	 <button type="submit"  class="btn btn-lg moodNav pay" >saved plans</button>
 				
 			  </form>-->
-			  <form action="/GoalSelection" method="get">
-<button type="submit"  class="btn btn-lg moodNav pay" >Saved Plans</button>
+			  <form action="/GoalInvest" method="get" >
+<button type="submit"  class="btn btn-lg moodNav pay" >Invest</button>
 			  
 			  </form>
 			   
@@ -820,6 +820,41 @@ $(document).ready(function(){
 <% } %>
 	
 });
+			
+			function setStatus(){
+				
+					
+			   
+			  
+			   
+			   var data = {};
+					data.showScheme = true;
+				
+			    //alert(data.pan);
+			   
+				 <% if(loggedIn) {%>
+				   
+					$.ajax({
+						type: 'POST',
+						data: JSON.stringify(data),
+				        contentType: 'application/json',
+                        url: '/showScheme',						
+                        success: function(data) {
+                            console.log('success');
+							
+							if(data)
+								window.location.href = '/GoalSelection';
+						   
+                        }
+			   
+		   })
+					 <% }%>
+					
+			   
+		   }
+		   
+			
+			
 </script>     
 
   <script src="javascripts/TweenMax.min.js"></script>

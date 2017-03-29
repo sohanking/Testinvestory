@@ -25,7 +25,7 @@
                 <div class="col-md-4">
                         <div class="myGoal">
                                 <!--<img src="images/goals/Rich/Crorepati.png" mood="Rich" alt="Home view" >-->
-                                <h4> My Goal </h4>
+                                <h4> My Goal <%= plansHeader.length %></h4>
                         </div>
                 </div>
                 
@@ -101,12 +101,11 @@
       </tr>
     </thead>
     <tbody>
+		
 		 <% for(i=0,m=1;i<plansDetail.length;i++,m++) {%>
 	 <tr>
-		 <td><%= m %></td>
-	 <td><%=plansDetail[i].allocationdescription %></td>
-		 <td><%=plansDetail[i].allocationcategory %></td>
-	  <td><%=plansDetail[i].allocationamount %></td>
+		 <td><%= plansDetail[2] %></td>
+
 	 </tr>
 
 <%}%>

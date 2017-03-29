@@ -49,12 +49,15 @@
  <div class="container-fluid text-center" style="margin-top: 10em;">
 
  <div id="myStory" >
-        
-    <div class="panel" style=" visibility: hidden;">
+        <% if(invest) {  %>
+    <div class="panel">
      
       <div class="panel-body text-center" >
-<div id="tar1">
-<p style="  text-decoration: underline;">Education - Target 50%</p>
+		  <% goalCount = 0;for(i=0;i<invest.length; i++){ %>
+		<%  goalCount = goalCount + invest[i].count; %>
+		  
+<div id="tar<%= a=i+1 %>">
+<p style="  text-decoration: underline;"><%= invest[i].name %> - Target 50%</p>
 <div id="myProgress">
   <div id="myBar1">
    
@@ -66,27 +69,14 @@
 </div>
 <br />
 <br />
-<div id="tar2">
-<p style="  text-decoration: underline; margin-left: 1em;">Courses - Target 50%</p>
-<div id="myProgress">
-  <div id="myBar2">
-   
-  </div>
- 
-</div>
-<p>98%</p>
-<p  style=" font-weight: 600; margin-left: 1em;"><em>AWESOME</em></p>
-</div>
+		  <% } %>
 </div>
     </div>
         
-      <h4 style="display:none; color: #333333;
-    font-weight: 700;">YOU ARE JUST 2 GOALS AWAY FROM BECOMING <em>THE FROG</em></h4>
-	 
-     <h4 class="youAreYet" style="    color: #333333;
-    font-weight: 700;">YOU ARE YET TO START YOUR STORY, SCROLL DOWN TO PICK YOUR GOAL.</h4>
-    
-        <div class="FrogHome"  style=" visibility: hidden;">
+      <h4 style=" color: #333333;
+    font-weight: 700;">YOU ARE JUST <%= 15 - goalCount %> GOALS AWAY FROM BECOMING <em>THE FROG</em></h4>
+
+        <div class="FrogHome"  >
                 <div class="dotHr">
                 <div></div>
         <div></div>
@@ -193,24 +183,37 @@
     margin-top: 2em;
     margin-left: 22em;">
                 
+				   <%  var egg = "",tadpole = "", froglet = "", frog = "";
+				   if(goalCount <=3) 
+						egg = "%20BLACK";
+				   else if (goalCount <=5)
+					   tadpole = "%20BLACK";
+				    else if (goalCount <=10)
+					   froglet = "%20BLACK";
+				    else if (goalCount <=15)
+					   frog = "%20BLACK";
+					   
+	
+	%>
+				   
                 <div class="col-md-4 froggie">
                    
-                    <img src="images/animHow/3%20GOALS.png" alt="The Egg"><br>
+                    <img src="images/animHow/3%20GOALS<%= egg %>.png" alt="The Egg"><br>
                 
                 </div>
                    <div class="col-md-4 froggie">
                    
-                    <img src="images/animHow/5%20GOALS.png" alt="Tadpole"><br>
+                    <img src="images/animHow/5%20GOALS<%= tadpole %>.png" alt="Tadpole"><br>
         
                 </div>
                    <div class="col-md-4 froggie">
                    
-                    <img src="images/animHow/10%20GOALS.png" alt="Froglet"><br>
+                    <img src="images/animHow/10%20GOALS<%= froglet %>.png" alt="Froglet"><br>
                   <div id="yCircle" ></div>
                 </div>
                    <div class="col-md-4 froggie">
                    
-                    <img src="images/animHow/15%20GOALS%20BLACK.png" alt="Frog"><br>
+                    <img src="images/animHow/15%20GOALS<%= frog %>.png" alt="Frog"><br>
                  
                 </div>
                 
@@ -326,7 +329,10 @@
             
 
         </div>
-        
+	 <% } else { %>
+        <h4 class="youAreYet" style="    color: #333333;
+    font-weight: 700;">YOU ARE YET TO START YOUR STORY, SCROLL DOWN TO PICK YOUR GOAL.</h4>
+	 <% } %>
     </div>
       
 	</div>
@@ -341,7 +347,7 @@
         <img style="margin-bottom:2em;" src="images/animHow/MYSCREEN.png" class="img-responsive img-story">
 <div class="goalReport">
             <div class="goalReportData g1" onclick="goalSelection('Build a book collection','Nerdy');">
-               <!--<div id="invest_withdraw">
+               <div id="invest_withdraw">
                 
                   <div class="flag"></div>
                 
@@ -464,8 +470,8 @@
                    </div>
                    
               </div>
-               --> 
-                <div id="yCircle"></div>
+                
+                <div id="bCircle"></div>
                 <div id="goalName">Build a book collection</div>
                 
             </div>

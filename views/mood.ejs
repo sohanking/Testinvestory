@@ -6,6 +6,7 @@
 	  	<link rel="stylesheet" href="stylesheets/updated.css">
      <link rel="stylesheet" href="stylesheets/responsive.css">
        <link rel="stylesheet" href="stylesheets/responsive2560.css"  media="screen and (width:2560px) and (height:1600px)">
+	 <script src="javascripts/jquery.onepage-scroll.js" ></script>
 </head>
 	
 <body>
@@ -449,7 +450,7 @@
 							<span id="riskSelected"></span>
 							 <span id="yp">> Your Plan</span>
 						   </p>
-                       
+                
                            <div id="" class="page1">
                         <h2>Please select your goal</h2>
                        <p>You can always add or change a goal after you have signed up</p>
@@ -1140,14 +1141,7 @@
 								
 						  <% if(paid) {%>  		 
 
-								 <p id="IndicatorNew">Goal Selection >
-						   
-						   <span id="goalSelected"><%=assetFromDb.goal %></span>
-							<span id="">> Risk Profiling ></span>	
-							<span id=""><%=assetFromDb.riskprofile %></span>
-							 <span id="">> Your Plan</span>
-						   </p>
-					
+			
                         <div id="" class="page6">
                             <!--<h2>Your Plan</h2>-->
 										    <div class="dotHr"> 
@@ -1293,8 +1287,8 @@
 						<!--	<br >
                        <p id="btm" style="left: 0px;">If you wish to speak to us,call us on xxxxxxxxxx</p> -->
                      <%}%>  
-                       
-                        
+							   
+ 
             </div>
              </div>
     </div>
@@ -1313,8 +1307,11 @@
        <script>
         
 		   
-
-		   
+		   var goalNameFromControl;
+		   function goalName(name){
+			   goalNameFromControl =name;
+			   console.log(name);
+		   }
 		   
 		   
 		 	var rp;
@@ -1390,13 +1387,13 @@
 		   }
 		   
 		   
-		   function storeAssets(goalId, riskProfile, masterAmount, totalYears, sip, alloc1, amt1, alloc2, amt2, alloc3, amt3){
+		   function storeAssets(goalName, riskProfile, masterAmount, totalYears, sip, alloc1, amt1, alloc2, amt2, alloc3, amt3){
 			   			
 
 			   if(once && store){
 			   
 			   var data = {};
-				   data.goalId = 2;
+				   data.goalName = goalNameFromControl;
 					data.riskProfile = riskProfile;
 					data.masterAmount = masterAmount;
 			   		data.totalYears = totalYears;
@@ -2043,7 +2040,7 @@ var $imgExtension = ".png";
 $(document).ready(function(){
    
    <% if (panMessage.length > 0) { %>
-	 document.getElementById("initInvest").style.display='none';
+	 //document.getElementById("initInvest").style.display='none';
 
 		$("#bseModal").modal("show");
 		//alert("sohan");

@@ -111,11 +111,11 @@ $(".FAQs").click(function (){
      window.location.href = "Pricing";
 });*/
     
-$(".getStarted").click(function (){
+/*$(".getStarted").click(function (){
     
      window.location.href = "GoalSelection";
 });
-        
+     */   
     
      
 $(".yourMood").css("display","block");
@@ -946,7 +946,7 @@ var $smartGoals = "smartGoals";
         $("#mood span",this).css("background-color","#FFDE15");
          moodFile =  $("#mood",this).text(); 
          
-        
+ goalName(moodFile);
 
      });
     

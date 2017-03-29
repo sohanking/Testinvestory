@@ -1439,7 +1439,8 @@ div.col-md-8.selective {
 .contentMood .page2> h2, 
 .contentMood .page4> h2,
 .contentMood .page5> h2,
-.contentMood .page6> h2{
+.contentMood .page6> h2,
+.contentMood .page7> h2{
   
 margin-top: 0;
     
@@ -1452,7 +1453,8 @@ margin-top: 0;
 .contentMood .page3> p, 
 .contentMood .page4> p,
 .contentMood .page5> p,
-.contentMood .page6> p{
+.contentMood .page6> p,
+.contentMood .page7> p{
 
     color: #333;
     font-size: 1em;
@@ -1920,14 +1922,16 @@ border-radius:10px;
     outline: none;
 }
 .contentMood .page5  .btn-lg,
-.contentMood .page6  .btn-lg {
+.contentMood .page6  .btn-lg,
+.contentMood .page7 .btn-lg{
     float: left;
        
 }
 .contentMood .page5  .btn-lg{/*added*/
      margin-top: -0.7em;
 }
-.contentMood .page6  .btn-lg{/*added*/
+.contentMood .page6  .btn-lg,
+.contentMood .page7 .btn-lg{/*added*/
         margin-top: 0em;
 }  
 .carousel-inner > .container {
@@ -2655,6 +2659,30 @@ div.col-md-8.selective {
     margin: auto;
 }
 .froggie #yCircle{
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    left: -11.8em;
+
+    top: 6.8em;
+}
+
+
+.goalReport .goalReportData #bCircle, .froggie #bCircle{
+   
+     border-radius: 50% !important;
+    background-color: #333333;
+    color: #333333;
+    font-size: 1.2em;
+    border-color: #333333;
+    
+    font-weight: 700;
+    width: 1.2em;
+    height: 1.2em;
+    padding: 0;
+    margin: auto;
+}
+.froggie #bCircle{
     cursor: pointer;
     position: absolute;
     z-index: 10;

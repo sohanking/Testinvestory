@@ -108,7 +108,14 @@ function checkLoginStatus(req){
 }
 	
 }
-	
+	/* bot = req.useragent["isBot"]
+ desktop =req.useragent["isDesktop"]
+ myBrowser = req.useragent["browser"]
+myVesrion = req.useragent["version"]
+ myOs = req.useragent["os"]
+myPlatform = req.useragent["platform"]
+ mySource = req.useragent["source"]
+ */
 	function checkPaymentStatus(req){
 		
 		console.log(req.session.payment+"checkStatus");
@@ -151,14 +158,7 @@ currentPage = req.session.activePage = "/";
     
 	
 	mobile = req.useragent["isMobile"]
-/* bot = req.useragent["isBot"]
- desktop =req.useragent["isDesktop"]
- myBrowser = req.useragent["browser"]
-myVesrion = req.useragent["version"]
- myOs = req.useragent["os"]
-myPlatform = req.useragent["platform"]
- mySource = req.useragent["source"]
- */
+
 
  if(mobile){
   
@@ -236,9 +236,10 @@ app.get('/FAQs', isLoggedIn, function(req, res){
 		
 		
 		if(req.session.payU){
-			
+			console.log(req.session.payU)
 			payUData = req.session.payU;
 		}else {
+				console.log("is data undefined")
 			payUData ="";
 		}
 		
@@ -261,19 +262,19 @@ function(callback){
 			current_date = new Date();
 
 var paid=false;
-var query=client.query(" select * from usersubscriptions where userid="+req.user.userid+" and current_date <= planrenewaldate",function(err,result){
+var query=client.query(" select * from usersubscriptions where userid="+req.session.user.userid+" and current_date <= planrenewaldate",function(err,result){
             if(err)
                 console.log("Cant get portfolio details in goal selection");
             if(result.rows.length>0)
                 {
 					
 					paid=true;
-					//console.log(result.length+"payment True"+paid+req.user.userid);
+					//console.log(result.length+"payment True"+paid+req.session.user.userid);
 		callback(null,paid)
        }else
 		   {
 			   paid=false;
-			  // console.log(result.length+"payment False"+paid+req.user.userid);
+			  // console.log(result.length+"payment False"+paid+req.session.user.userid);
 		callback(null,paid)
 		   }
 });
@@ -334,8 +335,10 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 	currentPage = req.session.activePage = "/Pricing/success";
 	
 			// res.json(req.body);
-			
-			console.log("pricing Success"+req.body +"userid"+req.user.userid);
+			req.session.payU = req.body;
+				console.log("initailze the payU "+req.session.payU.amount);
+				
+			console.log("pricing Success"+req.body.amount +"userid"+req.session.user.userid);
 			
 		var orderDate = req.body.addedon;
 			
@@ -352,8 +355,8 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 			async.waterfall([
 function(callback){
 	
-			 var query=client.query("INSERT INTO usersubscriptionsorder(userid,orderdate,amount,paymentreference,status,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8) RETURNING usersubscriptionorderid",[req.user.userid,orderDate,amount,payRef,status,
-			 creation_date,modified_date,req.user.name],function(err, result) {
+			 var query=client.query("INSERT INTO usersubscriptionsorder(userid,orderdate,amount,paymentreference,status,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8) RETURNING usersubscriptionorderid",[req.session.user.userid,orderDate,amount,payRef,status,
+			 creation_date,modified_date,req.session.user.name],function(err, result) {
                     if(err){
 						console.log("cant insert usersubscriptionsorder data",err);
 						//res.send("false");
@@ -371,8 +374,8 @@ function(callback){
 	  },function(id,callback){
 		  
 		  
-		   var query=client.query("INSERT INTO usersubscriptions(userid,planid,usersubscriptionorderid,transactionid,price,durationdays,subscribeddate,planrenewaldate,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[req.user.userid,planId,id,txnId,amount,days,orderDate,renewDate,
-			 creation_date,modified_date,req.user.name],function(err, result) {
+		   var query=client.query("INSERT INTO usersubscriptions(userid,planid,usersubscriptionorderid,transactionid,price,durationdays,subscribeddate,planrenewaldate,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[req.session.user.userid,planId,id,txnId,amount,days,orderDate,renewDate,
+			 creation_date,modified_date,req.session.user.name],function(err, result) {
                     if(err){
 						console.log("cant insert usersubscriptions data",err);
 						//res.send("false");
@@ -380,7 +383,7 @@ function(callback){
 						 //res.send(1);
 						
 						
-						callback(null)
+						callback(null,'done')
 					}
                                     
                   
@@ -423,7 +426,7 @@ function(callback){
 	
 	const merchantKey = 'gtKFFx';
     const salt = 'eCwWELxi';
-    const txnid = getTransactionID(req.user.userid);
+    const txnid = getTransactionID(req.session.user.userid);
     const amount = req.body.planPrice;
     // if(amount == 100){
     //     const productinfo = 'Basic Plan';
@@ -431,9 +434,9 @@ function(callback){
     const productinfo = req.body.plan;
 
     // Get from session or User database
-    const firstname = req.user.name;
-    const email = req.user.email;
-    const phone = req.user.mobile;
+    const firstname = req.session.user.name;
+    const email = req.session.user.email;
+    const phone = req.session.user.mobile;
 
     const str = merchantKey+'|'+txnid+'|'+amount+'|'+productinfo+'|'+firstname+'|'+email+'|||||||||||'+salt;
     console.log("str ", str);
@@ -525,21 +528,21 @@ app.post("/PANStatus", function(req, res){
 });	
 	
 
-	app.get('/GoalSelection',isLoggedIn,function(req, res){
+	app.get('/GoalInvest',isLoggedIn,function(req,res){
 		
-		console.log("offline = in goal Selection "+req.session.offlineGoalId);
+		
 		currentPage = req.session.activePage = "/GoalSelection";
 
 
 	loginStatus = checkLoginStatus(req);
 	
-	panS= checkPan(req);
 		
 	  mobile = req.useragent["isMobile"];
+		
     if(mobile)
    		pageName = "moodMobile";
 	else
-		pageName = "mood";
+		pageName = "scheme";
 		 
 	if(req.session.bseStatus){
 	
@@ -548,19 +551,7 @@ app.post("/PANStatus", function(req, res){
 	}else{
 		panMsg = "";
 	}
-
 		
-		
-	console.log(panMsg+"in getGS");
-	
-	if(loginStatus){
-		
-		mailId= req.session.userEmail;
-		
-}else{
-	mailId=null;
-	//req.session.bseStatus = "";
-}
 		
 		
 	async.waterfall([
@@ -586,7 +577,7 @@ function(callback){
 		
 //
 var paid=false;
-var query=client.query(" select * from usersubscriptions where userid="+req.user.userid+" and current_date <= planrenewaldate",function(err,result){
+var query=client.query(" select * from usersubscriptions where userid="+req.session.user.userid+" and current_date <= planrenewaldate",function(err,result){
             if(err)
                 console.log("Cant get portfolio details in goal selection");
 	
@@ -612,8 +603,9 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 	}
 	else{
 		
-	//render the get started page for get request 
 		
+	//render the get started page for get request 
+		console.log("else not log in");
 	res.render(pageName, {
 		  data: assets, 
 		  user : req.user,
@@ -634,6 +626,7 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 	  hideAll: "show"
       });
 	//callback(true);	
+		callback(true,'ok')
 	}
 	
 },
@@ -647,7 +640,7 @@ function(paid,assets,callback){
 	
 	//Fetch Header 
 	//store the data in a json
-			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.user.userid], 
+			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.session.user.userid], 
                                  function(err, result){
         if (err)
              console.log("Cant get assets values");
@@ -708,12 +701,12 @@ function(paid,assets,callback){
                                  function(err, result){
         if (err)
              console.log("Cant get assets values");
-			
-				
-			
+		
+
 				asetDataDetail = result.rows;
+		console.log(asetDataDetail);
 		req.session.savedplandetail = asetDataDetail;
-	
+
 		console.log("test"+req.session.bseStatus);
 
 	  res.render(pageName, {
@@ -727,7 +720,7 @@ function(paid,assets,callback){
 	  	  footerDisplay: "hide",
 	  footerData1: "Blog",
 	  footerData2: "FAQs",
-			scheme:false,
+			scheme:true,
 			panMessage:panMsg,
 			abcd: false,
 			paid : true,
@@ -774,8 +767,267 @@ function(paid,assets,callback){
 	
 }],function (err, result) {
    
-		 if (err)
-             throw err;
+		 if (err='ok')
+            return;
+		
+
+		
+  })
+		
+		
+	})
+	
+	
+	app.get('/GoalSelection',isLoggedIn,function(req, res){
+		
+		
+		currentPage = req.session.activePage = "/GoalSelection";
+
+
+	loginStatus = checkLoginStatus(req);
+	
+		
+	  mobile = req.useragent["isMobile"];
+		
+    if(mobile)
+   		pageName = "moodMobile";
+	else
+		pageName = "mood";
+		 
+	if(req.session.bseStatus){
+	
+		panMsg = req.session.bseStatus;
+		
+	}else{
+		panMsg = "";
+	}
+
+	
+		
+				
+			
+				
+
+	async.waterfall([
+function(callback){
+	//get the assets from the db 
+	 var assets;
+   
+        var query=client.query("select to_json(row) as asset from (select * from categoryallocationmatrix) row",function(err,result)  
+            {
+			
+            if(err)
+                console.log("Cant get Aeets values");
+			
+                assets=result.rows;
+			
+				callback(null,assets)
+	});
+	
+}, function(assets,callback){
+	
+	if(loginStatus){
+		//check for user payment status
+		
+//
+var paid=false;
+var query=client.query(" select * from usersubscriptions where userid="+req.session.user.userid+" and current_date <= planrenewaldate",function(err,result){
+            if(err)
+                console.log("Cant get portfolio details in goal selection");
+	
+	console.log("Lenght"+result.rows.length);
+	
+            if(result.rows.length>0)
+                {
+					
+					paid=true;
+					req.session.paid = true;
+					callback(null,paid,assets)
+       }else
+		   {
+			   paid=false;
+			   	req.session.paid = false;
+			   callback(null,paid,assets)
+		   }
+});
+		
+		
+		
+	
+	}
+	else{
+		
+		
+	//render the get started page for get request 
+		console.log("else not log in");
+	res.render(pageName, {
+		  data: assets, 
+		  user : req.user,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		firslist :  false,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	  footerDisplay: "hide",
+		  panMessage: "",
+	  footerData1: "Blog",
+	  footerData2: "FAQs",
+		scheme:false,
+		paid : false,
+						  abcd: false,
+						  assetFromDb: false,
+						   showPage5: "hide",
+	  hideAll: "show"
+      });
+	//callback(true);	
+		callback(true,'ok')
+	}
+	
+},
+function(paid,assets,callback){
+	
+		console.log("payment"+paid)
+	
+	if(paid){
+		
+		async.waterfall([function(callback){
+	
+	//Fetch Header 
+	//store the data in a json
+			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.session.user.userid], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			
+				
+			console.log("details header"+result.rows.length);
+				asetData = result.rows[0];
+				if(result.rows.length > 0){
+					
+					req.session.savedplanheader = asetData;
+				
+				console.log("saved plan header"+req.session.savedplanheader.sip);
+				console.log("saved plan header"+req.session.savedplanheader.goalid);
+				console.log("saved plan header"+req.session.savedplanheader.riskprofile);
+				console.log("saved plan header"+req.session.savedplanheader.masteramount);
+				console.log("saved plan header"+req.session.savedplanheader.totalyears);
+				console.log("saved plan header"+req.session.savedplanheader.userid);
+				
+					callback(null,asetData)
+					
+				}else{
+					
+					res.render(pageName, {
+		  data: assets, 
+		  user : req.user,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		firslist :  false,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	  footerDisplay: "hide",
+		  panMessage: "",
+	  footerData1: "Blog",
+	  footerData2: "FAQs",
+		scheme:false,
+		paid : paid,
+						  abcd: false,
+						  assetFromDb: false,
+						   showPage5: "hide",
+	  hideAll: "show"
+      });
+					
+				}
+				
+
+				
+			
+			})
+            
+	
+},
+				 function(headerData,callback){
+	//console.log(headerData)
+	
+
+	
+	var query=client.query("SELECT * FROM savedplansdetail where savedplanid=$1 and allocationtype=$2",[headerData.savedplanid,'scheme'], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			console.log("scheme pa in goal = "+req.session.showscheme);
+				if(req.session.showscheme){
+					
+					scheme = true;
+				}else{
+					scheme =false;
+				}
+			req.session.showscheme = false;
+				asetDataDetail = result.rows;
+		req.session.savedplandetail = asetDataDetail;
+	console.log("scheme pa in goal = "+req.session.showscheme);
+		console.log("test"+req.session.bseStatus+"scheme"+scheme);
+
+	  res.render(pageName, {
+			data: assets,
+			user : req.user,
+		  schemeData:asetDataDetail,
+			smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+			 selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+	  	  footerDisplay: "hide",
+	  footerData1: "Blog",
+	  footerData2: "FAQs",
+			scheme:scheme,
+			panMessage:panMsg,
+			abcd: false,
+			paid : true,
+			assetFromDb: headerData,
+			  showPage5: "show"
+            });
+			//callback(null,headerData,asetDataDetail)
+			})
+	}],function(err,result){
+			
+			
+			        
+			
+			
+		})
+	
+		
+		//console.log("ssds"+engineData);
+		//set rendering values 
+		//callback(null,schemeData)
+	}
+	else
+		{
+				res.render(pageName, {
+		  data: assets, 
+		  user : req.user,
+		  selectorDisplay: "show",
+	  	loggedIn: loginStatus,
+		firslist :  false,
+		  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	  footerDisplay: "hide",
+		  panMessage: "",
+	  footerData1: "Blog",
+	  footerData2: "FAQs",
+		scheme:false,
+		paid : false,
+						  abcd: false,
+						  assetFromDb: false,
+						   showPage5: "hide",
+	  hideAll: "show"
+      });
+		}
+	
+}],function (err, result) {
+   
+		 if (err='ok')
+            return;
 		
 
 		
@@ -794,7 +1046,7 @@ function(paid,assets,callback){
 
 				
 				var paid=false;
-var query=client.query(" select * from usersubscriptions where userid="+req.user.userid+" and current_date <= planrenewaldate",function(err,result){
+var query=client.query(" select * from usersubscriptions where userid="+req.session.user.userid+" and current_date <= planrenewaldate",function(err,result){
             if(err)
                 console.log("Cant get portfolio details in goal selection");
 	
@@ -826,7 +1078,7 @@ var query=client.query(" select * from usersubscriptions where userid="+req.user
 			function(callback){
 				
 					//select * from users inner join profile on users.userid = profile.userid where users.userid=$1
-			var query=client.query("SELECT * FROM savedplansheader inner join goal on savedplansheader.goalid = goal.goalid where savedplansheader.userid=$1 and savedplansheader.status = 'active' ORDER BY savedplansheader.created DESC  ",[req.user.userid], 
+			var query=client.query("SELECT * FROM savedplansheader inner join goal on savedplansheader.goalid = goal.goalid where savedplansheader.userid=$1 and savedplansheader.status = 'active' ORDER BY savedplansheader.created DESC  ",[req.session.user.userid], 
                                  function(err, result){
         if (err)
              console.log("Cant get assets values"+ err);
@@ -930,9 +1182,9 @@ for(i=0;i<headerData.length;i++){
 										
 							var x=1;
 		var y=headerData.length;
-					 
+				var asetDataDetail = {};	
+				console.log("header length"+headerData.length);
 for(i=0;i<headerData.length;i++){
-	var asetDataDetail = [];
 	
 	if(x<=y){
 	var query=client.query("SELECT * FROM savedplansdetail where savedplanid=$1 and allocationtype=$2",[headerData[i].savedplanid,'scheme'], 
@@ -941,10 +1193,10 @@ for(i=0;i<headerData.length;i++){
              console.log("Cant get assets values");
 			
 				
-			
-				asetDataDetail = result.rows;
+			asetDataDetail = result.rows;
+			//	asetDataDetail[i] = dataDetail;
 		//req.session.savedplandetail = asetDataDetail;
-		console.log(asetDataDetail);
+		console.log("saved detail"+asetDataDetail);
 		
 		
 				
@@ -1121,7 +1373,7 @@ async.waterfall([
 		
 		//Header table insert
 				 var query=client.query("INSERT INTO userinvestmentsheader(userid,goalid,riskprofile, masteramount, totalyears, sip,status,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING userinvestmentheaderid",[userId,goalId,riskProfile,masterAmount,totalYears,sip,status,
-			 creation_date,modified_date,req.user.name],function(err, result) {
+			 creation_date,modified_date,req.session.user.name],function(err, result) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
 						res.send("false");
@@ -1167,7 +1419,7 @@ async.waterfall([
 		var y=len;
 		
 		for(i=0;i<len;i++){
-			 var transNo = getTransactionID(req.user.userid)+i;
+			 var transNo = getTransactionID(req.session.user.userid)+i;
 			console.log("out loop"+req.session.savedplandetail[i].allocationdescription);
 			var	 amount = req.session.savedplandetail[i].allocationamount;
 			var schemeCode  = req.session.savedplandetail[i].schemecode;
@@ -1182,7 +1434,7 @@ async.waterfall([
 			bsetxn[i]= transNo;
 			console.log("SchemeDesc"+schemeDesc+"id"+schemeId+"amount"+amount+"txn"+bsetxn[i]);
 				var query=client.query("INSERT INTO userinvestmentorders(userinvestmentorderdate,userid,userpan,ordertype,goalid,riskprofile,schemeid,amount,bsetxnreference,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING userinvestmentorderid",[orderDate,userId,userPan,orderType,goalId,riskProfile,schemeId,amount,transNo,
-			 creation_date,modified_date,req.user.name],function(err, result1) {
+			 creation_date,modified_date,req.session.user.name],function(err, result1) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
 						res.send("false");
@@ -1246,7 +1498,7 @@ async.waterfall([
 		
 		for(i=0;i<len;i++){
 			var userinvestmentorderid = id[i];
-			 var transNo = getTransactionID(req.user.userid)+i;
+			 var transNo = getTransactionID(req.session.user.userid)+i;
 			console.log("out loop"+req.session.savedplandetail[i].allocationdescription);
 			var	 amount = req.session.savedplandetail[i].allocationamount;
 			var schemeCode  = req.session.savedplandetail[i].schemecode;
@@ -1258,7 +1510,7 @@ async.waterfall([
 				console.log("orderid"+userinvestmentorderid);
 				
 		if(x<=y){
-						var query=client.query("INSERT INTO userinvestmentdetail(userinvestmentheaderid,schemeid,schemedescription,schemecategory,allocationpercentage,allocationamount,created,modified,createdby,orderid,schemecode) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[userinvestmentheaderid,schemeId,schemeDesc,schemeCategory,allocationPercentage,amount,creation_date,modified_date,req.user.name,userinvestmentorderid,schemeCode],
+						var query=client.query("INSERT INTO userinvestmentdetail(userinvestmentheaderid,schemeid,schemedescription,schemecategory,allocationpercentage,allocationamount,created,modified,createdby,orderid,schemecode) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[userinvestmentheaderid,schemeId,schemeDesc,schemeCategory,allocationPercentage,amount,creation_date,modified_date,req.session.user.name,userinvestmentorderid,schemeCode],
 											   function(err, result2) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
@@ -1590,7 +1842,7 @@ var passKey = "test";
 async.waterfall([
 	function(callback){
 		console.log(req.body.savedplanid);
-					var query=client.query("SELECT * FROM savedplansheader  where savedplansheader.userid=$1 and savedplansheader.savedplanid = $2 ",[req.user.userid, req.body.savedplanid], 
+					var query=client.query("SELECT * FROM savedplansheader  where savedplansheader.userid=$1 and savedplansheader.savedplanid = $2 ",[req.session.user.userid, req.body.savedplanid], 
                                  function(err, result){
         if (err)
              console.log("Cant get assets values"+ err);
@@ -1632,7 +1884,7 @@ callback(null,asetData)
 		
 		//Header table insert
 				 var query=client.query("INSERT INTO userinvestmentsheader(userid,goalid,riskprofile, masteramount, totalyears, sip,status,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING userinvestmentheaderid",[userId,goalId,riskProfile,masterAmount,totalYears,sip,status,
-			 creation_date,modified_date,req.user.name],function(err, result) {
+			 creation_date,modified_date,req.session.user.name],function(err, result) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
 						res.send("false");
@@ -1701,7 +1953,7 @@ callback(null,asetData)
 		var y=len;
 		
 		for(i=0;i<len;i++){
-			 var transNo = getTransactionID(req.user.userid)+i;
+			 var transNo = getTransactionID(req.session.user.userid)+i;
 			console.log("out loop"+req.session.savedplandetail1[i].allocationdescription);
 			var	 amount = req.session.savedplandetail1[i].allocationamount;
 			var schemeCode  = req.session.savedplandetail1[i].schemecode;
@@ -1716,7 +1968,7 @@ callback(null,asetData)
 			bsetxn1[i]= transNo;
 			console.log("SchemeDesc"+schemeDesc+"id"+schemeId+"amount"+amount+"txn"+bsetxn1[i]);
 				var query=client.query("INSERT INTO userinvestmentorders(userinvestmentorderdate,userid,userpan,ordertype,goalid,riskprofile,schemeid,amount,bsetxnreference,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12) RETURNING userinvestmentorderid",[orderDate,userId,userPan,orderType,goalId,riskProfile,schemeId,amount,transNo,
-			 creation_date,modified_date,req.user.name],function(err, result1) {
+			 creation_date,modified_date,req.session.user.name],function(err, result1) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
 						res.send("false");
@@ -1781,7 +2033,7 @@ callback(null,asetData)
 		
 		for(i=0;i<len;i++){
 			var userinvestmentorderid = id[i];
-			 var transNo = getTransactionID(req.user.userid)+i;
+			 var transNo = getTransactionID(req.session.user.userid)+i;
 			console.log("out loop"+req.session.savedplandetail1[i].allocationdescription);
 			var	 amount = req.session.savedplandetail1[i].allocationamount;
 			var schemeCode  = req.session.savedplandetail1[i].schemecode;
@@ -1793,7 +2045,7 @@ callback(null,asetData)
 				console.log("orderid"+userinvestmentorderid);
 				
 		if(x<=y){
-						var query=client.query("INSERT INTO userinvestmentdetail(userinvestmentheaderid,schemeid,schemedescription,schemecategory,allocationpercentage,allocationamount,created,modified,createdby,orderid,schemecode) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[userinvestmentheaderid,schemeId,schemeDesc,schemeCategory,allocationPercentage,amount,creation_date,modified_date,req.user.name,userinvestmentorderid,schemeCode],
+						var query=client.query("INSERT INTO userinvestmentdetail(userinvestmentheaderid,schemeid,schemedescription,schemecategory,allocationpercentage,allocationamount,created,modified,createdby,orderid,schemecode) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[userinvestmentheaderid,schemeId,schemeDesc,schemeCategory,allocationPercentage,amount,creation_date,modified_date,req.session.user.name,userinvestmentorderid,schemeCode],
 											   function(err, result2) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
@@ -2252,11 +2504,30 @@ var ePass = ""; //= "FjFMCDg4YPtsxrGRtJmeVQ%3d%3d";
 			
 		
 			async.waterfall([
-function(callback){
+				function(callback){
+				
+								 var query=client.query("select goalid from goal where goal.name=$1",[req.body.goalName],function(err, result) {
+                    if(err){
+						console.log("cant insert assets header allocation data",err);
+						res.send("false");
+					}else{
+						 //res.send(1);
+						 console.log("goalid"+result.rows[0]['goalid']);
+						
+						callback(null,result.rows[0]['goalid'])
+					}
+                                    
+                  
+            });
+			
+					}, 
+				
+			
+function(goalid,callback){
 	
 	//insert to the saved plans header
-			 var query=client.query("INSERT INTO savedplansheader(userid,goalid,riskprofile, masteramount, totalyears, sip,status,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING savedplanid",[req.user.userid,req.body.goalId,req.body.riskProfile,req.body.masterAmount,req.body.totalYears,req.body.sip,status,
-			 creation_date,modified_date,req.user.name],function(err, result) {
+			 var query=client.query("INSERT INTO savedplansheader(userid,goalid,riskprofile, masteramount, totalyears, sip,status,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING savedplanid",[req.session.user.userid,goalid,req.body.riskProfile,req.body.masterAmount,req.body.totalYears,req.body.sip,status,
+			 creation_date,modified_date,req.session.user.name],function(err, result) {
                     if(err){
 						console.log("cant insert assets header allocation data",err);
 						res.send("false");
@@ -2281,16 +2552,16 @@ function(callback){
 						
 						console.log("id="+savedPlanId);
 					
-					/*,(savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.user.name),(savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.user.name)*/
+					/*,(savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.session.user.name),(savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.session.user.name)*/
 					
-						 var query=client.query("INSERT INTO savedplansdetail(savedplanid,allocationtype,allocationcategory, allocationdescription, allocationpercentage, allocationamount,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9),($10,$11,$12,$13,$14,$15,$16,$17,$18),($19,$20,$21,$22,$23,$24,$25,$26,$27)",[savedPlanId,type,category[0],category[0],percentage[0],amount[0],creation_date,modified_date,req.user.name,savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.user.name,savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.user.name]
+						 var query=client.query("INSERT INTO savedplansdetail(savedplanid,allocationtype,allocationcategory, allocationdescription, allocationpercentage, allocationamount,created,modified,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9),($10,$11,$12,$13,$14,$15,$16,$17,$18),($19,$20,$21,$22,$23,$24,$25,$26,$27)",[savedPlanId,type,category[0],category[0],percentage[0],amount[0],creation_date,modified_date,req.session.user.name,savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.session.user.name,savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.session.user.name]
 							,function(err, result) {
                     if(err){
 						console.log("cant insert assets detail allocation data",err);
 						res.send("false");
 					}else{
 						 //res.send(1);
-						 console.log(result.rows[0]);
+						// console.log(result.rows[0]);
 						
 						callback(null)
 						
@@ -2310,7 +2581,7 @@ function(callback){
 	
 	//Fetch Header 
 	//store the data in a json
-			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.user.userid], 
+			var query=client.query("SELECT * FROM savedplansheader where userid=$1 ORDER BY created DESC LIMIT 1 ",[req.session.user.userid], 
                                  function(err, result){
         if (err)
              console.log("Cant get assets values");
@@ -2365,83 +2636,16 @@ function(callback){
 	
 	var time = headerData.totalyears;
 	var sip = headerData.sip;
-                var query = {};
-			//console.log(sip+"sip");
-query.risk_profile=headerData.riskprofile;
-		//console.log(time);
-console.log("time"+time+"sip"+sip);
-
-  if(time==2)
-                {
-                    query.time="0,2";
-                    query.sip_from="";
-                      query.sip_to="";
-
-                    }
-    else if(time==1)
-            {
-                query.time="0,1";
-                    query.sip_from="";
-                      query.sip_to="";
-
-                 }
-
-         else if (time>2 && time<3)
-    {
-         query.time="3,3";
-                    query.sip_from="";
-                      query.sip_to="";
-
-         }
-
-
-    else if(time>=3){
-
-         if(sip>=1000 && sip<=2000 && time>=3)
-                 {
-                     query.sip_from=1000;
-                      query.sip_to=2000;
-                     query.time="3,50";
-
-                 }
-             else if(sip>=3000 && sip<=4000 && time>=3)
-             {
-                      query.sip_from=3000;
-                     query.sip_to=4000;
-                 query.time="3,50";
-
-             }
-             else if(sip>=5000 && sip<=10000 && time>=3){
-                   query.sip_from=5000;
-                      query.sip_to=10000;
-                 query.time="3,50";
-				
-
-             }
-             else if(sip>=11000 && sip<=20000 && time>=3){
-                  query.sip_from=11000;
-                      query.sip_to=20000;
-                 query.time="3,50";
-
-             }
-             else{
-                  query.sip_from=20000;
-                 query.sip_to="";
-                 query.time="3,50";
-               }
-    }
-	console.log(query);
+	var riskProfile = headerData.riskprofile;
 	// callback(null,query);
 	
 	
 	var schemecamntde=0,schemecamnteq=0,schemecamnthy=0;
   var schememamntde=0,schememamnteq=0,schememamnthy=0;
   var schemeagamnthy=0,schemeagamnteq=0,schemeagamnteq=0;
-	
+	//select * from schemesmaster where $1 between sipfrom and sipto and $2 between yearfrom and yearto and riskprofile = $3
 		var j=0,k=0,l=0;
-	var dtime = query.time;
-	var years = dtime.split(',');
-	var query=client.query("select * from schemesmaster where  sipfrom>=$1  and sipto<=$2 and yearfrom=$3 and yearto<=$4 and riskprofile = $5",[query.sip_from,query.sip_to,years[0],years[1],query.risk_profile], 
+	var query=client.query("select * from schemesmaster where $1 between sipfrom and sipto and $2 between yearfrom and yearto and riskprofile = $3",[sip,time,riskProfile], 
                                  function(err, result){
         if (err)
              console.log("Cant get assets values");
@@ -2449,7 +2653,7 @@ console.log("time"+time+"sip"+sip);
 		scheme = result.rows;
 		//console.log(scheme.length+"scheme"+scheme[1].name+scheme[1].category+"schemecode"+scheme[1].code);
 
-		
+
 		for(i=0;i<scheme.length;i++){
 			
 
@@ -2476,19 +2680,19 @@ console.log("time"+time+"sip"+sip);
 		if(j==0 || j==1){
     schemecamnteq=amount.amount1;
 		}
-			else{
-      schemecamnteq=amount.amount1/2;
+    else{
+      schemecamnteq=amount.amount1/j;
      }
   	if(k==0 || k==1){
    schemecamnthy=amount.amount2;
   	}
   	else{
-    schemecamnthy=amount.amount2/2;
+    schemecamnthy=amount.amount2/k;
 	}
 			if(l==0 || l==1){
           schemecamntde=amount.amount3;
 			}else{
-				schemecamntde=amount.amount3/2;
+				schemecamntde=amount.amount3/l;
     	}
 		}
 		
@@ -2511,38 +2715,53 @@ console.log("time"+time+"sip"+sip);
 			if(scheme[i].riskprofile == "Aggressive"){
 			
 			var amtamount1=0,amtmd4=0;
-			
-		                    if((scheme[i].category)=="Equity"){
-var amtamount2=0;
-				if((scheme[i].rating)>=1){
+                
+                
+                
+                
+if((scheme[i].category)=="Equity"){
+var amtamount2=0,remainamt=0,amtremainadded=0,amtagg=0;
+    
+var amtrounded1=0,amtrounded2=0,amtrounded5=0;                 
+    
+    
+    
+    //remainamt=amount.amount1-totalrounded;
+    
+    
+    console.log("Equity j value",j);
+    
+for(var n=0;n<j;n++){
+amtrounded5=Math.floor((schemecamnteq)/1000)*1000;
+amtamount1=schemecamnteq-amtrounded5;
+amtagg+=amtamount1;
+    console.log("Equity rating 1",amtagg,amtrounded5);
+    
+}
+            
                     
-amtrounded1=Math.floor((schemecamnteq)/1000)*1000;
-amtamount1=schemecamnteq-amtrounded1;
-amtamount2+=amtamount1;
-
-amtmd4=schemecamnteq+amtamount1;
-amtae2=Math.round(amtmd4/1000)*1000;
-                    
-                    if((scheme[i].rating)>1){
-                            console.log("Equity"+amtrounded1);
-						amt[i]=amtrounded1;
+                    if((scheme[i].rating)>=2){
+                        
+                            console.log("Equity in schemes",amtrounded5);
+						amt[i]=amtrounded5;
                         }
-                    if((scheme[i].rating)==1){ 
-                        
-						console.log("Equity"+amtae2);
-						amt[i]=amtae2;
+                    if((scheme[i].rating)==1){     
+                      	console.log("Equity in schemes"+amtrounded5);
+						var amountagg=amtrounded5+amtagg;
+                        amountagg=Math.round((amountagg)/1000)*1000;
+                        amt[i]=amountagg;
                    }
-
-                        
-				}
-                    if((scheme[i].rating)==0){
-                           
+                   
+                    if((scheme[i].rating)==0){ 
 						   console.log("Equity"+schemecamnteq);
 						   amt[i] = schemecamnteq;
                         }
+    
+
 
 }
-			            var amtamount1=0,amtmd4=0
+			
+			            var amtamount1=0,amtmd4=0,amtrounded1=0;
                     if((scheme[i].category)=="Hybrid"){ 
                        var amtamount2=0;   
                           amtrounded1=Math.floor((schemecamnthy)/1000)*1000;
@@ -2574,9 +2793,9 @@ amtae2=Math.round(amtmd4/1000)*1000;
                    }
 			
 			
-			var amtamount1=0,amtmd4=0
+			var amtamount1=0,amtmd4=0,amtrounded1=0;
                 if((scheme[i].category)=="Debt"){ 
-var amtamount2=0;
+                    var amtamount2=0;
                 amtrounded1=Math.floor((schemecamntde)/1000)*1000;
                   amtamount1=schemecamntde-amtrounded1;
                   amtamount1+=amtamount1;
@@ -2608,6 +2827,7 @@ var amtamount2=0;
 
                    } else {
 			
+                       var amtrounded1=0;
 			if((scheme[i].category)=="Equity"){ 
 
 
@@ -2630,7 +2850,7 @@ var amtamount2=0;
 
 
                    }
-                   var amtamount1=0,amtmd4=0
+                   var amtamount1=0,amtmd4=0,amtrounded1=0;
                     if((scheme[i].category)=="Hybrid"){ 
 
                             if((scheme[i].rating)>1){
@@ -2651,13 +2871,13 @@ var amtamount2=0;
 
 
                    }
-					var amtamount1=0,amtmd4=0
+					var amtamount1=0,amtmd4=0,amtrounded1=0;
                 if((scheme[i].category)=="Debt"){ 
 
                   if((scheme[i].rating)>1){
                   amtrounded1=Math.floor((schemecamntde)/1000)*1000;
                 
-console.log("Debt"+amtrounded1);
+                      console.log("Debt"+amtrounded1);
 					  amt[i]=amtrounded1;
                   
                   }
@@ -2679,8 +2899,6 @@ console.log("Debt"+amtrounded1);
 		}
 		}
 		
-
-		
 		//insert into the details
 		
 		for(i=0;i<scheme.length;i++){
@@ -2698,9 +2916,9 @@ console.log("Debt"+amtrounded1);
 			modified_date =new Date();
 						console.log("amt="+amt[i]);
 					
-					/*,(savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.user.name),(savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.user.name)*/
+					/*,(savedPlanId,type,category[1],category[1],percentage[1],amount[1],creation_date,modified_date,req.session.user.name),(savedPlanId,type,category[2],category[2],percentage[2],amount[2],creation_date,modified_date,req.session.user.name)*/
 					
-				 var query=client.query("INSERT INTO savedplansdetail(savedplanid,allocationtype,allocationcategory, allocationdescription, allocationpercentage, allocationamount,created,modified,createdby,schemecode,schemeid) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[headerData.savedplanid,type,category,schemeDescription,percentage,amt[i],creation_date,modified_date,req.user.name,schemeCode,schemeId]
+				 var query=client.query("INSERT INTO savedplansdetail(savedplanid,allocationtype,allocationcategory, allocationdescription, allocationpercentage, allocationamount,created,modified,createdby,schemecode,schemeid) values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)",[headerData.savedplanid,type,category,schemeDescription,percentage,amt[i],creation_date,modified_date,req.session.user.name,schemeCode,schemeId]
 							,function(err, result) {
                     if(err){
 						console.log("cant insert assets detail allocation data",err);
@@ -2718,8 +2936,6 @@ console.log("Debt"+amtrounded1);
 		}
 		
 		
-				req.session.payU = req.body;
-				console.log("initailze the payU "+req.session.payU);
 				
 				//calculateScheme();
 				//res.redirect("/Pricing");
@@ -2755,7 +2971,16 @@ console.log("Debt"+amtrounded1);
 				
 	});
 		
-
+app.post('/showScheme',isLoggedIn,function(req,res){
+	
+	req.session.showscheme = req.body.showScheme;
+		
+		console.log("scheme pa = "+req.session.showscheme);
+	
+	res.send(true);
+	//res.redirect('/GoalSelection');
+	
+})
 	app.post('/saveAssetOffline',isLoggedIn,function(req,res){
 		
 		req.session.offlineGoalId = req.body.goalId;
@@ -2806,7 +3031,7 @@ app.get('/profile',isLoggedIn, function(req, res){
      
 	
 	
-   var query=client.query("select * from users inner join profile on users.userid = profile.userid where users.userid=$1 ",[req.user.userid],function(err,result){
+   var query=client.query("select * from users inner join profile on users.userid = profile.userid where users.userid=$1 ",[req.session.user.userid],function(err,result){
             if(err)
                 console.log("Cant get profile details from users table"+ err);
 	   console.log(result.rows);
@@ -2869,8 +3094,8 @@ app.get('/profile',isLoggedIn, function(req, res){
                    
            
            console.log(dob,age,gender,maritalstatus,address,pincode,city,pan);
-            console.log("profile Post",req.user.userid);
-   var query=client.query("INSERT INTO profile(userid,age,gender,maritalstatus,address,pincode,city,pan,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING userid",[req.user.userid,age,gender,maritalstatus,address,pincode,city,pan,req.user.name],function(err,result){
+            console.log("profile Post",req.session.user.userid);
+   var query=client.query("INSERT INTO profile(userid,age,gender,maritalstatus,address,pincode,city,pan,createdby) values($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING userid",[req.session.user.userid,age,gender,maritalstatus,address,pincode,city,pan,req.session.user.name],function(err,result){
             if(err)
                 console.log("Cant get update profile details from users table",err);
             if(result.rows.length>0)
@@ -2893,9 +3118,29 @@ app.get('/myStory',isLoggedIn, function(req, res){
 		 
 	
 	loginStatus = checkLoginStatus(req);
-  res.render(pageName,{
+	
+	
+				var query=client.query("SELECT goal.name,count(userinvestmentsheader.goalid) FROM userinvestmentsheader inner join goal on userinvestmentsheader.goalid = goal.goalid where userinvestmentsheader.userid=$1 group by  goal.name ",[req.session.user.userid], 
+                                 function(err, result){
+        if (err)
+             console.log("Cant get assets values");
+			
+				
+			console.log("details header"+result.rows[0]['count']);
+				
+				if(result.rows[0]['count'] > 0){
+					investmentData = result.rows;
+					console.log(investmentData[0].count);
+					
+					}else{
+						
+						investmentData = false;
+					}
+					
+					  res.render(pageName,{
 	  
 	  user : req.user ,
+						  invest:investmentData,
 	  	  selectorDisplay: "show",
 	  		loggedIn: loginStatus,
 	   smessage: req.flash('signupMessage'),
@@ -2905,7 +3150,13 @@ app.get('/myStory',isLoggedIn, function(req, res){
 	  footerData1: "Blog",
 	  footerData2: "FAQs"
   });
-});
+
+				
+				})
+	
+	});
+	
+
 
 app.get('/reports',isLoggedIn, function(req, res){
 	currentPage = req.session.activePage = "/reports";
@@ -2946,8 +3197,8 @@ app.get('/Accounts',isLoggedIn, function(req, res){
 	else
 		pageName = "yourStory";
 		
-	  console.log("invoices",req.user.userid);
-   var query=client.query("select to_char(a.userinvestmentorderdate,'dd-Mon-yyyy') as investdate, b.name, a.amount,NULLIF(a.units,0) as units from userinvestmentorders a, schemesmaster b where a.schemeid = b.schemeid and a.userid=$1",[req.user.userid],function(err,result){
+	  console.log("invoices",req.session.user.userid);
+   var query=client.query("select to_char(a.userinvestmentorderdate,'dd-Mon-yyyy') as investdate, b.name, a.amount,NULLIF(a.units,0) as units from userinvestmentorders a, schemesmaster b where a.schemeid = b.schemeid and a.userid=$1",[req.session.user.userid],function(err,result){
             if(err)
                 console.log("Cant get portfolio details in goal selection"+ err);
 	   console.log("ja be loude"+result.rows.length)
@@ -3013,8 +3264,8 @@ app.get('/Invoices',isLoggedIn, function(req, res){
 		pageName = "yourStory";
     
 
-    console.log("invoices",req.user.userid);
-   var query=client.query("select to_char(a.userinvestmentorderdate,'dd-Mon-yyyy') as investdate, b.name, a.amount,NULLIF(a.units,0) as units from userinvestmentorders a, schemesmaster b where a.schemeid = b.schemeid and a.userid=$1 order by 1 desc",[req.user.userid],function(err,result){
+    console.log("invoices",req.session.user.userid);
+   var query=client.query("select to_char(a.userinvestmentorderdate,'dd-Mon-yyyy') as investdate, b.name, a.amount,NULLIF(a.units,0) as units from userinvestmentorders a, schemesmaster b where a.schemeid = b.schemeid and a.userid=$1 order by 1 desc",[req.session.user.userid],function(err,result){
             if(err)
                 console.log("Cant get portfolio details in goal selection");
             if(result.rows.length>0)
@@ -3298,10 +3549,12 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()){
 		req.session.loggedIn = true;
 		
-		//console.log(req.session.userEmail);
+		//console.log(req.session.user.userid);
+		req.session.user = req.user;
+		console.log(req.session.user);
 		return next();
 	}
-		
+		req.session.user = "";
 req.session.loggedIn = false;
 	// if they aren't redirect them to the home page
 	return next();
