@@ -246,7 +246,7 @@
 				
                            <!-- <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" onsubmit="checkPanStaus();">-->
                          <div class="bg-success" id="responseData">
-	<p><%= panMessage %></p>
+	<p>Your Order Payment is Successfull </p>
 							 <a href="/Accounts" >Click here to see your goal performance</a>
 						</div>            
 						
@@ -480,18 +480,18 @@
             
             <div class="login-btn text-center page-buttons">
                                  
-                <button type="" class="btn btn-lg moodNav skip" > Skip </button> 
+               <!-- <button type="" class="btn btn-lg moodNav skip" > Skip </button> -->
             </div>
             
            <div class="login-btn text-center page-buttons">
-                          <div></div>
+      <!--                    <div></div>
                                   <div></div>
                   <div></div>
                   <div></div>
                   <div></div>
-                  <div></div>
+                  <div></div>-->
            
-                <button type="" class="btn btn-lg moodNav next" > Next </button> 
+                <button type="" class="btn btn-lg moodNav next" disabled="disabled" > Next </button> 
                
             </div>
                        <div class="login-btn text-center page-buttons">
@@ -1047,7 +1047,7 @@
 								   
 								 
 								   
-									   <button type="" data-toggle="modal" data-target="#loginModalScheme" class="btn btn-lg moodNav signUp" > login </button> 
+									   <button type="" data-toggle="modal" data-target="#loginModal" class="btn btn-lg moodNav signUp" > login </button> 
 								  <% } %>
                 
                            </div>
@@ -1328,7 +1328,7 @@
 			     var data = {};
 					data.pan = document.getElementById("pan").value;
 					console.log("pan"+data.pan);
-			    alert(data.pan);
+			 //   alert(data.pan);
 			   
 				 <% if(loggedIn) {%>
 				   
@@ -1425,7 +1425,7 @@
 						type: 'POST',
 						data: JSON.stringify(data),
 				        contentType: 'application/json',
-                        url: '/saveAssetOffline',						
+                        url: '/setData',						
                         success: function(data) {
                             console.log('success');
 							$("#myPanModal").modal("show");
@@ -2049,6 +2049,10 @@ $(document).ready(function(){
 <% } %>
 	
 });
+							
+							
+	
+							
 </script>
 			 
 </body>

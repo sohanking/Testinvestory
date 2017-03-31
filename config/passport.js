@@ -169,7 +169,7 @@ var newUser= new User();
 						 console.log("profileid"+result.rows[0]['profileid']);
 						
 						//callback(null,result.rows[0]['savedplanid'])
-						return done(null, newUser);
+						callback(null,newUser)
 					}
                                     
                   
@@ -180,7 +180,7 @@ var newUser= new User();
 			
 			
 			        
-			
+			return done(null, result);
 			
 		})
 	
@@ -203,9 +203,9 @@ var newUser= new User();
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
                                                 
-    function(req, email, password, done) { // callback with email and password from our form
-req.session.payment =false;
-         console.log("in passport"+req.body.assetStoreOffline_l+req.session.offlineGoalId);
+    function(req, email, password, next) { // callback with email and password from our form
+
+    
         // find a user whose email is the same as the forms email
         // we are checking to see if the user trying to login already exists
         var query= client.query("SELECT * FROM users where email=$1",[email], function(err, result)
@@ -230,8 +230,8 @@ req.session.payment =false;
                     user.name= result.rows[0]['name'];
                     user.password = result.rows[0]['password'];
                     user.userid = result.rows[0]['userid'];
-				  
-				  console.log("in passport"+req.body.assetStoreOffline_l +req.session.offlineGoalId);
+				  var text = 'Hi '+ user.name+',';
+	mail('sohan@plasticwaterlabs.com',user.email,'login succesfull',text);
 				  
                
                 }
@@ -241,15 +241,15 @@ req.session.payment =false;
                  
 					console.log("Wrong password");
                  zendCreateTicket(email,'Login error, Wrong password');
-                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+                return next(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 			}
-             
-                
-                zendCreateTicket(email,'Succesfully Logged in');
+             					
+                			   zendCreateTicket(email,'Succesfully Logged in');
 
-            req.session.userEmail = email;
+         
            
-            return done(null,result.rows[0]);
+            return next(null,result.rows[0]);
+               
          
          	
           });
@@ -405,13 +405,32 @@ req.session.payment =false;
 
     ));
 
-    
+    	function mail(from, to, subject, text){
+		
+		
+		var api_key = 'key-cd53eadfa9793e5786ddbdf759cf0c44';
+var domain = 'sandbox36a9c8afddc44d2781db5e3780497211.mailgun.org';
+var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+
+var data = {
+  from: from,
+  to: to,
+  subject: subject,
+  text: text
+};
+
+mailgun.messages().send(data, function (error, body) {
+  console.log(body);
+});
+		
+	}
+
 var zendesk;
 function initZendDesk(){
 
 zendesk = new Zendesk({
  url: 'https://plasticwaterlabs.zendesk.com', // https://example.zendesk.com
- email: 'sohan@plasticwaterlabs.com', // me@example.com
+ email: 'nishant@plasticwaterlabs.com', // me@example.com
  token: 'KZ0CSdA9FnAqrZGpINqLiJcct70Do6z34iJDrnHW' // hfkUny3vgHCcV3UfuqMFZWDrLKms4z3W2f6ftjPT
 });
 

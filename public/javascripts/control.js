@@ -903,8 +903,8 @@ var $smartGoals = "smartGoals";
    
         
         $(".panel-heading").css("background-color","#35BFD3");
-        $(".panel-heading h2").css("color","#F2F5FB");
-       $(".panel-heading .pDot").css("border","2px #F2F5FB solid");
+        $(".panel-heading h2").css("color","#FFFFFF");
+       $(".panel-heading .pDot").css("border","2px #FFFFFF solid");
        $(".panel-body ul, .panel-body h2").css("color","#333333");
        
        
@@ -919,8 +919,8 @@ var $smartGoals = "smartGoals";
    
         
         $(".panel-heading").css("background-color","#35BFD3");
-        $(".panel-heading h2").css("color","#F2F5FB");
-       $(".panel-heading .pDot").css("border","2px #F2F5FB solid");
+        $(".panel-heading h2").css("color","#FFFFFF");
+       $(".panel-heading .pDot").css("border","2px #FFFFFF solid");
        $(".panel-body ul, .panel-body h2").css("color","#333333");
        
        
@@ -941,20 +941,20 @@ var $smartGoals = "smartGoals";
      $(document).on("click", '.below .goal',function(){
         
          $(this).attr("id","activ");
-          $("#mood span").css("background-color","#F2F5FB");
+          $("#mood span").css("background-color","#FFFFFF");
         
         $("#mood span",this).css("background-color","#FFDE15");
          moodFile =  $("#mood",this).text(); 
          
  goalName(moodFile);
-
+$('.page1 .next').removeAttr('disabled');
      });
     
     var currentMood;
     
      $(document).on("mouseenter", '.below .goal',function(){
         
-//          $("#mood span").css("background-color","#F2F5FB");
+//          $("#mood span").css("background-color","#FFFFFF");
 //        
 //        $("#mood span",this).css("background-color","#FFDE15");
          
@@ -980,7 +980,7 @@ var movingTo= 0;
 
          $(document).on("mouseleave", '.below .goal',function(){
         
-//              $("#mood span",this).css("background-color","#F2F5FB");
+//              $("#mood span",this).css("background-color","#FFFFFF");
         
       var clickActive = $(this).attr("id");
          
@@ -1009,7 +1009,7 @@ var movingTo= 0;
         $(".contentMood .page1, #btm").hide();
         currentPage=2;
       
-         $(".moods .pagination li:nth-child(1) a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
+         $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
         $(".pagination li:nth-child(2) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
         
@@ -1037,11 +1037,11 @@ var once = true;
         
          $(".contentMood .page3, .page3Sub, #rpText").show();
         
-   $(".pagination li:nth-child(2) a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
+   $(".pagination li:nth-child(2) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
         $(".pagination li:nth-child(3) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
         
-//         $(".contentMood .go").css({"background-color":"#F2F5FB","color":"#35BFD3","border-color":"#35BFD3"});
+//         $(".contentMood .go").css({"background-color":"#FFFFFF","color":"#35BFD3","border-color":"#35BFD3"});
 //        
               $(".page2 .dotHr").hide();
             
@@ -1061,13 +1061,13 @@ var once = true;
          $(".contentMood .page2,.contentMood .page3, .page3Sub,.contentMood .page4 .sub-page4").hide();
     
           
-             $(".pagination li:nth-child(3) a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
+             $(".pagination li:nth-child(3) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
         $(".pagination li:nth-child(4) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
           
            $(".contentMood .page4 #invest").css("color","#35BFD3");
           
-              $(".contentMood .page4").show();
+              $(".contentMood .page4,.contentMood .page4 .selectMode").show();
           
           
                });
@@ -1094,7 +1094,7 @@ var page4Risk;
     
      $(".contentMood .page4").hide();
         
-        $(".pagination li:nth-child(4) a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
+        $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
         $(".pagination li:nth-child(5) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
           
@@ -1114,7 +1114,7 @@ var page4Risk;
    
      $(".contentMood .page4").hide();
         
-        $(".pagination li:nth-child(4) a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
+        $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
         $(".pagination li:nth-child(5) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
           
@@ -1126,6 +1126,7 @@ var page4Risk;
 	
 	$("#schemeNext").click(function(){
 		
+		$(" .moodGoals > img").css("visibility","hidden");
 		 $(".contentMood .page5").hide();
 		 $(".contentMood .page6, #IndicatorNew").show();
 		
@@ -1177,7 +1178,7 @@ var page4Risk;
 		}
 
 		nextPage = currentPage+1;
-		 $(".moods .pagination li:nth-child("+nextPage+") a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
+		 $(".moods .pagination li:nth-child("+nextPage+") a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
         $(".pagination li:nth-child("+movingTo+") a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
 		

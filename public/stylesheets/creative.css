@@ -585,7 +585,7 @@ How it works
     
     border-radius: 50% !important;
     background-color: #35BFD3;
-    color: #F2F5FB;
+    color: #FFFFFF;
     font-size: 1.2em;
     border-color: #35BFD3;
     cursor: default;
@@ -601,7 +601,7 @@ How it works
 .how-it-works .pagination>li>a:active { 
     
    background-color: #35BFD3;
-    color: #F2F5FB;
+    color: #FFFFFF;
     border-color: #35BFD3; 
 }
 
@@ -615,6 +615,7 @@ How it works
 .page2 .dotHr div,
 .page5 .dotHr div,
 .page6 .dotHr div
+.page7 .dotHr div,
 #reports .dotHr div,
 #myStory .dotHr div,
 #profile .dotHr div,
@@ -1681,21 +1682,21 @@ width: 10%;
 
     background-color: #35BFD3;
     border: 1px #35BFD3 solid;
-    color:#F2F5FB;
+    color:#FFFFFF;
        
 }
 
 .story .moodNav > a{
     
     text-decoration: none;
-     color:#F2F5FB;
+     color:#FFFFFF;
 }
 
 .storyBtn{  
     float: left;
     background-color: #35BFD3;
     border: 1px #35BFD3 solid;
-    color:#F2F5FB;
+    color:#FFFFFF;
         padding: 2px 0px;
         width: 6em;
 }
@@ -1704,7 +1705,7 @@ width: 10%;
 .storyBtn:hover,
 .storyBtn:active 
 {
-     background-color:#ffffff;/* #F2F5FB;*/
+     background-color:#ffffff;/* #FFFFFF;*/
     border: 1px #35BFD3 solid;
     color:#35BFD3;
 
@@ -1712,7 +1713,7 @@ width: 10%;
 
 .act {
     
-    background-color:#ffffff;/* #F2F5FB;*/
+    background-color:#ffffff;/* #FFFFFF;*/
     border: 1px #35BFD3 solid;
     color:#35BFD3;
      
@@ -1842,7 +1843,7 @@ border-radius:10px;
 
 #myBar1, #myBar2 ,#myBar3 {
   position: absolute;
-  width: 68%;
+  width: 0%;
   height: 100%;
   background-color: #FFDE15;
 border-radius:10px;
@@ -1972,7 +1973,7 @@ Footer
 }
 .foot h4 > a {
     
-    color: #F2F5FB;
+    color: #FFFFFF;
     font-weight: 700;
     font-size: 22px;
 } 
@@ -2081,14 +2082,16 @@ p.SubscribeToNewsletter:hover{
 }
 
 .page5 th,.page5 td,
-.page6 th,.page6 td{
+.page6 th,.page6 td,
+.page7 th,.page7 td{
     
     color: #35BFD3;
      
 }
 
 .page5 .table,
-.page6 .table {
+.page6 .table,
+.page7 .table{
     
    border:1px solid #35BFD3; 
     border-radius: 10px;
@@ -2100,7 +2103,8 @@ p.SubscribeToNewsletter:hover{
 
 
 .page5 .table>tbody>tr>td,
-.page6 .table>tbody>tr>td {
+.page6 .table>tbody>tr>td,
+.page7 .table>tbody>tr>td{
     
     border-top:0;
       border-right: 1px solid #35BFD3;
@@ -2113,7 +2117,9 @@ p.SubscribeToNewsletter:hover{
 .page5 .table>thead>tr>th:nth-child(3),
 .page5 .table>tbody>tr>td:nth-child(3),
 .page6 .table>thead>tr>th:nth-child(3),
-.page6 .table>tbody>tr>td:nth-child(3){
+.page6 .table>tbody>tr>td:nth-child(3),
+.page7 .table>thead>tr>th:nth-child(3),
+.page7 .table>tbody>tr>td:nth-child(3){
     
  
       border-right:0;
@@ -2259,7 +2265,7 @@ margin-bottom: 0.5em;
 	
 	
 	 background-color: #3b5998;
-    color:#F2F5FB;
+    color:#FFFFFF;
      border: #3b5998;   
 		margin-top: 0.5em;
 }
@@ -2867,7 +2873,8 @@ h2.WSHeader{
 
 /*dropdown logout Ends*/
 .page5 .table>thead>tr>th,
-.page6 .table>thead>tr>th {
+.page6 .table>thead>tr>th,
+.page7 .table>thead>tr>th{
     
     border-top:0;
       border-right: 1px solid #35BFD3;

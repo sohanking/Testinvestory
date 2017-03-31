@@ -1442,6 +1442,11 @@ p.WhoWeAreP {
 .page6 .table>thead>tr>th:nth-child(2), .page6 .table>tbody>tr>td:nth-child(2), .page6 .table>thead>tr>th:nth-child(3), .page6 .table>tbody>tr>td:nth-child(3) {
     text-align: center;
 }
+
+.page7 .table>thead>tr>th:nth-child(2), .page7 .table>tbody>tr>td:nth-child(2), .page7 .table>thead>tr>th:nth-child(3), .page7 .table>tbody>tr>td:nth-child(3) {
+    text-align: center;
+}
+
 .page5 .table>tbody>tr>td:nth-child(1) {
     text-align: left;
 }
@@ -1449,6 +1454,11 @@ p.WhoWeAreP {
 .page6 .table>tbody>tr>td:nth-child(1) {
     text-align: left;
 }
+
+.page7 .table>tbody>tr>td:nth-child(1) {
+    text-align: left;
+}
+
 
 
 #searchBox[type=search] {
