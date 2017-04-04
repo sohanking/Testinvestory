@@ -203,7 +203,7 @@ var newUser= new User();
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
                                                 
-    function(req, email, password, next, done) { // callback with email and password from our form
+    function(req, email, password, next) { // callback with email and password from our form
 
     
         // find a user whose email is the same as the forms email
@@ -213,13 +213,13 @@ var newUser= new User();
         // if there are any errors, return the error before anything else
             
             if (err)
-                return done(err);
+                return next(err);
             
               
               if(result.rows.length==0)
               {
                 console.log("No user found");
-				return done(null, false, req.flash('loginMessage', 'No user found.'));
+				return next(null, false, req.flash('loginMessage', 'No user found.'));
 
 			  }
             else
@@ -264,7 +264,7 @@ var newUser= new User();
     passport.use(new FacebookStrategy({
     clientID: '1620502528254783',
     clientSecret: '724b87f6243da3bae2f2e5ddcc7e729d',
-    callbackURL: 'http://localhost:3001/auth/facebook/callback',
+    callbackURL: 'http://localhost:3000/auth/facebook/callback',
          profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified'],
         
   },
@@ -328,7 +328,7 @@ var newUser= new User();
 
         clientID        : '87658927996-i8ovbtoljd8tir2e9pki4i8uagshb38c.apps.googleusercontent.com',
         clientSecret    : 'vUjKOhsz8f1_ovtzN4weOT7u',
-        callbackURL     : 'http://localhost:3001/auth/google/callback',
+        callbackURL     : 'http://localhost:3000/auth/google/callback',
 
     },
     function(token, refreshToken, profile, done) {

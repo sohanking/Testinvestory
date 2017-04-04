@@ -1190,7 +1190,7 @@ border-radius:10px;
 
 #myBar1, #myBar2 ,#myBar3 {
   position: absolute;
-  width: 68%;
+  width: 0%;
   height: 100%;
   background-color: #FFDE15;
 border-radius:10px;
