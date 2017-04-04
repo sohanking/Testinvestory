@@ -281,19 +281,19 @@ $(function(){
         case 'Bstp1': return;
              break;
         
-        case 'Bstp2': tipData ="helps track your every transaction and status";   
+        case 'Bstp2': tipData ="Helps track your every transaction and status";   
              break;
              
-        case 'Bstp3': tipData ="tells you how much investment you have in each industry";
+        case 'Bstp3': tipData ="Tells you how much investment you have in each industry";
              break;
              
-              case 'Bstp4': tipData ="monitors your balance of debt and equity";
+              case 'Bstp4': tipData ="Monitors your balance of debt and equity";
              break;
         
-        case 'Bstp5': tipData ="tells you how much investment you have in each fund";   
+        case 'Bstp5': tipData ="Tells you how much investment you have in each fund";   
              break;
              
-        case 'Bstp6': tipData ="market analytics and insights from our team of experts";
+        case 'Bstp6': tipData ="Market analytics and insights from our team of experts";
              break;
                 case 'Bstp7': tipData ="new and old product research to stay up to date";   
              break;
@@ -324,16 +324,16 @@ $(function(){
    
      switch(tipId){
              
-        case 'Gp1': tipData ="helps track your target goals and achievement";
+        case 'Gp1': tipData ="Helps track your target goals and achievement";
              break;
         
-        case 'Gp2': tipData ="tells you where your money stands";   
+        case 'Gp2': tipData ="Tells you where your money stands";   
              break;
              
-        case 'Gp3': tipData ="tells you if you have to pay tax on gains";
+        case 'Gp3': tipData ="Tells you if you have to pay tax on gains";
              break;
              
-              case 'Gp4': tipData ="our take on market news";
+              case 'Gp4': tipData ="Our take on market news";
              break;
         
              

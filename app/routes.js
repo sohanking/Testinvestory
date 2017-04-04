@@ -3680,7 +3680,7 @@ app.get('/myStory',isLoggedIn, function(req, res){
              console.log("Cant get assets values");
 			
 				
-			console.log("details header"+result.rows[0]['count']);
+			//console.log("details header"+result.rows[0]['count']);
 				
 				if(result.rows[0]['count'] > 0){
 					investmentData = result.rows;
@@ -3883,6 +3883,130 @@ app.get('/Settings',isLoggedIn, function(req, res){
 });
 
 
+	app.get('/Transaction',isLoggedIn, function(req, res){
+
+	currentPage = req.session.activePage = "/transaction";
+
+	loginStatus = checkLoginStatus(req);
+	     mobile = req.useragent["isMobile"]
+    if(mobile){
+      res.render('transactionMobile.ejs',{
+
+  });
+    }else{
+  res.render('yourStory.ejs',{
+
+	  user : req.user ,
+	  	  selectorDisplay: "show",
+	  		loggedIn: loginStatus,
+	  path:'accountData',
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  path1: 'accountTransactionData',
+	  	  footerDisplay: "hide",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+  });
+    }
+});
+    //Investment
+    app.get('/Investment',isLoggedIn, function(req, res){
+
+	currentPage = req.session.activePage = "/Investment";
+
+	loginStatus = checkLoginStatus(req);
+	     mobile = req.useragent["isMobile"]
+    if(mobile){
+      res.render('investmentMobile.ejs',{
+
+  });
+    }else{
+  res.render('yourStory.ejs',{
+
+	  user : req.user ,
+	  	  selectorDisplay: "show",
+	  		loggedIn: loginStatus,
+	  path:'accountData',
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  path1: 'accountInvestmentData',
+	  	  footerDisplay: "hide",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+  });
+    }
+});
+	
+	
+    app.get('/Privacy', function(req, res){
+	currentPage = req.session.activePage = "/Privacy";
+
+ mobile = req.useragent["isMobile"]
+    if(mobile){
+      res.render('privacyMobile.ejs',{
+	  	  selectorDisplay: "show",
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	loggedIn: loginStatus,
+	  user : req.user ,
+	  	  footerDisplay: "show",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+  });
+    }
+  else{res.render('privacy.ejs',{
+      selectorDisplay: "show",
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	loggedIn: loginStatus,
+	  user : req.user ,
+	  	  footerDisplay: "show",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+
+  });}
+
+
+});
+
+      app.get('/Policies', function(req, res){
+	currentPage = req.session.activePage = "/Policies";
+          mobile = req.useragent["isMobile"]
+    if(mobile){
+      res.render('policyMobile.ejs',{
+	  	  selectorDisplay: "show",
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	loggedIn: loginStatus,
+	  user : req.user ,
+	  	  footerDisplay: "show",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+  });
+    }
+  else{
+
+  res.render('policies.ejs',{
+      selectorDisplay: "show",
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	loggedIn: loginStatus,
+	  user : req.user ,
+	  	  footerDisplay: "show",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+
+
+  });
+  }
+
+      })
+
+
+	
 app.get('/tocurrent', function(req, res){
 	
 

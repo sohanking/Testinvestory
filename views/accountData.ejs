@@ -10,8 +10,13 @@
           <p class="RewardPoints" style="    position: relative; top: -1em;display:none;">Reward Points</p>
         </div>
   </div>
+    
+    
+    <br>
+    <br>
+   
   <div class="topNav abc topNav2">
-    <a class="act btn btn-lg moodNav storyBtn"  href="Invoices">My invoivces</a> 
+    <a class="act btn btn-lg moodNav storyBtn"  href="Invoices">My Invoices</a> 
       <div></div>
       <div></div>
       <div></div>
@@ -20,7 +25,7 @@
       <div></div>
       <div></div>
       <div></div>
-      <a class="btn btn-lg moodNav storyBtn" style="width: 8em;"  href="#statements">My statements</a>
+      <a class="btn btn-lg moodNav storyBtn" style="width: 8em;"  href="Investment">My Investments</a>
       <div></div>
       <div></div>
       <div></div>
@@ -29,7 +34,7 @@
       <div></div>
       <div></div>
       <div></div>
-      <a class="btn btn-lg moodNav storyBtn" style="width: 8em;" href="#transcations">My transcations</a> 
+      <a class="btn btn-lg moodNav storyBtn" style="width: 8em;" href="Transaction">My Transaction</a> 
       <div></div>
       <div></div>
       <div></div>
@@ -38,18 +43,26 @@
       <div></div>
       <div></div> 
       <div></div>
-    <a class="btn btn-lg moodNav storyBtn"  href="Settings" id="ttt">My settings</a>
+    <a class="btn btn-lg moodNav storyBtn"  href="Settings" id="ttt">My Settings</a>
   </div>
 
-
+   
 	<% if(path1 == "accountInvoicesData"){ %>
  	<%  include accountInvoicesData %>
-<% }else if(path1 == "accountInvoicesData"){ %>
- 	<%  include accountInvoicesData %>
- 
+ <% }else if(path1 == "accountSettingsData"){ %>
+ 	 <% include accountSettingsData %>
+
+<% }
+    else if(path1 == "accountInvestmentData"){ %>
+ 	 <% include accountInvestmentData %>
+
+<% }else if(path1 == "accountTransactionData"){ %>
+ 	 <% include accountTransactionData %>
+
 <% } else { %>
 <% include accountInvoicesData %>
 <% } %>
+
 	
 	
       </div>

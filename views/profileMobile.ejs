@@ -10,7 +10,7 @@
     <body ng-app="">
  <% include partials/headerMobile%>   
     
-  <div class="container profilePage">
+  <div class="container">
     
    
                <div class="row " style="">
@@ -47,15 +47,16 @@
                         
                      <form name="profileInformation" class="form-horizontal" action="/profile" method="post">
                                                      
-                         <div id=""  class="row">
+                         <div id=""  class="col-xs-12">
                            
-                                 <div class="form-group">                              
+                                                               
                                  <label class=" col-xs-3 colo"style="" >Name:</label>
                                                                         
                                  <div class="col-xs-9">
                                   <input type="text" class="form-controler" name="username" id="username" value="user" /> 
-                                        </div>                            
+                                                                    
                                  </div>
+                                            <br>
                                                               
                                
                             
@@ -260,9 +261,8 @@
 
                                             
                                                          </div>
-                                                         <div class="row">
                      <button type="submit" class="btn btn-lg moodNav profileSubmit" ng-disabled="profileInformation.$invalid" >Submit </button>
-                                                         </div></form>
+                                                         </form>
                  <br>
                  
                   
@@ -274,7 +274,7 @@
                                         
                      <form name="panDetails"class="form-horizontal" action="/profile" method="post">
                                                      
-                         <div class="row">
+                         <div class="col-xs-12 ">
                                                          
                              <div class="form-group">
                                                                
@@ -297,7 +297,7 @@
                                                 
 									<div class="col-xs-9">
                                
-                                  <textarea class="form-controler addressSection3" rows="6" id="comment" type="text" value="" name="address" id="address" required/></textarea>                                        <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid"  >Address is required.</span>                                       
+<!--                                        <textarea class="form-controler addressSection3" rows="6" id="comment" type="text" value="" name="address" id="address" required/></textarea>                                        <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid"  >Address is required.</span>                                       -->
                                                   
                             		</div>
                                            
@@ -415,9 +415,8 @@
                           
                                            
                                                 
-                      </div
-                      
- <div class="col-xs-12"><button type="submit" class="btn btn-lg moodNav profileSubmit2" ng-disabled="" >Submit </button></div>
+                      </div>
+ <button type="submit" class="btn btn-lg moodNav profileSubmit2" ng-disabled="" >Submit </button>
                                             
                                                          </div>
                                        

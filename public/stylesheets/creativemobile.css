@@ -1,6 +1,8 @@
+html { height: 100% }
 body{
         height: 100%;
         overflow-y: auto;
+        padding: 0
 }
 .frogIndex
 {
@@ -8,6 +10,7 @@ body{
     top: inherit;
 
 }
+.navbar-header a { display: block; padding: 15px 0 }
 nav.navbar.navbar-inverse.mobileHeader
 {
 /*    position: fixed;*/
@@ -16,6 +19,9 @@ nav.navbar.navbar-inverse.mobileHeader
 }
 body.disabled-onepage-scroll, .disabled-onepage-scroll .onepage-wrapper, html {
     position: inherit;
+}
+.container-fluid {
+       height: 100%;
 }
 
 .logo-icon, .logo-icon-blue {
@@ -45,13 +51,19 @@ div.navbar.navbar-inverse.mobileHeader{
     margin-left: 0;
     border: none;
     margin-right: 0;
+    background: #fff
 }
 .navbar .navbar-nav {
     display: block;
     float: none;
     vertical-align: top;
 }
-
+.navbar-inverse .navbar-nav>li>a {
+    color: #333333;
+    font-weight: 800;
+    padding: 0em;
+    font-size: 18px
+}
 .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
     color:#35BFD3;
     background-color: transparent;
@@ -60,42 +72,19 @@ div.navbar.navbar-inverse.mobileHeader{
     border-color: transparent;
 }
 
-/*Index page*/
-
-
-
-/*
-.photosInner {
-    height: inherit;
-    width: inherit;
-    overflow: hidden;
-    position: relative;
-}
-
-div.photos {
-
-           width: initial;
-    overflow: hidden;
-
-}
-*/
-/*
-img.change {
-       width: 10%;
-
-}
-*/
 div.yourMoodParent{
     position: relative;
     width: 100%;
     height: calc(100% - 65px);
-    margin-top: 65px;
+    /*margin-top: 65px;*/
 }
 div.index2{
     height: calc(100% - 65px);
 }
 .yourMood > h1 {
      font-size: large;
+     font-weight: 300;
+     margin-top: 0; 
 }
 .yourMood > h4 {
 font-size: medium;
@@ -266,11 +255,11 @@ p.WhoWeAreP
 }*/
 a.left {
     position: relative;
-    left: -41%;
+    left: -45%;
          top: -8em;
 }
 a.right {
-    right: -41%;
+    right: -45%;
     position: relative;
        top: -8em;
 }
@@ -406,7 +395,6 @@ a#index4.left,a#index4.right
 {
            height: 155%;
     border-bottom: 3px #35BFD3 dotted;
-
 }*/
 .footerFrog > img {
     position: relative;
@@ -1118,7 +1106,6 @@ button.btn.btn-lg.moodNav.profileSubmit2{
     padding-right: 0;
     font-size: 18px;
 }
-
 .sliderFaqs div.panel {
     padding: 5px;
     margin-bottom: 0;
@@ -1201,7 +1188,10 @@ button.btn.btn-lg.moodNav.profileSubmit2{
     opacity: 0;
 }
 
-
+.sliderFaqs div.panel.show {
+    opacity: 1;
+    max-height: 500px;
+}
 
 .btn-circle {
      width: 22px;
@@ -1245,7 +1235,11 @@ div.avatarTestimonial.avtarEdit {
     padding-top: 25px;
     border-radius: 0;
 }
+footer .foot {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
+}
 div.buttonSetUp{
     position: relative;
 }
@@ -1268,7 +1262,6 @@ div#riskHeight{
 }
 div.includeCarousel
 {
-        border-bottom: 2px #35BFD3 dotted;
         height: 250px;
 }
 
@@ -1322,7 +1315,8 @@ div.footerFrog{
     position: relative;
     display: block;
     text-align: left;
-    padding-left: 50%;
+    padding-left: 40%;
+    height: 40px;
 }
 .mobileHeader .navbar-toggle {
     margin-right: 5px;
@@ -1341,9 +1335,9 @@ div.footerFrog{
    background-color: #fff;
 }
 
-.mobileHeader .collapse {
+/*.mobileHeader .collapse {
     display: none!important;
-}
+}*/
 
 .mobileHeader .collapse.in {
     display: block!important;
@@ -1353,6 +1347,7 @@ div.footerFrog{
     display: block;
     float: right;
     margin-top: 15px;
+    margin-right: -5px
 }
 
 .mobileHeader .logoImage {
@@ -1393,7 +1388,7 @@ index3 img {
 .index4 .includeCarousel h2 {
     font-size: 1.5em;
 }
-
+#myCarousel { margin: 25px 0 0 }
 #myCarousel.testimonial p {
     font-weight: 600px;
     font-size: 16px;
@@ -1444,7 +1439,7 @@ index3 img {
     left: 50%;
 }
 
-.container-fluid.know-us, .container-fluid.how-it-works, .container-fluid.moods.text-center, .container.settingsPage, .container.myStoryPage,div.forReports, div.container-fluid.faqs.text-center{
+.container-fluid.know-us, .container-fluid.how-it-works, .container-fluid.moods.text-center {
     margin-top: 65px;
 }
 
@@ -1454,58 +1449,22 @@ index3 img {
 
 #yourMoodP .mood .myMood {
     display: none;
-    position: relative;
+    position: relative
 }
 #yourMoodP .mood .myMood.active {
     display: block;
     width: 100%;
     padding-top: 25px;
-    max-width: 320px;
+}
+#yourMoodP .mood .myMood img { width: 90%; max-width: 400px }
+#yourMoodP .mood .myMood p { position: absolute;
+    top: 66%;
+    left: 0;
+    right: 0;
     margin: 0 auto;
+    color: #fff;
+    font-size: 38px;
 }
-#yourMoodP .mood .myMood img {
-    width: 100%;
-}
-#yourMoodP .mood .myMood p {
-    position: absolute;
-    left: 50%;
-    color: #e1e1e1;
-    top: 50%;
-    font-size: 30px;
-    transform: translate(-50%);
-    width: 300px;
-}
-.getStartedPage .rowIndexSlider{ 
-    margin-top: 15px;
-}
-.getStartedPage .login-btn .btn.btn-lg.moodNav.go {
-    transform: none;
-    margin: 0;
-}
-
-.getStartedPage .login-btn .btn.btn-lg.moodNav.go {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #333333;
-    font-weight: 800;
-    padding: 0em;
-    font-size: small;
-}
-div.container.profilePage{
-    
-    height:auto;
-}
-.container-fluid {
-       height:100%;
-}
-.container{
-       height: 100%;
-}
-.sliderFaqs div.panel.show {
-    opacity: 1;
-       max-height: initial;
-}
+.yourMood h1, .yourMood h4, .yourMood p { font-weight: 500 }
+.row.howItWorksRow .column-sm-4 img { width: initial }
+.row.howItWorksRow .column-sm-4 p { font-size: 18px }
