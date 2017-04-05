@@ -12,40 +12,43 @@
     <% include partials/header %>
         <div class="wrapper plansPage">
 <div class="container">
-<div class="savedPlansPage">  
+<div class="savedPlansPage"> 
+ 
       <div class="headGoal">
           <h3 class="savedPlans">Saved Plans</h3>
-             <em>All plans are valid upto 30 days from the date paid</em> 
+             <em>All plans are valid upto 30 days</em> 
             </div>
-            
+    
             <form>
+               
             <div class="row" id="savedPlans">
-                <div class="col-md-4">
+                <div class="col-md-3">
                         <div class="myGoal">
-                                <img src="../images/2.png" alt="your goal">
-                                <h4> My Goal</h4>
+                            <h4 class="planNumber">1</h4>
+                                <img src="images/goals/Social/World Cup.png" alt="your goal">
+                                <h4>World Cup</h4>
+                                <h5>30sept 2017</h5>
+                            
                         </div>
                 </div>
                 
-                 <div class="col-md-4">
+                 <div class="col-md-5">
                                 <label>Goal Outcome:</label><p>abc123</p><br/>
-                                 <label>Risk Profile:</label><p>abc123</p><br/>
-                                 <label>Amount to invest:</label><p>10000000</p>
-                
+                                 <label>Monthly Amount:</label><p>120123</p><br/>
+                                 
                 </div>
-                
-                
-                <div class="col-md-4">
-                                <label>Select Date:</label><p>abc123</p><br/>
-                                <label>Risk Profile:</label><p>123</p><br/>
-                                <label>Amount to invest:</label><p>10000000</p>
+                    <div class="col-md-4">
+               
+                                <label>Number of Years</label><p>23</p><br/>
+                                <label>Risk Profile:</label><p>abccde</p><br/>
+                           
                 </div>
                 
                 </div>
             
             
             </form>
-     <div class="modal-body">
+ 
             <div class="pageSavedPlan">
                                  
                        <div class="table-responsive">
@@ -53,8 +56,8 @@
     <thead>
       <tr>
         <th>Sl No.</th>
-        <th>Description</th>
-        <th>Allocation percent</th>
+        <th>Recomendation</th>
+        <th>Allocation %</th>
         <th>Amount (&#x20B9;)</th>
       </tr>
     </thead>
@@ -85,20 +88,21 @@
                       
                            
   </table>
-                          
-               <div class="pull-right" style="margin-left:10%;margin-right:10%;">
-                           <button class="btn saved">Proceed</button>
-                        
-                     <button class="btn saved" data-toggle="modal" data-target="#myModalDiscard">Discard</button>
-                  
-                        </div>          </div>    
+                           <table class="table" id="savedPlansButtons">
+    <thead>
+      <tr>
+        <th style="border: none;    float: right;"> <button class="btn saved">Proceed</button> <button class="btn saved" data-toggle="modal" data-target="#myModalDiscard">Discard</button></th>
+        
+      </tr>
+    </thead>
+                           </table>
+            
+                </div>    
 					   
                                    </div>                
-                
+   
         </div>
-       
-        </div>
-       
+      
       </div>
     </div>
   

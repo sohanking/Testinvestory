@@ -2,6 +2,16 @@
 <html>
 	<head>
 		<% include partials/head %>
+		 <script>
+	  $(document).ready(function(){
+      $(".main").onepage_scroll({
+        sectionContainer: "section",
+        responsiveFallback: 300,
+        loop: false
+      });
+		});
+		
+	</script>
 		<script src="javascripts/jquery.onepage-scroll.js" ></script>
 		<link rel="stylesheet" href="stylesheets/responsive.css">
 		<link rel="stylesheet" href="stylesheets/onepage-scroll.css">
@@ -66,16 +76,13 @@
 							<p id="moodOfMonth"><i>mood of</i><br /> THE MONTH</p>
 							<div class="feelingCircularMenu">
 								<ul>
-			<!--	 <% moods.forEach(function(moodObj){ %>
-			<li id="<%= moodObj.name %>" ><a href="#">feeling<br /><%= moodObj.name %></a></li>
-			<% }) %>-->
-
-									<li id="Broke" ><a href="#"> <br/>Broke</a></li>
-									<li id="Nerdy" ><a href="#">Nerdy</a></li>
-									<li id="Rich" ><a href="#">Rich</a></li>
-									<li id="Responsible" ><a href="#">Responsible</a></li>
-									<li id="Loved" ><a href="#">Loved</a></li>
-									<li id="Social" ><a href="#">Social</a></li>
+	
+									<li id="Broke" ><a href="#">Feeling <br/>Broke</a></li>
+									<li id="Nerdy" ><a href="#">Feeling <br/>Nerdy</a></li>
+									<li id="Rich" ><a href="#">Feeling <br/>Rich</a></li>
+									<li id="Responsible" ><a href="#">Feeling <br/>Responsible</a></li>
+									<li id="Loved" ><a href="#">Feeling <br/>Loved</a></li>
+									<li id="Social" ><a href="#">Feeling <br/>Social</a></li>
 								</ul>
 							</div>
 						</div>

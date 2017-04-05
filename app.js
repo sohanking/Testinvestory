@@ -9,7 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
-
+var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var session      = require('express-session');
@@ -20,6 +20,8 @@ var flash    = require('connect-flash');
 var routes   = require('./app/routes.js');
 var pp       = require('./config/passport');
 var useragent = require('express-useragent');
+//var admin = require('./routes/admin');
+//var dbOperations = require("./dbOperations.js");
 var port = 3000;
 
 pp(passport); 
@@ -47,7 +49,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 //app.use('/', index);
 //app.use('/faqs', faqs);
-
+//app.use('/admin', admin);
 routes(app, passport);
 
 

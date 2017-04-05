@@ -1025,13 +1025,17 @@ function(paid,assets,callback){
 	}
 	else
 		{
-		/*	if(req.session.showAssetAfterLogin){
+			if(req.session.showAssetAfterLogin){
+				
 				showAsset = true;
-				req.session.showAssetAfterLogin =false;
+				console.log("Offline check for bool status"+showAsset)
+				//req.session.showAssetAfterLogin =false;
 			}
 			else{
+				
 				showAsset =false;
-			}*/
+				console.log("Offline check for bool status"+showAsset)
+			}
 				
 			
 				res.render(pageName, {
@@ -1046,7 +1050,7 @@ function(paid,assets,callback){
 		  panMessage: "",
 	  footerData1: "Blog",
 	  footerData2: "FAQs",
-		scheme:false,
+		scheme:showAsset,
 		paid : false,
 						  abcd: false,
 						  assetFromDb: false,
@@ -2932,6 +2936,12 @@ amtagg+=amtamount1;
 		
 		//insert into the details
 		
+	/*var	schemeData = {[
+					  
+					  ]}
+					
+				var panJSON = JSON.stringify(data);	*/
+		
 		for(i=0;i<scheme.length;i++){
 			
 						var percentage =0;
@@ -2970,15 +2980,16 @@ amtagg+=amtamount1;
 				
 				//calculateScheme();
 				//res.redirect("/Pricing");
-		callback(null);
+		callback(null,amt);
 			})
 	//fetch the scheme info
 	
 }],function(err, result){
+	var sdata = [];
+	sdata[0]=scheme;
+					sdata[1]=result;
 	
-	
-	
-	res.send("true")
+	res.send(sdata)
 	//dislay the scheme information
 })
 
@@ -3012,6 +3023,8 @@ app.post('/showScheme',isLoggedIn,function(req,res){
 	//res.redirect('/GoalSelection');
 	
 })
+
+
 
 app.post('/setData',function(req,res){
 	
@@ -3511,7 +3524,7 @@ amtagg+=amtamount1;
 		req.session.offlinehybridPercentage = null;
 		req.session.offlinedebtPercentage = null;
 			console.log("save offline")
-			console.log("offline unset save = "+req.session.offlinegoalName);
+			console.log("offline unset save = "+req.session.showAssetAfterLogin);
 		res.redirect('/tocurrent');
 	//dislay the scheme information
 })
@@ -4009,7 +4022,7 @@ app.get('/Settings',isLoggedIn, function(req, res){
 	
 app.get('/tocurrent', function(req, res){
 	
-
+console.log(req.session.activePage);
 		res.redirect(req.session.activePage);
 	
 

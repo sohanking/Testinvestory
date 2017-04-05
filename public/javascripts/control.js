@@ -184,6 +184,16 @@ $(function(){
 	
     /*Login Read More*/
     
+	
+	$(".navbar-brand #investory").hover(function(){
+        $(".readMore.toolTip").addClass("show");
+    });
+    
+    $(document).click(function() {
+        $(".readMore.toolTip").removeClass("show");
+         $(".goalReportData #invest_withdraw").hide(); 
+    });
+	
      $(".logo-icon,.logo").hover(function(){
      
 
@@ -361,7 +371,7 @@ var frogMood="";
 var $loggedIn;
     
 var moodFile;
-    
+   
 
 //Goals
 var $GoalimgLink = "images/goals/"; 
@@ -1034,7 +1044,8 @@ var once = true;
         
         if(once){
              
-        
+        $("#displayModal").modal("show");
+		
          $(".contentMood .page3, .page3Sub, #rpText").show();
         
    $(".pagination li:nth-child(2) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
@@ -1090,8 +1101,9 @@ var page4Risk;
 }else{
 	currentPage=5;
 	 $("#riskSelected").text(rp);
-  
-    
+  localStorage.clear();
+     $("#displayModal").modal("show");
+	$("#displayModal h3").html("You are a "+rp+" risk taker and we have recommended you the best.");
      $(".contentMood .page4").hide();
         
         $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
@@ -1110,8 +1122,10 @@ var page4Risk;
     
     $(".page4 .sub-page4 .done").click(function(){ 
         currentPage=5;
+		localStorage.clear();
 			 $("#riskSelected").text(rp);
-   
+    $("#displayModal").modal("show");
+	$("#displayModal h3").html("You are a "+rp+" risk taker and we have recommended you the best.");
      $(".contentMood .page4").hide();
         
         $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
@@ -1186,12 +1200,14 @@ var page4Risk;
 
 		if (localStorage.sip) {
     showSIP();
+			
 }
+
 	
 });
 
 
-	
+	//localStorage.clear()
 
 var height = $( window ).height(); 
 function resizeContent() {

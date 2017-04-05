@@ -22,7 +22,11 @@
             <ul class="nav navbar-nav navbar-center">
                 <li><a href="KnowUs">Know us</a></li>
                 <li><a  href="Pricing">Pricing</a></li>
+				<% if(!loggedIn) {%>
                 <li><a  href="GoalSelection">Get Started</a></li>
+				<% } else {%>
+				 <li><a  href="SavedPlans">Saved Plans</a></li>
+				     <% } %>
             </ul>
             <ul class="nav navbar-nav navbar-right login-btn">
             <% if(!loggedIn) {%>
@@ -105,7 +109,7 @@
         <div class = "readMore toolTip">
             <p class="txtSmall">Our name is inspired by two words - invest and story.</p>
             <p class="blue txtNormal">Here we help you write your financial story with honest investment  advice.</p>
-            <p class="txtXSmall">Our brand mascot is <span class="bold">"Tory" the frog.</span> <em>Why a frog? </em><a class="yellow bold underline" href="void(0)">Read more</a></p
+            <p class="txtXSmall">Our brand mascot is <span class="bold">"Tory" the frog.</span> <em>Why a frog? </em><a class="yellow bold underline" href="/KnowUs">Read more</a></p
         <div>
     </div>
 </nav>
@@ -234,6 +238,22 @@
     </div>
 </div>		
 
+		
+	 <div class="modal fade" id="displayModal" role="dialog" style="     left: 55%;
+    top: 19%;">                  
+  <div class="modal-dialog modal-sm" style=" "> 
+                 <!-- Modal content--> 
+
+                  <div class="modal-content">           
+                        <div class="modal-body "  style=""><img src="images/Pop-ups.png" class="popUPImg" height="90" width="90">
+                            <h3 class="PANHead">We have recommended you the best allocation for <strong>Conservative</strong> risk profile.</h3>
+  <button type="" class="btn btn-lg sign-up" data-toggle="modal" data-dismiss="modal">OK</button>
+   
+                        </div>
+                  </div>
+             </div>
+          </div>	
+		
 <script>
     $(document).ready(function(){
         <% if (lmessage.length > 0) { %>

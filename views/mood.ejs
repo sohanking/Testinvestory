@@ -18,97 +18,8 @@
 
 </script>
   <% include partials/header %>
-	<% if(!loggedIn) {%>
-	
-	
-	
-	  <!-- Modal -->
-        
-	
-	   <div class="modal fade" id="loginModalScheme" role="dialog">
-    <div class="modal-dialog modal-sm">
-          <!-- Modal content-->
-      <div class="modal-content">
-                
-            <div class="modal-body">
-         
-                <form class="form-horizontal" action="/login" method="post">
-                           <h2>Login</h2>
 
-				
-					<input type="hidden" id="assetStoreOffline_l" name="assetStoreOffline_l" value="true">
-					
-					
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-							<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                            <button id="login" type="submit" class="btn btn-lg login "  > Login </button> 
-                            <button type="" class="btn btn-lg sign-up" data-toggle="modal" data-target="#signUpModalScheme" data-dismiss="modal">Sign Up</button>
-                            <a href="#" class="forgot" >Forgot Password?</a>
-                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')">Login with Facebook</button>
-                            <button type="button" class="btn btn-lg google" onclick="auth('google')">Login with Google+</button>
-                                
-                            
-                 </form> 
-				<% if (lmessage.length > 0) { %>
-<div class="alert alert-danger"><%= lmessage %></div>
-<% } %>
-            </div>
-                
-      </div>
-    </div>
-  </div>
-		
-		
-				  <div class="modal fade" id="signUpModalScheme" role="dialog">
-    <div class="modal-dialog modal-sm">
-          <!-- Modal content-->
-      <div class="modal-content">
-                
-            <div class="modal-body">
-         
-                <form class="form-horizontal" action="/signup" method="post">
-                           <h2>Sign Up</h2>
-						   <hr>
-					<input type="hidden" id="masterAmount" name="masterAmount" value="">
-					<input type="hidden" id="assetStoreOffline" name="assetStoreOffline" value="true">
-					<input type="hidden" id="goalid" name="goalid" value="">
-					
-			<input type="text" id="equityAmount" name="equityAmount" value="" hidden>
-            <input type="text" id="hybridAmount" name="hybridAmount" value="" hidden>
-            <input type="text" id="debtAmount" name="debtAmount" value="" hidden>
-					
-			<input type="text" id="equityPercentage" name="equityPercentage" value="" hidden>
-            <input type="text" id="hybridPercentage" name="hybridPercentage" value="" hidden>
-            <input type="text" id="debtPercentage" name="debtPercentage" value="" hidden>
-						
-			<input type="text" id="riskProfile" name="riskProfile" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="totalYears" name="totalYears" value="" hidden>
-							
-                       <input type="number" class="form-control" id="mnumber" name="mnumber" placeholder="Mobile Number">
-						   
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-					
-                          <input type="text" class="form-control" id="username" name="username" placeholder="Name">
-					
-							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
-					
-                            <button type="submit" class="btn btn-lg login"> Submit </button> 
-                          
-              </form>
-                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')" >Sign through Facebook</button>
-                            <button type="button" class="btn btn-lg google" onclick="auth('google')" >Sign through Google+</button>
-                             <p><em>By clicking Sign Up you agree to the <a href="#">terms and conditions</a></em></p>   
-                            
-                    <% if (smessage.length > 0) { %>
-<div class="alert alert-danger"><%= smessage %></div>
-<% } %> 
-            </div>
-                
-      </div>
-    </div>
-  </div>
-	<%}%>
+	
 	
 	
 	  <div class="modal fade" id="myPanModal" role="dialog">
@@ -451,7 +362,7 @@
 							<span id="riskSelected"></span>
 							 <span id="yp">> Your Plan</span>
 						   </p>
-                
+               <% if(!scheme) {%>
                            <div id="" class="page1">
                         <h2>Please select your goal</h2>
                        <p>You can always add or change a goal after you have signed up</p>
@@ -576,7 +487,11 @@
                                <div id="" class="page2">
 <!--                        <h2>Education</h2>-->
 								   <br />
-                       <p>I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" type="number" max="7" value=""/>in<input class="blankInput" placeholder="" type="number" id="time" max="99" value=""/> (Years)</p>
+                       <p>I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" type="number" min="1000" max="10000000" value=""/>
+						  
+                       <!-- <span ng-show="signUpForm.mnumber.$touched && signUpForm.mnumber.$invalid">Phone number is invalid.</span>-->
+						   
+						   in<input class="blankInput" type="number"  min="1" max="50" placeholder="" id="time"   value=""/> (Years)</p>
                     <div class="login-btn">
                                  
                 <button type="button" id="go" class="btn btn-lg moodNav go" onclick="setProfile(0,1,0);" > Go </button> 
@@ -739,7 +654,7 @@
                   <button id="Conservative" type="" class="btn btn-lg moodNav" profile="c" onclick="setProfile(0,2,1)" > Conservative </button> 
 					              <span id="c">
        
-        I am a low risk taker. When I hear the word Risk, I think of the danger it represents.
+       I am a low risk taker. When I hear the word Risk, I think of the danger it represents. When faced with a financial decision, I am always concerned of the possible losses. I would be satisfied if I got returns similar to FDs. I would be concerned with any loss on my portfolio in the short term even if the investments are for the long term.
     
    
     </span>
@@ -758,7 +673,7 @@
 							<button id="Moderate" type="" class="btn btn-lg moodNav"  profile="m" onclick="setProfile(1,2,1)" > Moderate </button> 
 								  <span id="m">
        
-        I am an average risk taker. When I hear the word Risk, I think of the uncertainty it represents.
+       I am an average risk taker. When I hear the word Risk, I think of the uncertainty it represents. When faced with a financial decision, I am usually concerned of the possible losses. I would be satisfied if I got returns slightly higher than FDs. I would be concerned with a small loss on my portfolio in the short term even if the investments are for the long term.
    
     </span>
 												  </a>
@@ -777,7 +692,7 @@
 							<button id="Aggressive" type="" class="btn btn-lg moodNav" profile="a" onclick="setProfile(2,2,1)" > Aggressive </button> 
 							    <span id="a">
        
-       I am a high risk taker. When I hear the word Risk, I think of the opportunity it represents.
+      I am a high risk taker. When I hear the word Risk, I think of the opportunity it represents. When faced with a financial decision, I am concerned of the possible gains. I would be satisfied if I got returns which are much higher when compared to FDs. I would not be concerned with any loss on my portfolio in the short term even if the investments are for the long term.
    
     </span>
 												  </a>
@@ -821,7 +736,7 @@
                 
              </button>
 <div class="riskProfiling">
-     <p id="mood">  <input type="Radio" id="Q1" name="Q1" value="0"  checked>Low risk taker</p>
+     <p id="mood">  <input type="Radio" id="Q1" name="Q1" value="0" >Low risk taker</p>
     <p id="mood"><input type="Radio" id="Q1" name="Q1" value="1" >Average risk taker</p>
     <p id="mood"> <input type="Radio" id="Q1" name="Q1"  value="2">High risk taker</p>
 </div>
@@ -833,7 +748,7 @@
                 
              </button>
 <div class="riskProfiling">
-     <p id="mood"> <input type="Radio" id="Q2" name="Q2"  value="0" checked>Danger</p>
+     <p id="mood"> <input type="Radio" id="Q2" name="Q2"  value="0" >Danger</p>
     <p id="mood"><input type="Radio" id="Q2" name="Q2"  value="1" >Uncertainty</p>
     <p id="mood"> <input type="Radio" id="Q2"  name="Q2" value="2">Opportunity</p>
 </div>
@@ -845,7 +760,7 @@
                 
              </button>
 <div class="riskProfiling">
-     <p id="mood"> <input type="Radio" id="Q3" name="Q3" value="0" checked>Always the possible losses</p>
+     <p id="mood"> <input type="Radio" id="Q3" name="Q3" value="0" >Always the possible losses</p>
     <p id="mood"><input type="Radio" id="Q3" name="Q3"  value="1" >Usually the possible losses</p>
     <p id="mood"> <input type="Radio" id="Q3" name="Q3"  value="2">Always the possible gains</p>
 </div>
@@ -857,7 +772,7 @@
                 
              </button>
 <div class="riskProfiling">
-     <p id="mood"><input type="Radio" id="Q4" name="Q4" value="0" checked>About the same rate as from bank fixed deposits</p>
+     <p id="mood"><input type="Radio" id="Q4" name="Q4" value="0" >About the same rate as from bank fixed deposits</p>
     <p id="mood"><input type="Radio" id="Q4" name="Q4"  value="1" >About one and half time the rate from bank fixed deposits</p>
     <p id="mood"><input type="Radio" id="Q4" name="Q4"  value="2">About twice the rate from bank fixed deposits</p>
 </div>
@@ -869,7 +784,7 @@
                 
              </button>
 <div class="riskProfiling">
-     <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="0" checked>I would have a concern with any sort of loss</p>
+     <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="0" >I would have a concern with any sort of loss</p>
     <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="1" >I'd get concerned if the loss was greater than 10%</p>
     <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="2">I wouldn't worry about losses in that time frame</p>
 </div>                
@@ -898,7 +813,7 @@
             
             <div class="login-btn text-center page-buttons">
                                  
-                <button type="" class="btn btn-lg moodNav done " onclick="myScore();"> Done </button>
+                <button type="" class="btn btn-lg moodNav done " onclick="myScore();" disabled="disabled"> Done </button>
             </div>
             
            <div class="login-btn text-center page-buttons">
@@ -992,8 +907,159 @@
                            </div>
                            
                            
-                           
+                          
                         <div  class="page5">
+<!--                            <h2></h2>-->
+							<br />
+<p>So, you need to invest INR <span id="invest1"></span> Monthly</p>
+                            
+                                                   <div class="table-responsive">
+                        <table class="table">
+    <thead>
+      <tr>
+  		
+        <th>Category</th>
+        <th>Allocation %</th>
+        <th>Amount (&#x20B9;)</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+  
+        <td>Equity</td>
+            <td id="eqPer1">25%</td>
+            <td id="eqAmt1">NA</td>
+      </tr>
+      <tr>
+  
+       <td>Hybrid</td>
+            <td id="hybPer1">10% </td>
+           <td id="hybAmt1">NA</td>
+      </tr>
+      <tr>
+
+         <td>Debt</td>
+            <td id="debPer1">65%</td>
+              <td id="debAmt1">NA</td>
+      </tr>
+
+    </tbody>
+  </table>
+													   
+
+													   
+                       </div>
+                           <div class="dotHr"> 
+                               <div class="login-btn">
+                        <% if(loggedIn && paid){ %>
+								   
+								   <button type="submit" class="btn btn-lg moodNav signUp" id="schemeNext" > Next </button> 
+<%  } else if(loggedIn && !paid) { %>
+								   	  	<form action="/Pricing" method="get">
+										
+									   <button type="submit"  class="btn btn-lg moodNav signUp">Pay </button>
+											 </form>
+								<%  } else { %>
+								   
+								 
+								   
+									   <button type="" data-toggle="modal" data-target="#loginModal" class="btn btn-lg moodNav signUp" > login </button> 
+								  <% } %>
+                
+                           </div>
+                               
+                            <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+							   
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                                   <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                            <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                                   <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                               <div></div>
+                                         <div></div>
+                               <div></div>
+                 
+                            </div>
+                           </div>
+							
+								  			  <% } else  {%>  		 
+
+			
+                   
+                        <div  class="page7">
 <!--                            <h2></h2>-->
 							<br />
 <p>So, you need to invest INR <span id="invest1"></span> Monthly</p>
@@ -1139,120 +1205,22 @@
                  
                             </div>
                            </div>
-								
+						
+                     <%}%>   
+								   
 						  <% if(paid) {%>  		 
 
 			
                         <div id="" class="page6">
                             <!--<h2>Your Plan</h2>-->
-										    <div class="dotHr"> 
-                               <div class="login-btn">
-                        
-<button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" id="initInvest" style="float: right;margin-top: 0.8em;margin-right: 29em;"> Invest </button> 
-<!--								   <form action="/GoalSelectionRefresh" method="get">
-									   <input type="text" id="restart" name="restart" value="true" hidden>
-								       <button type="submit" class="btn btn-lg moodNav go" style="    float: right;
-    margin-top: 0.8em;
-        margin-right: -15em;
-    width: 15%;
-"> Start Fresh </button> -->
-									   </form>
-				
-                
-                           </div>
-                               
-                            <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-							   
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                 
-                            </div>
-							<br />
-<p>So, you need to invest INR <span id="invest1"><%=assetFromDb.sip %></span> Monthly</p>
-                            
+                       
+  <button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" id="initInvest" style="top: 25px;"> Invest </button>
+<p>So, you need to invest INR <span id="invest1"><%= assetFromDb.sip %></span> Monthly</p>
+                          
                                                    <div class="table-responsive">
                        
  <table class="table">
-        <tr  >
+        <tr id="showDataSchemes" >
         
         <th  style="  border-top: 0;
     border-right: 1px solid #35BFD3;
@@ -1269,14 +1237,7 @@
 
           </tr>
 	 
-	 <% for(i=0;i<asetDataDetail.length;i++) {%>
-	 <tr>
-	 <td><%=schemeData[i].allocationdescription %></td>
-		 <td><%=schemeData[i].allocationcategory %></td>
-	  <td><%=schemeData[i].allocationamount %></td>
-	 </tr>
-
-<%}%>
+	
          
               </table>
 													   
@@ -1350,7 +1311,7 @@
 					
 			   
 		   }
-		   
+		
 		   
 		   function checkPanStaus(){
 			   
@@ -1432,9 +1393,15 @@
                         url: '/SavedPlansHeader',						
                         success: function(data) {
                             console.log('success');
-							localStorage.sipInvestment = false;
-                           // console.log(JSON.stringify(data));
-                        }
+							//var myObj = JSON.parse(data);
+							alert(data[1][0]);
+							for(i=0;i<data[0].length;i++){
+var txt1 = "<tr><td>"+data[0][i].name+"</td><td>"+data[0][i].category+"</td><td>"+data[1][i]+"</td></tr>";  
+ $("#showDataSchemes").after(txt1); 
+}
+       } 
+                           //console.log(data[0].name);
+                        
 			   
 		   })
 					 <% }else { %>
@@ -1466,21 +1433,16 @@
 			   
 			   var noOfYears = document.getElementById("time").value;
 			   
-			   /*console.log(riskProfile, sip, amt1, amt2, amt3);*/
-			/* document.getElementById("riskp").value= riskProfile;
-			   document.getElementById("sip").value= sip;
-			   document.getElementById("amnt1").value=amt1;
-            document.getElementById("amnt2").value=amt2;
-            document.getElementById("amnt3").value=amt3;
-			document.getElementById("year").value=noOfYears; */
+		
 			   
 		   }
 		
 function myinit(riskRate, chooseTable, storeAllocation)
         {
+			alert(localStorage.sipInvestment);
 			if(localStorage.sipInvestment){
-				
-				//alert(localStorage.sip);
+				 
+				alert(localStorage.sipInvestment);
 				var riskProfile=riskRate;
 			var t = chooseTable;
             var rate=10;
@@ -1507,7 +1469,7 @@ function myinit(riskRate, chooseTable, storeAllocation)
              var mn =   Math.round(pmt(10,12,nper,pv,-fv)/1000)*1000;
         
 			}
-				console.log(riskProfile);
+				console.log(riskProfile+nper);
 		
 			if(storeAllocation == 1)
 				store = true;
@@ -2009,36 +1971,6 @@ return (str.substring(0,decpoint) + "." + str.substring(decpoint,str.length));
 
 }
 		   
-/*
-$('#checkPANStatus').submit(function(event){ 
-   event.preventDefault();
-              
-          // myScore();
-   
-        // console.log("Hi");   
-   
-   
-      var      pan=document.getElementById('pan').value;
-   
-    //alert(pan);
-         
-       $.ajax({
-       type: "POST",
-       url: '/GoalSelection',
-       data:  {pan},
-       success: function(data)
-       {
-           //alert(data);
-		   
-          // window.location.href= "/GoalSelection";
-       }
-           
-   });
-
-
-    
-});
-*/
 
 					 
 				 
@@ -2050,7 +1982,10 @@ $('#checkPANStatus').submit(function(event){
     <script src="javascripts/control.js" type="text/javascript"></script>
 			 <script src="javascripts/moodCalculater.js" type="text/javascript"></script>
       
-				 <% if(scheme)  {%>
+		 
+		 
+		 
+<!--				 <% if(scheme)  {%>
 			  <script>
 				  var $imgLink = "images/";
 var $imgExtension = ".png";
@@ -2077,11 +2012,13 @@ var $imgExtension = ".png";
 		
     /* console.log(  $("#setMood").attr("src", "images/"+asda+".png"));*/
 				  </script>	
-			 <%} %>
+			 <%} %>-->
 			 			<script>
 							
 $(document).ready(function(){
    
+	
+	
    <% if (panMessage.length > 0) { %>
 	 //document.getElementById("initInvest").style.display='none';
 
@@ -2092,11 +2029,27 @@ $(document).ready(function(){
 <% } %>
 	
 });
-							
 						
-	
+  
+			var count=0;
 							
+							$('input[type="radio"]').click(function(){
+    if ($(this).is(':checked'))
+    {
+   	alert($('input:radio:checked').length);
+		++count;
+		if(count >=5 && $('input:radio:checked').length == 5){
+			//alert("remoed");
+			$('.page4 .done').removeAttr('disabled');
+		}
+		
+	
+    }
+  });
+							
+	
+			
 </script>
-			 
+	 
 </body>
 </html>

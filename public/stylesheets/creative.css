@@ -19,7 +19,7 @@ Colors used inside
     font-family: mermaid;
     src: url(fonts/mermaid1001.ttf);
 }
-p,  h1, h2, h3, div, button, a, li { font-family: 'Josefin Sans', sans-serif; line-height:1.2; color: #454c4d }
+p,  h1, h2, h3, div, button, a, li { line-height:1.2; color: #454c4d }
 a { outline:none; cursor: pointer }
 a:hover { text-decoration: none }
 .dropdown-menu{ box-shadow: none }
@@ -37,7 +37,7 @@ textarea { resize: none }
 .hide { display: none }
 
 /* Buttons */
-.btn-lg { padding: 2px 16px 2px; }
+.btn-lg {  padding: 0px 16px 0px; }
 /*.btn-lg:hover { padding: 7px 19px 3px 21px }*/
 .btn { border: 1px solid #35BFD3; background: #fff; color: #35BFD3}
 .btn-round { height: 28px; border-radius: 14px; padding: 4px 12px 6px; background: #fff; color: #333; border-color: #333 }
@@ -144,7 +144,7 @@ Home Page Whats your mood.
 #moodOfMonth {font-weight: 600; position: absolute; bottom: 60px; left: 50%; width: 100px; cursor: pointer; transform: translateX(-50%) }
 #dotMenu { position: fixed; bottom: 40px; width: 100px; z-index: 99999; left: 50%; transform: translateX(-50%)}
 .dot {  width: 8px; height: 8px; display: inline-block; border-radius: 100%; border: 2px #FFDE15 solid; background-color: #FFDE15; margin-right: 4px; margin-bottom: 5px }
-#angle { position: fixed; bottom: 1em; width: 45px; z-index: 99999; left: 50%; transform: translateX(-50%); padding: 10px }
+#angle { position: fixed; bottom: 1em; width: 45px; z-index: 99999; left: 50%; transform: translateX(-50%); padding: 10px; cursor: pointer; }
 
 /*Frog Image*/
 .frogImage { position: absolute; z-index: 1030; top: 44%; left: 50%; transform: translate(-50%, -50%); display: none }
@@ -191,7 +191,7 @@ How it works
 .how-it-works .pagination { /*position: absolute; left: 50%; transform: translateX(-50%);*/ padding: 0; margin: 0 }
 .how-it-works .pagination>li>a { border-radius: 50% !important; background-color: #35BFD3; color: #F2F5FB; font-size: 1.2em; border-color: #35BFD3; cursor: default; font-weight: 700; width: 1.5em; height: 1.5em; padding: 0 }
 .how-it-works .pagination>li>a:hover, .how-it-works .pagination>li>a:focus, .how-it-works .pagination>li>a:active { background-color: #35BFD3; color: #F2F5FB; border-color: #35BFD3 }
-.how-it-works .pagination>li>div, .how-it-works .dotHr div, .why-us .dotHr div, .what-we-offer .dotHr div, .page4 .dotHr div, .page2 .dotHr div, .page5 .dotHr div, .page6 .dotHr div #reports .dotHr div, #myStory .dotHr div, #profile .dotHr div, .know-us .dotHr div { float: left; background:#ffffff;/* #F2F5FB;*/ border: 1.5px dotted #35BFD3; border-radius: 50%; margin-top: 0.9em; margin-left: 1px; margin-right: 3px }
+.how-it-works .pagination>li>div, .how-it-works .dotHr div, .why-us .dotHr div, .what-we-offer .dotHr div, .page4 .dotHr div, .page2 .dotHr div, .page5 .dotHr div, .page6 .dotHr div #reports .dotHr div,.page7 .dotHr div #reports .dotHr div, #myStory .dotHr div, #profile .dotHr div, .know-us .dotHr div { float: left; background:#ffffff;/* #F2F5FB;*/ border: 1.5px dotted #35BFD3; border-radius: 50%; margin-top: 0.9em; margin-left: 1px; margin-right: 3px }
 
 .how-it-works .panel { border: 1px solid #35BFD3;  border-radius: 8px; width: initial; position: relative; margin-bottom: 30px }
 
@@ -670,9 +670,9 @@ Feeling Text Circlural Navigation Menu
 .feelingCircularMenu ul li a {
 
     color: #333;
-    font-weight: 400;
-    text-decoration: none;
-    font-size: 16px;
+    font-weight: 600;
+   text-decoration: none;
+   font-size: 12px;
 }
 
 .feelingCircularMenu ul li {
@@ -807,7 +807,8 @@ div.col-md-8.selective {
 .contentMood .page2> h2, 
 .contentMood .page4> h2,
 .contentMood .page5> h2,
-.contentMood .page6> h2{
+.contentMood .page6> h2,
+.contentMood .page7> h2{
   
 margin-top: 0;
     
@@ -820,7 +821,8 @@ margin-top: 0;
 .contentMood .page3> p, 
 .contentMood .page4> p,
 .contentMood .page5> p,
-.contentMood .page6> p{
+.contentMood .page6> p,
+.contentMood .page7> p{
 
     color: #333;
     font-size: 1em;
@@ -1410,14 +1412,16 @@ p.SubscribeToNewsletter:hover{
 }
 
 .page5 th,.page5 td,
-.page6 th,.page6 td{
+.page6 th,.page6 td,
+.page7 th,.page7 td{
     
     color: #35BFD3;
      
 }
 
 .page5 .table,
-.page6 .table {
+.page6 .table,
+.page7 .table{
     
    border:1px solid #35BFD3; 
     border-radius: 10px;
@@ -1429,7 +1433,8 @@ p.SubscribeToNewsletter:hover{
 
 
 .page5 .table>tbody>tr>td,
-.page6 .table>tbody>tr>td {
+.page6 .table>tbody>tr>td,
+.page7 .table>tbody>tr>td{
     
     border-top:0;
       border-right: 1px solid #35BFD3;
@@ -1442,7 +1447,9 @@ p.SubscribeToNewsletter:hover{
 .page5 .table>thead>tr>th:nth-child(3),
 .page5 .table>tbody>tr>td:nth-child(3),
 .page6 .table>thead>tr>th:nth-child(3),
-.page6 .table>tbody>tr>td:nth-child(3){
+.page6 .table>tbody>tr>td:nth-child(3),
+.page7 .table>thead>tr>th:nth-child(3),
+.page7 .table>tbody>tr>td:nth-child(3){
     
  
       border-right:0;
@@ -1630,7 +1637,7 @@ background-color: #d34836;
 	padding: 4px 10px;
 	margin-bottom: 0.5em;
 	width:185px;
-	text-align: left;
+	    text-align: center;
 	font-size: 1em;
 	font-weight: 600;
 }
@@ -1982,7 +1989,8 @@ h2.WSHeader{
 
 /*dropdown logout Ends*/
 .page5 .table>thead>tr>th,
-.page6 .table>thead>tr>th {
+.page6 .table>thead>tr>th,
+.page7 .table>thead>tr>th {
     
     border-top:0;
       border-right: 1px solid #35BFD3;
@@ -2455,7 +2463,8 @@ margin-top: 0.9em;
 
 .wrapper { margin-top: 20px }
 .how-it-works > h4 { font-size: 22px }
-.page6 .btn.btn-lg.moodNav.go { margin: 10px 65px 5px;
+.page6 .btn.btn-lg.moodNav.go,
+.page7 .btn.btn-lg.moodNav.go{ margin: 10px 65px 5px;
     position: relative;
     top: 15px;
     left: 50px;}
@@ -2550,4 +2559,233 @@ button.btn.saved{
 .WFrogHead { padding: 10px 0; margin: 5px 0 }
 @media (min-width: 768px) {
    .viewing-page-1 .navbar-collapse.collapse, nav.navbar.navbar-default.navbar-fixed-top.mod-nav .navbar-collapse.collapse{display:block!important }
+}
+
+/*Sohan 4-5 start*/
+img.popUPImg
+{
+    position: absolute;
+    right: 75%;
+    transform: translateX(-75%);
+}
+@media (max-width:768px){
+   img.popUPImg
+{
+    display:none;
+    position: absolute;
+    right: 75%;
+    transform: translateX(-75%);
+}
+#displayModal {
+		
+		  left: 55%;
+    top: 19%;
+	}
+	
+	/*end*/
+	
+	
+	
+	/*ruthu changes*/
+div.col-sm-4.col-md-3.KuWfC1,
+div.col-sm-4.col-md-3.KuWfC2{
+    border-top:2px #35BFD3 dotted;
+}
+
+/*for Profilepage Documents*/
+label.control-label.documentDetails{
+    width:120px;
+}
+
+/*saved plans*/
+#savedPlans .col-md-3 {
+ padding: 0px;
+    border-right: 2px #35BFD3 solid;
+}
+#savedPlans div.col-md-4,#savedPlans div.col-md-5{
+margin-top:5%;
+  
+}
+#savedPlans h5{
+    border-top:2px #35BFD3 solid;
+        padding-top: 5px;
+}
+table#savedPlansButtons{
+      border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top:0px;
+}
+ 
+    #savedPlans .planNumber{
+         float: left;
+    border: 2px #35BFD3 solid;
+    margin-left: -1px;
+    margin-top: -2px;
+    padding: 5px;
+    border-bottom-right-radius: 0px;
+ 
+    border-top-left-radius: 17px;   
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.savedPlansPage{
+    margin-top:5%;
+} 
+
+
+
+
+div.headGoal {
+    text-align: center;
+}
+
+h3.savedPlans{
+   border-bottom: 2px #35BFD3 dotted;
+    padding-bottom: 2%;
+    color: #35BFD3;
+    font-weight: 700;
+}
+#savedPlans p{
+    
+    display:inline;
+    margin-left: 10px;
+    
+}
+#savedPlans label{
+    margin-bottom: 15px;
+}
+div#savedPlans.row
+{
+  
+
+    
+       margin-top: 2%;
+    border: 2px #35BFD3 solid;
+    border-bottom: 0px;
+    /* padding-left: 2%; */
+    margin-left: 10%;
+    margin-right: 10%;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+
+}
+.myGoal{
+    text-align: center;
+}
+
+
+.pageSavedPlan .table {
+    border: 2px solid #35BFD3;
+/*
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+*/
+    border-collapse: separate;
+    width: 78.2%;
+    margin-left: 11%;
+    margin-right: 11%;
+    margin-bottom: 0px;
+}
+.pageSavedPlan .table>tbody>tr>td {
+    border-top: 0;
+    border-right: 1px solid #35BFD3;
+    width: auto;
+
+}
+.pageSavedPlan .table>thead>tr>th {
+    border-top: 0;
+    border-right: 1px solid #35BFD3;
+    border-bottom: 1px solid #35BFD3;
+    text-align: left;
+}
+button.btn.saved{
+        color: #35BFD3;
+    border: 1px #35BFD3 solid;
+    background: #ffffff;
+}
+.pageSavedPlan .table>thead>tr>th:nth-child(4), 
+.pageSavedPlan .table>tbody>tr>td:nth-child(4) {
+    border-right: 0;
+}
+
+/*added*/
+#savedPlans .col-md-3 {
+ padding: 0px;
+    border-right: 2px #35BFD3 solid;
+}
+#savedPlans div.col-md-4,#savedPlans div.col-md-5{
+margin-top:3%;
+  
+}
+#savedPlans h5{
+    border-top:2px #35BFD3 solid;
+        padding-top: 5px;
+}
+table#savedPlansButtons{
+      border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top:0px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+ 
+    #savedPlans .planNumber{
+         float: left;
+    border: 2px #35BFD3 solid;
+    margin-left: -1px;
+    margin-top: -2px;
+    padding: 5px;
+    border-bottom-right-radius: 0px;
+ 
+    border-top-left-radius: 17px;   
+    }
+div#savedPlans.row/*removed from line 2502*/
+{
+        margin-top: 5%;
+    margin-bottom: 0%;
+}
+.pageSavedPlan .table {/*line 2507*/
+    border: 2px solid #35BFD3;
+    border-radius: 0px;
+    border-collapse: separate;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+	
+	
+	div.col-sm-4.col-md-3.KuWfC1,
+	div.col-sm-4.col-md-3.KuWfC2{
+		 border-top: 2px #35BFD3 dotted;
+	}
+@media (max-width:991px){
+    #savedPlans .col-md-3 {
+    padding: 0px;
+    border-right: none;
+}
+}
+	
+
+#ProfileColumn1.{
+    
 }

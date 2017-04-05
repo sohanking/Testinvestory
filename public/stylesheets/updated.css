@@ -1180,17 +1180,17 @@ button#menu1.btn.btn.btn-primary.dropdown-toggle.selectReport{
 
 
 .content div > p.KUNLogoP {
-    margin-bottom: 3px;
-    margin-top: 3px;
+    margin: 5px 75px;
+    border-top: 2px #35BFD3 dotted;
+    border-bottom: 2px #35BFD3 dotted;
     font-weight: 600;
     text-align: center;
     font-size: large;
     font-style: italic;
     line-height: 1.5em;
-    padding: 0px 0px;
+    padding: 5px 0px;
     font-weight: bolder;
 }
-
 
 div.row.KuWfRow {
      margin-top: -1em;
@@ -1215,11 +1215,12 @@ div.row.KuWfRow {
     padding-left: 0px;
     line-height: 1.5em;
 }
-//why choose investory
+/*//why choose investory*/
 img.WInvstImg {
     position: absolute;
-    bottom: 71.5%;
+    bottom: -14px;
     left: 30%;
+    z-index: 100;
 }
 .content div > p.KuWfC1Pad {
     margin-top: 6px;
@@ -1257,11 +1258,13 @@ div.WhoWeAre {
     padding-right: 27%;
 }
 p.WhoWeAreP {
-    margin-bottom: 5px;
-    margin-top: 5px;
     font-weight: 600;
     text-align: justify;
     font-size: large;
+    padding: 12px 0px;
+    margin: auto;
+    border-top: 2px #35BFD3 dotted;
+    border-bottom: 2px #35BFD3 dotted;
 }
 .textBtwn {
     margin-bottom: 5px;
@@ -1286,11 +1289,19 @@ p.WhoWeAreP {
 .page6 .table>thead>tr>th:nth-child(2), .page6 .table>tbody>tr>td:nth-child(2), .page6 .table>thead>tr>th:nth-child(3), .page6 .table>tbody>tr>td:nth-child(3) {
     text-align: center;
 }
+
+.page7 .table>thead>tr>th:nth-child(2), .page7 .table>tbody>tr>td:nth-child(2), .page7 .table>thead>tr>th:nth-child(3), .page7 .table>tbody>tr>td:nth-child(3) {
+    text-align: center;
+}
 .page5 .table>tbody>tr>td:nth-child(1) {
     text-align: left;
 }
 
 .page6 .table>tbody>tr>td:nth-child(1) {
+    text-align: left;
+}
+
+.page7 .table>tbody>tr>td:nth-child(1) {
     text-align: left;
 }
 
