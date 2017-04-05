@@ -37,7 +37,7 @@ textarea { resize: none }
 .hide { display: none }
 
 /* Buttons */
-.btn-lg { padding: 6px 20px 4px }
+.btn-lg { padding: 2px 16px 2px; }
 /*.btn-lg:hover { padding: 7px 19px 3px 21px }*/
 .btn { border: 1px solid #35BFD3; background: #fff; color: #35BFD3}
 .btn-round { height: 28px; border-radius: 14px; padding: 4px 12px 6px; background: #fff; color: #333; border-color: #333 }
@@ -1053,7 +1053,7 @@ h2.h2hstyle
     background-color: #35BFD3;
     border: 1px #35BFD3 solid;
     color:#F2F5FB;
-        padding: 2px 0px;
+        padding: 0px 0px;
         width: 6em;
         font-weight: 600;
 }

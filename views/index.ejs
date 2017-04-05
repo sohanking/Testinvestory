@@ -85,9 +85,9 @@
 <section id="section2">
 	<div class="container-fluid what-we-offer text-center">
 		<h2>Start your investment plan</h2>
-			<p>I want to start an SIP of <input class="blankInput"  name="amount" id="amount" placeholder="" type="number" max="7" value=""/> &#8377; per month.</p>
+			<p>I want to invest Rs. <input class="blankInput"  name="sip" id="sip" placeholder="" type="number" max="7" value=""/> &#8377; monthly for next <input class="blankInput"  name="years" id="years" placeholder="" type="number"  value=""/> &#8377; years</p>
 			<div class="btn-hr-wrapper">
-				<button type="" class="btn btn-white btn-lg moodNav getStarted" id="indexGetStarted" > Get Started </button>
+				<button type="" class="btn btn-white btn-lg moodNav getStarted" id="indexGetStarted" onClick="getSIP();" > Invest </button>
 			</div>
 			<h2 class="indexHeadngLookingFor">Looking for?</h2>
 			<div class="container">
@@ -194,7 +194,9 @@
 					</div>
 				</div>
 				<div class="btn-hr-wrapper">
-					<button type="" data-toggle="modal" data-target="#signUp" class="btn btn-white btn-lg moodNav signUp" > Sign Up</button>
+					<% if(!loggedIn) {%>
+						<button type="" data-toggle="modal" data-target="#signUp" class="btn btn-white btn-lg moodNav signUp" > Sign Up</button>
+				<% } %>
 				</div>
 				<div class="container">
 					<div id="myCarousel" class="carousel slide text-center carouselEdit" data-ride="carousel">
@@ -267,6 +269,7 @@
 <script src="javascripts/TweenMax.min.js"></script>
 <script src="javascripts/TextPlugin.min.js"></script>
          <script src="javascripts/main.js"></script>
+			 <script src="javascripts/sip.js"></script>
 	    
     <script src="javascripts/control.js" type="text/javascript"></script>
 	

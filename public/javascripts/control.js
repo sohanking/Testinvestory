@@ -1184,6 +1184,9 @@ var page4Risk;
 		
 });
 
+		if (localStorage.sip) {
+    showSIP();
+}
 	
 });
 

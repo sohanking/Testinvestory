@@ -6,11 +6,12 @@
 	  	<link rel="stylesheet" href="stylesheets/updated.css">
      <link rel="stylesheet" href="stylesheets/responsive.css">
        <link rel="stylesheet" href="stylesheets/responsive2560.css"  media="screen and (width:2560px) and (height:1600px)">
-	
+	 <script src="javascripts/sip.js"></script>
 </head>
 	
 <body>
 <script>
+	
 <%var amtrounded1=0;%>
 
 	
@@ -1392,6 +1393,23 @@
 
 			   if(once && store){
 			   
+			if(localStorage.sipInvestment){
+				
+				 var data = {};
+				   data.goalName = "Crorepati";
+					data.riskProfile = riskProfile;
+					data.masterAmount = masterAmount;
+			   		data.totalYears = totalYears;
+					data.sip = sip;
+			   	    data.equityAmount = amt1;
+			    data.hybridAmount = amt2;
+			    data.debtAmount = amt3;
+			    data.equityPercentage = alloc1;
+			    data.hybridPercentage = alloc2;
+			    data.debtPercentage = alloc3;
+				
+			}else{
+				   
 			   var data = {};
 				   data.goalName = goalNameFromControl;
 					data.riskProfile = riskProfile;
@@ -1404,7 +1422,7 @@
 			    data.equityPercentage = alloc1;
 			    data.hybridPercentage = alloc2;
 			    data.debtPercentage = alloc3;
-					
+					}
 				 <% if(loggedIn) {%>
 				   
 					$.ajax({
@@ -1414,6 +1432,7 @@
                         url: '/SavedPlansHeader',						
                         success: function(data) {
                             console.log('success');
+							localStorage.sipInvestment = false;
                            // console.log(JSON.stringify(data));
                         }
 			   
@@ -1459,7 +1478,21 @@
 		
 function myinit(riskRate, chooseTable, storeAllocation)
         {
-			
+			if(localStorage.sipInvestment){
+				
+				//alert(localStorage.sip);
+				var riskProfile=riskRate;
+			var t = chooseTable;
+            var rate=10;
+            var per=12;
+			var totalYears = localStorage.years;
+            var nper=totalYears*per;
+            var pv=0;
+            var fv=localStorage.sip*nper;
+			var mn =  localStorage.sip;
+				
+			}else{
+				
 			var riskProfile=riskRate;
 			var t = chooseTable;
             var rate=10;
@@ -1471,15 +1504,17 @@ function myinit(riskRate, chooseTable, storeAllocation)
          	//document.getElementById("amountMaster").value = fv;
 			
             //if number of years is less then 3 year debt is 100
-             
+             var mn =   Math.round(pmt(10,12,nper,pv,-fv)/1000)*1000;
+        
+			}
+				console.log(riskProfile);
+		
 			if(storeAllocation == 1)
 				store = true;
 			else
 				store = false;
 			
-                var mn =   Math.round(pmt(10,12,nper,pv,-fv)/1000)*1000;
-         console.log(riskProfile);
-		
+                
 			
             document.getElementById("invest"+t).innerHTML= mn;
 			document.getElementById("invest2").innerHTML= mn;
@@ -1501,7 +1536,7 @@ function myinit(riskRate, chooseTable, storeAllocation)
                  
              }
             
-            else if(nper>25 && mn<=2000)
+            else if(nper>24 && mn<=2000)
              {
                  
                 var eqP= 0;
@@ -1518,19 +1553,26 @@ function myinit(riskRate, chooseTable, storeAllocation)
                  
              }
             
+			else if(nper>24 && nper<37)
+             {
+                 
+                var eqP= 0;
+                var hybP =0;
+                var debtP=1;
+                
+                var eqMP=0;
+                var hybMP=0;
+                var debtMP=1;
+            
+                var eqAP=0;
+                var hybAP=0;
+                var debtAP=1;
+                 
+             }
             else
             {
                
-                
-                /*var result=JSON.stringifiy(data[0]);
-                console.log(result); */ 
-               
-           // var init=JSON.parse();
-                
-         //
-              
 
-                 
             
                 /*Conservative*/
                 
@@ -1824,7 +1866,7 @@ function myinit(riskRate, chooseTable, storeAllocation)
 			storeAssets("Broke", riskProfile, fv, totalYears, mn, allocA1, amtA1, allocA2, amtA2, allocA3, amtA3);
 		}
           
-           
+			
             
  // storeAssets(goal,riskprofile, fv, time, sip, amtA1, amtA)
             
@@ -2004,6 +2046,7 @@ $('#checkPANStatus').submit(function(event){
   <script src="javascripts/TweenMax.min.js"></script>
 <script src="javascripts/TextPlugin.min.js"></script>
          <script src="javascripts/main.js"></script>
+		 
     <script src="javascripts/control.js" type="text/javascript"></script>
 			 <script src="javascripts/moodCalculater.js" type="text/javascript"></script>
       
@@ -2050,7 +2093,7 @@ $(document).ready(function(){
 	
 });
 							
-							
+						
 	
 							
 </script>
