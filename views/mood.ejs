@@ -487,7 +487,7 @@
                                <div id="" class="page2">
 <!--                        <h2>Education</h2>-->
 								   <br />
-                       <p>I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" type="number" min="1000" max="10000000" value=""/>
+                       <p>I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" min="1000" max="10000000" value=""/>
 						  
                        <!-- <span ng-show="signUpForm.mnumber.$touched && signUpForm.mnumber.$invalid">Phone number is invalid.</span>-->
 						   
@@ -1267,7 +1267,7 @@
      </div>
 <!--Custom Js links -->
        <script>
-        
+
 		   
 		   var goalNameFromControl;
 		   function goalName(name){
@@ -2047,7 +2047,28 @@ $(document).ready(function(){
     }
   });
 							
-	
+$(document).ready(function() {
+    // Get User Status
+    $.getJSON("user_data", function(data) {
+        }).done(function(data) {
+        loggedIn = data.loggedIn;
+        console.log(data);
+    });
+
+    //Tab 2 Number validations
+    // $('.page2 #amount').change(function () {
+    //     var x = $('.page2 #amount').val();
+    //     x.replace(/,/g, '');
+    //     x = Number(x);
+    //     if (x < 7000 || x > 10000000) { 
+    //         console.log('number limitation');
+    //     } else if(isNaN(x)) { 
+    //         console.log('isNaN');
+    //     } x=x.toString();
+    //     var lastThree = x.substring(x.length-3);
+    //     var otherNumbers = x.substring(0, x.length - 3); if (otherNumbers != '') lastThree = ',' + lastThree; var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g,",") + lastThree; $('.page2 #amount').val(res);
+    // });
+});
 			
 </script>
 	 

@@ -701,31 +701,29 @@ function setFrogMood(mood){
     
 //Moods 
   
-    $(".moods .slider .change").click(function(){
+$(".moods .slider .change").click(function () {
 
-    
+
     var moodId = $(this).attr("id");
-    
-		 window.location.href = "/GoalSelection?mood="+moodId;
-		
+
+    // window.location.href = "/GoalSelection?mood=" + moodId;
     var moodImgName = moodId.toUpperCase();
-    
-      
-          var local;
-		local = getGoals(moodId);
-		
-    $(".frogImageMoods img").attr("src", $imgLink+moodImgName+$imgExtension);
-    
-    $(".frogImageMoods h1").html($Feeling+" "+moodId);
-        
-         $(".below").empty();
- 
-              for(i=0; i < local.length; i++){
-            
-               $(".below").append("<div class='goal' id=''><img src='"+$GoalimgLink+moodId+"/"+local[i]+$imgExtension+"' mood="+moodId+" alt='Home view'><p id='mood'><span></span>"+local[i]+"</p></div>");
-        }
-        
-    
+
+    var local;
+    local = getGoals(moodId);
+
+    $(".frogImageMoods img").attr("src", $imgLink + moodImgName + $imgExtension);
+
+    $(".frogImageMoods h1").html($Feeling + " " + moodId);
+
+    $(".below").empty();
+
+    for (i = 0; i < local.length; i++) {
+
+        $(".below").append("<div class='goal' id=''><img src='" + $GoalimgLink + moodId + "/" + local[i] + $imgExtension + "' mood=" + moodId + " alt='Home view'><p id='mood'><span></span>" + local[i] + "</p></div>");
+    }
+
+
 });    
   
     
@@ -1014,110 +1012,84 @@ var movingTo= 0;
     
 
     
-    $(".page1 .next, .page1 .skip").click(function(){ 
 
-        $(".contentMood .page1, #btm").hide();
-        currentPage=2;
-      
-         $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
-        
-        $(".pagination li:nth-child(2) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
-        
-         $("#goalSelected").text(moodFile);
-		//document.getElementById("setGoal").value = moodFile;
-		//document.getElementById("getMoodG").value = moodsss;
-        
-        //$(".page2 > h2").text(moodFile);
-        
-        $(".contentMood .page2, #Indicator").show();
-        
-        $(".contentMood .page2 .login-btn").css("top","65%"); 
- });
- 
+    
+    $(".page1 .next, .page1 .skip").click(function(){ selectTab(2) });
+    $(".page2 .next").click(function() { selectTab(4) });
+    $(".page2 .go").click(function(){ selectTab(3) });
+    $(".page4 .selectMode button").click( function() { selectTab(5) });
 
-var once = true;
-    
-    $(".page2 .go").click(function(){ 
-    
-         currentPage=3;
-        $(".contentMood .page2 .login-btn").css("top","15%"); 
-        
-        if(once){
-             
-        $("#displayModal").modal("show");
-		
-         $(".contentMood .page3, .page3Sub, #rpText").show();
-        
-   $(".pagination li:nth-child(2) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
-        
-        $(".pagination li:nth-child(3) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
-        
-//         $(".contentMood .go").css({"background-color":"#FFFFFF","color":"#35BFD3","border-color":"#35BFD3"});
-//        
-              $(".page2 .dotHr").hide();
+
+    var once = true;
+    var selectTab = function(tabNo) {
+        currentPage = tabNo;
+        switch (tabNo) {
+            case 2:
+                $(".contentMood .page1, #btm").hide();
+                $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
+                $(".pagination li:nth-child(2) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
+                $("#goalSelected").text(moodFile);
+                $(".contentMood .page2, #Indicator").show();
+                $(".contentMood .page2 .login-btn").css("top","65%"); 
+                break;
+
+            case 3:
+                currentPage = 3;
+                $(".contentMood .page2 .login-btn").css("top", "15%");
+
+                if (once) {
+
+                    $("#displayModal").modal("show");
+
+                    $(".contentMood .page3, .page3Sub, #rpText").show();
+
+                    $(".pagination li:nth-child(2) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
+
+                    $(".pagination li:nth-child(3) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
+
+                    //         $(".contentMood .go").css({"background-color":"#FFFFFF","color":"#35BFD3","border-color":"#35BFD3"});
+                    //        
+                    $(".page2 .dotHr").hide();
+
+                    $(".contentMood .page3> p").css("color", "#35BFD3");
+
+                    once = false;
+                }
+                break;
+
+            case 4:
+                $(".contentMood .page2,.contentMood .page3, .page3Sub,.contentMood .page4 .sub-page4").hide();
+                $(".pagination li:nth-child(3) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
+                $(".pagination li:nth-child(4) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
+                $(".contentMood .page4 #invest").css("color", "#35BFD3");
+                $(".contentMood .page4,.contentMood .page4 .selectMode").show();
             
-         $(".contentMood .page3> p").css("color","#35BFD3");
-        
-            once = false;
+                var page4Risk;
+                var risk = $(this).attr("id");
+                var page4Risk = risk;
+
+                if (risk == "dontKnow") {
+                    currentPage = 4;
+                    $(".contentMood .page4 .selectMode").hide();
+
+                    $(".contentMood .page4 .sub-page4").show();
+
+                } else {
+                    currentPage = 5;
+                    $("#riskSelected").text(rp);
+                    localStorage.clear();
+                    $("#displayModal").modal("show");
+                    $("#displayModal h3").html("You are a " + rp + " risk taker and we have recommended you the best.");
+                    $(".contentMood .page4").hide();
+                    $(".pagination li:nth-child(4) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
+                    $(".pagination li:nth-child(5) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
+                    $(".contentMood .page5, #yp, #riskSelected").show();
+                }
+            }
         }
-        
-        
-     });
+    }
     
-    
-      $(".page2 .next").click(function(){ 
-    
-         currentPage=4;
-        
-         $(".contentMood .page2,.contentMood .page3, .page3Sub,.contentMood .page4 .sub-page4").hide();
-    
-          
-             $(".pagination li:nth-child(3) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
-        
-        $(".pagination li:nth-child(4) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
-          
-           $(".contentMood .page4 #invest").css("color","#35BFD3");
-          
-              $(".contentMood .page4,.contentMood .page4 .selectMode").show();
-          
-          
-               });
-    
-var page4Risk;
-    $(".page4 .selectMode button").click(function(){ 
-        
-           
-        
-        var risk = $(this).attr("id");
-       page4Risk = risk;
-       
-        
-        if(risk == "dontKnow" ){
-             currentPage=4;
-            $(".contentMood .page4 .selectMode").hide();
-            
-            $(".contentMood .page4 .sub-page4").show();
-            
-}else{
-	currentPage=5;
-	 $("#riskSelected").text(rp);
-  localStorage.clear();
-     $("#displayModal").modal("show");
-	$("#displayModal h3").html("You are a "+rp+" risk taker and we have recommended you the best.");
-     $(".contentMood .page4").hide();
-        
-        $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
-        
-        $(".pagination li:nth-child(5) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
-          
-           
-     $(".contentMood .page5, #yp, #riskSelected").show();
-          
-        
-}
- 
-        
-      });
+    $(".page4 .selectMode button").click(function () { selectTab(5)});
     
     
     $(".page4 .sub-page4 .done").click(function(){ 

@@ -800,6 +800,14 @@ function(paid,assets,callback){
 	})
 	
 	
+	app.get('/user_data', isLoggedIn, function(req, res) {
+		console.log(req.session);
+		loginStatus = checkLoginStatus(req);
+		console.log(checkLoginStatus(req));
+		res.setHeader('Content-Type', 'application/json');
+    	res.send(req.session);
+	})
+
 	app.get('/GoalSelection',isLoggedIn,function(req, res){
 		
 		
