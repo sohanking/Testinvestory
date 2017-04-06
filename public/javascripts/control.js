@@ -1,5 +1,5 @@
 
-
+var selectTab;
 $(document).ready(function(){
 
 
@@ -636,7 +636,7 @@ var sourceGoal = getParameterByName('goal');
         
         for(i=local.length-1; i>= 0; i--){
             if(i==sourceGoal){
-           	alert(i);
+        
                 $(".below").prepend("<div class='goal' id='activ'><img src='"+$GoalimgLink+source+"/"+local[i]+$onHover+$imgExtension+"' mood="+source+" alt='Home view'><p id='mood'><span style='background-color: #FFDE15'></span>"+local[i]+"</p></div>");
                 
              
@@ -946,27 +946,33 @@ var $smartGoals = "smartGoals";
 }
     
 
-     $(document).on("click", '.below .goal',function(){
-        
-         $(this).attr("id","activ");
-          $("#mood span").css("background-color","#FFFFFF");
-        
-        $("#mood span",this).css("background-color","#FFDE15");
-         moodFile =  $("#mood",this).text(); 
-         
- goalName(moodFile);
-$('.page1 .next').removeAttr('disabled');
-     });
-    
+    $(document).on("click", '.below .goal', function () {
+        $(this).attr("id", "activ");
+        $("#mood span").css("background-color", "#FFFFFF");
+        $("#mood span", this).css("background-color", "#FFDE15");
+        moodFile = $("#mood", this).text();
+        goalName(moodFile);
+        $('.page1 .next').removeAttr('disabled');
+        if(!loggedIn) {
+            var goal = moodFile;
+            goal.substr(goal);
+            goal = goal.substr(goal);
+            var mood = $('.frogImageMoods #setMood').attr('src');
+            mood = mood.slice(0, -4)
+            sessionStorage.setItem('tempGoals', JSON.stringify({"goal": goal, "mood": mood}));
+            console.log(sessionStorage.getItem("tempGoals"));
+        }
+    });
+
     var currentMood;
-    
-     $(document).on("mouseenter", '.below .goal',function(){
-        
-//          $("#mood span").css("background-color","#FFFFFF");
-//        
-//        $("#mood span",this).css("background-color","#FFDE15");
-         
-         var clickActive = $(this).attr("id");
+
+    $(document).on("mouseenter", '.below .goal', function () {
+
+        //          $("#mood span").css("background-color","#FFFFFF");
+        //        
+        //        $("#mood span",this).css("background-color","#FFDE15");
+
+        var clickActive = $(this).attr("id");
          
          
          
@@ -1012,19 +1018,28 @@ var movingTo= 0;
     
 
     
-
+ $(".page2 .go").click(function(){ });
     
-    $(".page1 .next, .page1 .skip").click(function(){ selectTab(2) });
+    $(".page1 .next, .page1 .skip").click(function(){ 
+        
+        selectTab(2);
+
+    });
     $(".page2 .next").click(function() { selectTab(4) });
     $(".page2 .go").click(function(){ selectTab(3) });
-    $(".page4 .selectMode button").click( function() { selectTab(5) });
-
-
+    $(".page4 .selectMode button").click( function() { selectTab(5, this) });
     var once = true;
-    var selectTab = function(tabNo) {
+    selectTab = function(tabNo, e) {
         currentPage = tabNo;
+        var tempGoals = JSON.parse(sessionStorage.getItem('tempGoals'));
+        if(tempGoals) {
+            tempGoals.currentPage = currentPage;
+        }
+        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
         switch (tabNo) {
             case 2:
+                $('.contentMood > div').not('.page2').hide();
+                $('.contentMood .page2').show();
                 $(".contentMood .page1, #btm").hide();
                 $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
                 $(".pagination li:nth-child(2) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
@@ -1038,58 +1053,65 @@ var movingTo= 0;
                 $(".contentMood .page2 .login-btn").css("top", "15%");
 
                 if (once) {
-
+                    $('.contentMood > div').not('.page2, .page3').hide();
                     $("#displayModal").modal("show");
-
                     $(".contentMood .page3, .page3Sub, #rpText").show();
-
                     $(".pagination li:nth-child(2) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
-
-                    $(".pagination li:nth-child(3) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
-
-                    //         $(".contentMood .go").css({"background-color":"#FFFFFF","color":"#35BFD3","border-color":"#35BFD3"});
-                    //        
+                    $(".pagination li:nth-child(3) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });    
                     $(".page2 .dotHr").hide();
-
                     $(".contentMood .page3> p").css("color", "#35BFD3");
-
+                    $('.contentMood .page2, .contentMood .page2 .page3').show();
                     once = false;
                 }
                 break;
 
             case 4:
+            $('.contentMood > div').not('.page4').hide();
+            $('.contentMood .page4').show();
                 $(".contentMood .page2,.contentMood .page3, .page3Sub,.contentMood .page4 .sub-page4").hide();
                 $(".pagination li:nth-child(3) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
                 $(".pagination li:nth-child(4) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
                 $(".contentMood .page4 #invest").css("color", "#35BFD3");
                 $(".contentMood .page4,.contentMood .page4 .selectMode").show();
+                break;    
             
+            case 5:
                 var page4Risk;
-                var risk = $(this).attr("id");
-                var page4Risk = risk;
-
-                if (risk == "dontKnow") {
-                    currentPage = 4;
-                    $(".contentMood .page4 .selectMode").hide();
-
-                    $(".contentMood .page4 .sub-page4").show();
-
-                } else {
-                    currentPage = 5;
+                    
+                
+                    
+                 var risk = $(e).attr("id");
+                    page4Risk = risk;
+                
+                    
+                    if(risk == "dontKnow" ){
+                        currentPage=4;
+                        $(".contentMood .page4 .selectMode").hide();
+                        
+                        $(".contentMood .page4 .sub-page4").show();
+                        
+                }else{
+                    currentPage=5;
                     $("#riskSelected").text(rp);
-                    localStorage.clear();
+                localStorage.clear();
                     $("#displayModal").modal("show");
-                    $("#displayModal h3").html("You are a " + rp + " risk taker and we have recommended you the best.");
+                    $("#displayModal h3").html("You are a "+rp+" risk taker and we have recommended you the best.");
                     $(".contentMood .page4").hide();
-                    $(".pagination li:nth-child(4) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
-                    $(".pagination li:nth-child(5) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
+                        
+                        $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
+                        
+                        $(".pagination li:nth-child(5) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
+                        
+                        
                     $(".contentMood .page5, #yp, #riskSelected").show();
+                        
+                        
                 }
             }
         }
-    }
+ 
     
-    $(".page4 .selectMode button").click(function () { selectTab(5)});
+// $(".page4 .selectMode button").click(function () { selectTab5 });
     
     
     $(".page4 .sub-page4 .done").click(function(){ 
