@@ -29,7 +29,16 @@ textarea { resize: none }
 
 .txtNormal { font-size: 20px }
 .txtBig { font-size: 24px }
-.txtSmall { font-size: 18px }
+.txtSmall { /*font-size: 18px ; removed ruthu6*/
+    font-weight: 900;/*added ruthu6*/
+    font-size: 1.17em;/*added ruthu6*/
+    text-align: left;/*added ruthu6*/
+}
+/*added ruthu6*/
+p.txtXSmall{
+        text-align: left;
+    font-weight: 900;
+}
 .bold{ font-weight: bold }
 .underline { text-decoration: underline }
 .italic { font-style: italic}
@@ -40,8 +49,8 @@ textarea { resize: none }
 .btn-lg {  padding: 0px 16px 0px; }
 /*.btn-lg:hover { padding: 7px 19px 3px 21px }*/
 .btn { border: 1px solid #35BFD3; background: #fff; color: #35BFD3}
-.btn-round { height: 28px; border-radius: 14px; padding: 4px 12px 6px; background: #fff; color: #333; border-color: #333 }
-.btn-round:hover, .btn-round:focus, .btn-round:active, .btn-round:active:hover, .btn-round:active:focus  { height: 28px; border-radius: 14px; padding: 4px 12px 6px; background: #fff; color: #333; border-color: #333 }
+.btn-round { height: 28px; border-radius: 9px;/*ruthu6*/ padding: 4px 12px 6px; background: #fff; color: #333; border-color: #333 }
+.btn-round:hover, .btn-round:focus, .btn-round:active, .btn-round:active:hover, .btn-round:active:focus  { height: 28px; border-radius: 9px;/*ruthu6*/ padding: 4px 12px 6px; background: #fff; color: #333; border-color: #333 }
 .btn-white:hover, .btn-white:focus { color: #35BFD3; background-color: #fff; border: 1px solid #35BFD3 }
 .btn-hr-wrapper { position: relative; margin: 0 65px}
 .btn-hr-wrapper::after { content: "."; text-indent: -999em; display: block; width: 100%; position: absolute; top: 50%; transform: translateX(-50%); left:50%; border-top: 2px dotted #35BFD3; z-index: -1; height: 0 }
@@ -95,12 +104,13 @@ body { text-align: center; font-family: 'open sans'; -webkit-font-smoothing: ant
 .navbar-default { background-color: #fff; border: 0 }
 .viewing-page-1 .navbar-default  { background: transparent }
 @media (min-width: 768px) {
-    .navbar-center { position: absolute; left: 50%; transform: translateX(-50%); margin-top: 15px }
+    .navbar-center { position: absolute; left: 51%; transform: translateX(-51%)/*ruthu6*/; margin-top: 15px }
     }
 .navbar .navbar-collapse { text-align: center }
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav >.active > a, .navbar-default .navbar-nav >.active > a:focus, .navbar-default .navbar-nav >.active > a:hover { color: #35BFD3; background-color: rgba(0 0, 0, 0); border-bottom: 2px solid}
-.navbar-default .navbar-nav > li > a { font-size: 1.4em; font-weight: 700; margin: 0em .6em; padding: 15px 5px 7px; color: #454c4d }
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav >.active > a, .navbar-default .navbar-nav >.active > a:focus, .navbar-default .navbar-nav >.active > a:hover { color: #35BFD3; background-color: rgba(0 0, 0, 0);
+/*    border-bottom: 2px solid removed ruthu6*/}
+.navbar-default .navbar-nav > li > a { font-size: medium;/*ruthu6*/ font-weight: 700; margin: 0em .6em; padding: 15px 5px 7px; color: #454c4d }
 .navbar-brand > img {  position: absolute }
 .logo-icon{ position: absolute; left: 128px; top: 23px }
 .logo-icon-blue { opacity: 0 }
@@ -131,12 +141,19 @@ Home Page Whats your mood.
 */
 .yourMood { margin-top: 300px }
 @media(min-width: 769px) {
-    .yourMood { position: absolute; top: 50%; left:0; right: 0; margin: 0 auto; }
+    .yourMood { position: absolute; top: 40%;/*ruthu6*/ left:0; right: 0; margin: 0 auto; }
 }
-.yourMood > h1 { font-size: 26px; margin-bottom: 0; font-weight: 100 }
-.yourMood > h4 { color: #35BFD3; font-weight: 300; font-size: 24px }
-.yourMood > p { font-weight: 400; font-size: 22px }
-.yourMood > p span {font-weight: bold; color: #FFDE15; animation: blinker 1s linear infinite; font-size: 28px; vertical-align: middle; vertical-align: -webkit-baseline-middle; line-height: 32px }
+.yourMood > h1 { font-size: 24px;/*ruthu*/ margin-bottom: 0; font-weight: 700/*ruthu*/ }
+.yourMood > h4 {     color: #35BFD3;
+    font-weight: 700;/*ruthu6*/
+    font-size: 19px;/*ruthu6*/
+    margin: 5px auto;/*ruthu6-added*/
+   }
+.yourMood > p { font-weight: 700; font-size: 18px/*ruthu*/ }
+.yourMood > p span {font-weight: bold; color: #454c4d;; animation: blinker 1s linear infinite; font-size: 18px;/*ruthu*/ 
+    /*vertical-align: middle; removed by ruthu*/
+  /*  vertical-align: -webkit-baseline-middle; removed by ruthu */
+    line-height: 32px }
 @keyframes blinker {  
   50% { opacity: 0; }
 }
@@ -147,7 +164,7 @@ Home Page Whats your mood.
 #angle { position: fixed; bottom: 1em; width: 45px; z-index: 99999; left: 50%; transform: translateX(-50%); padding: 10px; cursor: pointer; }
 
 /*Frog Image*/
-.frogImage { position: absolute; z-index: 1030; top: 44%; left: 50%; transform: translate(-50%, -50%); display: none }
+.frogImage { position: absolute; z-index: 1030; top: 42%;/*ruthu6*/ left: 50%; transform: translate(-50%, -50%); display: none }
 .frogImage > img {  max-width:390px; width: 100%; height: auto; cursor: pointer; }
 .frogImage img:nth-child(2) {    position: absolute; max-width:390px; width: 100%; height: auto; top: 0em; cursor: pointer; }
 .frogImage img:nth-child(3) {   position: absolute; max-width:40px; width: 100%; height: auto; top: 4.5em; left: 19.4em; }
@@ -177,7 +194,7 @@ h2.indexHeadngLookingFor { margin-top: 10px }
 /* All Pages mixed fruit juice need to be refactored */
 .how-it-works h2, .know-us h2, .why-us > h2{ padding: 0.5em; font-weight: 600; color: #35BFD3; margin-top: 0; margin-bottom: 0; font-size: 3em }
 .what-we-offer .tuff{ position: relative; left: -26%; top: 1em }
-.what-we-offer p, .how-it-works p { font-weight: 300; font-size: 18px }
+.what-we-offer p, .how-it-works p { font-weight: 700;/*ruthu*/ font-size: 18px;    margin: 2% auto;/*added ruthu6*/ }
 .what-we-offer .row, .how-home .row { margin-left: 50px; margin-right: 50px }
 .emergency-funds, .tax-savings, .build-wealth, .smart-goals { cursor: pointer }
 
@@ -195,8 +212,9 @@ How it works
 
 .how-it-works .panel { border: 1px solid #35BFD3;  border-radius: 8px; width: initial; position: relative; margin-bottom: 30px }
 
-.why-us .content h2 { margin: 5px 0; font-weight: 500; font-size: 22px }
-.why-us .content p { font-weight: 500 }
+.why-us .content h2 { margin: 5px 0;font-weight: 700;/*ruthu6*/
+    font-size: 27px;/*ruthu6*/ }
+.why-us .content p { font-weight: 600/*ruthu6*/ }
 
 .pricingPanelRow p { font-size: 16px }
 .pricingPanelRow .tooltips { display: block; position: relative}
@@ -205,7 +223,7 @@ How it works
     
   margin-top: 0.2em;
 }
-#myCarousel { margin: 25px 200px }
+#myCarousel { margin: 25px 300px;/*ruthu6*/}
 
 .page4 .selectMode .dotHr div{
     
@@ -234,7 +252,7 @@ float: left;
     
 }
 
-.moodGoals { position: absolute; left: 50%; transform: translateX(-50%) }
+.moodGoals { position: absolute; left: 49%;/*ruthu6*/ transform: translateX(-50%) }
 
 .moodGoals > .dropdown,
 .moodGoals > img {
@@ -289,7 +307,7 @@ dropdown-toggle:hover, dropdown-toggle:focus, dropdown-toggle:active { backgroun
 .dropdown-menu {
     top: 45px;
 }
-nav hr { margin: 20px 65px }
+nav hr { margin: 20px 87px/*ruthu6*/ }
 .dropdown-menu>li>a {
         font-weight: 500;
 }
@@ -567,9 +585,10 @@ Why us
 
 .avatarTestimonial .name {
     
-    font-size: 24px;
-    font-weight: 600;  
-    margin-top: 10px; 
+   font-size: 17px;/*added*/
+    font-weight: 700;/*added*/
+        margin-bottom: 0px;/*added*/
+    margin-top: 10px;
 }
 
 .carousel-control {
@@ -704,7 +723,7 @@ Feeling Text Circlural Navigation Menu
 
 .feelingCircularMenu ul li:nth-child(3), .feelingCircularMenu ul li:nth-child(4)  {bottom: 125px }
 .feelingCircularMenu ul li:nth-child(3) { left: 88px }
-.feelingCircularMenu ul li:nth-child(4) { right: 40px }
+.feelingCircularMenu ul li:nth-child(4) { right: 40px/*ruthu6*/ }
 
 
 
@@ -1125,8 +1144,12 @@ h2.h2hstyle
 
 .contentMood .page2 .login-btn {
     position: absolute;
+/*removed by ruthu6
     top: 0px!important;
     left: 300px;
+*/
+        top: 15px!important;/*added ruthu6*/
+       left: 300px;/*added ruthu6*/
     
 }
 
@@ -1255,6 +1278,7 @@ border-radius:10px;
     left: -13.5em;
     bottom: -1em;
 }
+
  .contentMood .moodNav:focus{
     
     outline: none;
@@ -1313,7 +1337,7 @@ Footer
     margin-right: 3%;
 }
 
-.foot p > a { font-weight: 500; line-height: 0.6; font-size: 16px }
+.foot p > a { font-weight: 700;/*ruthu6*/ line-height: 0.6; font-size: 16px }
 .SubscribeToNewsletter { }
 .foot .row div {
 	 text-align: left;
@@ -1895,11 +1919,17 @@ h2.WSHeader{
     margin-bottom: 1em;
 }
 h6.InvestTeamP{
-    margin-bottom: 5px;
+        margin-bottom: 5px;
     margin-top: 5px;
+/*removed ruthu6
     font-weight: bolder;
     font-style: italic;
-    font-size:16px;
+    font-size: 16px;
+*/
+    font-size: large;/*ruthu*/
+    font-style: italic;/*ruthu*/
+    padding: 0px 0px;/*ruthu*/
+    font-weight: bolder;/*ruthu*/
 }
 
 img.avtarSize{
@@ -1912,14 +1942,15 @@ img.avtarSize{
 
 img.WFrogImg{
     position: absolute;
-    bottom: -20px;
+    bottom: -15px;
     left: 59%;
+    z-index: 100;
 }
 h2.WFrogHead, h2.WSHeader{
     
     border-top-width: 0.5em;
     padding: 10px 0;
-    margin: 5px 0
+    margin: 0px 0;/*added ruthu6*/
 }
 img.WInvstImg{
     position: absolute;
@@ -1929,8 +1960,11 @@ img.WInvstImg{
 h2.WSHeader{
     padding-bottom: 0px;
 }
-
-
+/*ruthu6 added*/
+div.col-sm-4.col-md-3.KuWfC1,
+div.col-sm-4.col-md-3.KuWfC2{
+    border-top:2px #35BFD3 dotted;
+}
 
 /*Responsive mobile First Design*/
 
@@ -1941,7 +1975,8 @@ h2.WSHeader{
 .know-us h2,
 .why-us > h2{
     
-
+    color:#35BFD3;/*added ruthu6 */
+    font-weight: 600;/*added ruthu6 */
 	font-size: 2em;
 
 }
@@ -2058,7 +2093,7 @@ div.dotHr.dotsScriptStory{
     margin: 0 auto;
 }
 .rowFrogs .frogsWrapper .frogContainer { flex: 1 }
-.rowFrogs .frogsWrapper .frogContainer:first-child:after { content: "."; width: 13px; height: 13px; display: block; color: #FFDE15; background: #FFDE15; margin: 5px auto 3px; border-radius: 50% }
+.rowFrogs .frogsWrapper .frogContainer:first-child:after { content: "."; width: 13px; height: 13px; display: block; color: #FFDE15; background: #FFDE15; margin: 5px auto 3px; border-radius: 50%;display:none; }
 .rowFrogs .frogsWrapper { display:  flex; padding: 10px 0 20px }
 textarea#comment.form-controler.addressSection3
 {
@@ -2103,7 +2138,7 @@ div.topNav.abc{
     width: 78.2%;
 }
 /* Form Elements */
-.blankInput[type=number] { height: 25px; border: 0; margin-left: 1px;  background-color: transparent; padding: 5px; border-bottom: 1px solid; outline: none }
+.blankInput[type=number] { height: 25px; border: 0; margin-left: 1px;  background-color: transparent; padding: 5px;     border-bottom: 1px dashed/*ruthu6*/; outline: none }
 
 section#section4 #dotMenu {
     display:none;
@@ -2462,14 +2497,15 @@ margin-top: 0.9em;
 }
 
 .wrapper { margin-top: 20px }
-.how-it-works > h4 { font-size: 22px }
+.how-it-works > h4 { font-size: 17px;/*ruthu16*/
+    font-weight: 700;/*ruthu16*/}
 .page6 .btn.btn-lg.moodNav.go,
 .page7 .btn.btn-lg.moodNav.go{ margin: 10px 65px 5px;
     position: relative;
     top: 15px;
     left: 50px;}
 .page-pricing .item h4{ font-size: 14px; font-weight: 700 }
-#section4 .item h4 { font-size: 16px }
+#section4 .item h4 { font-size: 16px ;   font-weight: 600;/*added ruthu6*/ }
 .selectMode .tooltips span { display: none; position: absolute; top: 40px; padding: 10px; left: initial; right: initial }
 .selectMode .tooltips:nth-of-type(1) span { left: 0 }
 .selectMode .tooltips:nth-of-type(2) span { left: 25% }
@@ -2492,6 +2528,7 @@ div.headGoal {
 h3.savedPlans{
     border-bottom:2px #35BFD3 dotted;
     padding-bottom:2%;
+    color:#35BFD3;
     
 }
 #savedPlans p{
@@ -2506,7 +2543,7 @@ h3.savedPlans{
 div#savedPlans.row
 {
         margin-top: 5%;
-    margin-bottom: 5%;
+/*    margin-bottom: 5%; removed saved plans ruthu6*/
 }
 .myGoal{
     text-align: center;
@@ -2514,13 +2551,60 @@ div#savedPlans.row
 
 
 .pageSavedPlan .table {
-    border: 1px solid #35BFD3;
+    border: 2px solid #35BFD3;
+/*    border-radius: 10px; removed saved plans ruthu6*/
+    border-collapse: separate;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+margin-bottom:0px;/*saved plans ruthu6*/
+}
+/*saved plans ruthu6*/
+table#savedPlansButtons.table {
+    border: 2px solid #35BFD3;
+        border-top-color: white;
     border-radius: 10px;
     border-collapse: separate;
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
+#savedPlans .col-md-3 {
+    padding: 0px;
+    border-right: 2px #35BFD3 solid;
+}
+div#savedPlans.row {
+    margin-top: 2%;
+    border: 2px #35BFD3 solid;
+    border-bottom: 0px;
+    /* padding-left: 2%; */
+    margin-left: 10%;
+    margin-right: 10%;
+    border-top-left-radius: 19px;
+    border-top-right-radius: 19px;
+}
+#savedPlans .planNumber {
+    float: left;
+    border: 2px #35BFD3 solid;
+    margin-left: -1px;
+    margin-top: -2px;
+    padding: 5px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 17px;
+}
+#savedPlans h5 {
+    border-top: 2px #35BFD3 solid;
+    padding-top: 5px;
+}
+#savedPlans div.col-md-4, #savedPlans div.col-md-5 {
+    margin-top: 5%;
+        text-align: left;
+    font-size: large;
+
+}
+/*end of saved plans ruthu6*/
 .pageSavedPlan .table>tbody>tr>td {
     border-top: 0;
     border-right: 1px solid #35BFD3;
@@ -2545,14 +2629,15 @@ button.btn.saved{
 .table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
     border-top: 0;
 }
-.how-it-works .form-horizontal .settingSection2 .control-label, .how-it-works .form-horizontal .setting .control-label { width: 60px; margin-right: 5px }
+ .how-it-works .form-horizontal .settingSection2 .control-label, .how-it-works .form-horizontal .setting .control-label { width: 60px; margin-right: 5px }
+
 .how-it-works .form-horizontal .rightSetting .control-label { width: 105px; margin-right: 5px }
 .how-it-works .form-horizontal .rightSetting > div { width: 300px!important }
 .how-it-works .form-horizontal .control-label { text-align: left }
-.how-it-works .form-horizontal .control-label.Ageing {margin: 0 7px 0 5px }
+.how-it-works .form-horizontal .control-label.Ageing {margin: 7px 7px 0 5px/*ruthu6*/ }
 .how-it-works .profileSubmit { position: static }
 .how-it-works h2.profilePan { margin: 5px auto 15px!important }
-.how-it-works input[type=file] { width: 180px; float: left }
+.how-it-works input[type=file] { width: 180px; float: right/*ruthu6*/}
 .how-it-works .form-group { min-height: 40px }
 .how-it-works input, .how-it-works select { height: 28px }
 .settingsFrogs { margin-top: 25px }
@@ -2587,10 +2672,7 @@ img.popUPImg
 	
 	
 	/*ruthu changes*/
-div.col-sm-4.col-md-3.KuWfC1,
-div.col-sm-4.col-md-3.KuWfC2{
-    border-top:2px #35BFD3 dotted;
-}
+
 
 /*for Profilepage Documents*/
 label.control-label.documentDetails{
@@ -2774,10 +2856,7 @@ div#savedPlans.row/*removed from line 2502*/
 }
 	
 	
-	div.col-sm-4.col-md-3.KuWfC1,
-	div.col-sm-4.col-md-3.KuWfC2{
-		 border-top: 2px #35BFD3 dotted;
-	}
+	
 @media (max-width:991px){
     #savedPlans .col-md-3 {
     padding: 0px;
@@ -2788,4 +2867,13 @@ div#savedPlans.row/*removed from line 2502*/
 
 #ProfileColumn1.{
     
+}
+   .blankInput {
+  -moz-appearance:textfield;
+}
+
+.blankInput::-webkit-outer-spin-button,
+.blankInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

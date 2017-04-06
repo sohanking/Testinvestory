@@ -207,7 +207,7 @@
                      <form name="profileInformation" class="form-horizontal" action="/profile" method="post">
                                                      
                         <div id="ProfileColumn1"  class="col-sm-6  setting colProfile">
-                        <div style="width: 280px; float: right;">
+                        <div style="width:280px; float: right;">
                             <div class="form-group">
                                 <label class="control-label">Name:</label>
                                 <input type="text" class="form-controler" name="username" id="username" value="<%= user.name %>" /> 
@@ -222,7 +222,7 @@
                                 <div class="dropdown">
                                     <label class="control-label" for="text">Gender:</label>
                   				   <% var Gender = [
-    "Man", "Woman"
+    "Male", "Female"
     ];%>                                                                      
                                     <select class="form-controler edit selectGender" id="gender" name="gender"  ><span class="caretNext caretNext1 caret "></span>
 					<% Gender.forEach( function( sex ){ %>
@@ -256,7 +256,7 @@
                                                             
                                                             
               <div class="form-group Up">
-                               <div style="float: left; margin-top: 14px">                                          
+                               <div style="float: left; ">                                          
                               <label class="control-label">DOB:</label>
                                                                            
                               
@@ -356,15 +356,81 @@
                                                          </form>
                  <br>
                  
-                           <h2 class="profilePan"style="position: relative; top: 90px;">Pan Details</h2>   
+                           <h2 class="profilePan"style="position: relative; ">Bank Details</h2>   
                 </div>
 
     
 <!--   </section>-->
-    
+     <div class="container-fluid how-it-works contentEdit">
+                                     
+                 <div class="row" style="">
+                                        
+                     <form name="panDetails"class="form-horizontal" action="/profile" method="post">
+                                                     
+                         <div id="ProfileColumn1" class="col-sm-6  setting settingSection2">
+                         <div style="float: right; width: 280px">
+                             <div class="form-group">
+                                                               
+                                 <label class="control-label" >IFSC:</label>
+                                  <input type="text" class="form-controler" name="" id="" value="" > </div>
+                               <div class="form-group">
+                                                               
+                                 <label class="control-label" >Branch:</label>
+                                  <input type="text" class="form-controler" name="" id="" value="" > </div>
+                               
+                         
+							 
+							   
+                        
+                        
+                                           
+                      </div>
+                          
+                           
+                        </div>                            
+                      <div  id="ProfileColumn2" class="col-md-6 rightSetting shiftProfile">
+                    <div style="float: left; width: 280px;">  
+                                                            
+                                              
+                           
+                                                            
+                   
+                            <div class="form-group Up">
+                                                                        
+                              <label class="control-label"  >Bank Name:</label>                 
+                                  <input type="text" value="" class="form-controler" 
+                                      
+           required/>  
+                                                                        
+                          </div>
+                             
+                        
+                                    <div class="form-group Up">
+                                                                        
+                              <label class="control-label"  >Account No. :</label>                 
+                                  <input type="text"  class="form-controler" 
+           required/> 
+                                                                        
+                          </div>
+                         
+                       
+                                                 
+                                                 
+                           
+                        
+                          
+                                                         </div>
+                                                         </div>
+                                        
+                                                         </form>
+                </div>
+
+<button type="submit" style="margin-top: 35px; float: none" class="btn btn-white btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
+   <h2 class="profilePan"style>PAN Details</h2> 
+</div>
 
 <!--             <section id="section22">-->
-       
+                            
              <div class="container how-it-works contentEdit">
                                      
                  <div class="row" style="">
@@ -385,25 +451,13 @@
                                                   
                             		<label class="control-label" >Address:</label>
                                
-                                        <textarea class="form-controler addressSection3" rows="3" id="comment" type="text" value="" name="address" id="address" required/></textarea>                                        <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid"  >Address is required.</span>                                       
+                                        <textarea class="form-controler addressSection3" rows="4" id="comment" type="text" value="" name="address" id="address" required/></textarea>                                        <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid"  >Address is required.</span>                                       
                                                                    
                           
                                            
                     </div>     
                                                          
-                               <div class="form-group">
-                                                               
-                                 <label class="control-label">City:</label>
-                                  <input type="text" class="form-controler" value=""> 
-                                                            </div>     
-                               
-                                           <div class="form-group ">
-                                                                  
-                                                  <label class="control-label" for="pwd">Pincode:</label>    
-                                                      <input type="number" name="pincode" id="pincode" class="form-controler" > 
-                                              </div>
-                                                                     
-                                            
+                                       
                                                         
                       </div>
                           
@@ -438,9 +492,99 @@
                                     
                                                                                 
                                   </div>         
+                                   <div class="form-group">
+                                                               
+                                 <label class="control-label">City:</label>
+                                  <input type="text" class="form-controler" value=""> 
+                                                            </div>     
+                               
+                                           <div class="form-group ">
+                                                                  
+                                                  <label class="control-label" for="pwd">Pincode:</label>    
+                                                      <input type="number" name="pincode" id="pincode" class="form-controler" > 
+                                              </div>
+                                                                     
+                                
+                                            
+                                                         </div>
+                                                         </div>
+                                        
+                                                         </form>
+                </div>
+</div><button type="submit" style="margin-top: 35px; float: none" class="btn btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
+<div class="container-fluid how-it-works contentEdit">
+                                     
+                 <div class="row" style="">
+                                        
+                     <form name=""class="form-horizontal" action="" method="">
+                              <h2 class="profilePan">Documents</h2>                  
+                         <div id="ProfileColumn1" class="col-sm-6  setting settingSection2">
+                         <div style="float: right; width: 350px">
+                          
+                         
+							                                 
+                               
+                                                                     
+                                             <div class="form-group Up">
+                                                                   
+                              <label class="control-label " style="width:120px;">Signature Proof</label>
+                                                                           
+                          <input type="file" class="" name="somename" size="chars">
+                          
+                                           
+                                                
+                      </div><br/>
+                          <div class="form-group Up">
+                                                                   
+                              <label class="control-label  " style="width:120px;">BSE Star Application</label>
+                                                                           
+                                                                           
+                          <input type="file" class="" name="somename" size="chars">
+                          
+                                           
+                                                
+                      </div><br/>
+                          <div class="form-group Up">
+                                                                   
+                              <label class="control-label  " style="width:120px;">NACH Form</label>
+                                                                           
+                          <input type="file" class="" name="somename" size="chars">
+                          
+                                           
+                                                
+                      </div>
+                          <div class="form-group Up">
+                                                                   
+                              <label class="control-label " style="width:120px;">Statutory Form</label>
+                                                                           
+                          <input type="file" class="" name="somename" size="chars">
+                          
+                                           
+                                                
+                      </div>
+                        
+                        
+                                           
+                      </div>
+                          
+                           
+                        </div>                            
+                      <div  id="ProfileColumn2" class="col-md-6 rightSetting shiftProfile">
+                    <div style="float: left; width: 280px;">  
+                                                            
+                                              
+                           
+                                                            
+                                                             
+                        
+                           
+                             
+                        
+                                
+                                     
                                <div class="form-group Up">
                                                                    
-                              <label class="control-label" style="">Document1</label>
+                              <label class="control-label" style="">Address Proof</label>
                                                                            
                           <input type="file" class="" name="somename" size="chars">
                  
@@ -450,7 +594,7 @@
                                                            
                                <div class="form-group Up">
                                                                    
-                              <label class="control-label">Document2</label>               
+                              <label class="control-label">ID Proof</label>               
                           <input type="file" class="" name="somename" size="chars">
                  
                                                                         
@@ -458,26 +602,31 @@
                                                            
                              <div class="form-group Up">
                                                                    
-                              <label class="control-label">Document3</label>
+                              <label class="control-label">KYC Video</label>
                                                                            
                           <input type="file" class="" name="somename" size="chars">
                           
                                            
                                                 
                       </div>
-
-                                            
+                         
+                        
+                          
                                                          </div>
                                                          </div>
                                         
                                                          </form>
                 </div>
 
-<button type="submit" style="margin-top: 35px; float: none" class="btn btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
+<button type="submit" style="margin-top: 35px; float: none" class="btn btn-white btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
+
+</div> 
+
+
+
                  </body>
-<div class="profileFooter">
+<div class="container profileFooter">
         	 <% include partials/footer %></div>
-<!--    </section>-->
     
 <script>
     $(document).ready(function() {

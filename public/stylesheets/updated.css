@@ -21,10 +21,16 @@ How it works
 
 .how-it-works h3 {
     
+/*removed ruthu6
     padding: 0.5em;
     font-weight: 600;
     color: #35BFD3;
     font-size: 1.6em;
+*/
+    padding: 0.5em;/*added ruthu6*/
+    font-weight: 700;/*added ruthu6*/
+     font-size: 1.96em;/*added ruthu6*/
+    color: #454c4d;/*added ruthu6*/
 }
 
 
@@ -40,8 +46,10 @@ How it works
     padding-bottom: 0;
     
 }
-
-
+/*ruthu6 remove gap abovr pricing paragraphs*/
+.how-it-works h3{
+    margin-top: auto;
+}
 /*Panel Pricing*/
 
 .how-it-works .panel-body ul li {
@@ -178,7 +186,7 @@ position: absolute;
     text-align: left;
     font-size:1.1em;
     margin-left: 2.5em;
-    background-color: #F2F5FB;
+    background-color:#ffffff;
     font-weight: 600;
     overflow: hidden;
     transition: 0.6s ease-in-out;
@@ -281,7 +289,6 @@ background-color:#35BFD3;
      text-align: left;
      padding: 0;
      cursor: pointer;
-     display: block;
        }
    
 .sliderRiskProfile .riskProfiling  #mood:hover { 
@@ -465,11 +472,13 @@ width:auto;
     padding-top: 20px;
     margin-bottom: 0;
     color: #35BFD3;
-    font-weight: 500;
-    float: left;
-    text-align: right;
+/*    font-weight: 500;*/
+        float: left;
+     font-weight: 700;
+    
+    text-align: left;/*ruthu6*/
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 16px;/*ruthu6*/
     padding: 0;
 }
 
@@ -531,7 +540,7 @@ width:auto;
     width: 13em;
     /* padding-bottom: 0px; */
     /* padding-top: 0px; */
-    margin-bottom: 0.5em;
+/*    margin-bottom: 0.5em; removed ruthu6*/
     /* padding-right: 0px; */
     padding: 0.3em;
 	    outline: none;
@@ -890,8 +899,15 @@ p.paraF{
 
 
 button.btn.btn-sm.moodNav.signUp.giveUp1, button.btn.btn-sm.moodNav.signUp.gaveUp1{
+/*removed ruthu6
     margin: 8px;
     width: 100px;
+*/
+        margin: 8px;/*added ruthu6*/
+    width: 100px;/*added ruthu6*/
+    border-radius: 10px;/*added ruthu6*/
+    font-size: 1em;/*added ruthu6*/
+    font-weight: 700;/*added ruthu6*/
 }
 
 #reports td.corrupt{
@@ -1181,7 +1197,7 @@ button#menu1.btn.btn.btn-primary.dropdown-toggle.selectReport{
 
 
 .content div > p.KUNLogoP {
-    margin: 5px 75px;
+    margin: 2px 83px;/*ruthu6*/
     border-top: 2px #35BFD3 dotted;
     border-bottom: 2px #35BFD3 dotted;
     font-weight: 600;
@@ -1219,7 +1235,7 @@ div.row.KuWfRow {
 /*//why choose investory*/
 img.WInvstImg {
     position: absolute;
-    bottom: -14px;
+    bottom: -10px;/*ruthu6*/
     left: 30%;
     z-index: 100;
 }
@@ -1255,8 +1271,8 @@ div.container-fluid.why-us.know.text-center {
 
 div.WhoWeAre {
     text-align: justify;
-    padding-left: 30%;
-    padding-right: 27%;
+    padding-left: 28%;/*ruthu6*/
+    padding-right: 28%;/*ruthu6*/
 }
 p.WhoWeAreP {
     font-weight: 600;
@@ -1375,8 +1391,10 @@ button.btn.btn-lg.moodNav.login.InvoicesButtons{
 }
 h6.messageProfile {
     width: 15em;
-    margin-top: 0px;
-    margin-bottom: 0.65em;
+    margin-top: 5px;/*added ruthu6*/
+/*    margin-bottom: 0.65em; removed ruthu6*/
+    margin-bottom: 0px;/*ruthu6 added*/
+
     font-weight: 800;
 }
 #settings div.col-md-3.pricingLabel.column2 {
@@ -1421,7 +1439,8 @@ td.aba{
 button.btn.btn-lg.moodNav.InvoicesButtons{
 	margin-right: 5px;
     width: 5em;
-    float: right;
+/*    float: right;*/
+        float: left;/*added ruthu6*/
 }
 .settingsForm .left .form-group { margin-left: 118px }
 @media(min-width: 1200px) {.settingsForm .left .form-group { margin-left: 264px }

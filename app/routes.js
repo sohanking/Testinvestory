@@ -94,7 +94,7 @@ function getTransactionID(userid) {
 
 
 
-var conString = "postgres://development:123@localhost:5432/investory";
+var conString = "postgres://development:123@localhost:5433/investory";
 
 var client = new pg.Client(conString);
 client.connect();
