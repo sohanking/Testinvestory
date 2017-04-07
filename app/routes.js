@@ -317,7 +317,7 @@ var query=client.query(" select * from usersubscriptions where userid="+req.sess
 	  	loggedIn: loginStatus,			
 	  		paid:result,
 	  	  footerDisplay: "show",
-	  footerData1: "Video Tour",
+	  footerData1: "Video Tour", 
 	  footerData2: "FAQs"
   });
 	
@@ -516,7 +516,7 @@ app.get('/KnowUs',isLoggedIn, function(req, res){
 	else
 		pageName = "knowUs";
 		
-    res.render('knowUs.ejs',{
+    res.render(pageName,{
 	  user : req.user ,
 	  selectorDisplay: "show",
 	  smessage: req.flash('signupMessage'),
@@ -548,7 +548,7 @@ app.post("/PANStatus", function(req, res){
 
 	
 });	
-	
+
 
 	app.get('/GoalInvest',isLoggedIn,function(req,res){
 		
@@ -807,7 +807,8 @@ function(paid,assets,callback){
 		res.setHeader('Content-Type', 'application/json');
     	res.send(req.session);
 	})
-
+    
+    
 	app.get('/GoalSelection',isLoggedIn,function(req, res){
 		
 		
@@ -1079,7 +1080,35 @@ function(paid,assets,callback){
 		
 	})
 	
+	/*ruthu7 SavedPlans
+	app.get('/SavedPlans', function(req, res){
 	
+		currentPage = req.session.activePage = "/SavedPlans";
+	
+//	loginStatus = checkLoginStatus(req);
+                   mobile = req.useragent["isMobile"]
+    if(mobile){
+      res.render('savedPlansMobile.ejs',{
+ 
+  });
+    }
+    
+    else
+    {res.render('savedPlans.ejs',{
+	  user : req.user ,
+	  selectorDisplay: "show",
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	loggedIn: loginStatus,
+	  	  footerDisplay: "show",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+    
+	  
+  });}
+});
+*/
+
 	app.get('/SavedPlans',isLoggedIn,function(req,res){
 		
 		
@@ -1298,8 +1327,34 @@ for(i=0;i<headerData.length;i++){
 	
 		
 	})
+	/*ruthu7 GoalSelection
+	app.get('/GoalSelection', function(req, res){
 	
+		currentPage = req.session.activePage = "/GoalSelection";
 	
+//	loginStatus = checkLoginStatus(req);
+                   mobile = req.useragent["isMobile"]
+    if(mobile){
+      res.render('mobileMood.ejs',{
+ 
+  });
+    }
+    
+    else
+    {res.render('mood.ejs',{
+	  user : req.user ,
+	  selectorDisplay: "show",
+	  smessage: req.flash('signupMessage'),
+		lmessage: req.flash('loginMessage'),
+	  	loggedIn: loginStatus,
+	  	  footerDisplay: "show",
+	  footerData1: "Blog",
+	  footerData2: "FAQs"
+    
+	  
+  });}
+});
+*/
 	
 	app.get('/BsePaymentStatus',isLoggedIn,function(req,res){
 		
@@ -4027,7 +4082,6 @@ app.get('/Settings',isLoggedIn, function(req, res){
       })
 
 
-	
 app.get('/tocurrent', function(req, res){
 	
 console.log(req.session.activePage);

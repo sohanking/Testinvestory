@@ -30,7 +30,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-                                <a class="" href="#" class="tooltips">
+                                <a class="" href="/" class="tooltips">
                                     <img class="img-responsive" id="investory" src="images/mobileIcon.png" alt="" />
                                     <!--                   <img class="img-responsive logo-icon" src="images/logoIcon.png" alt="" />-->
                                 </a>
@@ -40,7 +40,7 @@
 
                                     <li class="dropdown">
 
-                                        <li><a href="/profile">Edit Profile</a></li>
+<!--                                        <li><a href="/profile">Edit Profile</a></li>-->
                                      <li><a href="/Invoices">Invoices</a></li>
                                      <li><a href="/Transaction">Transactions</a></li>
                                      <li><a href="/Investment">Investments</a></li>
@@ -60,11 +60,13 @@
                                         <li><a href="/Pricing">Pricing</a></li>
                                         <li><a href="/GoalSelection">Get Started</a></li>
                                         <li><a href="/FAQs">FAQs</a></li>
-                                        <li><a href="#">Blog</a></li>
+<!--                                        <li><a href="#">Blog</a></li>-->
 
                                         <li><a href="#" data-target="#loginModal" data-toggle="modal">Login</a>
+<!--
                                             <li><a href="/logout">Logout</a></li>
                                         </li>
+-->
                                 </ul>
 
                             </div>
@@ -170,65 +172,18 @@
                 <div class="modal-body " style="">
 
                     <h2 class="EmailHead">Enter Email</h2>
-                    <div class="dotHr ">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-
-
-
-                    </div>
+                    
                     <form class="formmodel EmailInfo" name="newsletterEmail">
 
                         <input class="form-control Email" id="email" placeholder="" name="email" ng-model="email" ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/"
                             required />
-                        <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  ">Email Invalid.</span>
+                       <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  "  >Email Invalid.</span>
 
 
-                        <div class="dotHr"> <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"
-                                type="submit" disabled="newsletterEmail.$invalid"> Submit </button>
+                      <button class="btn btn-lg moodNav   " style="margin-top:5%;width:auto;"  type="submit" disabled="newsletterEmail.$invalid"> Submit </button> 
                             <br/>
 
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                            <div></div>
-
-
-                        </div>
+                            
                         <!--end dotHr-->
                     </form>
                 </div>
@@ -262,3 +217,4 @@
         }
     });
 </script>
+        

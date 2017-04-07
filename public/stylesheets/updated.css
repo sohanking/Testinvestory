@@ -149,7 +149,7 @@ position: absolute;
     left: -1em;
     width: 42%;
     top: 1em;
-       height: 14em;
+         height: 21em;/*ruthu7*/
     overflow-y:scroll;
 }
 
@@ -317,6 +317,7 @@ color: #333;
 .riskProfiling {
     
         margin-left: 3em;
+        text-align: left;/*remove later*/
 }
 
 .sliderRiskProfile {
