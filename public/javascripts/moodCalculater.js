@@ -1,9 +1,9 @@
   
 function setProfile(profileRate, table, storeAllocation){
-//debugger;
+	// debugger;
 	var riskProfile = "";
 	var tableNo = "";
-	
+	console.log('moodCalculator-5'+profileRate+ table+storeAllocation)
 	if(table == 1){
 		tableNo = "";
 	}else {
@@ -22,7 +22,20 @@ function setProfile(profileRate, table, storeAllocation){
 			default: riskProfile="Conservative";
 				
 		}
-	
+
+	if(!loggedIn) {
+		try{
+			sessionStorage.setIten('test', 'test');
+			var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+			tempGoals.riskProfile = riskProfile;
+			sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+		} catch(e) {
+			console.log(e);
+		}
+			
+	}
+
+
 	showRiskProfile(riskProfile);
 	myinit(riskProfile, tableNo,storeAllocation);
 	

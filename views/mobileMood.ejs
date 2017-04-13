@@ -5,6 +5,8 @@
  <% include partials/head %>
 	
     <link rel="stylesheet" href="stylesheets/creativemobile.css">
+	  <script src="javascripts/lumpsum.js"></script>
+      <script src="javascripts/sip.js"></script>
 </head>
 	
 <body>
@@ -15,198 +17,121 @@
 
 </script>
   <% include partials/headerMobile%>
-	<% if(!loggedIn) {%>
+
 	
 	
 	
-	
-	
-	
-	  <!-- Modal -->
-        
-	
-	   <div class="modal fade" id="loginModalScheme" role="dialog">
-    <div class="modal-dialog modal-sm">
-          <!-- Modal content-->
-      <div class="modal-content">
-                
-            <div class="modal-body">
-         
-                <form class="form-horizontal" action="/login" method="post">
-                           <h2>Login</h2>
-				
-					<input type="hidden" id="amountMaster" name="amountMaster" value="">
-						   <input type="hidden" id="askScheme" name="askScheme" value="true">
-					<input type="hidden" id="setGoal" name="setGoal" value="">
-					<input type="hidden" id="getMoodG" name="getMoodG" value="">
-					<input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-							<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                            <button id="login" type="submit" class="btn btn-lg login "  > Login </button> 
-                            <button type="" class="btn btn-lg sign-up" data-toggle="modal" data-target="#signUpModalScheme" data-dismiss="modal">Sign Up</button>
-                            <a href="#" class="forgot" >Forgot Password?</a>
-                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')">Login with Facebook</button>
-                            <button type="button" class="btn btn-lg google" onclick="auth('google')">Login with Google+</button>
-                                
-                            
-                 </form> 
-				<% if (lmessage.length > 0) { %>
-<div class="alert alert-danger"><%= lmessage %></div>
-<% } %>
+	    <!--Pan Modal Window-->
+    <div class="modal fade" id="myPanModal" role="dialog">
+        <div class="modal-dialog modal-sm" >
+            <!-- Modal content-->
+            <div class="modal-content PAN">
+                <div class="modal-body " style="">
+                    <h2 class="PANHead">Enter PAN</h2>
+
+                    <!-- <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" onsubmit="checkPanStaus();">-->
+                    <div class="bg-success" id="responseData" style="display: none">
+                        <p id="data1" style></p>
+                    </div>
+
+                    <input class="form-control PANnumber panNumber" placeholder="PAN number" type="text" id="pan" name="pan" maxlength="10">
+                    <p class="panErr" style="display: none; color: red" >Please Enter a valid Pan Number</p>
+                    <div class="dotHr loader">
+                        <button class="btn btn-lg moodNav  pricing RP1 pull-left submit submitPan" style="margin-top:10%;width:5.5em;" id="panCheck" type="submit"
+                            onclick="checkPanStaus()"> Submit </button>
+                        <p id="errMsg"></p>
+
+                        <!--</form>-->
+                    </div>
+
+
+                    <legend> PAN Details</legend>
+                    <input class="form-control PANnumber" type="text" id="panName" placeholder="Name" name="panName">
+
+                    <input class="form-control PANnumber" type="text" id="address" placeholder="Address" name="address">
+                    <input class="form-control PANnumber" type="text" id="panDOB" placeholder="Date of Birth" name="panDOB">
+                    <input class="form-control PANnumber" type="text" id="accountNumber" placeholder="Account Number" name="accountNumber">
+
+                    <input class="form-control PANnumber" type="text" id="ifscCode" placeholder="IFSC Code" name="ifscCode">
+
+                    <!--    <form action="/InsertOrders" method="post">	
+                    <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:2%;width:5.5em;display:none;" id="bseInvest"  type="submit">Proceed </button> 
+            </form>	
+            -->
+                    <button class="btn btn-lg moodNav  pricing RP1 pull-right submit btn-Next-Pan-Modal" style="margin-top:2%;width:5.5em; display: none" data-toggle="modal"data-target="#uploadModal" data-dismiss="modal">Next </button><div class="clearfix"></div>
+
+                </div>
             </div>
-                
-      </div>
+        </div>
     </div>
-  </div>
-		
-		
-				  <div class="modal fade" id="signUpModalScheme" role="dialog">
-    <div class="modal-dialog modal-sm">
-          <!-- Modal content-->
-      <div class="modal-content">
-                
-            <div class="modal-body">
-         
-                <form class="form-horizontal" action="/signup" method="post">
-                           <h2>Sign Up</h2>
-						   <hr>
-					<input type="hidden" id="amountMaster" name="amountMaster" value="">
-						   <input type="hidden" id="askScheme" name="askScheme" value="true">
-					<input type="hidden" id="setGoal" name="setGoal" value="">
-					<input type="hidden" id="getMoodG" name="getMoodG" value="">
-					<input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-							
-                       <input type="number" class="form-control" id="mnumber" name="mnumber" placeholder="Mobile Number">
-						   
-							<input type="email" class="form-control" id="email" name="email" placeholder="Email">
-					
-                          <input type="text" class="form-control" id="username" name="username" placeholder="Name">
-					
-							<input type="password" class="form-control" name="password" id="password" placeholder="Password">
-					
-                            <button type="submit" class="btn btn-lg login"> Submit </button> 
-                          
-              </form>
-                            <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')" >Sign through Facebook</button>
-                            <button type="button" class="btn btn-lg google" onclick="auth('google')" >Sign through Google+</button>
-                             <p><em>By clicking Sign Up you agree to the <a href="#">terms and conditions</a></em></p>   
-                            
-                    <% if (smessage.length > 0) { %>
-<div class="alert alert-danger"><%= smessage %></div>
-<% } %> 
-            </div>
-                
-      </div>
-    </div>
-  </div>
-	<%}%>
-	
-	
-	  <div class="modal fade" id="myPanModal" role="dialog">
-              <div class="modal-dialog modal-sm" style="     width: 512px;
-    margin-left: 36em;">
-                 <!-- Modal content-->
-                  <div class="modal-content PAN">
-                        <div class="modal-body "  style="">
-                            <h2 class="PANHead">Enter PAN</h2>
-                              <div class="dotHr ">
-                            <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                            <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                               
-                                <div></div>
-                                 <div></div>
-                               
-                            </div>
-						<% if (panMessage.length > 0) { var myObj = JSON.parse(panMessage);%>
-<div class="bg-success">
-	<p>PAN No:- <%= myObj.pan %></p>
-	<p>Name:- <%= myObj.name %></p>
-	<p>Status:- <%= myObj.msg %></p>
-							</div>
-<% }else { %>	
-							
-                            <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" action="/GoalSelection" method="post">
-                                     
-						
-                            <input  class="form-control PANnumber" placeholder="PAN number" type="text" id="pan" name="pan" maxlength="10">
-                            <div class="dotHr" >
-                            <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"   type="submit"> Submit </button> 
-								<p id="errMsg"></p>
-								                          
+
+    <!--Upload Docs Window-->
+    <div class="modal fade" id="uploadModal" role="dialog">
+        <div class="modal-dialog modal-sm" >
+            <!-- Modal content-->
+            <div class="modal-content PAN">
+                <div class="modal-body " style="">
+                    <h2 class="PANHead">PAN Upload Files</h2>
+
+
+                    <form action="#" method="post">
+
+                        <div class="DOCUMENTS">
+
+                            <label class="control-label" style="" title="">Address Proof</label>
+                            <input type="file" name="doc" id="file" class="inputfile" multiple />
+
+                            <!--  <label for="file" style="font-size:1em;">Choose a file</label>-->
+                            <!-- <button class="captureButton pull-right">Capture</button>-->
                             <br/>
-                                <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                         <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                
-                               
-                               
-                                
-                            
-                            </div>
-   </form>  
-							<%} %>
+                            <label class="control-label" style="" title="">ID Proof</label>
+                            <input type="file" name="doc" id="file" class="inputfile" />
+
+                            <!--<label for="file" style="font-size:1em;">Choose a file</label>-->
+                            <!-- <button class="captureButton pull-right">Capture</button>-->
+                            <br/>
+                            <label class="control-label" style="" title="">Signature Proof</label>
+                            <input type="file" name="doc" id="file" class="inputfile" />
+
+                            <!-- <label for="file" style="font-size:1em;">Choose a file</label>-->
+                            <!--<button class="captureButton pull-right">Capture</button>-->
+                            <br/>
+                            <label class="control-label" style="" title="">KYC Video</label>
+                            <input type="file" name="doc" id="file" class="inputfile" />
+
+                            <!-- <label for="file" style="font-size:1em;">Choose a file</label>-->
+                            <!--  <button class="captureButton pull-right">Capture</button>-->
+                            <br/>
+                            <label class="control-label" style="" title="">NACH</label>
+                            <input type="file" name="doc" id="file" class="inputfile" />
+
+                            <!--<label for="file" style="font-size:1em;">Choose a file</label>-->
+                            <!-- <button class="captureButton pull-right">Capture</button>-->
+                            <br/>
                         </div>
-                  </div>
-             </div>
-          </div>
+
+
+                    </form>
+
+                    <form action="/InsertOrders" method="post">
+                        <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:2%;width:5.5em;display:none;" id="bseInvest" type="submit">Proceed </button><div class="clearfix"></div>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 	
+
+	
+
 <!--    <section id="section1">-->
         
  
-     <div class="container-fluid moods text-center" style="    height: initial;">
+     <div class="container-fluid moods text-center pageGoalSelection" style="    height: initial;">
           
            
         <div class="container" style=" ">
@@ -217,87 +142,66 @@
                  
              <div class="col-md-4">
                  
-                 
-                 <div class="row slider" style="padding-top:25%;">
-            
-            
-                     <div class="photos">
-                         
-                          
-                         
-                    <div class="photosInner">
-                     
-                        <img class="change" id="Broke" src="images/smallBroke.png" alt="Home view" >
-                     
-                      <img class="change" id="Loved" src="images/smallLoved.png" alt="Home view" >
-                     
-                      <img class="change" id="Nerdy" src="images/smallNerdy.png" alt="Home view" >
-                     
-                     <img class="change" id="Responsible" src="images/smallResponsible.png" alt="Home view" >
-                     
-                      <img class="change" id="Rich" src="images/smallRich.png" alt="Home view" >
-                     
-                      <img class="change" id="Social" src="images/smallSocial.png" alt="Home view" >
-                     
-                     </div> 
-                         
-                 
-                     </div>
-                     <div class="slider-control">
-                         <img class="left" src="images/leftArrow.png" alt="Home view" >
-                        <img class="right" src="images/rightArrow.png" alt="Home view" >  
-                        
-                     </div>
-                          
-                    
-                 </div>
-                 
-                 
+                <div class="row rowIndexSlider">
+                    <div class="slider">
+                        <div class="photos">
+                            <div class="photosInner">
+                                <img class="change" id="Broke" src="images/smallBroke.png" alt="Home view">
+                                <img class="change" id="Loved" src="images/smallLoved.png" alt="Home view">
+                                <img class="change" id="Nerdy" src="images/smallNerdy.png" alt="Home view">
+                                <img class="change" id="Responsible" src="images/smallResponsible.png" alt="Home view">
+                                <img class="change" id="Rich" src="images/smallRICH.png" alt="Home view">
+                                <img class="change" id="Social" src="images/smallSocial.png" alt="Home view">
+                            </div>
+                        </div>
+                        <div class="slider-control">
+                            <img class="left" src="images/leftArrow.png" alt="Home view">
+                            <img class="right" src="images/rightArrow.png" alt="Home view">
+                        </div>
+                    </div>
+                </div>
             </div>
                 
                    <div class="col-xs-12 ">
                  
                   
                   
-                       <div class="contentMood" style="    border-bottom: 2px #35BFD3 dotted;">
-                           <p id="Indicator" style="margin-top:30%;">Goal Selection >
+                       <div class="contentMood">
+                           <p id="Indicator" style="margin: 30px -10px 23px;">Goal Selection >
 						   
 						   <span id="goalSelected"></span>
 							<span id="rpText">> Risk Profiling ></span>	
 							<span id="riskSelected"></span>
 							 <span id="yp">> Your Plan</span>
 						   </p>
-                         <% if(!scheme) { if(!abcd) {%>  
+                         
                            <div class="page1">
                         <h2>Please select your goal</h2>
                        <p>You can always add or change a goal after you have signed up</p>
                        
-              <div class="col-sm-12 ">
-				  <div class="below">
-                      <div class="goal" id="" >
-                        <img src="images/goals/Rich/Crorepati.png" mood="Rich" alt="Home view"   >
-                        <p id="mood"><span></span>Crorepati</p>
-                      </div>
+                    <div class="col-sm-12 ">
+                        <div class="row">
+                            <div class="below">
+                                <div class="goal" id="">
+                                    <img src="images/goals/Rich/Crorepati.png" mood="Rich" alt="Home view">
+                                    <p id="mood"><span></span>Crorepati</p>
+                                </div>
 
-                                        
-                     <div class="goal" id="" > 
-                        <img src="images/goals/Rich/Fancy%20Car.png" mood="Rich" alt="Home view">
-                        <p id="mood"><span></span>Fancy Car</p>
-                    </div>
-                
-                    <div class="goal" id="" >
-                        <img src="images/goals/Rich/Double%20the%20money.png" mood="Rich" alt="Home view" >
-                        <p id="mood"><span></span>Double the money</p>
-                    </div>
-                 
-                </div>  
-                         <div class="worksBtn" style="    margin-top: 12%;">
-           
-                <button type="" class="btn btn-lg moodNav next" style="    position: relative;
-    top: -1em;"> Next </button> 
-               
-            </div>  
-                           </div>              
+                                <div class="goal" id="">
+                                    <img src="images/goals/Rich/Fancy%20Car.png" mood="Rich" alt="Home view">
+                                    <p id="mood"><span></span>Fancy Car</p>
+                                </div>
+
+                                <div class="goal" id="">
+                                    <img src="images/goals/Rich/Double%20the%20money.png" mood="Rich" alt="Home view">
+                                    <p id="mood"><span></span>Double the money</p>
+                                </div>
+                            </div>
+                            <div class="btn-hr-wrapper clean" style="margin-top: 30px">
+                                <button type="" class="btn btn-lg moodNav next"> Next </button> 
+                            </div>  
+                        </div>
+                    </div>              
             
                       
         </div>
@@ -309,95 +213,82 @@
                                <div id="" class="page2">
 <!--                        <h2>Education</h2>-->
 								   <br />
-                       <p>I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" type="number" max="7" value=""/>in<input class="blankInput" placeholder="" type="number" id="time" max="99" value=""/> (Years)</p>
-                                   
-                                   <div class="buttonSetUp">
-                    <div class="login-btn" style="top:90%;">
-                                 
-                <button type="button" id="go" class="btn btn-lg moodNav go" onclick="setProfile(0,1);" > Go </button> 
-               
-                    <button type="" class="btn btn-lg moodNav next page3Sub" > Next </button>     
-            </div>
-                          </div>         
-                      <br>             
-                                   
-                   <div class="page3" style="    margin-top: 12%;">
-                                   <p>So, you need to invest INR <span id="invest"></span> Monthly</p>
-                       <div class="row">
-                           <div  class="col-12-sm">
+                    <p class="row">I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" type="number" max="7" value=""/>in<input class="blankInput" placeholder="" type="number" id="time" max="99" value=""/> (Years)</p>
+                    <p class="page2VldMsg" style="color: red; display: none;">Monthly Inevstment should be minimum INR 1000</p>
+                    <p class="page2VldMsg2" style="color: red; display: none;">Please Select years between 1 t0 50</p>
+                    <div class="buttonSetUp">
+                        <div class="login-btn" style="top:90%;">
+                            <button type="button" id="go" class="btn btn-lg moodNav go" style="display: inline-block" > Go </button> 
+                            <button type="" class="btn btn-lg moodNav next page3Sub" > Next </button>     
+                        </div>
+                    </div>         
+        <!-- Tab 3 -->
+        <div class="page3" style="    margin-top: 12%;">
+            <p>So, you need to invest INR <span id="invest"></span> Monthly</p>
+                <div class="row">
+                    <div  class="col-12-sm">
                            
                            <!--table Equity-->
                         <table class="table">
-                                 
-                             <thead>
-                                     <tr>
-                                      <th colspan="2">Equity</th>
-                                     
-                                     </tr>
-                                </thead>
-                                 <tbody>
-                                     <tr>
-                                        
-                                         <td>Allocation percent</td>
-                                      <td style="border-right: none;">Amount (&#x20B9;)</td>
-                                        </tr>
-                                        <tr>
-                                          <td id="eqPer">25%</td>
-                                          <td id="eqAmt" style="border-right: none;">NA</td>
-                                        </tr>
-                                 </tbody>
-                          </table>
-                           
-                           <!--table Hybrid-->
-                           <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Hybrid</th>
-                                    
-                                    </tr>
-                                </thead>
-                               <tbody>
-                                   <tr>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Equity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
                                     <td>Allocation percent</td>
-                                        <td style="border-right: none;">Amount (&#x20B9;)</td>
-                                   </tr>
-                                    <tr>
-                                        <td id="hybPer">10% </td>
-                                        <td id="hybAmt" style="border-right: none;">NA</td>
-                                    </tr>
-                               </tbody>
-                               </table>
-                           
-                           <!--table Dept-->
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2">Dept</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                        <td>Allocation percent</td>
-                                            <td style="border-right: none;">Amount (&#x20B9;)</td></tr>
-                                        <tr>
-                                            <td id="debPer">65%</td>
-                                            <td id="debAmt" style="border-right: none;">NA</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                               
-                               <br/>
-                               <br/>
-                               <br/>
-                               <br/>
-                               </div>
-                       </div>    
-					    <p style="text-align: center;">* Risk Profile - Conservative</p>    
-                                   </div>                
-                
-                              
-                       </div>
+                                    <td style="border-right: none;">Amount (&#x20B9;)</td>
+                                </tr>
+                                <tr>
+                                    <td id="eqPer">25%</td>
+                                    <td id="eqAmt" style="border-right: none;">NA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--table Hybrid-->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Hybrid</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Allocation percent</td>
+                                    <td style="border-right: none;">Amount (&#x20B9;)</td>
+                                </tr>
+                                <tr>
+                                    <td id="hybPer">10% </td>
+                                    <td id="hybAmt" style="border-right: none;">NA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!--table Debt-->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Debt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Allocation percent</td>
+                                    <td style="border-right: none;">Amount (&#x20B9;)</td>
+                                </tr>
+                                <tr>
+                                    <td id="debPer">65%</td>
+                                    <td id="debAmt" style="border-right: none;">NA</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>    
+				<p style="text-align: right;">* Risk Profile - Conservative</p>    
+            </div>                
+        </div>
                            
                            <div id="" class="page4">
                                    <p id="invest">You need to invest INR <span id="invest2"></span> monthly in Conservative mode.</p>
@@ -410,7 +301,7 @@
                                <div class="selectMode">
                                              
                    <a href="#" class="tooltips"> 
-                  <button id="Conservative" type="" class="btn btn-lg moodNav" profile="c"  > Conservative </button> 
+                  <button id="Conservative" type="" class="btn btn-lg moodNav" profile="c" onclick="setProfile(0,2,1)"  > Conservative </button> 
 					         <br>  
                        <div id="c">
          <br>
@@ -421,7 +312,7 @@
 												  </a>
                      <br/>
                               <a href="#" class="tooltips">                     
-							<button id="Moderate" type="" class="btn btn-lg moodNav"  profile="m"  > Moderate </button>  <br>  
+							<button id="Moderate" type="" class="btn btn-lg moodNav"  profile="m" onclick="setProfile(1,2,1)" > Moderate </button>  <br>  
 								  <div id="m">
          <br>
         I am an average risk taker. When I hear the word Risk, I think of the uncertainty it represents.
@@ -431,7 +322,7 @@
             <br/>
                                             
                            <a href="#" class="tooltips">                        
-							<button id="Aggressive" type="" class="btn btn-lg moodNav" profile="a" onclick="setProfile(2,2)" > Aggressive </button>  <br>  
+							<button id="Aggressive" type="" class="btn btn-lg moodNav" profile="a" onclick="setProfile(2,2,1)" > Aggressive </button>  <br>  
 							    <div id="a">
          <br>
        I am a high risk taker. When I hear the word Risk, I think of the opportunity it represents.
@@ -471,9 +362,9 @@
                 
            
 <div class="riskProfiling">
-     <p id="mood">  <input type="Radio" id="Q1" name="Q1" value="0"  checked>Low risk taker</p>
-    <p id="mood"><input type="Radio" id="Q1" name="Q1" value="1" >Average risk taker</p>
-    <p id="mood"> <input type="Radio" id="Q1" name="Q1"  value="2">High risk taker</p>
+     <label id="mood">  <input type="Radio" id="Q1" name="Q1" value="0"  checked>Low risk taker</label>
+    <label id="mood"><input type="Radio" id="Q1" name="Q1" value="1" >Average risk taker</label>
+    <label id="mood"> <input type="Radio" id="Q1" name="Q1"  value="2">High risk taker</label>
 </div>
                     </div>
                             
@@ -483,9 +374,9 @@
                 
        
 <div class="riskProfiling">
-     <p id="mood"> <input type="Radio" id="Q2" name="Q2"  value="0" checked>Danger</p>
-    <p id="mood"><input type="Radio" id="Q2" name="Q2"  value="1" >Uncertainty</p>
-    <p id="mood"> <input type="Radio" id="Q2"  name="Q2" value="2">Opportunity</p>
+     <label id="mood"> <input type="Radio" id="Q2" name="Q2"  value="0" checked>Danger</label>
+    <label id="mood"><input type="Radio" id="Q2" name="Q2"  value="1" >Uncertainty</label>
+    <label id="mood"> <input type="Radio" id="Q2"  name="Q2" value="2">Opportunity</label>
 </div>
                 
                 </div>
@@ -496,22 +387,22 @@
                 
            
 <div class="riskProfiling">
-     <p id="mood"> <input type="Radio" id="Q3" name="Q3" value="0" checked>Always the possible losses</p>
-    <p id="mood"><input type="Radio" id="Q3" name="Q3"  value="1" >Usually the possible losses</p>
-    <p id="mood"> <input type="Radio" id="Q3" name="Q3"  value="2">Always the possible gains</p>
+     <label id="mood"> <input type="Radio" id="Q3" name="Q3" value="0" checked>Always the possible losses</label>
+    <label id="mood"><input type="Radio" id="Q3" name="Q3"  value="1" >Usually the possible losses</label>
+    <label id="mood"> <input type="Radio" id="Q3" name="Q3"  value="2">Always the possible gains</label>
 </div>
                 
                                                              
                </div>
                   <div class="item">
-              <label for="Q4"><p class="circleRisk">4</p>4.Think of the average return you would expect to earn on an investment portfolio over a fixed deposit the next ten years.</label>
+              <label for="Q4"><p class="circleRisk">4</p>Think of the average return you would expect to earn on an investment portfolio over a fixed deposit the next ten years.</label>
                  
                 
              
 <div class="riskProfiling">
-     <p id="mood"><input type="Radio" id="Q4" name="Q4" value="0" checked>About the same rate as from bank fixed deposits</p>
-    <p id="mood"><input type="Radio" id="Q4" name="Q4"  value="1" >About one and half time the rate from bank fixed deposits</p>
-    <p id="mood"><input type="Radio" id="Q4" name="Q4"  value="2">About twice the rate from bank fixed deposits</p>
+     <label id="mood"><input type="Radio" id="Q4" name="Q4" value="0" checked>About the same rate as from bank fixed deposits</label>
+    <label id="mood"><input type="Radio" id="Q4" name="Q4"  value="1" >About one and half time the rate from bank fixed deposits</label>
+    <label id="mood"><input type="Radio" id="Q4" name="Q4"  value="2">About twice the rate from bank fixed deposits</label>
 </div>
                 
                      </div>
@@ -522,9 +413,9 @@
                 
             
 <div class="riskProfiling">
-     <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="0" checked>I would have a concern with any sort of loss</p>
-    <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="1" >I'd get concerned if the loss was greater than 10%</p>
-    <p id="mood"><input type="Radio" id="Q5" name="Q5"  value="2">I wouldn't worry about losses in that time frame</p>
+     <label id="mood"><input type="Radio" id="Q5" name="Q5"  value="0" checked>I would have a concern with any sort of loss</label>
+    <label id="mood"><input type="Radio" id="Q5" name="Q5"  value="1" >I'd get concerned if the loss was greater than 10%</label>
+    <label id="mood"><input type="Radio" id="Q5" name="Q5"  value="2">I wouldn't worry about losses in that time frame</label>
 </div>  
                        </div>
                  
@@ -538,107 +429,26 @@
                                
                                
                                    </div>       
-<!--
-                            <a class="left  " href="#myCarousel" role="button" data-slide="prev" style="    position: fixed;
-    left: 5%;
-    top: auto;">
-      <img src="images/left.png">
 
-    <span class="sr-only">Previous</span>
-  </a>
--->
   <a class="right  "style=" position: relative;
     top: initial;" href="#myCarousel" role="button" data-slide="next">
 <!--    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
             <img src="images/Right.png" style="width: 5%;
     height: 15%;">
     <span class="sr-only">Next</span>
-  </a> 
-                      
-                                                                        
-            <div class="worksBtn" >
+  </a>   <a class="left  "style=" position: relative;
+    top: initial;" href="#myCarousel" role="button" data-slide="previous">
+<!--    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+            <img src="images/left.png" style="width: 5%;
+    height: 15%;">
+    <span class="sr-only">Next</span>
+  </a>
             
             <div class="login-btn text-center page-buttons">
                                  
-                <button type="" class="btn btn-lg moodNav done " onclick="myScore();" style="position:relative;top:-1em;"> Done </button>
+                <button type="" class="btn btn-lg moodNav done " onclick="myScore();" style= "float: none; margin-top: -45px"> Done </button>
             </div>
-            
-         
-
-        <!--               <div class="login-btn text-center page-buttons">
-                          <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-<div></div> 
-<div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                              <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                                         <div></div>
-            
-               
-            </div>
--->
-        </div>
+        
                            
                            
                            </div> 
@@ -698,7 +508,7 @@
 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th colspan="2" style="border-right: none;">Dept</th>
+                                            <th colspan="2" style="border-right: none;">Debt</th>
                                             
                                         </tr>
                                     </thead>
@@ -711,1049 +521,1081 @@
                                             <td id="debAmt1" style="border-right: none;">NA</td>
                                         </tr>
                                     </tbody>
-                                </table>
-													   
-<br/>
-                                                       <br/>
-                                                       <br/>
-                                                       <br/>
-													   
+                                </table><br/>			   
                        </div>
-                           <div class="dotHr"> 
-                               <div class="login-btn">
-                        <% if(loggedIn && !scheme && paid){ %>
-	<form action="/GoalSelection" method="post">
-		<input type="hidden" id="amountMaster" name="amountMaster" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-		<input type="text" id="storeData" name="storeData" value="true" hidden>
-			<input type="hidden" id="setGoal" name="setGoal" value="">
-		<input type="hidden" id="getMoodG" name="getMoodG" value="">
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-							    <button type="submit" class="btn btn-lg moodNav signUp"> Next </button> 
-								   </form>
-<%  } else if(loggedIn && !scheme && !paid) { %>
-								   	  	<form action="/GoalSelection" method="post">
-											<input type="hidden" id="amountMaster" name="amountMaster" value="">
-											<input type="text" id="storeData" name="storeData" value="true" hidden>
-												<input type="hidden" id="setGoal" name="setGoal" value="">
-											<input type="hidden" id="getMoodG" name="getMoodG" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-									   <button type="submit"  class="btn btn-lg moodNav signUp">Pay </button>
-											 </form>
-								<%  } else { %>
-								   
-								 
-								   
-									   <button type="" data-toggle="modal" data-target="#loginModalScheme" class="btn btn-lg moodNav signUp" > login </button> 
-								  <% } %>
-                
-                           </div>
-                               
-                            <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-							   
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                 
-                            </div>
+							     
+							
+                  <div class="btn-hr-wrapper clean showDataSchemes">
+                                    <% if(loggedIn && paid){ %>
+                                        <button type="submit" class="btn btn-lg moodNav signUp" id="schemeNext"> Next </button>
+                                    <%  } else if(loggedIn && !paid) { %>
+                                        <form action="/Pricing" method="get">
+                                            <button type="submit" class="btn btn-lg moodNav signUp">Pay </button>
+                                        </form>
+                                    <%  } else { %>
+                                        <button type="" data-toggle="modal" data-target="#loginModal" class="btn btn-lg moodNav signUp"> login </button>
+                                    <% } %>
+                                <div class="clearfix"></div></div>
                            </div>
 								
-								   <% }else {%>
-	
-	   <div  class="page6">
-                            <h2>Your Plan</h2>
-<p>So, you need to invest INR <span id="invest1"><%=assetFromDb.sip %></span> Monthly</p>
-                            
-                                                   <div class="table-responsive">
-                        <table class="table">
-    <thead>
-      <tr>
-  		
-        <th>Category</th>
-        <th>Allocation %</th>
-        <th>Amount (&#x20B9;)</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr>
-  
-        <td>Equity</td>
-            <td id="">20%</td>
-            <td id=""><%=assetFromDb.amt1 %></td>
-      </tr>
-      <tr>
-  
-       <td>Hybrid</td>
-            <td id="">10% </td>
-           <td id=""><%=assetFromDb.amt2 %></td>
-      </tr>
-      <tr>
-
-         <td>Debt</td>
-            <td id="">65%</td>
-              <td id=""><%=assetFromDb.amt3 %></td>
-      </tr>
-
-    </tbody>
-  </table>
-													   
-
-													   
-                       </div>
-                        <% if(loggedIn && !scheme && paid){ %>
-	<form action="/GoalSelection" method="post">
-		<input type="hidden" id="amountMaster" name="amountMaster" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-			<input type="hidden" id="setGoal" name="setGoal" value="">
-			<input type="text" id="storeData" name="storeData" value="true" hidden>
-		<input type="hidden" id="getMoodG" name="getMoodG" value="">
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-							    <button type="submit" class="btn btn-lg moodNav signUp"> Next </button> 
-								   </form>
-<%  } else if(loggedIn && !scheme && !paid) { %>
-								   	  	<form action="/GoalSelection" method="post">
-											<input type="hidden" id="amountMaster" name="amountMaster" value="">
-											<input type="text" id="storeData" name="storeData" value="true" hidden>
-												<input type="hidden" id="setGoal" name="setGoal" value="">
-											<input type="hidden" id="getMoodG" name="getMoodG" value="">
-								   <input type="text" id="amnt1" name="amnt1" value="" hidden>
-            <input type="text" id="amnt2" name="amnt2" value="" hidden>
-            <input type="text" id="amnt3" name="amnt3" value="" hidden>
-			<input type="text" id="riskp" name="riskp" value="" hidden>
-								   <input type="text" id="sip" name="sip" value="" hidden>
-								   <input type="text" id="year" name="year" value="" hidden>
-                                   <div class="btn-hr-wrapper">
-									   <button type="submit"  class="btn btn-lg moodNav signUp">Pay </button>
-                                       </div>
-											 </form>
-								<%  } else { %>
-								   
-								 
-								   
-									   <div class="btn-hr-wrapper">
-                                       <button type="" data-toggle="modal" data-target="#loginModalScheme" class="btn btn-lg moodNav signUp" > login </button> 
-                                       </div>
-								  <% } %>
-                           </div>
-                               
-<!--
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                                         <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-							   
-                                         <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                                         <div></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                                         <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                            <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div id="moodPagination"></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                 
-                            </div>
--->
-                           </div>
-<%} } else { %>
-								 <p id="IndicatorNew">Goal Selection >
-						   
-						   <span id="goalSelected"><%=assetFromDb.goal %></span>
-							<span id="">> Risk Profiling ></span>	
-							<span id=""><%=assetFromDb.risk_profile %></span>
-							 <span id="">> Your Plan</span>
-						   </p>
-					
-                        <div id="" class="page6">
-                            <!--<h2>Your Plan</h2>-->
-	<div class="btn-hr-wrapper">
-                        <button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg go" style=""> Invest </button> </div>
-								   <form action="/GoalSelectionRefresh" method="get">
-									   <input type="text" id="restart" name="restart" value="true" hidden>
-								       <!--<button type="submit" class="btn btn-lg moodNav go" style="    width: initial;
-"> Start Fresh </button> -->
-									   </form>
-				
-                
-                           
-							<br />
-<p>So, you need to invest INR <span id="invest1"><%=assetFromDb.sip %></span> Monthly</p>
-                            
-                                                   <div class="table-responsive">
-                       
- <table class="table">
-        <tr  >
-        
-        <thead>
-             <tr>
-                                      <th class="thead1" colspan="2">Scheme Name</th>
-                                     
-                                     </tr></thead>
-            
-             <tbody>
-                                     <tr>
-                                        
-                                         <td>
-                                         Category</td>
-                                      <td style="border-right: none;">Amount (&#x20B9;)</td>
-                                        </tr>
-                                        <tr>
-                                          <td >50%</td>
-                                          <td  style="border-right: none;">20000</td>
-                                        </tr>
-                                 </tbody>
-           
-
-
-         <% if(firslist){firslist.forEach( function( firslist ){ %>
-	<%var amtamount1=0,amtmd4=0%>
-             <%if((firslist.risk_profile)=="Aggressive"){ %>
-	 
-                <tr>
-                   
-                    <td><%= firslist.scheme_name %></td>
-                    <td><%= firslist.category %></td>
-   
-                   
-                <td>
- 
-                    <%if((firslist.category)=="Equity"){ %>
-<%var amtamount2=0;%>
-					<%if((firslist.rating)>=1){%>
-                    
-<%amtrounded1=Math.floor((amtre)/1000)*1000;%>
-<%amtamount1=amtre-amtrounded1;%>
-<%amtamount2+=amtamount1;%>  
-
-<%amtmd4=amtre+amtamount1;%>
-<%amtae2=Math.round(amtmd4/1000)*1000;%>
-                    
-                    <%if((firslist.rating)>1){%>
-                            <%=amtrounded1%>
-                        <%}%>
-                    <%if((firslist.rating)==1){ %>
-                        <%=amtae2%>
+    <!--Tab 6-->
+    <% if(paid) {%>
+	<div  class="page6" style="display: none">
+        <button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" id="initInvest" style="top: 0;left: 0;margin: 25px auto;"> Invest </button>
+        <p>So, you need to invest INR <span id="invest1"><%=assetFromDb.sip %></span> Monthly</p>   
+        <div class="row">
+            <div class="col-12-sm table-wrapper">
+                <!--table Equity-->
+                <% for(i=0;i<asetDataDetail.length;i++) {%>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">
+                                    <%=schemeData[i].allocationdescription %>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Allocation Category</td>
+                                <td style="border-right: none;">Amount (&#x20B9;)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <%=schemeData[i].allocationcategory %>
+                                </td>
+                                <td style="border-right: none;">
+                                    <%=schemeData[i].allocationamount %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <br />
                     <%}%>
-
-                        
-                   <%}%>
-                    <%if((firslist.rating)==0){%>
-                            <%=amtre%>
-                        <%}%>
-
-<%}%>
-                    <%var amtamount1=0,amtmd4=0%>
-                    <%if((firslist.category)=="Hybrid"){ %>
-                       <%var amtamount2=0;%>     
-                          <%amtrounded1=Math.floor((amtrh)/1000)*1000;%>
-                            <%amtamount1=amtrh-amtrounded1;%>
-                            <%amtamount1+=amtamount1;%>
-                                
-                                <%amtmd4=amtrh+amtamount1;%>
-                              <%amt7=Math.round(amtmd4/1000)*1000;%>      
-                        <%if((firslist.rating)>=1){%>
-                            <%if((firslist.rating)>1){%>
-                           
-                            <%=amtrounded1%>
-                            <%}%>
-                            
-                                <%if((firslist.rating)==1){ %>
-                              
-                            <%=amt7%>
-                            <%}%>
-                    <%}%>
-                            <%if((firslist.rating)==0){%>
-                            <%=amtrh%>
-                            <%}%>
-
-
-
-                   <%}%>
-<%var amtamount1=0,amtmd4=0%>
-                <%if((firslist.category)=="Debt"){ %>
-<%var amtamount2=0;%>
-                <%amtrounded1=Math.floor((amtrd)/1000)*1000;%>
-                  <%amtamount1=amtrd-amtrounded1;%>
-                  <%amtamount1+=amtamount1;%>
-                    <%amtmd4=amtrd+amtamount1;%>
-                    <%amt8=Math.round(amtmd4/1000)*1000;%>
-                    <%if((firslist.rating)>=1){%>
-                  <%if((firslist.rating)>1){%>
-                
-                  <%=amtrounded1%>
-                  <%}%>
-                  <%if((firslist.rating)==1){ %>
-                    
-                  <%=amt8%>
-                  <%}%>
-                    <%}%>                    
-                  <%if((firslist.rating)==0){%>
-                    
-                  <%=amtrd%>
-                  <%}%>
-
-                   <%}%>
-					
-                    </td>
-	 
-	 
-
-	 
-	 
-                   <% } else{ %>
-
-                <tr>
-                   
-                    <td><%= firslist.scheme_name %></td>
-                    <td><%= firslist.category %></td>
-                
-                  
-                <td>
- 
-                    <%if((firslist.category)=="Equity"){ %>
-
-
-
-                        <%if((firslist.rating)>1){%>
-                        <%amtrounded1=Math.floor((amtre)/1000)*1000;%>
-                       
-                        <%=amtrounded1%>
-                        <%}%>
-                        <%if((firslist.rating)==1){ %>
-                          <%amtme1=Math.round(amtre/1000)*1000;%>
-                        <%=amtme1%>
-                        <%}%>
-                        <%if((firslist.rating)==0){%>
-                        <%=amtre%>
-                        <%}%>
-
-
-                   <%}%>
-                   <%var amtamount1=0,amtmd4=0%>
-                    <%if((firslist.category)=="Hybrid"){ %>
-
-                            <%if((firslist.rating)>1){%>
-                            <%amtrounded1=Math.floor((amtrh)/1000)*1000;%>
-                            <%=amtrounded1%>
-                            <%}%>
-                            <%if((firslist.rating)==1){ %>
-                            
-                              <%amtme1=Math.round(amtrh/1000)*1000;%>
-                            <%=amtme1%>
-                            <%}%>
-                            <%if((firslist.rating)==0){%>
-                            <%=amtrh%>
-                            <%}%>
-
-
-                   <%}%>
-					<%var amtamount1=0,amtmd4=0%>
-                <%if((firslist.category)=="Debt"){ %>
-
-                  <%if((firslist.rating)>1){
-                  amtrounded1=Math.floor((amtrd)/1000)*1000;%>
-                
-
-                  <%=amtrounded1%>
-                  <%}%>
-                  <%if((firslist.rating)==1){ %>
-                    <%amtme4=Math.round(amtrd/1000)*1000;%>
-                  <%=amtme4%>
-                  <%}%>
-                  <%if((firslist.rating)==0){%>
-                  <%=amtrd%>
-                  <%}%>
-
-
-
-
-                   <%}%>
-					
-                    </td>
-                </tr>
-          
-<%}%>
-	 
-	
-	 
-	 
-         <% }); } %>
-              </table>
-													   
-
-													   
-                       </div>
-                          
-                           </div>
-						<!--	<br >
-                       <p id="btm" style="left: 0px;">If you wish to speak to us,call us on xxxxxxxxxx</p> -->
-                     <%}%>  
-                       
-                        
             </div>
-             </div>
-   
-            </div>
-         </div>
-        
-         
-             
         </div>
+    </div>
+
+
+<!--Tab 7-->
+<div class="page7" style="display: none">
+    <p>So, you need to invest INR <span id="invest1"></span> Monthly</p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+
+                    <th colspan="2" style="border-right: none;">Equity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>Allocation percent</td>
+                    <td style="border-right: none;">Amount (&#x20B9;)</td>
+                </tr>
+
+                <tr>
+
+
+                    <td id="eqPer1">25%</td>
+                    <td id="eqAmt1" style="border-right: none;">NA</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-right: none;">Hybrid</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Allocation percent</td>
+                    <td style="border-right: none;">Amount (&#x20B9;)</td>
+                </tr>
+                <tr>
+                    <td id="hybPer1">10% </td>
+                    <td id="hybAmt1" style="border-right: none;">NA</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" style="border-right: none;">Debt</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Allocation percent</td>
+                    <td style="border-right: none;">Amount (&#x20B9;)</td>
+                </tr>
+                <tr>
+                    <td id="debPer1">65%</td>
+                    <td id="debAmt1" style="border-right: none;">NA</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+    </div>
+    <div class="dotHr">
+        <div class="login-btn">
+            <% if(loggedIn && paid){ %>
+                <button type="submit" class="btn btn-lg moodNav signUp" id="schemeNext"> Next </button>
+                <%  } else if(loggedIn && !paid) { %>
+                    <form action="/Pricing" method="get">
+                        <button type="submit" class="btn btn-lg moodNav signUp">Pay </button>
+                    </form>
+                    <%  } else { %>
+                        <button type="" data-toggle="modal" data-target="#loginModal" class="btn btn-lg moodNav signUp"> login </button>
+                        <% } %>
+        </div>
+    </div>
+</div>
+<% } %>
+
+    </div>
+
+    </div>
+    </div>
+
+
+
+    </div>
 <!--    </section>-->
  
             </div>
 
-         <% include partials/footerMobile %>    
-<!--Custom Js links -->
-       <script>
+         <% include partials/footerMobile %>  
+
+    <!--Custom Js links -->
+    <script>
+        var goalNameFromControl;
+        function goalName(name) {
+            goalNameFromControl = name;
+            console.log(name);
+        }
+
+
+        var rp;
+        function showRiskProfile(riskProfile) {
+            rp = riskProfile;
+
+
+        }
+        var once = true;
+        var store = false;
+
+        function inserToBSE() {
+
+            var data = {};
+            data.pan = document.getElementById("pan").value;
+            console.log("pan" + data.pan);
+            //   alert(data.pan);
+
+            <% if(loggedIn) {%>
+                
+                $.ajax({
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    url: '/InsertOrders',
+                    success: function (data) {
+                        console.log('success');
+                        bseDisp = true;
+
+                        // console.log(JSON.stringify(data));
+                    }
+
+                })
+                <% }%>
+                
+            
+        }
+    
         
-		   
+        function checkPanStaus() {
+            if($('.panNumber').val().length == 10){
+                $('.panErr').slideUp();
+                $('.btn.pricing.RP1.submitPan').parent().html('<img src = "images/loader.gif" >');
+                var data = {};
+                data.pan = document.getElementById("pan").value;
+                console.log("pan" + data.pan);
+                //alert(data.pan);
 
-		   
-		   
-		   
-		 	var rp;
-    function showRiskProfile(riskProfile){
-		rp=riskProfile;
-	
-	
-	}
-	  
-		   function setForScheme(riskProfile, sip, amt1, amt2, amt3){
-			   
-			   var noOfYears = document.getElementById("time").value;
-			   
-			   /*console.log(riskProfile, sip, amt1, amt2, amt3);*/
-			 document.getElementById("riskp").value= riskProfile;
-			   document.getElementById("sip").value= sip;
-			   document.getElementById("amnt1").value=amt1;
-            document.getElementById("amnt2").value=amt2;
-            document.getElementById("amnt3").value=amt3;
-			document.getElementById("year").value=noOfYears; 
-			   
-		   }
-		   
-		   
-    function myinit(riskRate, chooseTable)
-        {
-			
-			var riskProfile=riskRate;
-			var t = chooseTable;
-            var rate=10;
-            var per=12;
-            var nper=document.getElementById("time").value*per;
-            var pv=0;
-            var fv=document.getElementById("amount").value;
-         	document.getElementById("amountMaster").value = fv;
-			
-            //if number of years is less then 3 year debt is 100
-             
-                var mn =   Math.round(pmt(10,12,nper,pv,-fv)/1000)*1000;
-         
-		
-			
-            document.getElementById("invest"+t).innerHTML= mn;
-			document.getElementById("invest2").innerHTML= mn;
- 
-            if(nper<25)
-             {
-                 
-                var eqP= 0;
-                var hybP =0;
-                var debtP=1;
-                
-                var eqMP=0;
-                var hybMP=0;
-                var debtMP=1;
-            
-                var eqAP=0;
-                var hybAP=0;
-                var debtAP=1;
-                 
-             }
-            
-            else if(nper>25 && mn<=2000)
-             {
-                 
-                var eqP= 0;
-                var hybP =1;
-                var debtP=0;
-                
-                var eqMP=0;
-                var hybMP=1;
-                var debtMP=0;
-            
-                var eqAP=0;
-                var hybAP=1;
-                var debtAP=0;
-                 
-             }
-            
-            else
-            {
-                 <% for (var i = 0; i < data.length; i++) {%>
-                /*Conservative*/
-                var eqP1=<%= data[0].asset_value %>;
-                var hybP1 =<%= data[1].asset_value %>;
-                var debtP1= <%= data[2].asset_value %>;
-				
-                var eqP=eqP1/100;
-                var hybP=hybP1/100;
-                var debtP=debtP1/100;
-				
-				/*Moderate*/
-                var eqMP1=<%= data[3].asset_value %>;
-                var hybMP1 =<%= data[4].asset_value %>;
-                var debtMP1= <%= data[5].asset_value %>;
-				
-                var eqMP=eqMP1/100;
-                var hybMP=hybMP1/100;
-                var debtMP=debtMP1/100;
-				
-				/*Aggressive*/
-                var eqAP1= <%= data[6].asset_value %>;
-                var hybAP1 =<%= data[7].asset_value %>;
-                var debtAP1= <%= data[8].asset_value %>;
-				
-                var eqAP=eqAP1/100;
-                var hybAP=hybAP1/100;
-                var debtAP=debtAP1/100;
-            
-                <% } %>
-            }
-            
-	
-            
-        if(riskProfile == "Conservative"){
-			
-			 var amt1= Math.round((eqP*mn)/1000)*1000;
-            var amt2= Math.round((hybP*mn)/1000)*1000;    
-            var amt3= Math.round((debtP*mn)/1000)*1000;
-            
-            var total= amt1+amt2+amt3;
-            
-				
-            
-    if(mn>total)
-                {
-                     var mean=mn-total;
-                     amt2=amt2+mean;
-                     var mean2=total+mean;
+                <% if(loggedIn) {%>
+                    
+                    $.ajax({
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        url: '/PANValidation',
+                        success: function (data) {
+                            // console.log('success');
+                            $("#myPanModal .loader").html('');
+                            var myObj = JSON.parse(data);
 
-                }
-            else if(total>mn)
-            {
-            
-                    var mean=total-mn;
-                     amt2=amt2-mean;
-                     var mean2=total-mean;
+                            //document.getElementById("responseData").style.display='none';
+                            document.getElementById("bseInvest").style.display = 'block';
+                            document.getElementById("pan").style.display = 'none';
+                            // document.getElementById("panCheck").style.display = 'none';
 
-            }
-            else{
-                mean2=total;
-            }
-            
-            document.getElementById("eqAmt"+t).innerHTML=amt1;
-            document.getElementById("hybAmt"+t).innerHTML=amt2;
-            document.getElementById("debAmt"+t).innerHTML=amt3;
-            
-            
-           
-            
-           
-            
-            var alloc1= Math.round((amt1/total)*100);
-            var alloc2=  Math.round((amt2/mean2)*100);
-            var alloc3=  Math.round((amt3/mean2)*100);
-            
-            
-              document.getElementById("eqPer"+t).innerHTML=alloc1+"%";
-            document.getElementById("hybPer"+t).innerHTML=alloc2+"%";
-            document.getElementById("debPer"+t).innerHTML=alloc3+"%";
-            
-            setForScheme(riskProfile, mn, amt1, amt2, amt3);
-			
-		} else if(riskProfile == "Moderate"){
-
-			
-			//Moderate calculations
-            
-         
-            
-             var amtM1= Math.round((eqMP*mn)/1000)*1000;
-            var amtM2= Math.round((hybMP*mn)/1000)*1000;
-            var amtM3= Math.round((debtMP*mn)/1000)*1000;
-            
-            var totalM= amtM1+amtM2+amtM3;
-         
-               if(mn>totalM)
-                {
-                     var mean=mn-totalM;
-                     amtM2=amtM2+mean;
-                     var mean3=totalM+mean;
-
-                }
-                else if(totalM>mn)
-                {
-
-                        var mean=totalM-mn;
-                         amtM2=amtM2-mean;
-                         var mean3=totalM-mean;
-
-                }
-
-            else
-            {
-                mean3=totalM;
+                            var displayMsg = "Hi " + myObj.name + " your PAN No. " + myObj.pan + " is " + myObj.msg;
+                            document.getElementById("data1").innerHTML = displayMsg;
+                            $('.btn-Next-Pan-Modal').css('display', 'block');
+                        }
+                    })
+                    <% }%>
+            } else {
+                $('.panErr').slideDown();
             }
 
-
-
-            
-              document.getElementById("eqAmt"+t).innerHTML=amtM1;
-            document.getElementById("hybAmt"+t).innerHTML=amtM2;
-            document.getElementById("debAmt"+t).innerHTML=amtM3;
-            
-            
-            
-                 var allocM1= Math.round((amtM1/mean3)*100);
-            var allocM2=  Math.round((amtM2/mean3)*100);
-            var allocM3=  Math.round((amtM3/totalM)*100);
-            
-             document.getElementById("eqPer"+t).innerHTML=allocM1+"%";
-            document.getElementById("hybPer"+t).innerHTML=allocM2+"%";
-            document.getElementById("debPer"+t).innerHTML=allocM3+"%";
-            
-			setForScheme(riskProfile, mn, amtM1, amtM2, amtM3);
-		}else {
-			
-			          
-            //Aggressive profile
-            
-             var amtA1= Math.round((eqAP*mn)/1000)*1000;
-            var amtA2= Math.round((hybAP*mn)/1000)*1000;
-            var amtA3= Math.round((debtAP*mn)/1000)*1000;
-            
-            
-			
-              
-            
-            var totalA= amtA1+amtA2+amtA3;
-            
-			
-			 
-            if(totalA>mn)
-                {
-                     var mean=totalA-mn;
-                     amtA2=amtA2-mean;
-                     var mean4=totalA-mean;
-
-                }
-            else
-            {
-                mean4=totalA;
-            }
-
-			
-            document.getElementById("eqAmt"+t).innerHTML=amtA1;
-            document.getElementById("hybAmt"+t).innerHTML=amtA2;
-            document.getElementById("debAmt"+t).innerHTML=amtA3;   
-            
-             var allocA1= Math.round((amtA1/mean4)*100);
-            var allocA2=  Math.round((amtA2/mean4)*100);
-            var allocA3=  Math.round((amtA3/totalA)*100);
-			document.getElementById("eqPer"+t).innerHTML=allocA1+"%";
-            document.getElementById("hybPer"+t).innerHTML=allocA2+"%";
-            document.getElementById("debPer"+t).innerHTML=allocA3+"%";
-            
-			setForScheme(riskProfile, mn, amtA1, amtA2, amtA3);
-		}
-          
-           
-            
-  
-            
-            
         }
         
         
-       // console.log(  Math.round(pmt(10,12,24,0,-50000)/1000)*1000);
-    
+        function storeAssets(goalName, riskProfile, masterAmount, totalYears, sip, alloc1, amt1, alloc2, amt2, alloc3, amt3) {
+
+            if (once && store) {
+                if (localStorage.sipInvestment || localStorage.lumpsumInvestment) {
+                    var data = {};
+                    data.goalName = "Crorepati";
+                    data.riskProfile = riskProfile;
+                    data.masterAmount = masterAmount;
+                    data.totalYears = totalYears;
+                    data.sip = sip;
+                    data.equityAmount = amt1;
+                    data.hybridAmount = amt2;
+                    data.debtAmount = amt3;
+                    data.equityPercentage = alloc1;
+                    data.hybridPercentage = alloc2;
+                    data.debtPercentage = alloc3;
+                    if (localStorage.lumpsumInvestment) {
+                        data.lumpsum = localStorage.lumpsumInvestment;
+                    }
+                } else {
+                    var data = {};
+                    data.goalName = goalNameFromControl;
+                    data.riskProfile = riskProfile;
+                    data.masterAmount = masterAmount;
+                    data.totalYears = totalYears;
+                    data.sip = sip;
+                    data.equityAmount = amt1;
+                    data.hybridAmount = amt2;
+                    data.debtAmount = amt3;
+                    data.equityPercentage = alloc1;
+                    data.hybridPercentage = alloc2;
+                    data.debtPercentage = alloc3;
+                }
+                <% if(loggedIn) {%>
+                    $.ajax({
+                        type: 'POST',
+                        data: JSON.stringify(data),
+                        contentType: 'application/json',
+                        url: '/SavedPlansHeader',
+                        success: function (data) {
+                            // debugger;
+                            console.log('success');
+                            //var myObj = JSON.parse(data);
+                            //alert(data[1][0]);
+                            $(".page6 #invest1").html(sip);
+                            $(".page6 .table tbody > tr").not('#showDataSchemes').empty();
+                            $('.page6 .table-wrapper').html('');
+                            for (i = 0; i < data[0].length; i++) {
+                                var txt1 = '<table class="table"><thead><tr><th colspan="2">'+data[0][i].name+'</th></tr></thead><tbody><tr><td>'+data[0][i].name+'</td><td>'+data[1][i]+'</td></tr></tbody></table>';
+                                $('.page6 .table-wrapper').append(txt1);
+                                // var txt1 = "<tr><td>" + data[0][i].name + "</td><td>" + data[0][i].category + "</td><td>" + data[1][i] + "</td></tr>";
+                                // $("#showDataSchemes").after(txt1);
+                            }
+                        }
+                        //console.log(data[0].name);
+
+                    })
+                    <% }else { %>
+
+                    
+                        $.ajax({
+                            type: 'POST',
+                            data: JSON.stringify(data),
+                            contentType: 'application/json',
+                            url: '/setData',
+                            success: function (data) {
+                                console.log('success');
+                                $("#myPanModal").modal("show");
+
+                                // console.log(JSON.stringify(data));
+                            }
+
+                        })
+
+
+                        <%}%>
+                
+                            once= false;
+            }
+        }
+
+
+        function setForScheme(riskProfile, sip, amt1, amt2, amt3) {
+
+            var noOfYears = document.getElementById("time").value;
+
+
+
+        }
+
+        function myinit(riskRate, chooseTable, storeAllocation) {
+            // alert(localStorage.sipInvestment);
+            /*lumpsum sohan start -- the alert is removed and else if for lumpsum is included.*/
+            if (storeAllocation == 1)
+                store = true;
+            else
+                store = false;
+
+            if (localStorage.lumpsumInvestment) {
+
+
+                var riskProfile = riskRate;
+                var t = chooseTable;
+                var rate = 10;
+                var per = 12;
+                var totalYears = localStorage.lumpYears;
+                /*var nper=totalYears*per;
+                var pv=0;*/
+                var fv = localStorage.lumpsum;
+                var mn = 0;
 
-// Function to calculate Periodic Payments.
+                if (riskProfile == "Conservative") {
 
-function pmt(rate, per, nper, pv, fv)
+                    var alloc1 = 0;
+                    var alloc2 = 0;
+                    var alloc3 = 100;
 
-{
+                    var amt1 = 0;
+                    var amt2 = 0;
+                    var amt3 = fv;
+
+                    document.getElementById("eqAmt" + t).innerHTML = amt1;
+                    document.getElementById("hybAmt" + t).innerHTML = amt2;
+                    document.getElementById("debAmt" + t).innerHTML = amt3;
+
+                    document.getElementById("eqPer" + t).innerHTML = alloc1 + "%";
+                    document.getElementById("hybPer" + t).innerHTML = alloc2 + "%";
+                    document.getElementById("debPer" + t).innerHTML = alloc3 + "%";
+
+                    storeAssets("Broke", riskProfile, fv, totalYears, mn, alloc1, amt1, alloc2, amt2, alloc3, amt3);
+
+                } else if (riskProfile == "Moderate") {
+
+                    var alloc1 = 0;
+                    var alloc2 = 100;
+                    var alloc3 = 0;
+
+                    var amt1 = 0;
+                    var amt2 = fv;
+                    var amt3 = 0;
 
-fv = parseFloat(fv);
+                    document.getElementById("eqAmt" + t).innerHTML = amt1;
+                    document.getElementById("hybAmt" + t).innerHTML = amt2;
+                    document.getElementById("debAmt" + t).innerHTML = amt3;
 
-nper = parseFloat(nper);
+                    document.getElementById("eqPer" + t).innerHTML = alloc1 + "%";
+                    document.getElementById("hybPer" + t).innerHTML = alloc2 + "%";
+                    document.getElementById("debPer" + t).innerHTML = alloc3 + "%";
 
-pv = parseFloat(pv);
+                    storeAssets("Broke", riskProfile, fv, totalYears, mn, alloc1, amt1, alloc2, amt2, alloc3, amt3);
 
-per = parseFloat(per);
+                } else {
+                    var alloc1 = 100;
+                    var alloc2 = 0;
+                    var alloc3 = 0;
 
-if (( per == 0 ) || ( nper == 0 )){
+                    var amt1 = fv;
+                    var amt2 = 0;
+                    var amt3 = 0;
+
+                    document.getElementById("eqAmt" + t).innerHTML = amt1;
+                    document.getElementById("hybAmt" + t).innerHTML = amt2;
+                    document.getElementById("debAmt" + t).innerHTML = amt3;
+
+                    document.getElementById("eqPer" + t).innerHTML = alloc1 + "%";
+                    document.getElementById("hybPer" + t).innerHTML = alloc2 + "%";
+                    document.getElementById("debPer" + t).innerHTML = alloc3 + "%";
+
+                    storeAssets("Broke", riskProfile, fv, totalYears, mn, alloc1, amt1, alloc2, amt2, alloc3, amt3);
+                }
+
+
+            } else {
+
+
+                if (localStorage.sipInvestment) {
+
+
+                    var riskProfile = riskRate;
+                    var t = chooseTable;
+                    var rate = 10;
+                    var per = 12;
+                    var totalYears = localStorage.years;
+                    var nper = totalYears * per;
+                    var pv = 0;
+                    var fv = localStorage.sip * nper;
+                    var mn = localStorage.sip;
 
-alert("Why do you want to test me with zeros?");
+                }
+                else {
+
+                    var riskProfile = riskRate;
+                    var t = chooseTable;
+                    var rate = 10;
+                    var per = 12;
+                    var totalYears = document.getElementById("time").value;
+                    var nper = totalYears * per;
+                    var pv = 0;
+                    var fv = document.getElementById("amount").value;
+                    //document.getElementById("amountMaster").value = fv;
 
-return(0);
+                    //if number of years is less then 3 year debt is 100
+                    var mn = Math.round(pmt(10, 12, nper, pv, -fv) / 1000) * 1000;
 
-}
+                }
+                console.log(riskProfile + nper);
+
+                try {
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        if(tempGoals == undefined) {
+                            tempGoals = {};
+                        }
+                        tempGoals.mn = mn;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                    }
+                } catch(e) {
+                    console.log("Session Storage thing didn't work >>> "+ e );
+                }
+                // debugger;
+                console.log(sessionStorage.getItem("tempGoals"));
+                document.getElementById("invest" + t).innerHTML = mn;
+                document.getElementById("invest2").innerHTML = mn;
+
+                if (nper < 37) {
+
+                    var eqP = 0;
+                    var hybP = 0;
+                    var debtP = 1;
 
-rate = eval((rate)/(per * 100));
+                    var eqMP = 0;
+                    var hybMP = 0;
+                    var debtMP = 1;
 
-if ( rate == 0 ) // Interest rate is 0
+                    var eqAP = 0;
+                    var hybAP = 0;
+                    var debtAP = 1;
 
-{
+                }
 
-pmt_value = - (fv + pv)/nper;
+                else if (nper > 24 && mn <= 2000) {
+
+                    var eqP = 0;
+                    var hybP = 1;
+                    var debtP = 0;
+
+                    var eqMP = 0;
+                    var hybMP = 1;
+                    var debtMP = 0;
+
+                    var eqAP = 0;
+                    var hybAP = 1;
+                    var debtAP = 0;
+
+                } else {
+                    /*Conservative*/
+                    var eqP1 = <%=data[0].asset.value %>;
+                    var hybP1 = <%=data[1].asset.value %>;
+                    var debtP1 = <%=data[2].asset.value %>;
+            
+                    var eqP = eqP1 / 100;
+                    var hybP = hybP1 / 100;
+                    var debtP = debtP1 / 100;
+
+                    //Moderate
+                    var eqMP1 = <%=data[3].asset.value %>;;
+                    var hybMP1 = <%=data[4].asset.value %>;;
+                    var debtMP1 = <%=data[5].asset.value %>;;
+
+                    var eqMP = eqMP1 / 100;
+                    var hybMP = hybMP1 / 100;
+                    var debtMP = debtMP1 / 100;
+
+                    //*Aggressive*/
+                    var eqAP1 = <%=data[6].asset.value %>;;
+                    var hybAP1 = <%=data[7].asset.value %>;;
+                    var debtAP1 = <%=data[8].asset.value %>;;
+
+                    var eqAP = eqAP1 / 100;
+                    var hybAP = hybAP1 / 100;
+                    var debtAP = debtAP1 / 100;
+
 
-}
+                }
 
-else
+                if (riskProfile == "Conservative") {
 
-{
+                    var amt1 = Math.round((eqP * mn) / 1000) * 1000;
+                    var amt2 = Math.round((hybP * mn) / 1000) * 1000;
+                    var amt3 = Math.round((debtP * mn) / 1000) * 1000;
+                    var total = amt1 + amt2 + amt3;
 
-x = Math.pow(1 + rate,nper);
+                    if (mn > total) {
+                        var mean = mn - total;
+                        amt2 = amt2 + mean;
+                        var mean2 = total + mean;
 
-pmt_value = -((rate * (fv + x * pv))/(-1 + x));
+                    } else if (total > mn) {
 
-}
+                        var mean = total - mn;
+                        amt2 = amt2 - mean;
+                        var mean2 = total - mean;
 
-pmt_value = conv_number(pmt_value,2);
+                    }
+                    else {
+                        mean2 = total;
+                    }
 
-return (pmt_value);
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        tempGoals.amt1 = amt1;
+                        tempGoals.amt2 = amt2;
+                        tempGoals.amt3 = amt3;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    }
 
-}
+                    document.getElementById("eqAmt" + t).innerHTML = amt1;
+                    document.getElementById("hybAmt" + t).innerHTML = amt2;
+                    document.getElementById("debAmt" + t).innerHTML = amt3;
 
-function conv_number(expr, decplaces)
 
-{ // This function is from David Goodman's Javascript Bible.
+                    var alloc1 = Math.round((amt1 / mean2) * 100);
+                    var alloc2 = Math.round((amt2 / mean2) * 100);
+                    var alloc3 = Math.round((amt3 / mean2) * 100);
 
-var str = "" + Math.round(eval(expr) * Math.pow(10,decplaces));
+                    var alloc4 = alloc1 + alloc2 + alloc3;
 
-while (str.length <= decplaces) {
 
-str = "0" + str;
+                    if (alloc4 == 100) {
 
-}
+                    }
+                    else if (alloc4 > 100) {
 
-var decpoint = str.length - decplaces;
+                        allo = Math.max(alloc1, alloc2, alloc3);
+                        if (allo == alloc1) {
+                            alloc1 = alloc1 - 1;
+                        }
+                        else if (allo == alloc2) {
+                            alloc2 = alloc2 - 1;
+                        }
+                        else
+                            alloc3 = alloc3 - 1
+                    }
 
-return (str.substring(0,decpoint) + "." + str.substring(decpoint,str.length));
 
-} 
-        
-// Function to calculate future value of an investment..
+                    else {
+                        allo = Math.max(alloc1, alloc2, alloc3);
+                        if (allo == alloc1) {
+                            alloc1 = alloc1 + 1;
+                        }
+                        else if (allo == alloc2) {
+                            alloc2 = alloc2 + 1;
+                        }
+                        else
+                            alloc3 = alloc3 + 1
+                    }
+
 
-function fv(rate, per, nper, pmt, pv)
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        tempGoals.alloc1 = alloc1;
+                        tempGoals.alloc2 = alloc2;
+                        tempGoals.alloc3 = alloc3;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    }
+                    document.getElementById("eqPer" + t).innerHTML = alloc1 + "%";
+                    document.getElementById("hybPer" + t).innerHTML = alloc2 + "%";
+                    document.getElementById("debPer" + t).innerHTML = alloc3 + "%";
+
+                    setForScheme(riskProfile, mn, amt1, amt2, amt3);
+                    storeAssets("Broke", riskProfile, fv, totalYears, mn, alloc1, amt1, alloc2, amt2, alloc3, amt3);
+
+                }
+                else if (riskProfile == "Moderate") {
+
+
+                    //Moderate calculations
 
-{
 
-nper = parseFloat(nper);
 
-pmt = parseFloat(pmt);
+                    var amtM1 = Math.round((eqMP * mn) / 1000) * 1000;
+                    var amtM2 = Math.round((hybMP * mn) / 1000) * 1000;
+                    var amtM3 = Math.round((debtMP * mn) / 1000) * 1000;
 
-pv = parseFloat(pv);
+                    var totalM = amtM1 + amtM2 + amtM3;
 
-rate = eval((rate)/(per * 100));
+                    if (mn > totalM) {
+                        var mean = mn - totalM;
+                        amtM2 = amtM2 + mean;
+                        var mean3 = totalM + mean;
 
-if (( pmt == 0 ) || ( nper == 0 )) {
+                    }
+                    else if (totalM > mn) {
 
-alert("Why do you want to test me with zeros?");
+                        var mean = totalM - mn;
+                        amtM2 = amtM2 - mean;
+                        var mean3 = totalM - mean;
 
-return(0);
+                    }
 
-}
+                    else {
+                        mean3 = totalM;
+                    }
 
-if ( rate == 0 ) // Interest rate is 0
 
-{
 
-fv_value = -(pv + (pmt * nper));
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        tempGoals.amt1 = amtM1;
+                        tempGoals.amt2 = amtM2;
+                        tempGoals.amt3 = amtM3;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    }
+                    document.getElementById("eqAmt" + t).innerHTML = amtM1;
+                    document.getElementById("hybAmt" + t).innerHTML = amtM2;
+                    document.getElementById("debAmt" + t).innerHTML = amtM3;
 
-}
 
-else
 
-{
+                    var allocM1 = Math.round((amtM1 / mean3) * 100);
+                    var allocM2 = Math.round((amtM2 / mean3) * 100);
+                    var allocM3 = Math.round((amtM3 / totalM) * 100);
 
-x = Math.pow(1 + rate, nper);
+                    var allom4 = allocM1 + allocM2 + allocM3;
+                    var allo1;
+                    if (allom4 == 100) {
 
-// y = Math.pow(1 + rate, nper);
+                    }
+                    else if (allom4 > 100) {
 
-fv_value = - ( -pmt + x * pmt + rate * x * pv ) /rate;
+                        allo1 = Math.max(allocM1, allocM2, allocM3);
+                        if (allo1 == allocM1) {
+                            allocM1 = allocM1 - 1;
+                        }
+                        else if (allo1 == allocM2) {
+                            allocM2 = allocM2 - 1;
+                        }
+                        else
+                            allocM3 = allocM3 - 1
+                    }
 
-}
 
-fv_value = conv_number(fv_value,2);
+                    else {
+                        allo1 = Math.max(allocM1, allocM2, allocM3);
+                        if (allo1 == allocM1) {
+                            allocM1 = allocM1 + 1;
+                        }
+                        else if (allo1 == allocM2) {
+                            allocM2 = allocM2 + 1;
+                        }
+                        else
+                            allocM3 = allocM3 + 1
+                    }
 
-return (fv_value);
+
+
 
-}
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        tempGoals.alloc1 = allocM1;
+                        tempGoals.alloc2 = allocM2;
+                        tempGoals.alloc3 = allocM3;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    }
+                    document.getElementById("eqPer" + t).innerHTML = allocM1 + "%";
+                    document.getElementById("hybPer" + t).innerHTML = allocM2 + "%";
+                    document.getElementById("debPer" + t).innerHTML = allocM3 + "%";
 
-function conv_number(expr, decplaces)
+                    setForScheme(riskProfile, mn, amtM1, amtM2, amtM3);
+                    storeAssets("Broke", riskProfile, fv, totalYears, mn, allocM1, amtM1, allocM2, amtM2, allocM3, amtM3);
+                }
+                else {
 
-{ // This function is from David Goodman's Javascript Bible.
 
-var str = "" + Math.round(eval(expr) * Math.pow(10,decplaces));
+                    //Aggressive profile
 
-while (str.length <= decplaces) {
+                    var amtA1 = Math.round((eqAP * mn) / 1000) * 1000;
+                    var amtA2 = Math.round((hybAP * mn) / 1000) * 1000;
+                    var amtA3 = Math.round((debtAP * mn) / 1000) * 1000;
 
-str = "0" + str;
 
-}
 
-var decpoint = str.length - decplaces;
 
-return (str.substring(0,decpoint) + "." + str.substring(decpoint,str.length));
 
-}
-		   
-/*
-$('#checkPANStatus').submit(function(event){ 
-   event.preventDefault();
-              
-          // myScore();
-   
-        // console.log("Hi");   
-   
-   
-      var      pan=document.getElementById('pan').value;
-   
-    //alert(pan);
-         
-       $.ajax({
-       type: "POST",
-       url: '/GoalSelection',
-       data:  {pan},
-       success: function(data)
-       {
-           //alert(data);
-		   
-          // window.location.href= "/GoalSelection";
-       }
-           
-   });
+                    var totalA = amtA1 + amtA2 + amtA3;
 
 
-    
-});
-*/
 
-					 
-				 
-</script>     
-  <script src="javascripts/TweenMax.min.js"></script>
-<script src="javascripts/TextPlugin.min.js"></script>
-         <script src="javascripts/main.js"></script>
+                    if (totalA > mn) {
+                        var mean = totalA - mn;
+                        amtA2 = amtA2 - mean;
+                        var mean4 = totalA - mean;
+
+                    }
+                    else {
+                        mean4 = totalA;
+                    }
+
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        tempGoals.amt1 = amtA1;
+                        tempGoals.amt2 = amtA2;
+                        tempGoals.amt3 = amtA3;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    }
+                    document.getElementById("eqAmt" + t).innerHTML = amtA1;
+                    document.getElementById("hybAmt" + t).innerHTML = amtA2;
+                    document.getElementById("debAmt" + t).innerHTML = amtA3;
+
+                    var allocA1 = Math.round((amtA1 / mean4) * 100);
+                    var allocA2 = Math.round((amtA2 / mean4) * 100);
+                    var allocA3 = Math.round((amtA3 / totalA) * 100);
+
+                    var alloA4 = allocA1 + allocA2 + allocA3;
+                    var allo2;
+                    if (alloA4 == 100) {
+
+                    }
+                    else if (alloA4 > 100) {
+
+                        allo2 = Math.max(allocA1, allocA2, allocA3);
+                        if (allo2 == allocA1) {
+                            allocA1 = allocA1 - 1;
+                        }
+                        else if (allo2 == allocA2) {
+                            allocA2 = allocA2 - 1;
+                        }
+                        else
+                            allocA3 = allocA3 - 1
+                    }
+
+
+                    else {
+                        allo2 = Math.max(allocA1, allocA2, allocA3);
+                        if (allo2 == allocA1) {
+                            allocA1 = allocA1 + 1;
+                        }
+                        else if (allo2 == allocA2) {
+                            allocA2 = allocA2 + 1;
+                        }
+                        else
+                            allocA3 = allocA3 + 1
+                    }
+
+
+                    if (!loggedIn) {
+                        var tempGoals = JSON.parse(sessionStorage.getItem("tempGoals"));
+                        tempGoals.alloc1 = allocA1;
+                        tempGoals.alloc2 = allocA2;
+                        tempGoals.alloc3 = allocA3;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    }
+
+                    document.getElementById("eqPer" + t).innerHTML = allocA1 + "%";
+                    document.getElementById("hybPer" + t).innerHTML = allocA2 + "%";
+                    document.getElementById("debPer" + t).innerHTML = allocA3 + "%";
+
+                    setForScheme(riskProfile, mn, amtA1, amtA2, amtA3);
+                    storeAssets("Broke", riskProfile, fv, totalYears, mn, allocA1, amtA1, allocA2, amtA2, allocA3, amtA3);
+                }
+
+
+
+                // storeAssets(goal,riskprofile, fv, time, sip, amtA1, amtA)
+
+
+            }
+
+
+            // console.log(  Math.round(pmt(10,12,24,0,-50000)/1000)*1000);
+
+
+            // Function to calculate Periodic Payments.
+        }
+        function pmt(rate, per, nper, pv, fv) {
+
+            fv = parseFloat(fv);
+
+            nper = parseFloat(nper);
+
+            pv = parseFloat(pv);
+
+            per = parseFloat(per);
+
+            if ((per == 0) || (nper == 0)) {
+
+                // alert("Why do you want to test me with zeros?");
+
+                return (0);
+
+            }
+
+            rate = eval((rate) / (per * 100));
+
+            if (rate == 0) // Interest rate is 0
+
+            {
+
+                pmt_value = - (fv + pv) / nper;
+
+            }
+
+            else {
+
+                x = Math.pow(1 + rate, nper);
+
+                pmt_value = -((rate * (fv + x * pv)) / (-1 + x));
+
+            }
+
+            pmt_value = conv_number(pmt_value, 2);
+
+            return (pmt_value);
+
+        }
+
+        function conv_number(expr, decplaces) { // This function is from David Goodman's Javascript Bible.
+
+            var str = "" + Math.round(eval(expr) * Math.pow(10, decplaces));
+
+            while (str.length <= decplaces) {
+
+                str = "0" + str;
+
+            }
+
+            var decpoint = str.length - decplaces;
+
+            return (str.substring(0, decpoint) + "." + str.substring(decpoint, str.length));
+
+        }
+
+        // Function to calculate future value of an investment..
+
+        function fv(rate, per, nper, pmt, pv) {
+            nper = parseFloat(nper);
+            pmt = parseFloat(pmt);
+            pv = parseFloat(pv);
+            rate = eval((rate) / (per * 100));
+            if ((pmt == 0) || (nper == 0)) {
+                // alert("Why do you want to test me with zeros?");
+                return (0);
+            }
+            if (rate == 0) // Interest rate is 0
+            {
+                fv_value = -(pv + (pmt * nper));
+            }
+            else {
+                x = Math.pow(1 + rate, nper);
+                // y = Math.pow(1 + rate, nper);
+
+                fv_value = - (-pmt + x * pmt + rate * x * pv) / rate;
+
+            }
+
+            fv_value = conv_number(fv_value, 2);
+
+            return (fv_value);
+
+        }
+
+        function conv_number(expr, decplaces) { // This function is from David Goodman's Javascript Bible.
+
+            var str = "" + Math.round(eval(expr) * Math.pow(10, decplaces));
+
+            while (str.length <= decplaces) {
+
+                str = "0" + str;
+
+            }
+
+            var decpoint = str.length - decplaces;
+
+            return (str.substring(0, decpoint) + "." + str.substring(decpoint, str.length));
+
+        }
+
+    </script>
+    <script src="javascripts/TweenMax.min.js"></script>
+    <script src="javascripts/TextPlugin.min.js"></script>
+    <script src="javascripts/main.js"></script>
+
     <script src="javascripts/control.js" type="text/javascript"></script>
-			 <script src="javascripts/moodCalculater.js" type="text/javascript"></script>
-      
-				 <% if(scheme)  {%>
-			  <script>
-				  var $imgLink = "images/";
-var $imgExtension = ".png";
-	var tesss = "<%= assetFromDb.mood %>";	
-			
-        var $asda=$imgLink+tesss+$imgExtension;
-				/*  console.log($asda);*/
-		/*$("#setMood").attr("src",$asda);*/
+    <script src="javascripts/moodCalculater.js" type="text/javascript"></script>
 
-	function auth(social){
-		
-		var auth = "/auth/";
-     window.location.href=auth+social;
-		
-	}
-				  	for( i=1; i<=5;i++){
-						if(i<5)
-							$(".moods .pagination li:nth-child("+i+") a").css({"background-color":"#F2F5FB","color":"#FFDE15","border-color":"#FFDE15"});
-						else if(i==5)
-						  $(".pagination li:nth-child("+i+") a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
-					}
-			 		
-				  $(".moods .row .slider").hide();
-		
-    /* console.log(  $("#setMood").attr("src", "images/"+asda+".png"));*/
-				  </script>	
-			 <%} %>
-			 			<script>
-$(document).ready(function(){
-   
-   <% if (panMessage.length > 0) { %>
-	
-$("#myPanModal").modal("show");
-<% } %>
-	
-});
-</script>
-			 <script>
-    $('.carousel').carousel({
-    interval: false
-});
+
+<script>
+
+        var count = 0;
+        $('input[type="radio"]').click(function () {
+            if ($(this).is(':checked')) {
+                // alert($('input:radio:checked').length);
+                ++count;
+                if (count >= 5 && $('input:radio:checked').length == 5) {
+                    //alert("remoed");
+                    $('.page4 .done').removeAttr('disabled');
+                }
+            }
+        });
+
+        $(document).ready(function () {
+            if(location.search.split('tab=')[1] == '6') {
+                selectTab(6);
+            }
+
+            $('#invest').bind("DOMSubtreeModified",function(){
+                if( $('#invest').html() >= 1000 ) {
+                    $('.page2VldMsg').slideUp();
+                } else {
+                    $('.page2VldMsg').slideDown();
+                }
+            });
+
+            // Get User Status
+            $.getJSON("user_data", function (data) {
+            }).done(function (data) {
+                loggedIn = data.loggedIn;
+                console.log(data);
+                initializeTabs();
+            });
+
+            $("#dontKnow").click(function() {
+                $(".sub-page4").show();
+            });
+
+            $('.page2 #amount').change(function () {
+                var amount = $('.page2 #amount').val();
+                if(!loggedIn) {
+                    try {
+                        var tempGoals = JSON.parse(sessionStorage.getItem('tempGoals'));
+                        tempGoals.goalAmount = amount;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    } catch (e) {
+                        console.log(e);
+                    }
+                }
+            });
+
+            $('.page2 #time').change(function () {
+                var time = $('.page2 #time').val();
+                if(!loggedIn) {
+                    try{
+                        var tempGoals = JSON.parse(sessionStorage.getItem('tempGoals'));
+                        tempGoals.time = time;
+                        sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+                        console.log(sessionStorage.getItem("tempGoals"));
+                    } catch(e) {
+                        console.log(e);
+                    }
+                }
+            });
+
+
+            var initializeTabs = function () {
+                try {
+                    var tempGoals = JSON.parse(sessionStorage.getItem('tempGoals'));
+                    if (loggedIn && tempGoals.currentPage) {
+
+                        selectTab(tempGoals.currentPage);
+                        $('.frogImageMoods #setMood').attr('src', tempGoals.mood);
+                        $("#eqAmt, #eqAmt1").html(tempGoals.amt1);
+                        $("#hybAmt, #hybAmt1").html(tempGoals.amt2);
+                        $("#debAmt, #debAmt1").html(tempGoals.amt3);
+
+                        $("#eqPer, #eqPer1").html(tempGoals.alloc1 + "%");
+                        $("#hybPer, #hybPer1").html(tempGoals.alloc2 + "%");
+                        $("#debPer, #debPer1").html(tempGoals.alloc3 + "%");
+
+                        $("#invest").html(tempGoals.mn);
+                        $("#invest1").html(tempGoals.mn);
+                        $("#invest2").html(tempGoals.mn);
+
+                        $("#amount").val(tempGoals.goalAmount);
+                        $('#time').val(Number(tempGoals.time));
+                        console.log(JSON.parse(sessionStorage.getItem('sessionStorage')));
+                        // debugger;
+                        // if (tempGoals.riskProfile) {
+                            // showRiskProfile(tempGoals.riskProfile);
+                        $('#riskSelected').html(tempGoals.riskProfile);
+                        // }
+
+                        $('#Indicator span').css('display', 'inline');
+                        var moodId = tempGoals.moodText;
+                        var local;
+                        local = getGoals(moodId);
+                        // $(".frogImageMoods img").attr("src", "images/" + moodImgName + $imgExtension);
+                        $(".frogImageMoods img").attr("src", tempGoals.mood);
+                        $(".frogImageMoods h1").html("Feeling " + moodId);
+                        $(".below").empty();
+                        for (i = 0; i < local.length; i++) {
+                            $(".below").append("<div class='goal' id=''><img src='images/goals/" + moodId + "/" + local[i] + ".png' mood=" + moodId + " alt='Home view'><p id='mood'><span></span>" + local[i] + "</p></div>");
+                        }
+                        $('p:contains(' + tempGoals.goal + ')').children('span').css('background', 'yellow');
+                        $('span#goalSelected').html(tempGoals.goal);
+
+                        sessionStorage.removeItem('tempGoals');
+
+                    }
+
+                } catch (e) {
+                    console.log('no store values');
+                }
+
+            }
+
+
+
+
+
+            //Tab 2 Number validations
+            // $('.page2 #amount').change(function () {
+            //     var x = $('.page2 #amount').val();
+            //     x.replace(/,/g, '');
+            //     x = Number(x);
+            //     if (x < 7000 || x > 10000000) { 
+            //         console.log('number limitation');
+            //     } else if(isNaN(x)) { 
+            //         console.log('isNaN');
+            //     } x=x.toString();
+            //     var lastThree = x.substring(x.length-3);
+            //     var otherNumbers = x.substring(0, x.length - 3); if (otherNumbers != '') lastThree = ',' + lastThree; var res = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g,",") + lastThree; $('.page2 #amount').val(res);
+            // });
+        });
+
     </script>
 </body>
 </html>

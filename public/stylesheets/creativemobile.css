@@ -283,19 +283,11 @@ a.right {
 
 #Responsible,p#Changing Season,#Broke,#Rich,#Loved,#Nerdy,#Responsible,#Social
 {
-/*
-        color: #333;
+    color: #333;
     font-weight: 600;
     font-size: 18px;
     margin-bottom: 2%;
-        margin: auto;
-*/
-        color: #333;
-    font-weight: 600;
-    font-size: 18px;
-    margin-bottom: 2%;
-    margin-left: 3.05%;
-    margin-right: 0.25%;
+    margin: 0 8px;
 /*
   margin-left: 0.75em;
     margin-right: 0.25em;
@@ -609,8 +601,8 @@ div.container-fluid.moods.text-center
     width: 80px;
     border-bottom: 1px dashed;
     box-shadow: none;
-    padding: 0;
-    margin: 0 3px;
+    padding: 0 5px;
+    margin: 0 10px;
 }
 
 .page3 .table>thead>tr>th {
@@ -640,9 +632,9 @@ button#Moderate,
 button#Aggressive,
 button#dontKnow
 {
-        width: initial;
-    color:#333333;
-        border-color: #333333;
+    width: initial;
+    /*color:#333333;
+    border-color: #333333;*/
 }
 
 button#Conservative:hover,
@@ -747,13 +739,12 @@ h2.story
     position: relative;
     /* margin: 1em; */
     /* margin-right: auto; */
-    width: 50%;
+    width: 100%;
     height: 15px;
     top: 0em;
     background-color: #35BFD3;
     border-radius: 10px;
     margin: auto;
-        margin-bottom: 7%;
 }
 #tar1 p, #tar2 p {
     position: relative;
@@ -1333,8 +1324,8 @@ div.footerFrog{
 }
 
 .moodNav {
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    margin: 0 auto;
 }
 .navbar-default {
    background-color: #fff;
@@ -1499,3 +1490,34 @@ h6.InvestTeamP {/*know us last paragraph*/
     text-align: justify;
 }
 
+/*sohan - Navbar cancel button animation*/
+
+
+.closebtn {
+	padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+.pageGoalSelection .slider {
+    position: static;
+}
+.contentMood .page2 .login-btn { position: static }
+.contentMood .page2 button { margin: 0 auto; float: none; margin: 35px 25px 0; display: inline-block }
+#myCarousel label { width: 100% }
+#myCarousel label p { margin-right: 10px; background: #fff }
+.sub-page4 #myCarousel div.carousel-inner { width: 100%; height: 200px }
+.sub-page4 { margin-top: 40px }
+.modal { top: 0 }
+.modal-content { padding: 0 }
+.bg-success { background-color: #dff0d8; padding: 15px 4px 1px; border-radius: 5px }
+#myStory .panel { border: 0; position: static; width: 100%; box-shadow: none }
+#myStory .panel-body { padding: 0; margin: 0; width: 100% }
+.froggie { width: 25% }

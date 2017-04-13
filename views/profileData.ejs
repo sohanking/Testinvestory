@@ -171,7 +171,7 @@
                     <div class="frogContainer"><img src="images/animHow/10%20GOALS.png" alt="Froglet"></div>
                     <div class="frogContainer"><img src="images/animHow/15%20GOALS%20BLACK.png" alt="Frog"></div>
                  </div>
-                 <div id="yCircle" ></div>
+                 <div id="yCircle" class="yellow"></div>
                 </div>
 
 
@@ -236,9 +236,8 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" >Address:</label>
-                                <textarea  class="form-controler addressSection2" rows="6" id="comment" type="text"  name="address" ng-model="address" ng-minlength="20" ng-maxlength="200" required/><%= profile.address %></textarea>
-                                <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid "  style="    position: absolute;
-    top: 8em;" >Address is required.</span>
+                                <textarea  class="form-controler addressSection2" rows="6" id="comment" type="text"  name="address"  maxlength="200" required/><%= profile.address %></textarea>
+                            
                             </div>
                         </div>
                     </div>
@@ -270,7 +269,7 @@
 							
 								  
                              <input id="calendar" type="date" value="<% if(profile.dob) {%><%= profile.dob.getFullYear(); %>-<%= monthDates[profile.dob.getMonth()]; %>-<%= profile.dob.getDate(); %><%}%>"
-								  style="    width: 7.87em;    margin-top: -0.25em;"  name="calendar" class="form-controler" > 
+								  style="    width: 7.87em;    margin-top: -0.25em;"  name="calendar" class="form-controler" placeholder="DD-MM-YYYY"> 
                                                                              
                               </div>
                                                                    
@@ -279,8 +278,8 @@
                               <div id="profileAge" style=""  maxvalue="2">
                                                                                 
                                   <input type="number" id="age" value="<%= profile.age %>" name="age" class="form-controler Ageing1"
-                                         style="margin-bottom: -1em; ;width: 2.35em;margin-left: 0.2em;    margin-top: -2em;"  ng-model="Age" ng-minlength="2" ng-maxlength="2" required/>
-                                        <span ng-show="profileInformation.age.$touched && profileInformation.age.$invalid"  >Age is invalid(must be 18 and above).</span>                                         
+                                         style="margin-bottom: -1em; ;width: 2.35em;margin-left: 0.2em;    margin-top: -2em;"  required/>
+                                                                           
                               </div>
                                          
                                                                 
@@ -300,7 +299,7 @@
                  <select class="form-controler edit selectGender" id="maritalstatus" name="maritalstatus" ><span class="caretNext caretNext1 caret "></span>
 					<% MaritailStatus.forEach( function( status ){ %>
 					
-					 <option valuw="<%= status%>" <% if(profile.marital_status == status) {%> selected="selected"<%}%> >
+					 <option value="<%= status%>" <% if(profile.maritalstatus == status) {%> selected="selected"<%}%> >
 						 <%= status%>
 					 </option>
 					 <% });%>
@@ -316,9 +315,8 @@
                                                                         
                               <label class="control-label"  >PAN:</label>                 
                                   <input type="text" value="<%= profile.pan %>" class="form-controler" name="pan" id="pan"
-                                         ng-model="PanNumber" ng-pattern=
-           "/^[\+]?[(]?[a-zA-Z]{5}[)]?[-\s\.]?[0-9]{4}[-\s\.]?[a-zA-z]{1}$/"
-           required/>  <span ng-show="profileInformation.pan.$touched && profileInformation.pan.$invalid "  >invalid PAN.</span> 
+                                         
+           required/> 
                                                                         
                           </div>
                                
@@ -333,17 +331,16 @@
                        <div class="form-group Up">
                                                                    
                               <label class="control-label">City:</label>           
-                                  <input type="text" class="form-controler" id="city" name="city" value="<%= profile.city %>"   ng-model="userCity" required/> 
-                                      <span ng-show="profileInformation.city.$touched && profileInformation.city.$invalid"  >City is required.</span>                  
+                                  <input type="text" class="form-controler" id="city" name="city" value="<%= profile.city %>"    required/> 
+                                            
                           </div> 
                      <div class="form-group Up">
                                                                   
                                    <label class="control-label" for="pwd">Pincode:</label>
                                                                                     
-                                    <input type="number" value="<%= profile.pincode %>" name="pincode" id="pincode" class="form-controler" ng-model="PinCode" ng-pattern=
-           "/^[\+]?[(]?[1-9]{1}[)]?[-\s\.]?[0-9]{5}$/"
+                                    <input type="number" value="<%= profile.pincode %>" name="pincode" id="pincode" class="form-controler" 
            required/ > 
-                         <span ng-show="profileInformation.pincode.$touched && profileInformation.pincode.$invalid "  >Pincode is required.</span>      
+                         
                                               </div>
                                                      
                                                 
@@ -352,7 +349,7 @@
                                             
                                                          </div>
                                                          </div>
-                     <button type="submit" class="btn btn-lg moodNav profileSubmit" ng-disabled="profileInformation.$invalid" style="margin-top: 25px" >Submit </button>
+                     <button type="submit" class="btn btn-lg moodNav profileSubmit" ng-disabled="profileInformation.$invalid" style="margin-top: 5px;margin-bottom:20px;" >Submit </button>
                                                          </form>
                  <br>
                  
@@ -425,7 +422,7 @@
                                                          </form>
                 </div>
 
-<button type="submit" style="margin-top: 35px; float: none" class="btn btn-white btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
+<button type="submit" style="margin-top:5px;margin-bottom:11px; float: none" class="btn btn-white btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
    <h2 class="profilePan"style>PAN Details</h2> 
 </div>
 
@@ -442,7 +439,7 @@
                              <div class="form-group">
                                                                
                                  <label class="control-label" >Name:</label>
-                                  <input type="text" class="form-controler" name="username" id="username" value="" > </div>     
+                                  <input type="text" class="form-controler" name="username" id="username" value=""  readonly > </div>     
                                
                          
 							 
@@ -451,7 +448,7 @@
                                                   
                             		<label class="control-label" >Address:</label>
                                
-                                        <textarea class="form-controler addressSection3" rows="4" id="comment" type="text" value="" name="address" id="address" required/></textarea>                                        <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid"  >Address is required.</span>                                       
+                                        <textarea class="form-controler addressSection3" rows="4" id="comment" type="text" value="" name="address" id="address"  readonly/></textarea>                                        <span ng-show="profileInformation.address.$touched && profileInformation.address.$invalid"   >Address is required.</span>                                       
                                                                    
                           
                                            
@@ -477,9 +474,9 @@
                                                                         
                             
                                                                            
-                                  <label class="control-label for="text"">KYC Compliant:</label>
+                                  <label class="control-label" for="text">KYC Compliant:</label>
                                     
-                                         <select class="form-controler edit " ><span class="caretNext caretNext1 caret "></span>
+                                         <select class="form-controler edit " readonly><span class="caretNext caretNext1 caret "></span>
 											 <option  >Pending</option>
                             						<option>Yes</option>
 											 
@@ -495,13 +492,13 @@
                                    <div class="form-group">
                                                                
                                  <label class="control-label">City:</label>
-                                  <input type="text" class="form-controler" value=""> 
+                                  <input type="text" class="form-controler" value="" readonly> 
                                                             </div>     
                                
                                            <div class="form-group ">
                                                                   
                                                   <label class="control-label" for="pwd">Pincode:</label>    
-                                                      <input type="number" name="pincode" id="pincode" class="form-controler" > 
+                                                      <input type="number" name="pincode" id="pincode" class="form-controler"  readonly > 
                                               </div>
                                                                      
                                 
@@ -511,7 +508,7 @@
                                         
                                                          </form>
                 </div>
-</div><button type="submit" style="margin-top: 35px; float: none" class="btn btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
+</div><button type="submit" style="margin-top: 5px; margin-bottom:20px; float: none" class="btn btn-lg moodNav profileSubmit2" ng-disabled="">Submit </button>
 <div class="container-fluid how-it-works contentEdit">
                                      
                  <div class="row" style="">
@@ -536,7 +533,7 @@
                       </div><br/>
                           <div class="form-group Up">
                                                                    
-                              <label class="control-label  " style="width:120px;">BSE Application</label>
+                              <label class="control-label  " style="width:120px;">BSE Star Application</label>
                                                                            
                                                                            
                           <input type="file" class="" name="somename" size="chars">

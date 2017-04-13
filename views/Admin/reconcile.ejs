@@ -53,7 +53,7 @@
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                   <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>-->
                     <ul class="dropdown-menu message-dropdown">
                         <li class="message-preview">
                             <a href="#">
@@ -106,7 +106,7 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                   <!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>-->
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
                             <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
@@ -171,9 +171,9 @@
                         <a href="/admin/failedOrders"><i class="fa fa-fw fa-edit"></i> Failed Orders</a>
                     </li>
                     <li>
-                        <a href="/admin/bootstrap-elements"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                        <a href="/admin/reports"><i class="fa fa-fw fa-desktop"></i> Reports</a>
                     </li>
-                    <li>
+                   <!-- <li>
                         <a href="/admin/bootstrap-grid"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
                     </li>
                     <li>
@@ -193,7 +193,7 @@
                     <li>
                         <a href="/admin/index-rtl"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
                     </li>
-                </ul>
+                --></ul>
             </div>
             <!-- /.navbar-collapse -->
         </nav>
@@ -213,7 +213,7 @@
                                 <i class="fa fa-dashboard"></i>  <a href="/">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-table"></i> Tables
+                                <i class="fa fa-table"></i> Reconcile
                             </li>
                         </ol>
                     </div>
@@ -224,8 +224,8 @@
                       
       
                     <div class="col-lg-11">
-                        <h2>Reconcile Pending</h2>
-                        <div class="table-responsive">
+                        <h2>Reconciliation Pending</h2>
+                       <div class="table-responsive">
                            
                             <div ng-controller="checkBoxController">
                             <table class="table table-bordered table-hover">
@@ -251,34 +251,34 @@
 <!--                             </form>-->
                                     <tr>
                                         
-                                        <th>Pan</th>
+                                        <th>PAN</th>
                                      <!--<th ng-click="sort('OrderId')">OrderId
                 <span class="glyphicon sort-icon" ng-show="sortKey=='item.userinvestmentorderid'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>-->
                                          
                                        <th>  
                                          <!-- <a href="#" ng-click="sortType = 'OrderId'; sortReverse = !sortReverse">-->
-             OrderId 
+             Order ID 
             <!--<span ng-show="sortType == 'OrderId' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'OrderId' && sortReverse" class="fa fa-caret-up"></span>
 </a>--></th>
                                          
-                                       <th>Custmer Name</th>
-                                        <th>Email</th>
-                                        <th>                                             
+                                       <th>Customer Name</th>
+                                      <!--  <th>Email</th>-->
+                                        <!--<th>                                             
          <a href="#" ng-click="sortType = 'SchemeCode'; sortReverse = !sortReverse">
              SchemeCode 
         <span ng-show="sortType == 'SchemeCode' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'SchemeCode' && sortReverse" class="fa fa-caret-up"></span>
                                             </a></th>
-                                             
+                                        -->     
                                         <th>Scheme</th>
                                         <th>Amount</th>
                                         <th>Ageing</th>
                                          <th>Status</th>
                                         
-                                         <th>Foliono</th>
-                                         <th>Transction Ref</th>
-                                        <th>Nav</th>
+                                         <th>Folio No</th>
+                                         <th>Transaction Ref</th>
+                                        <th>NAV</th>
                                         <th>Units</th>
                                         <th><input type="checkbox" ng-model="selectedAll" ng-click="checkAll(item.userinvestmentorderid)"/> Select All<br/></th>
                                     </tr>
@@ -291,9 +291,9 @@
                                         <td id="pan" name="pan" ng-model="pan">{{item.userpan}}</td>
                                         <td type="number" id="orderid" name="orderid" ng-model="orderid">{{item.userinvestmentorderid}}</td>
                                         <td>{{item.name}}</td>
-                                        <td>{{item.email}}</td>
+                                      <!--  <td>{{item.email}}</td>-->
                                         
-                                        <td id="schemecode" name="schemecode" ng-model="schemecode">{{item.schemeid}}</td>
+                                      <!--  <td id="schemecode" name="schemecode" ng-model="schemecode">{{item.schemeid}}</td>-->
                                         <td>{{item.sname}}</td>
                                         <td id="amount" name="amount" ng-model="amount">{{item.amount}}</td>  
                                         

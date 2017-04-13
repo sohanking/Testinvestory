@@ -109,94 +109,111 @@
   </div>
 	<%}%>
 	
-	
-	  <div class="modal fade" id="myPanModal" role="dialog">
-              <div class="modal-dialog modal-sm" style="     width: 512px;
+		
+<div class="modal fade" id="myPanModal" role="dialog">
+    <div class="modal-dialog modal-sm" style="     top: -8%;    width: 512px;
     margin-left: 36em;">
-                 <!-- Modal content-->
-                  <div class="modal-content PAN">
-                        <div class="modal-body "  style="">
-                            <h2 class="PANHead">Enter PAN</h2>
-                              <div class="dotHr ">
-                            <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                            <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                               
-                                <div></div>
-                                 <div></div>
-                               
-                            </div>
+        <!-- Modal content-->
+        <div class="modal-content PAN">
+            <div class="modal-body " style="">
+                <h2 class="PANHead">Enter PAN</h2>
+
+                <!-- <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" onsubmit="checkPanStaus();">-->
+                <div class="bg-success" id="responseData">
+                    <p id="data1"></p>
+                </div>
+
+                <input class="form-control PANnumber" placeholder="PAN number" type="text" id="pan" name="pan" maxlength="10">
+                <div class="dotHr">
+                    <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;" id="panCheck" type="submit"
+                        onclick="checkPanStaus()"> Submit </button>
+                    <p id="errMsg"></p>
+
+                    <!--</form>-->
+                </div>
+
+
+                        <legend> PAN Details</legend>
+				 <input class="form-control PANnumber" type="text" id="panName" placeholder="Name" name="panName" >
 				
-                           <!-- <form class="formmodel PANInfo" id="checkPANStatus" name="checkPANStatus" onsubmit="checkPanStaus();">-->
-                         <div class="bg-success" id="responseData">
-	<p id="data1"></p>
-						<form action="/InsertOrders" method="post">	
-	<button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;display:none;" id="bseInvest"  type="submit">Proceed </button> 
-				</form>		
-						</div>            
-						
-                            <input  class="form-control PANnumber" placeholder="PAN number" type="text" id="pan" name="pan" maxlength="10">
-                            <div class="dotHr" >
-                            <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"  id="panCheck" type="submit" onclick="checkPanStaus()"> Submit </button> 
-								<p id="errMsg"></p>
-								                          
-                            <br/>
-                                <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                         <div></div>
-                                <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                 <div></div>
-                                <div></div>
-                                
-                               
-                               
-                                
-                            
-                            </div>
-   <!--</form>-->  
-                        </div>
-                  </div>
+				 <input class="form-control PANnumber"  type="text" id="address" placeholder="Address" name="address" >
+				<input class="form-control PANnumber"  type="text" id="panDOB" placeholder="Date of Birth" name="panDOB" >
+				 <input class="form-control PANnumber" type="text" id="accountNumber" placeholder="Account Number" name="accountNumber" >
+				
+				 <input class="form-control PANnumber"  type="text" id="ifscCode" placeholder="IFSC Code" name="ifscCode" >
+
+<!--    <form action="/InsertOrders" method="post">	
+	<button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:2%;width:5.5em;display:none;" id="bseInvest"  type="submit">Proceed </button> 
+				</form>	
+				-->
+				<button class="btn btn-lg moodNav  pricing RP1 pull-right submit " style="margin-top:2%;width:5.5em;" data-toggle="modal" data-target="#uploadModal" data-dismiss="modal">Next </button> 
+				
+            </div>
+        </div>
+    </div>
+</div>
+	
+	
+		
+<div class="modal fade" id="uploadModal" role="dialog">
+    <div class="modal-dialog modal-sm" style="     top: -8%;    width: 512px;
+    margin-left: 36em;">
+        <!-- Modal content-->
+        <div class="modal-content PAN">
+            <div class="modal-body " style="">
+                <h2 class="PANHead">PAN Upload Files</h2>
+
+    
+           <form action="#" method="post">	 
+         
+            <div class="DOCUMENTS">
+            
+             <label class="control-label" style="" title="">Address Proof</label>
+                  <input type="file" name="doc" id="file" class="inputfile" multiple />
+            
+              <!--  <label for="file" style="font-size:1em;">Choose a file</label>-->
+                   <!-- <button class="captureButton pull-right">Capture</button>-->
+            <br/>
+                  <label class="control-label" style="" title="">Id proof</label>
+                  <input type="file" name="doc" id="file" class="inputfile" />
+            
+                <!--<label for="file" style="font-size:1em;">Choose a file</label>-->
+                   <!-- <button class="captureButton pull-right">Capture</button>-->
+            <br/>
+                <label class="control-label" style="" title="">Siganture Proof</label>
+                  <input type="file" name="doc" id="file" class="inputfile" />
+            
+               <!-- <label for="file" style="font-size:1em;">Choose a file</label>-->
+                    <!--<button class="captureButton pull-right">Capture</button>-->
+            <br/>
+               <label class="control-label" style="" title="">KYC video</label>
+                  <input type="file" name="doc" id="file" class="inputfile" />
+            
+               <!-- <label for="file" style="font-size:1em;">Choose a file</label>-->
+                  <!--  <button class="captureButton pull-right">Capture</button>-->
+            <br/>
+                <label class="control-label" style="" title="">NACH</label>
+                  <input type="file" name="doc" id="file" class="inputfile" />
+            
+                <!--<label for="file" style="font-size:1em;">Choose a file</label>-->
+                   <!-- <button class="captureButton pull-right">Capture</button>-->
+            <br/>
              </div>
-          </div>
+          
+
+                  </form>      
+
+				  <form action="/InsertOrders" method="post">	
+	<button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:2%;width:5.5em;display:none;" id="bseInvest"  type="submit">Proceed </button> 
+				</form>
+				  
+				
+				
+            </div>
+        </div>
+    </div>
+</div>
+	
 	
 	
 	
@@ -575,7 +592,7 @@
                                <div id="" class="page2" style="display:none">
 <!--                        <h2>Education</h2>-->
 								   <br />
-                       <p>I need INR<input class="blankInput"  name="amount" id="amount" placeholder="" type="number" max="7" value=""/>in<input class="blankInput" placeholder="" type="number" id="time" max="99" value=""/> (Years)</p>
+                       <p>I need INR <input class="blankInput"  name="amount" id="amount" placeholder="" type="number" max="7" value=""/>in<input class="blankInput" placeholder="" type="number" id="time" max="99" value=""/> (Years)</p>
                     <div class="login-btn">
                                  
                 <button type="button" id="go" class="btn btn-lg moodNav go" onclick="setProfile(0,1,0);" > Go </button> 
@@ -851,7 +868,7 @@
                 
                                                              <button class="accordion">
                  <div class="col-sm-1 btn btn-default btn-circle">4</div>
-                 <div class="col-sm-11"><label for="Q4">4.Think of the average return you would expect to earn on an investment portfolio over a fixed deposit the next ten years.</label>
+                 <div class="col-sm-11"><label for="Q4">Think of the average return you would expect to earn on an investment portfolio over a fixed deposit the next ten years.</label>
                  </div>
                 
              </button>
@@ -1144,111 +1161,8 @@
 			
                         <div id="" class="page7">
                             <!--<h2>Your Plan</h2>-->
-										    <div class="dotHr"> 
-                               <div class="login-btn">
-                        
-<button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" id="initInvest" style="float: right;margin-top: 0.8em;margin-right: 29em;"> Invest </button> 
-<!--								   <form action="/GoalSelectionRefresh" method="get">
-									   <input type="text" id="restart" name="restart" value="true" hidden>
-								       <button type="submit" class="btn btn-lg moodNav go" style="    float: right;
-    margin-top: 0.8em;
-        margin-right: -15em;
-    width: 15%;
-"> Start Fresh </button> -->
-									   </form>
-				
-                
-                           </div>
-                               
-                            <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-							   
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                            <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                                   <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                               <div></div>
-                                         <div></div>
-                               <div></div>
-                 
-                            </div>
-							<br />
-<p>So, you need to invest INR <span id="invest1"><%=assetFromDb.sip %></span> Monthly</p>
-                            
-                                                   <div class="table-responsive">
+		 <button type="" data-toggle="modal" data-target="#myPanModal" class="btn btn-lg moodNav go" id="initInvest" style="top: 25px;"> Invest </button>
+                            <p>So, you need to invest INR <span id="invest1"><%= assetFromDb.sip %></span> Monthly</p>      <div class="table-responsive">
                        
  <table class="table">
         <tr  >
@@ -1353,8 +1267,7 @@
 		   
 		   function checkPanStaus(){
 			   
-			  
-			   
+
 			   var data = {};
 					data.pan = document.getElementById("pan").value;
 					console.log("pan"+data.pan);

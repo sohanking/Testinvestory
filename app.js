@@ -15,7 +15,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var session      = require('express-session');
 var asyncn = require('async');
 var crypto = require('crypto');
-
+var admin = require('./routes/admin');
 var flash    = require('connect-flash');
 var routes   = require('./app/routes.js');
 var pp       = require('./config/passport');
@@ -49,7 +49,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 //app.use('/', index);
 //app.use('/faqs', faqs);
-//app.use('/admin', admin);
+app.use('/admin', admin);
 routes(app, passport);
 
 

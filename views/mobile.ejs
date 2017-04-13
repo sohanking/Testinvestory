@@ -18,31 +18,31 @@
             <div id="yourMoodP" class=" yourMoodParent">
                 <div class="yourMood">
                     <h1></h1>
-                    <h4>Your Investory. Our Expertise.</h4>
+                    <h4>Your investory. Our expertise.</h4>
                     <p>How are you feeling today</p>
                 </div>
                 <div class="mood">
-                    <div class="myMood Broke">
+                    <div id="homeCircleImg" class="myMood Broke">
                         <img class="Broke" src="images/Broke.png" alt="Home view">
                         <p>Feeling Broke</p>
                     </div>    
-                    <div class="myMood Loved">
+                    <div id="homeCircleImg"class="myMood Loved">
                         <img class="Loved" src="images/Loved.png" alt="Home view">
                         <p>Feeling Loved</p>
                     </div>    
-                    <div class="myMood Nerdy">
+                    <div id="homeCircleImg" class="myMood Nerdy">
                         <img class="Nerdy" src="images/Nerdy.png" alt="Home view">
                         <p>Feeling Nerdy</p>
                     </div>    
-                    <div class="myMood Responsible">
+                    <div id="homeCircleImg" class="myMood Responsible">
                         <img class="Responsible" src="images/Responsible.png" alt="Home view">
                         <p>Feeling Responsible</p>
                     </div>    
-                    <div class="myMood Rich">
-                        <img class="Rich" src="images/Rich.png" alt="Home view">
+                    <div id="homeCircleImg" class="myMood Rich">
+                        <img class="Rich" src="images/RICH.png" alt="Home view">
                         <p>Feeling Rich</p>
                     </div>    
-                    <div class="myMood Social">
+                    <div id="homeCircleImg" class="myMood Social">
                         <img class="Social" src="images/Social.png" alt="Home view">
                         <p>Feeling Social</p>
                     </div>    
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="rowIndexSlider">
+                    <div class="row rowIndexSlider">
                         <div class="slider" style="   ">
                             <div class="photos">
                                 <div class="photosInner">
@@ -79,16 +79,26 @@
                 </div>
             </div>
             <div class="index2" id="sectionIndex2">
-                <h2 class="indexheader">Start your investement plan</h2>
-             	<p>I want to invest  &#8377; <input class="blankInput"  name="sip" id="sip" placeholder=""  max="7" value=""/> monthly for next <input class="blankInput"  name="years" id="years" placeholder="" type="number"  value=""/> years</p>
+                <h2 class="indexheader">Start your investment plan</h2>
+             	<p>I want to invest  &#8377; <input class="blankInput"  name="sip" id="sip" placeholder="" type="number"  max="7" value=""/> monthly for next <input class="blankInput"  name="years" id="years" placeholder="" type="number"  value="" style="margin: 0 10px; width: 30px"/> years</p>
+				<p id = "sipInvestErr" style="display: none; color: red;"> Please enter amount between INR 1000 to 100000.</p>
+			    <p id="sipTimeErr" style="display: none; color: red;"> Please enter time between 1 to 50 years.</p>
                 <div class="dotHr longDotUs mobile" style="border-top: 2px #35BFD3 dotted;   ">
-                    <!-- Get Started-->
-
-
-                    <button type="" data-toggle="modal" data-target="#signUp" class="btn btn-lg moodNav pull-left getStarted" style="    width: 8em; position: relative;
-top: -1em;"> Get Started</button>
-
+					
+<button type="" class="btn btn-lg moodNav getStarted" id="indexGetStarted" style="    width: 8em; position: relative;
+top: -1em;" onClick="getSIP();" > Invest </button>
                 </div>
+				
+				<p>I have &#8377; <input class="blankInput"  name="lumpsum" id="lumpsum" placeholder="" type="number" max="7" value=""/> to invest now. I need it back in <input class="blankInput"  name="lumpsumYears" id="lumpsumYears" placeholder="" type="number"  value=""/> years.</p>
+
+                <div class="dotHr longDotUs mobile" style="border-top: 2px #35BFD3 dotted;   ">
+					
+<button type="" class="btn btn-lg moodNav getStarted" id="indexGetStarted" style="    width: 8em; position: relative;
+top: -1em;" onClick="getLumpsum();" > Invest </button>
+                </div>
+					
+				
+				
                 <h2 class=" whatWeOffer">What we offer?</h2>
                 <div class="mobileWhatWeOffer">
                     <div class="includeCarousel">
@@ -149,8 +159,8 @@ top: -1em;"> Get Started</button>
                     </div>
                 </div>
 
-                <button type="" id="indexScriptYourStory" class="btn btn-lg moodNav story" style="    position: relative;
-top: -1em;    width: initial;    float: left;"> Script your Story </button>
+                <!--<button type="" id="indexScriptYourStory" class="btn btn-lg moodNav story" style="    position: relative;
+top: -1em;    width: initial;    float: left;"> Script your Story </button>-->
             </div>
 
             <br>
@@ -174,7 +184,7 @@ top: -1em;    width: initial;    float: left;"> Script your Story </button>
 
 
                         <br><br>
-                        <p style="    margin-left: 1em;">Choose a <br />Package</p>
+                        <p>Choose a <br />Package</p>
                     </div>
 
                     <div class="col-sm-6 col-md-3 investing">
@@ -344,7 +354,9 @@ top: -1em;float:left;"> Sign Up</button>
         <script src="javascripts/TweenMax.min.js"></script>
         <script src="javascripts/TextPlugin.min.js"></script>
         <script src="javascripts/main.js"></script>
-
+		<script src="javascripts/sip.js"></script>
+			<!--lumpsum sohan include js file-->
+	    <script src="javascripts/lumpsum.js"></script>
         <script src="javascripts/control.js" type="text/javascript"></script>
         <script src="javascripts/moodCalculater.js" type="text/javascript"></script>
 

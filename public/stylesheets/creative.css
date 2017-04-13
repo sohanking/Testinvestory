@@ -58,9 +58,10 @@ p.txtXSmall{
 .btn-hr-wrapper .dropdown-menu { top: 25px; left: 6px }
 .btn-hr-wrapper-left { text-align: left; margin-left: 0 }
 .btn-hr-wrapper.clean { margin-right: 0; margin-left: 0 }
-
-
-
+.btn[disabled] { opacity: 1 }
+input { outline: none }
+.contentMood #IndicatorNew1 { display: block!important; padding: 10px }
+.yourMood h1, .yourMood h4, .yourMood p { font-family: mermaid }
 
 /* Avatar */
 .avatar{ position: relative; padding: 0; width: auto; margin-top: -0.8em }
@@ -230,9 +231,8 @@ How it works
 margin-top: 0.7em;
 }
 #myStory .dotHr div{
-    
-   position: relative;
-    left: 28%;
+    position: relative;
+    /* left: 28%; */
 }
     
 .page4 .dotHr
@@ -374,11 +374,10 @@ p, h1, h2, h3, div, button, a, li {
     /* left: -3.5em; */
     /* top: -0.5em; */
     /* left: -1.025em; */
-    em; */
     top: -0.48em;
     top: -0.5em;
 }
-}
+
 
 #reports .moodGoals {
     
@@ -853,13 +852,14 @@ margin-top: 0;
     
     margin-top: 8px;
 }
-.moods .pagination {
-    position: relative;
-       left: -5.5em;
-    top: 1.5em;
-    padding: 0;
-    margin: 0;
-}
+.moods .pagination { width: 100%; display: inline-block; position: relative }
+.moods .pagination:after { display: block; content: "."; border-top: 2px dotted #35BFD3 ; position: absolute; left: 0; right: 0; top: 50%; margin: 0 20px }
+
+.moods .pagination > li { display: inline-block; margin-right: 160px; float: left }
+.moods .pagination > li:last-child { margin-right: 0 }
+
+.moods .pagination > li a { z-index: 9 }
+
 
 
 
@@ -1074,8 +1074,6 @@ h2.h2hstyle
     background-color: #35BFD3;
     border: 1px #35BFD3 solid;
     color:#F2F5FB;
-        padding: 0px 0px;
-        width: 6em;
         font-weight: 600;
 }
 
@@ -1144,13 +1142,8 @@ h2.h2hstyle
 
 .contentMood .page2 .login-btn {
     position: absolute;
-/*removed by ruthu6
-    top: 0px!important;
-    left: 300px;
-*/
-        top: 15px!important;/*added ruthu6*/
-       left: 300px;/*added ruthu6*/
-    
+    top: 30px!important;
+    left: 340px;
 }
 
 svg circle {
@@ -1180,7 +1173,6 @@ background-color: #ffffff;/* #F2F5FB;*/
 
 .froggie{
     width: 9em;
-    
 }
 
 #myStory .panel-body {
@@ -1191,7 +1183,7 @@ background-color: #ffffff;/* #F2F5FB;*/
 
 
 
-#tar1 p, #tar2 p{
+#tar1 p, #tar2 p,#tar3 p,#tar4 p,#tar5 p, .tar p {
 position:relative;
 float: left;
 color: #35BFD3;
@@ -1214,11 +1206,11 @@ border-radius:10px;
 }
 
 #myBar1, #myBar2 ,#myBar3 {
-  position: absolute;
-  width: 0%;
-  height: 100%;
-  background-color: #FFDE15;
-border-radius:10px;
+    position: absolute;
+    width: 8%;
+    height: 100%;
+    background-color: #FFDE15;
+    border-radius:10px;
 }
 
 #myBar2 {
@@ -1829,26 +1821,24 @@ div.col-md-8.selective {
 
 .goalReport .goalReportData #yCircle,
 .froggie #yCircle{
-   
-     border-radius: 50% !important;
-    background-color: #FFDE15;
-    color: #FFDE15;
-    font-size: 1.2em;
-    border-color: #FFDE15;
-    
-    font-weight: 700;
-    width: 1.2em;
-    height: 1.2em;
-    padding: 0;
-    margin: auto;
+   border-radius: 50% !important;
+   background-color: #b3b3a7;
+   color: #FFDE15;
+   font-size: 1.2em;
+   border-color: #FFDE15;
+   font-weight: 700;
+   width: 1.2em;
+   height: 1.2em;
+   padding: 0;
+   margin: auto;
 }
 .froggie #yCircle{
     cursor: pointer;
     position: absolute;
     z-index: 10;
-    left: -11.8em;
-
+    left: 0;
     top: 6.8em;
+    left: 43%;
 }
 
 
@@ -2150,9 +2140,6 @@ section#section4 .dotMenu
 {
         display: none;
 }
-.how-it-works .pagination:onhover{
-    
-}
 
 .how-it-works.pagination:hover  .pagination
 {
@@ -2219,9 +2206,6 @@ section#section4 .dotMenu
 .foot right h4 {
     text-align: right;
 }
-.foot .socialIcons{
-    /* padding: 0 30px; */
-}
 .footerFrog .frogReports {
     position: relative;
 }
@@ -2260,7 +2244,7 @@ section#section4 .dotMenu
 
 .footerFrog.frogReports img {
     position: relative;
-    top: 26px;
+    top: 25px;
 }
 
 footer {
@@ -2304,7 +2288,8 @@ footer {
 }
 
 .selectMode {
-    float: left;
+    text-align: left;
+    height: 60px;
 }
 
 /* FAQs */
@@ -2384,9 +2369,8 @@ margin-top: 0.9em;
 }
 
 .g1{
-    
     top: -11em;
-    left: 9em;
+    left: 7em;
 }
 
 .g2{
@@ -2397,26 +2381,22 @@ margin-top: 0.9em;
 
 .g3{
     top: -1em;
-    left: 10em;
+    left: 11em;
 }
 
 .g4{
-       top: -7em;
-    left: 21em
+       top: -9em;
+       left: 18em;
 }
 
 .g5{
-    
     top: -1em;
-    left: 21.5em;
+    left: 30.5em;
 }
 
 .g6{
-    
-    top: -3.5em;
-
-    left: 29em;
-
+    top: -6.5em;
+    left: 27em;
 }
 
 .g7{
@@ -2427,53 +2407,59 @@ margin-top: 0.9em;
 }
 
 .g8{
-    
- top: -6.5em;
-    right: 37em;
+    top: -6.5em;
+    right: 31em;
 }
 
 .g9{
-    
     top: -10em;
-    right: 31em;
+    right: 26em;
 }
 
 .g10{
-    
     top: -1.5em;
-    right: 31em;
+    right: 28em;
 }
 
 .g11{
-    
-   top: -6.5em;
-    right: 23em;
+    top: -4.5em;
+    right: 19em;
 }
 
 .g12{
-    
-   top: -12em;
-    right: 21em;
+    top: -12em;
+    right: 17em;
 }
 
 .g13{
-    
-       top: -16.5em;
-    right: 14.5em;
+    top: -13.5em;
+    right: 11.5em;
 }
 .g14{
-    
-   top: -6.5em;
+    top: -7.5em;
     right: 13em;
-
 }
 
 
 .g15{
-    
-        top: -1em;
-    right: 15em;
-
+    top: -3em;
+    right: 56em;
+}
+.g16{
+    top: -10em;
+    right: 6em;
+}
+.g17{
+    top: -2em;
+    right: 16em;
+}
+.g18{
+    top: -6em;
+    right: 73em;
+}
+.g19{
+    top: -2em;
+    right: 37em;
 }
 
 .g15 #invest_withdraw .trackGoals,
@@ -2500,18 +2486,15 @@ margin-top: 0.9em;
 .how-it-works > h4 { font-size: 17px;/*ruthu16*/
     font-weight: 700;/*ruthu16*/}
 .page6 .btn.btn-lg.moodNav.go,
-.page7 .btn.btn-lg.moodNav.go{ margin: 10px 65px 5px;
-    position: relative;
-    top: 15px;
-    left: 50px;}
+.page7 .btn.btn-lg.moodNav.go{ margin: 10px 65px 5px; position: relative; top: 15px; left: 80px }
 .page-pricing .item h4{ font-size: 14px; font-weight: 700 }
 #section4 .item h4 { font-size: 16px ;   font-weight: 600;/*added ruthu6*/ }
-.selectMode .tooltips span { display: none; position: absolute; top: 40px; padding: 10px; left: initial; right: initial }
+.selectMode .tooltips span { display: none; position: absolute; top: 40px; padding: 10px; left: initial; right: initial; z-index: 5; background: #fff }
 .selectMode .tooltips:nth-of-type(1) span { left: 0 }
 .selectMode .tooltips:nth-of-type(2) span { left: 25% }
 .selectMode .tooltips:nth-of-type(3) span { right: 0 }
 .selectMode .tooltips:nth-of-type(4) span { right: 0 }
-.contentMood .dotHr { float: left }
+.contentMood .dotHr { }
 
 
 div.savedPlansPage{
@@ -2666,6 +2649,7 @@ img.popUPImg
 		  left: 55%;
     top: 19%;
 	}
+}
 	
 	/*end*/
 	
@@ -2864,10 +2848,6 @@ div#savedPlans.row/*removed from line 2502*/
 }
 }
 	
-
-#ProfileColumn1.{
-    
-}
    .blankInput {
   -moz-appearance:textfield;
 }
@@ -2877,4 +2857,24 @@ div#savedPlans.row/*removed from line 2502*/
   -webkit-appearance: none;
   margin: 0;
 }
-   
+
+/* Goal Selection Tabs */
+.pagination li a { background-color: #fff!important; color: #35bfd3!important; border-color: #35bfd3!important }
+.pagination li a.active { background-color: #ffde15!important; color: #35bfd3!important; border-color: #ffde15!important }
+.pagination li a.done { background-color: #fff!important; color: #ffde15!important; border-color: #ffde15!important }
+
+#Indicator span { display: none!important }
+#Indicator span.active { display: inline!important }
+
+.sub-page4 { position: relative; z-index: 2 }
+
+.btn-Next-Pan-Modal{ display: none }
+
+div#myStory {
+    margin: 60px 0px;
+}
+
+div#yCircle.yellow {
+    background-color: #FFDE15;
+}
+

@@ -7,8 +7,12 @@
 <link rel="stylesheet" href="stylesheets/creativemobile.css">
 </head>
       <% include partials/headerMobile%>
+      <script>
+      // var date = new Date();
+      // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      </script>
     <div class="container">
-        <h3 class="myInvoicesHeadding">My Invoices</h3>
+        <h3 class="myInvoicesHeadding">My Details</h3>
     <div id="invoices" class="text-center">
           
                 <div class="page31" style="">
@@ -16,34 +20,62 @@
                        <div class="table-responsive tableAccounts"style="" >
                            
                            
-             <table class="table" style="
+<table class="table" style="
     border-radius: 21px;
 ">
-                                 <thead>
-                                     <tr>
-                                      <th class="thead1" colspan="2">20 September 2016</th>
-                                     
-                                     </tr>
-                                </thead>
-                             <thead>
-                                     <tr>
-                                      <th class="thead2" colspan="2">Fund Yesno Bank</th>
-                                     
-                                     </tr>
-                                </thead>
-                                 <tbody>
-                                     <tr>
-                                        
-                                         <td>Allocation %</td>
-                                      <td style="border-right: none;">Amount (&#x20B9;)</td>
-                                        </tr>
-                                        <tr>
-                                          <td id="eqPer">50%</td>
-                                          <td id="eqAmt" style="border-right: none;">4,000,00</td>
-                                        </tr>
-                                 </tbody>
-                          </table>              
-                           
+  <thead>
+    <tr>
+      <th class="thead1" colspan="2">
+        <%= date %>
+      </th>
+
+    </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th class="thead2" colspan="2">ICICI Prudential</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td>Allocation %</td>
+      <td style="border-right: none;">Amount (&#x20B9;)</td>
+    </tr>
+    <tr>
+      <td id="eqPer">70%</td>
+      <td id="eqAmt" style="border-right: none;">7,000</td>
+    </tr>
+  </tbody>
+</table>
+<table class="table" style="border-radius: 21px; margin-top: 30px">
+  <thead>
+    <tr>
+      <th class="thead1" colspan="2">
+        <%= date %>
+      </th>
+
+    </tr>
+  </thead>
+  <thead>
+    <tr>
+      <th class="thead2" colspan="2">Birla Sunlife</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+      <td>Allocation %</td>
+      <td style="border-right: none;">Amount (&#x20B9;)</td>
+    </tr>
+    <tr>
+      <td id="eqPer">30%</td>
+      <td id="eqAmt" style="border-right: none;">3,000</td>
+    </tr>
+  </tbody>
+</table>
 <!--
                         <table class="table table1"  style="  "  >
     <thead >

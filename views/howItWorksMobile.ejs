@@ -16,7 +16,7 @@
       
      <div class="container-fluid how-it-works  text-center" >
         
-      
+     
        
 
       
@@ -182,7 +182,24 @@
          </div>  
         <div class="btn-hr-wrapper clean">
 
- <button type="submit" class="btn btn-lg pay">Pay</button>
+               <% if(!loggedIn && !paid) {%>
+      			 <button type="" data-toggle="modal" data-target="#loginModal"  class="btn btn-white btn-lg moodNav pay" >Pay</button>
+      			  <% } else if(loggedIn && !paid){%>
+      			 <!--call for payU-->
+      			  <form action="/Pricing/pay" method="post">
+      			   <input type="hidden" id="plan" name="plan" value='Good Plan'>
+      			   <input type="hidden" id="planPrice" name="planPrice" value='5'>
+      			  	 <button type="submit"  class="btn btn-white btn-lg moodNav pay" >Pay</button>
+      			  </form>
+      			 <%} else if(loggedIn && paid) {%>
+
+      			  <form action="/GoalSelection" method="get" >
+                    <input type="hidden" name="tab" value="6" />
+                    <button type="submit" class="btn btn-white btn-lg moodNav pay" >Invest</button>
+
+      			  </form>
+
+      			  <%}%>
         </div>
 
 <!--    <section id="section2">-->
@@ -202,7 +219,7 @@
                 <div class="column-sm-4 " >
                    
                     <img src="images/frog_jump.png" alt="Choose a Package" width="65%"><br>
-                    <p style="">Choose a <br />Package</p>
+                    <p style="margin-left: 2.8em;">Choose a <br />Package</p>
                 </div>
                 
                 <div class="column-sm-4 " style="top:1.5em">
@@ -325,7 +342,7 @@
 -->
          
          
-         <button type="" data-toggle="modal" data-target="#signUp" class="btn btn-lg moodNav signUp" style="float: left; width:initial;position:relative;top:-1em;" > Sign Up</button> 
+         <button type="" data-toggle="modal" data-target="#signUp" class="btn btn-lg moodNav signUp" style="width:initial;position:relative;top:-1em;" > Sign Up</button> 
 <!--
                
                   <div id="dotsvisible1440"></div>

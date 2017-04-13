@@ -5,6 +5,17 @@ How it works
 */
 
 
+#myPanModal button {
+    height: 30px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid #35BFD3;    
+}
+
+#myPanModal input {
+    height: 30px;
+}
+
 
 
 .how-it-works .panel-heading {
@@ -118,7 +129,7 @@ position: absolute;
 
 
 
-#Indicator {
+#Indicator, #IndicatorNew, #IndicatorNew1  {
     
     color: #333333;
     font-size: 1.2em;
@@ -126,21 +137,10 @@ position: absolute;
     text-align: left;
     font-weight: 600;
     margin-bottom: 0;
-    margin-top: 10px;
+    margin-bottom: 10px;
     
 }
 
-#IndicatorNew {
-    
-    color: #FFDE15;
-    font-size: 1.2em;
-    font-style: italic;
-    text-align: left;
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-top: 10px;
-    
-}
 
 /*slider faqs*/
 
@@ -149,7 +149,7 @@ position: absolute;
     left: -1em;
     width: 42%;
     top: 1em;
-         height: 21em;/*ruthu7*/
+       height: 14em;
     overflow-y:scroll;
 }
 
@@ -256,9 +256,9 @@ background-color: #ffffff;;
 
 .sliderFaqs::-webkit-scrollbar-thumb:vertical{
 background-color:#35BFD3;
--webkit-border-radius:5px;
--webkit-width:5;
--webkit-height:4;
+border-radius:5px;
+width:5;
+height:4;
      
 }
 
@@ -268,11 +268,10 @@ background-color:#35BFD3;
 
 
 .sliderGoal .btn-circle {
-    
-     width: 20px;
+    width: 20px;
     height: 20px;
     line-height: 0.5;
-        border-color: #333;
+    border-color: #333;
     color: #333;
     margin-right: 5px;
     font-size: 1em;
@@ -289,7 +288,8 @@ background-color:#35BFD3;
      text-align: left;
      padding: 0;
      cursor: pointer;
-       }
+     display: block;
+}
    
 .sliderRiskProfile .riskProfiling  #mood:hover { 
 color: #333;
@@ -317,22 +317,22 @@ color: #333;
 .riskProfiling {
     
         margin-left: 3em;
-        text-align: left;/*remove later*/
 }
 
 .sliderRiskProfile {
-    position: relative;
+    /*position: relative;
     left: -10em;
     width: 84%;
         height: 11.5em;
     margin-right: 0px;
-    margin-top: -0.8em;
+    margin-top: -0.8em;*/
 }
 
 #riskHeight {
-     overflow-y:scroll;
-             height: 12em;
+    overflow-y:scroll;
+    height: 170px;
     padding-top: 5px;
+    width: 100%
 }
 
 .sliderRiskProfile button.accordion {
@@ -775,10 +775,10 @@ td.aba{
 }
 
 
-.page31 table.table.table2  tr > td:nth-child(1), .page31 table.table.table1 th:nth-child(1) { width: 108px }
-.page31 table.table.table2  tr > td:nth-child(2), .page31 table.table.table1 th:nth-child(2) { width: auto }
-.page31 table.table.table2  tr > td:nth-child(3), .page31 table.table.table1 th:nth-child(3) { width: 95px }
-.page31 table.table.table2  tr > td:nth-child(4), .page31 table.table.table1 th:nth-child(4) { width: 140px }
+.page31 table.table.table2  tr > td:nth-child(1), .page31 table.table.table1 th:nth-child(1) { width: 108px;text-align: center; /*ruthu10*/}
+.page31 table.table.table2  tr > td:nth-child(2), .page31 table.table.table1 th:nth-child(2) { width: auto;text-align :center;/*ruthu10*/}
+.page31 table.table.table2  tr > td:nth-child(3), .page31 table.table.table1 th:nth-child(3) { width: 95px ;text-align:center;/*ruthu10*/}
+.page31 table.table.table2  tr > td:nth-child(4), .page31 table.table.table1 th:nth-child(4) { width: 140px ;text-align:center;/*ruthu10*/}
 
   
 /*#reports td.corupt{
@@ -1448,3 +1448,64 @@ button.btn.btn-lg.moodNav.InvoicesButtons{
 
 }
 .settingsForm .form-group { margin-top: 15px }
+
+
+/*Pan Model CSS*/
+.formPan, textarea.addressPAn{
+   border-radius: 8px;
+   color: #333333;
+    border: 1px solid #35BFD3;
+    border-spacing: 1em;
+    font-size: 0.9em;
+    padding-bottom: 0px;
+    padding-top: 0px;
+  
+        padding-left: 10px;
+
+}
+.formPan{
+     width: 73%;
+    height:2em;
+}
+textarea.addressPAn{
+   width:72%;
+    padding-bottom: 0px;
+    padding-top: 0px;
+     resize: none;
+}
+
+.inputfile + label {
+ background-color: #35BFD3;
+    border: 1px #35BFD3 solid;
+    color: #F2F5FB;
+    padding: 2px 0px;
+        width: 35%;
+    text-align: center;
+    border-radius: 6px;
+}
+
+#myPanModal .form-group {
+    margin: 10px 0!important;
+}
+
+
+.inputfile + label {
+	cursor: pointer; 
+}
+.captureButton, .proceedPan {
+    background-color: #35BFD3;
+    border: 1px #35BFD3 solid;
+    color: #F2F5FB;
+    padding: 2px 0px;
+        width: 35%;
+    border-radius: 6px;
+}
+.modal-content {
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-bottom: 3em;
+    border: 1px solid #35BFD3;
+    box-shadow: none;
+    background-color: #ffffff;
+}
+

@@ -60,7 +60,7 @@
             </ul>
             </div>
             <div id="<%= selectorDisplay %>" class="moodGoals">
-                <img src="images/back%20arrow.png" alt="">
+                <img src="images/backarrow.png" alt="">
                 <div class="dropdown selectMood">
                 <button class="btn btn-round btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown">Your Moods
                     <span class="caret"></span>
@@ -121,10 +121,14 @@
     <div class="modal-dialog modal-sm">
         <!-- Modal content-->
         <div class="modal-content">
+            
+      
+     
+         
             <div class="modal-body">
                 <div>
                     <form  name="signUpForm" class="form-horizontal" action="/signup" method="post">
-                        <h2>Sign Up</h2>
+                         <h2>Sign Up</h2>
                         <hr>
                         <input type="number" class="form-control" id="mnumber" name="mnumber" placeholder="Mobile Number" ng-model="phoneNumber" ng-pattern="/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/" required/>
                         <span ng-show="signUpForm.mnumber.$touched && signUpForm.mnumber.$invalid">Phone number is invalid.</span>
@@ -137,8 +141,8 @@
                         <button type="submit" class="btn btn-lg login" ng-disabled="signUpForm.$invalid"> Submit </button>
                     </form>
                 </div>
-                <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')" >Sign through Facebook</button>
-                <button type="button" class="btn btn-lg google" onclick="auth('google')" >Sign through Google+</button>
+                <a href="/auth/facebook">  <button type="button" class="btn btn-lg facebook">Sign through Facebook</button></a>
+                <a href="/auth/google"><button type="button" class="btn btn-lg google" >Sign through Google+</button></a>
                 <p><em>By clicking Sign Up you agree to the <a href="#">terms and conditions</a></em></p>   
                 <% if (smessage.length > 0) { %>
                 <div class="alert alert-danger"><%= smessage %></div>
@@ -165,8 +169,8 @@
                         <button id="login" type="submit" class="btn btn-lg login "  ng-disabled="exampleForm.$invalid"> Login </button> 
                         <button type="" class="btn btn-lg sign-up" data-toggle="modal" data-target="#signUp" data-dismiss="modal">Sign Up</button>
                         <a href="#" class="forgot" >Forgot Password?</a>
-                        <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')">Login with Facebook</button>
-                        <button type="button" class="btn btn-lg google" onclick="auth('google')">Login with Google+</button>
+                        <a href="/auth/facebook">    <button type="button" class="btn btn-lg facebook" onclick="auth('facebook')">Login with Facebook</button></a>
+                        <a href="/auth/google">     <button type="button" class="btn btn-lg google" onclick="auth('google')">Login with Google+</button></a>
                     </form>   
                     <% if (lmessage.length > 0) { %>
                     <div class="alert alert-danger"><%= lmessage %></div>
@@ -217,10 +221,14 @@
                         <div></div>
                     </div>
                     <form class="formmodel EmailInfo" name="newsletterEmail">
-                        <input  class="form-control Email" id="email"placeholder="" name="email" ng-model="email" ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/" required autocomplete="off" />
-                        <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  "  >Email Invalid.</span> 
+                        <!--<input  class="form-control Email" id="email"placeholder="" name="email" ng-model="email" ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/" required autocomplete="off" />
+                        <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  "  >Email Invalid.</span> -->
+                        
+                        
+                          <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="email" ng-pattern="/^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/" required />
+                        <span ng-show="newsletterEmail.email.$touched && newsletterEmail.email.$invalid  "  >Email Invalid.</span>
                         <div class="dotHr">
-                            <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"  type="submit" disabled="newsletterEmail.$invalid"> Submit </button> 
+                            <button class="btn btn-lg moodNav  pricing RP1 pull-left submit " style="margin-top:10%;width:5.5em;"  type="submit" ng-disabled="newsletterEmail.$invalid"> Submit </button> 
                             <div></div>
                             <div></div>
                             <div></div>
@@ -268,13 +276,3 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-messages.min.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-            <script>
-         $(document).ready(function () {
-    $(document).click(function (event) {
-        var clickover = $(event.target);
-        var _opened = $(".navbar-collapse").hasClass("navbar-collapse in");
-        if (_opened === true && !clickover.hasClass("navbar-toggle") && clickover.parents('.navbar-collapse').length == 0) {
-            $("button.navbar-toggle").click();
-        }
-    });
-});     </script>

@@ -1,9 +1,11 @@
 
 var pg = require('pg');
-var waterfall = require('async-waterfall');
+//var waterfall = require('async-waterfall');
 
-var conString = process.env.DATABASE_URL ||  "postgres://user1:12345@localhost:5432/investory";
+var conString = process.env.DATABASE_URL ||  "postgres://postgres:postgres@localhost:5432/investory";
+//var conString = process.env.DATABASE_URL ||  "postgres://user1:12345@localhost:5432/investorydb";
 /*
+
 var conString = {
   user: 'user1', //env var: PGUSER
   database: 'investory', //env var: PGDATABASE
@@ -100,7 +102,7 @@ updateRecord : function(req, res){
             //  client.end();       
           res.writeHead(200, {'Content-Type': 'text/plain'});
             res.write(JSON.stringify(result.rows, null, "    ") + "\n");
-                           
+               //console.log(result.rows);            
          res.end();
         });
 
@@ -124,7 +126,7 @@ updateRecord : function(req, res){
          }
     
            
-           var query = client.query("SELECT t1.userpan,t1.userinvestmentorderid,t1.amount,t1.schemeid,t1.bsestatus,t1.nav,t1.units,t1.foliono,t1.bsetxnreference,t2.name,t2.email,t3.name as sname,now()::date-t1.created::date as ageing from userinvestmentorders as t1 inner join users as t2 on t1.userid=t2.userid  inner join schemesmaster as t3 on t3.schemeid=t1.schemeid where t1.reconcile_status=''"); 
+           var query = client.query("SELECT t1.userpan,t1.userinvestmentorderid,t1.amount,t1.schemeid,t1.bsestatus,t1.nav,t1.units,t1.foliono,t1.bsetxnreference,t2.name,t2.email,t3.name as sname,now()::date-t1.created::date as ageing from userinvestmentorders as t1 inner join users as t2 on t1.userid=t2.userid  inner join schemesmaster as t3 on t3.schemeid=t1.schemeid where t1.reconcile_status is null"); 
              
            
         query.on("row", function (row, result) {
@@ -171,7 +173,7 @@ updateRecord : function(req, res){
          
         });
 
-     
+     //console.log('result.rows');
      });
     },
     
@@ -180,6 +182,7 @@ getReconciledDumpUpdates: function(req, res,ids)
    tbl2="dumplog";
    tbl="userinvestmentorders";         
         //client.connect();
+    console.log("Hi update");
    pg.connect(conString,function(err,client,done)
    {      
      if(err)

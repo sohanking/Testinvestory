@@ -1,9 +1,16 @@
-
+var getGoals;
 var selectTab;
+var risk;
+
+function closeNav(){
+		//alert("dismiss");
+        	$("button.navbar-toggle").click();
+     
+		
+	}
+
 $(document).ready(function(){
 
-
-    
 
   resizeContent();
 
@@ -174,9 +181,7 @@ $(function(){
      
  }, function(){
          
-         
-         
-           $(".selectMode a.tooltips span#"+pr).hide();                      
+$(".selectMode a.tooltips span#"+pr).hide();                      
                                  
      });
     
@@ -259,10 +264,10 @@ $(function(){
         case 'bp1': return;
              break;
         
-        case 'bp2': tipData ="personalized call every month";   
+        case 'bp2': tipData ="Personalized call every month";   
              break;
              
-        case 'bp3': tipData ="online meeting twice a year";
+        case 'bp3': tipData ="Online meeting twice a year";
              break;
              
      }
@@ -305,7 +310,7 @@ $(function(){
              
         case 'Bstp6': tipData ="Market analytics and insights from our team of experts";
              break;
-                case 'Bstp7': tipData ="new and old product research to stay up to date";   
+                case 'Bstp7': tipData ="New and old product research to stay up to date";   
              break;
              
         case 'Bstp8': tipData ="Quick reports on world events like Brexit, Union budget, Elections etc";
@@ -463,14 +468,14 @@ circleColor = 	moodColorChange(moodId);
              $("a", this).css("color","#35BFD3");
     
    
-    $(".frogImage img").attr("src", $imgLink+moodImgName+$imgExtension);
+    $("#homeCircleImg img").attr("src", $imgLink+moodImgName+$imgExtension);
     
-    $(".frogImage h1").html($Feeling+" "+moodId);
+    $("#homeCircleImg h1").html($Feeling+" "+moodId);
     
 });    
     
     
-    $(".feelingCircularMenu ul li").click(function(){
+    $(".feelingCircularMenu ul li, .photosInner .change").click(function(){
   
 
     
@@ -478,9 +483,9 @@ circleColor = 	moodColorChange(moodId);
     
     var moodImgName = moodId;
     
-    $(".frogImage img").attr("src", $imgLink+moodImgName+$imgExtension);
+    $("#homeCircleImg img").attr("src", $imgLink+moodImgName+$imgExtension);
     
-    $(".frogImage h1").html($Feeling+" "+moodId);
+    $("#homeCircleImg h1").html($Feeling+" "+moodId);
     
 });    
    
@@ -489,7 +494,7 @@ $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFDE15","col
 //
 //    $(".frogImageMoods img").attr("src", $imgLink+frogMood+$imgExtension);
 
-    $(".frogImage img, .frogImage h1, .feelingCircularMenu ul li").click(function(){
+    $("#homeCircleImg img, #homeCircleImg h1,#homeCircleImg p, .feelingCircularMenu ul li").click(function(){
         
         frogMood=moodId;
          window.location.href = "GoalSelection?mood="+frogMood;
@@ -499,12 +504,9 @@ $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFDE15","col
     });
     
     
-    function getGoals(moods){
-
-		  var local=[]; 
-		
+    getGoals = function (moods){
+        var local=[]; 
         switch(moods){
-                
             case "Broke": 
                 
                 local=Broke.slice(0);
@@ -533,14 +535,10 @@ $(".moods .pagination li:nth-child(1) a").css({"background-color":"#FFDE15","col
             case "Social": 
                
                 local=Social.slice(0);
-                break;
-                
+                break;       
         }
-     
-		return local;
-
-	
-	}
+		return local;	
+	};
    
 
     
@@ -703,9 +701,8 @@ function setFrogMood(mood){
   
 $(".moods .slider .change").click(function () {
 
-
+    once = true;
     var moodId = $(this).attr("id");
-
     // window.location.href = "/GoalSelection?mood=" + moodId;
     var moodImgName = moodId.toUpperCase();
 
@@ -722,8 +719,10 @@ $(".moods .slider .change").click(function () {
 
         $(".below").append("<div class='goal' id=''><img src='" + $GoalimgLink + moodId + "/" + local[i] + $imgExtension + "' mood=" + moodId + " alt='Home view'><p id='mood'><span></span>" + local[i] + "</p></div>");
     }
-
-
+    $('#amount').val('');
+    $('#time').val('');
+    selectTab(1);
+    sessionStorage.clear();
 });    
   
     
@@ -784,127 +783,126 @@ var $smartGoals = "smartGoals";
         }
     
 
-    $(".emergency-funds > p").click(function(){
-        
-        var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$emergencyFunds+"&smood="+sipMood;
-        
-    });
+        $(".emergency-funds").click(function () {
+            var sipMood = $(this).children('p').attr("id");
+            window.location.href = "GoalSelection?smartGoal=" + $emergencyFunds + "&smood=" + sipMood;
+
+        });
+
+
+        $(".tax-savings").click(function () {
+
+            var sipMood = $(this).children('p').attr("id");
+            window.location.href = "GoalSelection?smartGoal=" + $taxSavings + "&smood=" + sipMood;
+
+        });
+
+
+        $(".build-wealth").click(function () {
+
+            var sipMood = $(this).children('p').attr("id");
+            window.location.href = "GoalSelection?smartGoal=" + $buildWealth + "&smood=" + sipMood;
+
+        });
+
+
+        $(".smart-goals").click(function () {
+
+            var sipMood = $(this).children('p').attr("id");
+            window.location.href = "GoalSelection?smartGoal=" + $smartGoals + "&smood=" + sipMood;
+
+        });
     
-    
-        $(".tax-savings > p").click(function(){
+    // $(".emergency-funds > img")
+    //     .on
+    // ({
         
-        var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$taxSavings+"&smood="+sipMood;
+    //     mouseenter: function() 
+    //     {
+    //         $(this).attr("src", $imgLink+$emergencyFunds+$onHover+$imgExtension);
+    //     }, 
         
-    });
-    
+    //     mouseleave: function()
+    //     {
+    //         $(this).attr("src", $imgLink+$emergencyFunds+$imgExtension);
+    //     }, 
         
-        $(".build-wealth > p").click(function(){
-        
-        var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$buildWealth+"&smood="+sipMood;
-        
-    });
-    
-    
-            $(".smart-goals > p").click(function(){
-        
-        var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$smartGoals+"&smood="+sipMood;
-        
-    });
-    
-    $(".emergency-funds > img")
-        .on
-    ({
-        
-        mouseenter: function() 
-        {
-            $(this).attr("src", $imgLink+$emergencyFunds+$onHover+$imgExtension);
-        }, 
-        
-        mouseleave: function()
-        {
-            $(this).attr("src", $imgLink+$emergencyFunds+$imgExtension);
-        }, 
-        
-        click: function()
-        {
-             var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$emergencyFunds+"&smood="+sipMood;
+    //     click: function()
+    //     {
+    //          var sipMood = $(this).attr("id");
+    //          window.location.href = "GoalSelection?smartGoal="+$emergencyFunds+"&smood="+sipMood;
          
-        }
+    //     }
           
           
-    });
+    // });
     
-    $(".tax-savings > img")
-        .on
-    ({
+    // $(".tax-savings > img")
+    //     .on
+    // ({
+    //     mouseenter: function() 
+    //     {
+    //         debugger;
+    //         $(this).attr("src", $imgLink+$taxSavings+$onHover+$imgExtension);
+    //     },         
+    //     mouseleave: function()
+    //     {
+    //         $(this).attr("src", $imgLink+$taxSavings+$imgExtension);
+    //     }, 
         
-        mouseenter: function() 
-        {
-            $(this).attr("src", $imgLink+$taxSavings+$onHover+$imgExtension);
-        },         
-        mouseleave: function()
-        {
-            $(this).attr("src", $imgLink+$taxSavings+$imgExtension);
-        }, 
-        
-        click: function()
-        {
-             var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$taxSavings+"&smood="+sipMood;
+    //     click: function()
+    //     {
+    //          var sipMood = $(this).attr("id");
+    //          window.location.href = "GoalSelection?smartGoal="+$taxSavings+"&smood="+sipMood;
          
-        }
+    //     }
           
-    });
+    // });
     
         
-    $(".build-wealth > img")
-        .on
-    ({
+    // $(".build-wealth > img")
+    //     .on
+    // ({
         
-        mouseenter: function() 
-        {
-            $(this).attr("src", $imgLink+$buildWealth+$onHover+$imgExtension);
-        },         
-        mouseleave: function()
-        {
-            $(this).attr("src", $imgLink+$buildWealth+$imgExtension);
-        }, 
+    //     mouseenter: function() 
+    //     {
+    //         $(this).attr("src", $imgLink+$buildWealth+$onHover+$imgExtension);
+    //     },         
+    //     mouseleave: function()
+    //     {
+    //         $(this).attr("src", $imgLink+$buildWealth+$imgExtension);
+    //     }, 
         
-        click: function()
-        {
-             var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$buildWealth+"&smood="+sipMood;
+    //     click: function()
+    //     {
+    //          var sipMood = $(this).attr("id");
+    //          window.location.href = "GoalSelection?smartGoal="+$buildWealth+"&smood="+sipMood;
          
-        }
+    //     }
           
-    });
+    // });
     
-    $(".smart-goals > img")
-        .on
-    ({
+    // $(".smart-goals > img")
+    //     .on
+    // ({
         
-        mouseenter: function() 
-        {
-            $(this).attr("src", $imgLink+$smartGoals+$onHover+$imgExtension);
-        },         
-        mouseleave: function()
-        {
-            $(this).attr("src", $imgLink+$smartGoals+$imgExtension);
-        }, 
+    //     mouseenter: function() 
+    //     {
+    //         $(this).attr("src", $imgLink+$smartGoals+$onHover+$imgExtension);
+    //     },         
+    //     mouseleave: function()
+    //     {
+    //         $(this).attr("src", $imgLink+$smartGoals+$imgExtension);
+    //     }, 
         
-        click: function()
-        {
-             var sipMood = $(this).attr("id");
-             window.location.href = "GoalSelection?smartGoal="+$smartGoals+"&smood="+sipMood;
+    //     click: function()
+    //     {
+    //          var sipMood = $(this).attr("id");
+    //          window.location.href = "GoalSelection?smartGoal="+$smartGoals+"&smood="+sipMood;
          
-        }
+    //     }
           
-    });
+    // });
 
     
    $(".how-it-works .panel").click(function(){ 
@@ -958,8 +956,9 @@ var $smartGoals = "smartGoals";
             goal.substr(goal);
             goal = goal.substr(goal);
             var mood = $('.frogImageMoods #setMood').attr('src');
-            mood = mood.slice(0, -4)
-            sessionStorage.setItem('tempGoals', JSON.stringify({"goal": goal, "mood": mood}));
+            var moodText = $('.frogImageMoods #setMoodText').html();
+            moodText = moodText.substring(moodText.indexOf(" ") + 1);
+            sessionStorage.setItem('tempGoals', JSON.stringify({"goal": goal, "mood": mood, "moodText": moodText}));
             console.log(sessionStorage.getItem("tempGoals"));
         }
     });
@@ -983,7 +982,6 @@ var $smartGoals = "smartGoals";
          var goalImg = $("#mood",this).text(); 
       currentMood = $("img", this).attr("mood");
         var currentImg =  $("img", this).attr("src");
-            
         $("img", this).attr("src",   $GoalimgLink+currentMood+"/"+goalImg+$onHover+$imgExtension);     
 }
         
@@ -1018,16 +1016,31 @@ var movingTo= 0;
     
 
     
- $(".page2 .go").click(function(){ });
+
     
     $(".page1 .next, .page1 .skip").click(function(){ 
         
         selectTab(2);
 
     });
-    $(".page2 .next").click(function() { selectTab(4) });
-    $(".page2 .go").click(function(){ selectTab(3) });
-    $(".page4 .selectMode button").click( function() { selectTab(5, this) });
+    $(".page2 .next").click(function() { 
+        if( $('#invest').html() >= 1000 ) {
+            selectTab(4);
+        }
+            
+    });
+    $(".page2 .go").click(function(){ 
+        if(  $('#time').val() <= 50 && $('#time').val() >= 1 ) {
+            setProfile(0,1,0);
+            selectTab(3);
+            $(".page2VldMsg2").slideUp();
+        } else {
+            $(".page2VldMsg2").slideDown();
+        }
+    });
+
+    $(".page4 .selectMode button, .sub-page4 .done").not('#dontKnow').click( function() { selectTab(5, this) });
+    $(".contentMood #sip").css({"color": "black","font-size":"1.2em"});
     var once = true;
     selectTab = function(tabNo, e) {
         currentPage = tabNo;
@@ -1036,8 +1049,22 @@ var movingTo= 0;
             tempGoals.currentPage = currentPage;
         }
         sessionStorage.setItem('tempGoals', JSON.stringify(tempGoals));
+        $('.pagination li a').removeClass('active');
+        $('.pagination li a').removeClass('done');
+        $('#Indicator span').removeClass('active');
+        $('#Indicator').show();
         switch (tabNo) {
+            case 1:
+                $('.pagination li:nth-child(1) a').addClass('active');
+                $('.contentMood > div').not('.page1').hide();
+                $('.contentMood .page1').show();
+                break;
+
             case 2:
+                $('#Indicator span:nth-child(1)').addClass('active');
+                $('.pagination li:nth-child(1) a').addClass('done');
+                $('.pagination li:nth-child(2) a').addClass('active');
+
                 $('.contentMood > div').not('.page2').hide();
                 $('.contentMood .page2').show();
                 $(".contentMood .page1, #btm").hide();
@@ -1050,7 +1077,13 @@ var movingTo= 0;
 
             case 3:
                 currentPage = 3;
+                $('#Indicator span:nth-child(1), #Indicator span:nth-child(2)').addClass('active');
+                $('.pagination li:nth-child(1) a').addClass('done');
+                $('.pagination li:nth-child(2) a').addClass('active');
+                $('.contentMood > div').not('.page3, .page2').hide();
+                $('.contentMood .page2, .contentMood .page3').show();        
                 $(".contentMood .page2 .login-btn").css("top", "15%");
+                $(".contentMood .page3, .page3Sub, #rpText").show();
 
                 if (once) {
                     $('.contentMood > div').not('.page2, .page3').hide();
@@ -1066,8 +1099,11 @@ var movingTo= 0;
                 break;
 
             case 4:
-            $('.contentMood > div').not('.page4').hide();
-            $('.contentMood .page4').show();
+                $('#Indicator span:nth-child(1), #Indicator span:nth-child(2), #Indicator span:nth-child(3)').addClass('active');            
+                $('.pagination li:nth-child(1) a, .pagination li:nth-child(2) a').addClass('done');
+                $('.pagination li:nth-child(3) a').addClass('active'); 
+                $('.contentMood > div').not('.page4').hide();
+                $('.contentMood .page4').show();
                 $(".contentMood .page2,.contentMood .page3, .page3Sub,.contentMood .page4 .sub-page4").hide();
                 $(".pagination li:nth-child(3) a").css({ "background-color": "#FFFFFF", "color": "#FFDE15", "border-color": "#FFDE15" });
                 $(".pagination li:nth-child(4) a").css({ "background-color": "#FFDE15", "color": "#35BFD3", "border-color": "#FFDE15" });
@@ -1076,37 +1112,46 @@ var movingTo= 0;
                 break;    
             
             case 5:
-                var page4Risk;
-                    
-                
-                    
-                 var risk = $(e).attr("id");
-                    page4Risk = risk;
-                
-                    
-                    if(risk == "dontKnow" ){
-                        currentPage=4;
-                        $(".contentMood .page4 .selectMode").hide();
-                        
-                        $(".contentMood .page4 .sub-page4").show();
-                        
-                }else{
-                    currentPage=5;
-                    $("#riskSelected").text(rp);
+            // debugger;
+                // var page4Risk;
+                risk = $(e).attr("id");
+                page4Risk = risk;
+                //     if(risk == "dontKnow" ){
+                //         currentPage=4;
+                //         $(".contentMood .page4 .selectMode").hide();
+                //         $(".contentMood .page4 .sub-page4").show();
+                // }else{
+                currentPage=5;
+                $('#Indicator span:nth-child(1), #Indicator span:nth-child(2), #Indicator span:nth-child(3), #Indicator span:nth-child(4)').addClass('active'); 
+                $('.pagination li:nth-child(1) a, .pagination li:nth-child(2) a, .pagination li:nth-child(3) a').addClass('done');
+                $('.pagination li:nth-child(4) a').addClass('active'); 
+                $('.contentMood > div').not('.page5').hide();
+                $('.contentMood .page5').show();
+                $("#riskSelected").text(rp);
                 localStorage.clear();
-                    $("#displayModal").modal("show");
-                    $("#displayModal h3").html("You are a "+rp+" risk taker and we have recommended you the best.");
-                    $(".contentMood .page4").hide();
-                        
-                        $(".pagination li:nth-child(4) a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
-                        
-                        $(".pagination li:nth-child(5) a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
-                        
-                        
-                    $(".contentMood .page5, #yp, #riskSelected").show();
-                        
-                        
-                }
+                $(".contentMood .page4 #sip").css({"color": "black","font-size":"1.2em"});
+                // $("#displayModal").modal("show");
+                // $("#displayModal h3").html("You are a "+rp+" risk taker and we have recommended you the best.");
+                // $(".contentMood .page4").hide();
+                $(".contentMood .page5, #yp, #riskSelected").show();  
+                // }
+                break;
+
+            case 6:
+                $('#Indicator span:nth-child(1), #Indicator span:nth-child(2), #Indicator span:nth-child(3), #Indicator span:nth-child(4)').addClass('active'); 
+                $('.pagination li:nth-child(1) a, .pagination li:nth-child(2) a, .pagination li:nth-child(3) a, .pagination li:nth-child(3) a, .pagination li:nth-child(4) a').addClass('done');
+                $('.pagination li:nth-child(5) a').addClass('active'); 
+                $('.contentMood > div').not('.page6').hide();
+                $('.contentMood .page6').show();
+                break;
+            
+            case 7:
+                $('#Indicator span:nth-child(1), #Indicator span:nth-child(2), #Indicator span:nth-child(3), #Indicator span:nth-child(4)').addClass('active'); 
+                $('.pagination li:nth-child(1) a, .pagination li:nth-child(2) a, .pagination li:nth-child(3) a, .pagination li:nth-child(3) a, .pagination li:nth-child(4) a').addClass('done');
+                $('.pagination li:nth-child(5) a').addClass('active'); 
+                $('.contentMood > div').not('.page7').hide();
+                $('.contentMood .page7').show();
+                break;
             }
         }
  
@@ -1115,6 +1160,7 @@ var movingTo= 0;
     
     
     $(".page4 .sub-page4 .done").click(function(){ 
+        // debugger;
         currentPage=5;
 		localStorage.clear();
 			 $("#riskSelected").text(rp);
@@ -1133,74 +1179,78 @@ var movingTo= 0;
 	
 	
 	$("#schemeNext").click(function(){
-		
-		$(" .moodGoals > img").css("visibility","hidden");
-		 $(".contentMood .page5").hide();
-		 $(".contentMood .page6, #IndicatorNew").show();
-		
+        selectTab(6);
+        $(" .moodGoals > img").css("visibility","hidden");
+        $(".contentMood .page5").hide();
+        $(".contentMood .page6, #IndicatorNew").show();
 	});
 	
 	
 	$(".moodGoals > img").click(function(){
-	movingTo= currentPage-1;
-	
-		
-		switch(movingTo){
+	movingTo = currentPage-1;	
+    selectTab(movingTo);
+// 		switch(movingTo){
 				
-			case 0: break;
-			case 1: 
-				$(".contentMood .page1").show();
+// 			case 0: break;
+// 			case 1: 
+// 				$(".contentMood .page1").show();
 		 
-		$(".contentMood .page2, #goalIndicator").hide();
-				currentPage=1;
-			break;
+// 		$(".contentMood .page2, #goalIndicator").hide();
+// 				currentPage=1;
+// 			break;
 				
-			case 2: 
-				$(".contentMood .page3, .page3Sub").hide();
-				$(".contentMood .page2 .login-btn").css("top","65%");
-				$(".contentMood .page2, #goalIndicator").show();
-				 $(".page2 .dotHr").show();
-				currentPage=2;
-				once = true;
-				break;
+// 			case 2: 
+// 				$(".contentMood .page3, .page3Sub").hide();
+// 				$(".contentMood .page2 .login-btn").css("top","65%");
+// 				$(".contentMood .page2, #goalIndicator").show();
+// 				 $(".page2 .dotHr").show();
+// 				currentPage=2;
+// 				once = true;
+// 				break;
 				
-			case 3:
-				$(".contentMood .page2, .contentMood .page3, .page3Sub").show();
-				 $(".contentMood .page4").hide();
-				currentPage=3;
-				once = true;
-				break;
+// 			case 3:
+// 				$(".contentMood .page2, .contentMood .page3, .page3Sub").show();
+// 				 $(".contentMood .page4").hide();
+// 				currentPage=3;
+// 				once = true;
+// 				break;
 				
-			case 4:
-				if(page4Risk == "dontKnow" ){
-             currentPage=4;
-            $(".contentMood .page4 .selectMode").hide();
+// 			case 4:
+// 				if(page4Risk == "dontKnow" ){
+//              currentPage=4;
+//             $(".contentMood .page4 .selectMode").hide();
             
-            $(".contentMood .page4 .sub-page4").show();
+//             $(".contentMood .page4 .sub-page4").show();
             
-}
-				$(".contentMood .page5").hide();
-				$(".contentMood .page4").show();
-				currentPage=4;
-				break;
-		}
+// }
+// 				$(".contentMood .page5").hide();
+// 				$(".contentMood .page4").show();
+// 				currentPage=4;
+// 				break;
+// 		}
 
-		nextPage = currentPage+1;
-		 $(".moods .pagination li:nth-child("+nextPage+") a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
+// 		nextPage = currentPage+1;
+// 		 $(".moods .pagination li:nth-child("+nextPage+") a").css({"background-color":"#FFFFFF","color":"#FFDE15","border-color":"#FFDE15"});
         
-        $(".pagination li:nth-child("+movingTo+") a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
+//         $(".pagination li:nth-child("+movingTo+") a").css({"background-color":"#FFDE15","color":"#35BFD3","border-color":"#FFDE15"});
 		
 });
-
-		if (localStorage.sip) {
+		if (localStorage.sipInvestment) {
     showSIP();
 			
 }
-
+	/*<!--lumpsum sohan -- call for showing the riskprofile in goal selection-->*/
+		if (localStorage.lumpsumInvestment) {
+    showLumpsum();
+			
+}
 	
 });
-
-
+var pathname = window.location.pathname;
+if(pathname != '/GoalSelection'){
+	//alert(pathname);
+	localStorage.clear();
+}
 	//localStorage.clear()
 
 var height = $( window ).height(); 
@@ -1211,4 +1261,8 @@ function resizeContent() {
  $("#section1,#section2,#section3,#section4").css("height",height);
    
 }
+
+/*sohan - navbar cancel button */
+
+/* Set the width of the side navigation to 250px */
 
