@@ -14,9 +14,8 @@
     
     <br>
     <br>
-   
   <div class="topNav abc topNav2">
-    <a class="act btn btn-lg moodNav storyBtn"  href="Invoices">My Investments</a> 
+    <a class="btn btn-lg moodNav storyBtn <% if( currentPage == '/Invoices' ) { %> active <% } %> " href="Invoices">My Investments</a> 
       <div></div>
       <div></div>
       <div></div>
@@ -25,7 +24,7 @@
       <div></div>
       <div></div>
       <div></div>
-      <a class="btn btn-lg moodNav storyBtn" style="width: 8em;"  href="Investment">My Invoices</a>
+      <a class="btn btn-lg moodNav storyBtn <% if( currentPage == '/Investment' ) { %> active <% } %>" style="width: 8em;"  href="Investment">My Invoices</a>
       <div></div>
       <div></div>
       <div></div>
@@ -34,7 +33,7 @@
       <div></div>
       <div></div>
       <div></div>
-      <a class="btn btn-lg moodNav storyBtn" style="width: 8em;" href="Transaction">My Transactions</a> 
+      <a class="btn btn-lg moodNav storyBtn <% if( currentPage == '/transaction' ) { %> active <% } %>" style="width: 8em;" href="Transaction">My Transactions</a> 
       <div></div>
       <div></div>
       <div></div>
@@ -43,7 +42,7 @@
       <div></div>
       <div></div> 
       <div></div>
-    <a class="btn btn-lg moodNav storyBtn"  href="Settings" id="ttt">My Settings</a>
+    <a class="btn btn-lg moodNav storyBtn <% if( currentPage == '/Settings' ) { %> active <% } %>"  href="Settings" id="ttt">My Settings</a>
   </div>
 
    

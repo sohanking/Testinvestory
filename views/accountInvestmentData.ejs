@@ -4,15 +4,15 @@
         
                 <div class="page31" style="    margin-top: 4em;">
                                  
-                       <div class="table-responsive tableAccounts"style="" >
+                       <div class="table-responsive tableAccounts investmentTable"style="" >
                         <table class="table table1"  style="  "  >
     <thead >
       <tr >
-          
-          <th   class="thDates" >User Subscription Id</th>  
-        <th class="thAllocation">Amount</th>
-        <th class="thAmount">Duration</th>
-        <th  class="thInvoices" style= "border-right: 1px solid #35BFD3">Order Date</th>
+        <th class="thDates" >Subscription Id</th>
+        <th class="thInvoices" style= "border-right: 1px solid #35BFD3; width: 140px">Order Date</th>
+        <th class="thAmount" style= "border-right: 1px solid #35BFD3; width: 70px">Duration</th>
+        <th class="thAllocation" style= "border-right: 1px solid #35BFD3">Amount</th>
+        <th style= "border-right: 1px solid #35BFD3">Payment Reference</th>
         <th class="thAmount" style="width: 140px">Renewal Date</th>
       </tr>
                             </thead>    </table>         
@@ -22,9 +22,10 @@
           <% for(i=0; i < stmt.length; i++) {%>   
         <tr>
           <td><%= stmt[i].usersubscriptionorderid %></td>
-          <td><%= stmt[i].amount %></td>
-          <td><%= stmt[i].durationdays %></td>
-          <td style= "border-right: 1px solid #35BFD3"><%= stmt[i].orderdate %></td>
+          <td style= "border-right: 1px solid #35BFD3; width: 140px"><%= stmt[i].orderdate %></td>
+          <td style= "border-right: 1px solid #35BFD3; width: 70px"><%= stmt[i].durationdays %></td>
+          <td style= "border-right: 1px solid #35BFD3"><%= stmt[i].amount %></td>
+          <td style= "border-right: 1px solid #35BFD3"><%= stmt[i].paymentreference %></td>
           <td style="width: 140px"><%= stmt[i].planrenewaldate %></td>
         </tr>
           <% } %>

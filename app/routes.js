@@ -189,8 +189,9 @@ module.exports = function (app, passport) {
 		else
 			pageName = "howItWorks";
 		if (req.session.payU) {
-			console.log(req.session.payU)
-			payUData = req.session.payU;
+			console.log(req.session.payU);
+			payUData = JSON.parse(JSON.stringify(req.session.payU))
+			req.session.payU.flashMessage = false;
 		} else {
 			console.log("is data undefined")
 			payUData = "";
@@ -261,21 +262,20 @@ module.exports = function (app, passport) {
 
 		loginStatus = checkLoginStatus(req);
 		currentPage = req.session.activePage = "/Pricing";
-
-		//res.json(req.body);
+		req.session.payU = req.body;
+		req.session.payU.flashMessage = true;
+		req.session.payU.status = "fail"
 
 		console.log(res.json(req.body));
-
-
 	});
 
 	app.post('/Pricing/success', isLoggedIn, function (req, res) {
-
 		loginStatus = checkLoginStatus(req);
 		currentPage = req.session.activePage = "/Pricing/success";
 
 		// res.json(req.body);
 		req.session.payU = req.body;
+		req.session.payU.flashMessage = true;
 		console.log("initailze the payU " + req.session.payU.amount);
 
 		console.log("pricing Success" + req.body.amount + "userid" + req.session.user.userid);
@@ -1516,7 +1516,7 @@ module.exports = function (app, passport) {
 						'cache-control': 'no-cache',
 						'content-type': 'application/soap+xml; charset=utf-8'
 					},
-					body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>' + uploadPass + '</ns:EncryptedPassword>\n         <ns:param>10940|SOHANDEMO2|http://54.152.36.19:3000/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>'
+					body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>' + uploadPass + '</ns:EncryptedPassword>\n         <ns:param>10940|SOHANDEMO2|http://localhost:3000/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>'
 				};
 
 				request(options, function (error, response, body) {
@@ -2045,7 +2045,7 @@ module.exports = function (app, passport) {
 						'cache-control': 'no-cache',
 						'content-type': 'application/soap+xml; charset=utf-8'
 					},
-					body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>' + uploadPass + '</ns:EncryptedPassword>\n         <ns:param>10940|SOHANDEMO2|http://54.152.36.19:3000/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>'
+					body: '<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:ns="http://bsestarmfdemo.bseindia.com/2016/01/" xmlns:a="http://www.w3.org/2005/08/addressing" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">\n   <soap:Header>\n   <a:Action >http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI</a:Action>\n   <a:To>http://bsestarmfdemo.bseindia.com/MFUploadService/MFUploadService.svc/Basic</a:To>\n   </soap:Header>\n   <soap:Body>\n      <ns:MFAPI  xmlns="http://bsestarmfdemo.bseindia.com/2016/01/IMFUploadService/MFAPI">\n         <ns:Flag>03</ns:Flag>\n		 <ns:UserId>109401</ns:UserId>\n         <ns:EncryptedPassword>' + uploadPass + '</ns:EncryptedPassword>\n         <ns:param>10940|SOHANDEMO2|http://localhost:3000/BsePaymentStatus</ns:param>\n            </ns:MFAPI>\n   </soap:Body>\n</soap:Envelope>'
 				};
 
 				request(options, function (error, response, body) {
@@ -3644,7 +3644,8 @@ module.exports = function (app, passport) {
 					footerDisplay: "hide",
 					footerData1: "Blog",
 					footerData2: "FAQs",
-					date: date
+					date: date,
+					currentPage: currentPage
 				});
 			}
 		});
@@ -3671,10 +3672,10 @@ module.exports = function (app, passport) {
 			smessage: req.flash('signupMessage'),
 			lmessage: req.flash('loginMessage'),
 			path1: 'accountSettingsData',
-
 			footerDisplay: "hide",
 			footerData1: "Blog",
-			footerData2: "FAQs"
+			footerData2: "FAQs",
+			currentPage: currentPage
 		});
 	});
 
@@ -3700,34 +3701,11 @@ module.exports = function (app, passport) {
 				path1: 'accountTransactionData',
 				footerDisplay: "hide",
 				footerData1: "Blog",
-				footerData2: "FAQs"
+				footerData2: "FAQs",
+				currentPage: currentPage
 			});
 		}
 	});
-
-	//Investment
-	// app.get('/Investment', isLoggedIn, function (req, res) {
-	// 	currentPage = req.session.activePage = "/Investment";
-	// 	loginStatus = checkLoginStatus(req);
-	// 	mobile = req.useragent["isMobile"]
-	// 	if (mobile) {
-	// 		res.render('investmentMobile.ejs', {
-	// 		});
-	// 	} else {
-	// 		res.render('yourStory.ejs', {
-	// 			user: req.user,
-	// 			selectorDisplay: "show",
-	// 			loggedIn: loginStatus,
-	// 			path: 'accountData',
-	// 			smessage: req.flash('signupMessage'),
-	// 			lmessage: req.flash('loginMessage'),
-	// 			path1: 'accountInvestmentData',
-	// 			footerDisplay: "hide",
-	// 			footerData1: "Blog",
-	// 			footerData2: "FAQs"
-	// 		});
-	// 	}
-	// });
 
 	app.get('/Investment', isLoggedIn, function (req, res) {
 		currentPage = req.session.activePage = "/Investment";
@@ -3759,7 +3737,8 @@ module.exports = function (app, passport) {
 					footerDisplay: "hide",
 					footerData1: "Blog",
 					footerData2: "FAQs",
-					date: date
+					date: date,
+					currentPage: currentPage
 				});
 			}
 		});

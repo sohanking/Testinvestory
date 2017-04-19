@@ -412,20 +412,23 @@
           </div>
 
       </div>
-
+<%- JSON.stringify(payU) %>
     </div>
 <!--Custom Js links -->
 
 
 <script>
 $(document).ready(function(){
-
-
-<% if (payU.amount) {  %>
-
-$("#myPaymentPayU").modal("show");
-<% } %>
-
+    // debugger;
+    <% if (payU.flashMessage === true) { if(payU.status == "success") { %>
+    $('#displayModal .modal-body h3').html('Thank you, Your Payment was successful.<br>You can now start Investing.');
+    $('#displayModal .modal-body button').css('display', 'none');
+    $('#displayModal').modal('show');
+    <% } else if(payU.status == "fail") { %>
+    $('#displayModal .modal-body h3').html('Sorry, Your payment was unsuccessful.<br>Kindly try after some time.');
+    $('#displayModal .modal-body button').css('display', 'none');
+    $('#displayModal').modal('show');    
+    <% } }%>
 });
 
 function setStatus(){

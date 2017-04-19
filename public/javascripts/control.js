@@ -10,7 +10,11 @@ function closeNav(){
 	}
 
 $(document).ready(function(){
-
+    
+    $('.faqsNav a').click(function(e) { 
+        $('.faqsNav a').removeClass('active');
+        $(e.target).addClass('active');
+    });
 
   resizeContent();
 
@@ -621,8 +625,10 @@ function getParameterByName(name) {
 
 var source = getParameterByName('mood');
 var sourceGoal = getParameterByName('goal');
+if ( source != "" && sourceGoal != "" ) {
+    $('.page1 .next').removeAttr('disabled');
+}
 
-	
 
 	
 	/*if(source && sourceGoal){
@@ -807,10 +813,8 @@ var $smartGoals = "smartGoals";
 
 
         $(".smart-goals").click(function () {
-
             var sipMood = $(this).children('p').attr("id");
             window.location.href = "GoalSelection?smartGoal=" + $smartGoals + "&smood=" + sipMood;
-
         });
     
     // $(".emergency-funds > img")

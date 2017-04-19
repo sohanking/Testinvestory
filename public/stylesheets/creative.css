@@ -160,8 +160,11 @@ Home Page Whats your mood.
 }
 .text-center.menu:before { display: block; width: 270px; height: 135px; border: 3px dotted #3fbfd1; border-top-left-radius: 270px; border-top-right-radius: 270px; border-bottom: 0; margin: 17px auto 0; left: 0; right: 0 }
 #moodOfMonth {font-weight: 600; position: absolute; bottom: 60px; left: 50%; width: 100px; cursor: pointer; transform: translateX(-50%) }
-#dotMenu { position: fixed; bottom: 40px; width: 100px; z-index: 99999; left: 50%; transform: translateX(-50%)}
-.dot {  width: 8px; height: 8px; display: inline-block; border-radius: 100%; border: 2px #FFDE15 solid; background-color: #FFDE15; margin-right: 4px; margin-bottom: 5px }
+#dotMenu { position: fixed; bottom: 40px; width: 100px; z-index: 99999; left: 50%; transform: translateX(-50%); display: block; top: initial; height: 28px;}
+.onepage-pagination li { display: inline-block }
+#dotMenu li a {  width: 15px; height: 15px; display: inline-block; border-radius: 50%; border: 2px #FFDE15 solid; background-color: #FFDE15; border: 0; margin: 5px; padding: 0px }
+#dotMenu li a:before { display: none }
+#dotMenu li a.active { background: #35BFD3 }
 #angle { position: fixed; bottom: 1em; width: 45px; z-index: 99999; left: 50%; transform: translateX(-50%); padding: 10px; cursor: pointer; }
 
 /*Frog Image*/
@@ -1087,11 +1090,11 @@ h2.h2hstyle
 
 }
 
-.act {
-    
+.btn.active {
     background-color:#ffffff;/* #F2F5FB;*/
     border: 1px #35BFD3 solid;
     color:#35BFD3;
+    box-shadow: none;
      
 }
 
@@ -2633,8 +2636,7 @@ button.btn.saved{
 img.popUPImg
 {
     position: absolute;
-    right: 75%;
-    transform: translateX(-75%);
+    left: -104px;
 }
 @media (max-width:768px){
    img.popUPImg
@@ -2878,3 +2880,7 @@ div#yCircle.yellow {
     background-color: #FFDE15;
 }
 
+/*@media print {
+    .accountsPage *:not(table *) { display: none }
+
+}*/
