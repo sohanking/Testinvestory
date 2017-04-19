@@ -259,14 +259,13 @@ module.exports = function (app, passport) {
 	});
 
 	app.post('/Pricing/failure', isLoggedIn, function (req, res) {
-
 		loginStatus = checkLoginStatus(req);
-		currentPage = req.session.activePage = "/Pricing";
+		currentPage = req.session.activePage = "/Pricing/failure";
 		req.session.payU = req.body;
 		req.session.payU.flashMessage = true;
 		req.session.payU.status = "fail"
-
 		console.log(res.json(req.body));
+		res.redirect("/Pricing");
 	});
 
 	app.post('/Pricing/success', isLoggedIn, function (req, res) {

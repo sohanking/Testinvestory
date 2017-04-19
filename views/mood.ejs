@@ -850,7 +850,13 @@
                 }
 
                 console.log(sessionStorage.getItem("tempGoals"));
-                document.getElementById("invest" + t).innerHTML = mn;
+                $("#invest").html(mn).promise().done(function() {
+                    if( $('#invest').html() >= 1000 ) {
+                        $('.page2VldMsg').slideUp();
+                    } else {
+                        $('.page2VldMsg').slideDown();
+                    }
+                });
                 document.getElementById("invest2").innerHTML = mn;
                 document.getElementById("total").innerHTML = mn;
                 document.getElementById("total1").innerHTML = mn;
@@ -1342,14 +1348,6 @@
             if(location.search.split('tab=')[1] == '6') {
                 selectTab(6);
             }
-
-            $('#invest').bind("DOMSubtreeModified",function(){
-                if( $('#invest').html() >= 1000 ) {
-                    $('.page2VldMsg').slideUp();
-                } else {
-                    $('.page2VldMsg').slideDown();
-                }
-            });
 
             // Get User Status
             $.getJSON("user_data", function (data) {
