@@ -973,15 +973,6 @@ input[type=date]::-webkit-inner-spin-button {
     left: 28%;
 }
 
-#profile .froggie #yCircle {
-    cursor: pointer;
-    position: absolute;
-    z-index: 10;
-       left: -11.8em;
-    top: 6.8em;
-        border: 1.2px solid #ffffff;
-}
-
 #profile .btn .caret {
     
     margin-left: 6.5em;

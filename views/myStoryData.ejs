@@ -77,160 +77,143 @@
 </div>
     </div>
        
-      <h4 style=" color: #333333;
-    font-weight: 700;">You are just <%= 15 - goalCount %> goals away from becoming <em>THE FROG</em></h4>
-
+      <h4 style=" color: #333333; font-weight: 700;">You are just <%= 15 - goalCount %> goals away from becoming <em>THE FROG</em></h4>
         <div class="FrogHome"  >
-                <div class="dotHr">
-                <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                                        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                    
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                    
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                    
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                                        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                    
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                    
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                    
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-                                        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div> 
-        <div></div>
-        </div>
-            <div class="container">
-               <div class="row" style="    width: 100%;
-    margin-top: 2em;
-    margin-left: 22em;">
-                
-				   <% var egg = "",tadpole = "", froglet = "", frog = "";
-				   if(goalCount <=3) 
-						egg = "%20BLACK";
-				   else if (goalCount <=5)
-					   tadpole = "%20BLACK";
-				    else if (goalCount <=10)
-					   froglet = "%20BLACK";
-				    else if (goalCount <=15)
-					   frog = "%20BLACK";
-					   
-	
-	%>
+          <div class="dotHr">
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>            
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div> 
+            <div></div>
+          </div>
+        <div class="container">
+        <div class="row" style=" width: 100%; margin-top: 2em; margin-left: 22em;">
+              
+            <% var egg = "",tadpole = "", froglet = "", frog = "";
+            if(goalCount <=3) 
+            egg = "%20BLACK";
+            else if (goalCount <=5)
+              tadpole = "%20BLACK";
+            else if (goalCount <=10)
+              froglet = "%20BLACK";
+            else if (goalCount <=15)
+              frog = "%20BLACK";
+            %>
 				   
-                <div class="col-md-4 froggie">
-                  <img src="images/animHow/3%20GOALS<%= egg %>.png" alt="The Egg"><br>
-                  <% if(goalCount < 5) {%>
-                  <div id="yCircle" class="yellow"></div>
-                  <% } %>
-                </div>
-                <div class="col-md-4 froggie">
-                  <img src="images/animHow/5%20GOALS<%= tadpole %>.png" alt="Tadpole"><br>
-                  <% if(goalCount < 10 && goalCount > 4) {%>
-                  <div id="yCircle" class="yellow"></div>
-                  <% } %>
-                </div>
-                <div class="col-md-4 froggie">
-                  <img src="images/animHow/10%20GOALS<%= froglet %>.png" alt="Froglet"><br>
-                  <% if(goalCount < 15 && goalCount > 9 ) {%>
-                  <div id="yCircle" class="yellow"></div>
-                  <% } %>                  
-                </div>
-                <div class="col-md-4 froggie">
-                  <img src="images/animHow/15%20GOALS<%= frog %>.png" alt="Frog"><br>
-                  <% if(goalCount == 15 ) {%>
-                  <div id="yCircle" class="yellow"></div>
-                  <% } %>
-                </div>
-                
-          
-                    </div>
-                
-                </div>
-         
-                    <div class="dotHr">
+          <div class="col-md-4 froggie">
+            <img src="images/animHow/3%20GOALS<%= egg %>.png" alt="The Egg"><br>
+            <% if(goalCount < 5) {%>
+            <div id="yCircle" class="yellow"></div>
+            <% } %>
+          </div>
+          <div class="col-md-4 froggie">
+            <img src="images/animHow/5%20GOALS<%= tadpole %>.png" alt="Tadpole"><br>
+            <% if(goalCount < 10 && goalCount > 4) {%>
+            <div id="yCircle" class="yellow"></div>
+            <% } %>
+          </div>
+          <div class="col-md-4 froggie">
+            <img src="images/animHow/10%20GOALS<%= froglet %>.png" alt="Froglet"><br>
+            <% if(goalCount < 15 && goalCount > 9 ) {%>
+            <div id="yCircle" class="yellow"></div>
+            <% } %>                  
+          </div>
+          <div class="col-md-4 froggie">
+            <img src="images/animHow/15%20GOALS<%= frog %>.png" alt="Frog"><br>
+            <% if(goalCount == 15 ) {%>
+            <div id="yCircle" class="yellow"></div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      <div class="dotHr">
                 <div></div>
         <div></div>
         <div></div> 
